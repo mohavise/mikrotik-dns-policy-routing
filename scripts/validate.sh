@@ -1,39 +1,21 @@
 #!/bin/sh
 set -eu
 
-fail=0
-
-check_domain() {
-  domain="$1"
-  case "$domain" in
-    *[!a-zA-Z0-9.-]*|.*|*..*|*-.*|*.-*|*-.|*.) return 1 ;;
-    *.*) return 0 ;;
-    *) return 1 ;;
-  esac
-}
-
-for file in sources/domains/*.txt; do
-  [ -f "$file" ] || continue
-  while IFS= read -r line; do
-    clean=$(printf '%s' "$line" | sed 's/#.*$//' | tr -d ' \t\r')
-    [ -z "$clean" ] && continue
-    if ! check_domain "$clean"; then
-      echo "Invalid domain in $file: $clean"
-      fail=1
-    fi
-  done < "$file"
+for file in list-telegram-domains.rsc list-telegram-cidr.rsc list-telegram-all.rsc; do
+    test -s "$file"
 done
 
-for file in sources/cidr/*.txt; do
-  [ -f "$file" ] || continue
-  while IFS= read -r line; do
-    clean=$(printf '%s' "$line" | sed 's/#.*$//' | tr -d ' \t\r')
-    [ -z "$clean" ] && continue
-    case "$clean" in
-      */*) : ;;
-      *) echo "Invalid CIDR in $file: $clean"; fail=1 ;;
-    esac
-  done < "$file"
-done
+grep -q '^# Project: MikroTik DNS Policy Routing' list-telegram-all.rsc
+grep -q 'telegram' list-telegram-all.rsc
+grep -q 'DST-TO-OUTBOUND' list-telegram-all.rsc
 
-exit "$fail"
+# Minimum sanity checks
+if [ "$(grep -c 'type=FWD' list-telegram-domains.rsc)" -lt 3 ]; then
+    echo "Too few Telegram domain entries"
+    exit 1
+fi
+
+if [ "$(grep -c 'add list=DST-TO-OUTBOUND address=' list-telegram-cidr.rsc)" -lt 3 ]; then
+    echo "Too few Telegram CIDR entries"
+    exit 1
+fi
