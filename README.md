@@ -30,12 +30,41 @@ to-outbound       routing table / routing mark
 ## Repository structure
 
 ```text
+sources/           human-editable source lists
+sources/domains/   one domain per line
+sources/cidr/      one CIDR per line
+generated/         auto-generated RouterOS .rsc files
 routeros-v7/       RouterOS v7 base config
-address-lists/     static IP/CIDR address-lists
-domain-lists/      DNS FWD domain categories
+address-lists/     manual/static IP/CIDR examples
+domain-lists/      manual DNS FWD examples
 use-cases/         real deployment examples
 troubleshooting/   common problems and checks
-scripts/           update/import helper scripts
+scripts/           build and validation scripts
+.github/workflows/ GitHub Actions automation
+```
+
+## Generated files
+
+```text
+generated/dst-to-outbound-domains.rsc
+generated/dst-to-outbound-cidr.rsc
+generated/dst-to-outbound-all.rsc
+```
+
+Edit files inside `sources/`, not `generated/`.
+
+## Automatic GitHub update
+
+The workflow runs daily and can also be started manually from GitHub Actions:
+
+```text
+.github/workflows/update-generated-lists.yml
+```
+
+Flow:
+
+```text
+sources/ -> scripts/validate.sh -> scripts/build.sh -> generated/*.rsc -> commit if changed
 ```
 
 ## Quick start
@@ -46,10 +75,11 @@ Import the base config first:
 /import file-name=routeros-v7/base-config.rsc
 ```
 
-Then import domain lists, for example:
+Then import the generated list:
 
 ```rsc
-/import file-name=domain-lists/starter-domains.rsc
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/generated/dst-to-outbound-all.rsc" dst-path=dst-to-outbound-all.rsc mode=https
+/import file-name=dst-to-outbound-all.rsc
 ```
 
 ## Important notes
