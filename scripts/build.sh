@@ -25,6 +25,7 @@ header_domains() {
     echo "# WARNING: generated file. Do not edit manually."
     echo
     echo "/ip dns static"
+    echo "remove [find address-list=$list comment~\"telegram:\"]"
 }
 
 header_cidr() {
@@ -37,6 +38,7 @@ header_cidr() {
     echo "# WARNING: generated file. Do not edit manually."
     echo
     echo "/ip firewall address-list"
+    echo "remove [find list=$list comment=\"telegram-cidr\"]"
 }
 
 escape_domain() {
