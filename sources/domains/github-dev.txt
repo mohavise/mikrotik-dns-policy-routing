@@ -1,9 +1,0 @@
-# GitHub / Git / developer platforms
-github.com
-githubusercontent.com
-githubassets.com
-github.io
-githubstatus.com
-github.dev
-gitlab.com
-bitbucket.org
