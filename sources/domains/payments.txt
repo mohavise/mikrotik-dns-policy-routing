@@ -1,0 +1,14 @@
+# Payments / fintech
+wise.com
+paypal.com
+paypalobjects.com
+stripe.com
+stripe.network
+payoneer.com
+skrill.com
+revolut.com
+westernunion.com
+visa.com
+mastercard.com
+checkout.com
+squareup.com
