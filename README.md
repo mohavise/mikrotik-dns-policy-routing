@@ -1,93 +1,113 @@
 # MikroTik DNS Policy Routing
 
-Route selected domains and IP ranges through a custom outbound path on MikroTik RouterOS v7.
+Compact RouterOS list updater for routing selected destinations through a custom outbound path.
 
-The outbound path can be:
+First target: **Telegram**.
 
-- XRAY on AWS
-- WireGuard gateway
-- VPN tunnel
-- second WAN/uplink
-- any custom next-hop
-
-## Core idea
+## Purpose
 
 ```text
-Domain -> MikroTik DNS -> dynamic address-list -> mangle -> routing table -> outbound gateway
+Telegram domains + Telegram CIDR -> DST-TO-OUTBOUND -> mangle -> to-outbound route
 ```
 
-MikroTik routing works by destination IP. This project uses DNS Static FWD records to collect resolved destination IPs into firewall address-lists, then routes those destinations with mangle and routing tables.
-
-## Naming standard
+This repository is designed like an adblock/IP-list repo:
 
 ```text
-DST-TO-OUTBOUND   destination IPs/domains that must go to custom outbound
-BYPASS-OUTBOUND   destinations that must not use custom outbound
-SRC-TO-OUTBOUND   clients allowed to use custom outbound
-to-outbound       routing table / routing mark
+reliable source -> generator script -> root .rsc files -> MikroTik updater script -> scheduler
 ```
 
-## Repository structure
+## Reliable sources
+
+| Data | Source |
+| --- | --- |
+| Telegram domains | `https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram` |
+| Telegram CIDR | `https://core.telegram.org/resources/cidr.txt` |
+
+## Root files
+
+| File | Purpose |
+| --- | --- |
+| `list-telegram-domains.rsc` | Telegram DNS Static FWD rules |
+| `list-telegram-cidr.rsc` | Telegram CIDR address-list rules |
+| `list-telegram-all.rsc` | Combined domains + CIDR import file |
+| `update-telegram-outbound.rsc` | MikroTik update script |
+| `scheduler-update-telegram-outbound.rsc` | MikroTik daily scheduler |
+| `safe-install-telegram-outbound.rsc` | Fetch updater + scheduler and run once |
+
+## RouterOS list name
 
 ```text
-sources/           human-editable source lists
-sources/domains/   one domain per line
-sources/cidr/      one CIDR per line
-generated/         auto-generated RouterOS .rsc files
-routeros-v7/       RouterOS v7 base config
-address-lists/     manual/static IP/CIDR examples
-domain-lists/      manual DNS FWD examples
-use-cases/         real deployment examples
-troubleshooting/   common problems and checks
-scripts/           build and validation scripts
-.github/workflows/ GitHub Actions automation
+DST-TO-OUTBOUND
 ```
 
-## Generated files
+## Safe install
+
+Run this on MikroTik:
+
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install-telegram-outbound.rsc" dst-path=safe-install-telegram-outbound.rsc mode=https
+/import file-name=safe-install-telegram-outbound.rsc
+/file remove [find name=safe-install-telegram-outbound.rsc]
+```
+
+## Manual install
+
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/update-telegram-outbound.rsc" dst-path=update-telegram-outbound.rsc mode=https
+/import file-name=update-telegram-outbound.rsc
+/system script run update-telegram-outbound
+```
+
+## Scheduler install
+
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/scheduler-update-telegram-outbound.rsc" dst-path=scheduler-update-telegram-outbound.rsc mode=https
+/import file-name=scheduler-update-telegram-outbound.rsc
+/file remove [find name=scheduler-update-telegram-outbound.rsc]
+```
+
+Default schedule:
 
 ```text
-generated/dst-to-outbound-domains.rsc
-generated/dst-to-outbound-cidr.rsc
-generated/dst-to-outbound-all.rsc
+04:20:00 daily
 ```
 
-Edit files inside `sources/`, not `generated/`.
+## GitHub automation
 
-## Automatic GitHub update
-
-The workflow runs daily and can also be started manually from GitHub Actions:
+Workflow:
 
 ```text
 .github/workflows/update-generated-lists.yml
 ```
 
-Flow:
+It runs daily and can be started manually from GitHub Actions.
+
+Update flow:
 
 ```text
-sources/ -> scripts/validate.sh -> scripts/build.sh -> generated/*.rsc -> commit if changed
+Telegram source domains + Telegram official CIDR -> scripts/build.sh -> list-telegram-*.rsc -> commit if changed
 ```
 
-## Quick start
+## MikroTik update safety
 
-Import the base config first:
+The updater script:
 
-```rsc
-/import file-name=routeros-v7/base-config.rsc
+```text
+1. downloads list-telegram-all.rsc
+2. checks the downloaded file exists
+3. checks minimum file size
+4. backs up current DNS Static records for DST-TO-OUTBOUND
+5. backs up current firewall address-list records for DST-TO-OUTBOUND
+6. imports the new list
+7. checks Telegram CIDR entries exist after import
+8. deletes temporary downloaded and backup files
 ```
 
-Then import the generated list:
+## Notes
 
-```rsc
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/generated/dst-to-outbound-all.rsc" dst-path=dst-to-outbound-all.rsc mode=https
-/import file-name=dst-to-outbound-all.rsc
-```
-
-## Important notes
-
-- Clients must use MikroTik as DNS.
-- Forcing DNS to MikroTik is recommended.
-- Telegram mobile app usually needs IP/CIDR rules, not only domain rules.
-- Some CDNs use shared IPs, so domain-based routing is not always perfect.
+- Telegram mobile app often needs CIDR rules, not only domains.
+- Clients must use MikroTik DNS for DNS Static FWD rules to help.
+- The final client-facing import files are intentionally kept in the repository root.
 
 ## License
 
