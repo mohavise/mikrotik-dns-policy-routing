@@ -1,0 +1,40 @@
+name: Update generated MikroTik lists
+
+on:
+  schedule:
+    - cron: "40 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate source lists
+        run: |
+          chmod +x scripts/validate.sh
+          ./scripts/validate.sh
+
+      - name: Build generated RouterOS lists
+        run: |
+          chmod +x scripts/build.sh
+          ./scripts/build.sh
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add generated/dst-to-outbound-domains.rsc generated/dst-to-outbound-cidr.rsc generated/dst-to-outbound-all.rsc
+
+          if git diff --cached --quiet; then
+            echo "No generated list changes"
+          else
+            git commit -m "Automatic generated outbound list update"
+            git push
+          fi
