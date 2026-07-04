@@ -65,7 +65,7 @@ add dont-require-permissions=no name=update-telegram-outbound owner=admin policy
     :return
 }
 
-:file remove \$fileName
+/file remove \$fileName
 :if ([:len [/file find name=\$dnsBackup]] > 0) do={ /file remove \$dnsBackup }
 :if ([:len [/file find name=\$cidrBackup]] > 0) do={ /file remove \$cidrBackup }
 
