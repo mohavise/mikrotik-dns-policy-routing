@@ -1,4 +1,4 @@
-name: Update generated MikroTik lists
+name: Update Telegram RouterOS lists
 
 on:
   schedule:
@@ -16,25 +16,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate source lists
-        run: |
-          chmod +x scripts/validate.sh
-          ./scripts/validate.sh
-
-      - name: Build generated RouterOS lists
+      - name: Generate Telegram RouterOS lists
         run: |
           chmod +x scripts/build.sh
           ./scripts/build.sh
+
+      - name: Validate generated files
+        run: |
+          chmod +x scripts/validate.sh
+          ./scripts/validate.sh
 
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add generated/dst-to-outbound-domains.rsc generated/dst-to-outbound-cidr.rsc generated/dst-to-outbound-all.rsc
+          git add list-telegram-domains.rsc list-telegram-cidr.rsc list-telegram-all.rsc
 
           if git diff --cached --quiet; then
-            echo "No generated list changes"
+            echo "No Telegram list changes"
           else
-            git commit -m "Automatic generated outbound list update"
+            git commit -m "Automatic Telegram list update"
             git push
           fi
