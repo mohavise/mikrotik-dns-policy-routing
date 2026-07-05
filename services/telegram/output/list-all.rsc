@@ -7,7 +7,7 @@
 # Domain source URL: https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
 # CIDR source: Telegram official CIDR (official)
 # CIDR source URL: https://core.telegram.org/resources/cidr.txt
-# Last update: 2026-07-05 00:00:00 UTC
+# Last update: 2026-07-05 09:46:01 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -36,12 +36,12 @@ remove [find address-list=DST-TELEGRAM-TO-OUTBOUND comment~"telegram:"]
 
 /ip firewall address-list
 remove [find list=DST-TELEGRAM-TO-OUTBOUND comment="telegram-cidr"]
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address=149.154.160.0/20 comment="telegram-cidr" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address=185.76.151.0/24 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.105.192.0/23 comment="telegram-cidr" } on-error={}
-:do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.4.0/22 comment="telegram-cidr" } on-error={}
-:do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.8.0/22 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.12.0/22 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.16.0/22 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.20.0/22 comment="telegram-cidr" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.4.0/22 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.56.0/22 comment="telegram-cidr" } on-error={}
-:do { add list=DST-TELEGRAM-TO-OUTBOUND address=149.154.160.0/20 comment="telegram-cidr" } on-error={}
-:do { add list=DST-TELEGRAM-TO-OUTBOUND address=185.76.151.0/24 comment="telegram-cidr" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address=91.108.8.0/22 comment="telegram-cidr" } on-error={}
