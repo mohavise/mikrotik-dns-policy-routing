@@ -1,44 +1,68 @@
 #!/bin/sh
 set -eu
 
+service_dir="database/services/telegram"
+. "$service_dir/service.conf"
+
 last="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-list="DST-TO-OUTBOUND"
-domain_src="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram"
-cidr_src="https://core.telegram.org/resources/cidr.txt"
+list="$LIST_NAME"
+domain_src="$DOMAIN_SOURCE_URL"
+cidr_src="$CIDR_SOURCE_URL"
 
 workdir="$(mktemp -d)"
 trap 'rm -rf "$workdir"' EXIT
 
 domains_raw="$workdir/telegram-domains.raw"
 cidr_raw="$workdir/telegram-cidr.raw"
+domains_all="$workdir/telegram-domains.all"
+cidr_all="$workdir/telegram-cidr.all"
 
 curl -fsSL "$domain_src" -o "$domains_raw"
 curl -fsSL "$cidr_src" -o "$cidr_raw"
 
 header_domains() {
-    echo "# Project: MikroTik DNS Policy Routing"
-    echo "# Maintainer: mohavise"
+    echo "# managed-by=mohavise-mikrotik-dns-policy-routing"
+    echo "# project=mikrotik-dns-policy-routing"
+    echo "# service=$SERVICE_ID"
     echo "# List: Telegram domains"
     echo "# RouterOS address-list: $list"
-    echo "# Source: $domain_src"
+    echo "# Source: $DOMAIN_SOURCE_NAME ($DOMAIN_SOURCE_TYPE)"
+    echo "# Source URL: $domain_src"
     echo "# Last update: $last"
-    echo "# WARNING: generated file. Do not edit manually."
+    echo "# do-not-edit-manually"
     echo
     echo "/ip dns static"
-    echo "remove [find address-list=$list comment~\"telegram:\"]"
+    echo "remove [find address-list=$list comment~\"$DOMAIN_COMMENT_PREFIX\"]"
 }
 
 header_cidr() {
-    echo "# Project: MikroTik DNS Policy Routing"
-    echo "# Maintainer: mohavise"
+    echo "# managed-by=mohavise-mikrotik-dns-policy-routing"
+    echo "# project=mikrotik-dns-policy-routing"
+    echo "# service=$SERVICE_ID"
     echo "# List: Telegram CIDR"
     echo "# RouterOS address-list: $list"
-    echo "# Source: $cidr_src"
+    echo "# Source: $CIDR_SOURCE_NAME ($CIDR_SOURCE_TYPE)"
+    echo "# Source URL: $cidr_src"
     echo "# Last update: $last"
-    echo "# WARNING: generated file. Do not edit manually."
+    echo "# do-not-edit-manually"
     echo
     echo "/ip firewall address-list"
-    echo "remove [find list=$list comment=\"telegram-cidr\"]"
+    echo "remove [find list=$list comment=\"$CIDR_COMMENT\"]"
+}
+
+header_all() {
+    echo "# managed-by=mohavise-mikrotik-dns-policy-routing"
+    echo "# project=mikrotik-dns-policy-routing"
+    echo "# service=$SERVICE_ID"
+    echo "# List: Telegram combined domains + CIDR"
+    echo "# RouterOS address-list: $list"
+    echo "# Domain source: $DOMAIN_SOURCE_NAME ($DOMAIN_SOURCE_TYPE)"
+    echo "# Domain source URL: $domain_src"
+    echo "# CIDR source: $CIDR_SOURCE_NAME ($CIDR_SOURCE_TYPE)"
+    echo "# CIDR source URL: $cidr_src"
+    echo "# Last update: $last"
+    echo "# do-not-edit-manually"
+    echo
 }
 
 escape_domain() {
@@ -46,7 +70,8 @@ escape_domain() {
 }
 
 make_domains() {
-    awk '
+    {
+        awk '
         /^[[:space:]]*#/ { next }
         /^[[:space:]]*$/ { next }
         /^full:/ { sub(/^full:/, ""); print; next }
@@ -54,7 +79,9 @@ make_domains() {
         /^regexp:/ { next }
         /^keyword:/ { next }
         { print }
-    ' "$domains_raw" \
+        ' "$domains_raw"
+        sed 's/#.*$//' "$service_dir/manual-domains.txt"
+    } \
     | sed 's/@.*$//' \
     | tr -d ' \t\r' \
     | sed '/^$/d' \
@@ -63,31 +90,39 @@ make_domains() {
 }
 
 make_cidr() {
-    sed 's/#.*$//' "$cidr_raw" \
+    {
+        sed 's/#.*$//' "$cidr_raw"
+        sed 's/#.*$//' "$service_dir/manual-cidr.txt"
+    } \
     | tr -d ' \t\r' \
     | sed '/^$/d' \
+    | grep -E '^[0-9]+(\.[0-9]+){3}/[0-9]+$' \
     | sort -u
 }
 
+make_domains > "$domains_all"
+make_cidr > "$cidr_all"
+
 {
     header_domains
-    make_domains | while read -r domain; do
+    while read -r domain; do
         escaped="$(escape_domain "$domain")"
-        printf ':do { add regexp="(^|.*\\\\.)%s\\$" type=FWD address-list=%s comment="telegram:%s" } on-error={}\n' "$escaped" "$list" "$domain"
-    done
+        printf ':do { add regexp="(^|.*\\\\.)%s\\$" type=FWD address-list=%s comment="%s%s" } on-error={}\n' "$escaped" "$list" "$DOMAIN_COMMENT_PREFIX" "$domain"
+    done < "$domains_all"
 } > list-telegram-domains.rsc
 
 {
     header_cidr
-    make_cidr | while read -r cidr; do
-        printf ':do { add list=%s address=%s comment="telegram-cidr" } on-error={}\n' "$list" "$cidr"
-    done
+    while read -r cidr; do
+        printf ':do { add list=%s address=%s comment="%s" } on-error={}\n' "$list" "$cidr" "$CIDR_COMMENT"
+    done < "$cidr_all"
 } > list-telegram-cidr.rsc
 
 {
-    cat list-telegram-domains.rsc
+    header_all
+    sed '1,/^$/d' list-telegram-domains.rsc
     echo
-    cat list-telegram-cidr.rsc
+    sed '1,/^$/d' list-telegram-cidr.rsc
 } > list-telegram-all.rsc
 
 printf 'Generated:\n'

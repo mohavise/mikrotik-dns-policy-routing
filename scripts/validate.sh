@@ -5,7 +5,7 @@ for file in list-telegram-domains.rsc list-telegram-cidr.rsc list-telegram-all.r
     test -s "$file"
 done
 
-grep -q '^# Project: MikroTik DNS Policy Routing' list-telegram-all.rsc
+grep -q '^# managed-by=mohavise-mikrotik-dns-policy-routing' list-telegram-all.rsc
 grep -q 'telegram' list-telegram-all.rsc
 grep -q 'DST-TO-OUTBOUND' list-telegram-all.rsc
 

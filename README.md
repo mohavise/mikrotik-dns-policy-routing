@@ -1,8 +1,8 @@
 # MikroTik DNS Policy Routing
 
-Compact RouterOS list updater for routing selected destinations through a custom outbound path.
+Database-first RouterOS list updater for routing selected services through a custom outbound path.
 
-First target: **Telegram**.
+First service: **Telegram**.
 
 ## Purpose
 
@@ -10,18 +10,31 @@ First target: **Telegram**.
 Telegram domains + Telegram CIDR -> DST-TO-OUTBOUND -> mangle -> to-outbound route
 ```
 
-This repository is designed like an adblock/IP-list repo:
+This repository is designed like an adblock/IP-list repo with a service database:
 
 ```text
-reliable source -> generator script -> root .rsc files -> MikroTik updater script -> scheduler
+service database -> generator script -> root .rsc files -> MikroTik updater script -> scheduler
 ```
 
-## Reliable sources
+## Structure
+
+```text
+database/services/<service>  trusted sources and local additions
+scripts/                    generators and validation
+list-*.rsc                  generated MikroTik import files
+update-*.rsc                safe MikroTik updater scripts
+scheduler-*.rsc             MikroTik schedulers
+safe-install-*.rsc          one-command MikroTik installers
+```
+
+The root `.rsc` files are kept intentionally because MikroTik can fetch them directly from GitHub.
+
+## Telegram sources
 
 | Data | Source |
 | --- | --- |
-| Telegram domains | `https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram` |
-| Telegram CIDR | `https://core.telegram.org/resources/cidr.txt` |
+| Telegram domains | `database/services/telegram/service.conf` -> `v2fly/domain-list-community` |
+| Telegram CIDR | `database/services/telegram/service.conf` -> official Telegram CIDR |
 
 ## Root files
 
@@ -87,6 +100,16 @@ Update flow:
 ```text
 Telegram source domains + Telegram official CIDR -> scripts/build.sh -> list-telegram-*.rsc -> commit if changed
 ```
+
+## Future services
+
+New services should be added under:
+
+```text
+database/services/<service-id>/
+```
+
+Each service keeps its own source definition and local additions. The generated root files should keep the same naming style so users can choose which service list to install on MikroTik.
 
 ## MikroTik update safety
 

@@ -1,10 +1,12 @@
-# Project: MikroTik DNS Policy Routing
-# Maintainer: mohavise
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=telegram
 # List: Telegram CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Source: https://core.telegram.org/resources/cidr.txt
-# Last update: manual bootstrap
-# WARNING: generated file. Do not edit manually.
+# Source: Telegram official CIDR (official)
+# Source URL: https://core.telegram.org/resources/cidr.txt
+# Last update: 2026-07-05 00:00:00 UTC
+# do-not-edit-manually
 
 /ip firewall address-list
 remove [find list=DST-TO-OUTBOUND comment="telegram-cidr"]
