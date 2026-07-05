@@ -1,7 +1,10 @@
 #!/bin/sh
 set -eu
 
-service_dir="database/services/telegram"
+script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+service_root="$(CDPATH= cd -- "$script_dir/.." && pwd)"
+service_dir="$service_root/database"
+output_dir="$service_root/output"
 . "$service_dir/service.conf"
 
 last="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
@@ -109,23 +112,23 @@ make_cidr > "$cidr_all"
         escaped="$(escape_domain "$domain")"
         printf ':do { add regexp="(^|.*\\\\.)%s\\$" type=FWD address-list=%s comment="%s%s" } on-error={}\n' "$escaped" "$list" "$DOMAIN_COMMENT_PREFIX" "$domain"
     done < "$domains_all"
-} > list-telegram-domains.rsc
+} > "$output_dir/list-domains.rsc"
 
 {
     header_cidr
     while read -r cidr; do
         printf ':do { add list=%s address=%s comment="%s" } on-error={}\n' "$list" "$cidr" "$CIDR_COMMENT"
     done < "$cidr_all"
-} > list-telegram-cidr.rsc
+} > "$output_dir/list-cidr.rsc"
 
 {
     header_all
-    sed '1,/^$/d' list-telegram-domains.rsc
+    sed '1,/^$/d' "$output_dir/list-domains.rsc"
     echo
-    sed '1,/^$/d' list-telegram-cidr.rsc
-} > list-telegram-all.rsc
+    sed '1,/^$/d' "$output_dir/list-cidr.rsc"
+} > "$output_dir/list-all.rsc"
 
 printf 'Generated:\n'
-printf '  list-telegram-domains.rsc\n'
-printf '  list-telegram-cidr.rsc\n'
-printf '  list-telegram-all.rsc\n'
+printf '  services/telegram/output/list-domains.rsc\n'
+printf '  services/telegram/output/list-cidr.rsc\n'
+printf '  services/telegram/output/list-all.rsc\n'

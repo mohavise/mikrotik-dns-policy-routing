@@ -1,13 +1,16 @@
-# Project: MikroTik DNS Policy Routing
-# Maintainer: mohavise
-# Safe install: Telegram outbound updater + scheduler
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=telegram
+# safe-install=telegram-outbound
 
+:local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
+:local updatePath "services/telegram/routeros/update.rsc"
+:local schedulerPath "services/telegram/routeros/scheduler.rsc"
 :local updateFile "update-telegram-outbound.rsc"
 :local schedulerFile "scheduler-update-telegram-outbound.rsc"
-:local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updateFile) dst-path=$updateFile mode=https
+    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
     /import file-name=$updateFile
     /file remove $updateFile
 } on-error={
@@ -16,7 +19,7 @@
 }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $schedulerFile) dst-path=$schedulerFile mode=https
+    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
     /import file-name=$schedulerFile
     /file remove $schedulerFile
 } on-error={

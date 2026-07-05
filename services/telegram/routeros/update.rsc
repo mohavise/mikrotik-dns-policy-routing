@@ -1,14 +1,14 @@
-# Project: MikroTik DNS Policy Routing
-# Maintainer: mohavise
-# Script: update-telegram-outbound
-# Purpose: safely download and import Telegram domains + CIDR into DST-TO-OUTBOUND
-# Source file: list-telegram-all.rsc
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=telegram
+# script=update-telegram-outbound
+# source-file=services/telegram/output/list-all.rsc
 
 /system script
 add dont-require-permissions=no name=update-telegram-outbound owner=admin policy=read,write,policy,test source=":local fileName \"telegram-outbound.rsc\"
 :local dnsBackup \"telegram-dns-backup-before-update.rsc\"
 :local cidrBackup \"telegram-cidr-backup-before-update.rsc\"
-:local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/list-telegram-all.rsc\"
+:local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/services/telegram/output/list-all.rsc\"
 :local addrList \"DST-TO-OUTBOUND\"
 :local minFileSize 1000
 

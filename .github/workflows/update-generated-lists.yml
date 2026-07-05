@@ -18,19 +18,19 @@ jobs:
 
       - name: Generate Telegram RouterOS lists
         run: |
-          chmod +x scripts/build.sh
-          ./scripts/build.sh
+          chmod +x services/telegram/scripts/build.sh
+          ./services/telegram/scripts/build.sh
 
       - name: Validate generated files
         run: |
-          chmod +x scripts/validate.sh
-          ./scripts/validate.sh
+          chmod +x services/telegram/scripts/validate.sh
+          ./services/telegram/scripts/validate.sh
 
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add list-telegram-domains.rsc list-telegram-cidr.rsc list-telegram-all.rsc
+          git add services/telegram/output/list-domains.rsc services/telegram/output/list-cidr.rsc services/telegram/output/list-all.rsc
 
           if git diff --cached --quiet; then
             echo "No Telegram list changes"

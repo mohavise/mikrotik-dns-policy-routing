@@ -10,50 +10,49 @@ First service: **Telegram**.
 Telegram domains + Telegram CIDR -> DST-TO-OUTBOUND -> mangle -> to-outbound route
 ```
 
-This repository is designed like an adblock/IP-list repo with a service database:
+This repository is designed like an adblock/IP-list repo with service folders:
 
 ```text
-service database -> generator script -> root .rsc files -> MikroTik updater script -> scheduler
+service database -> generator script -> service output -> MikroTik updater script -> scheduler
 ```
 
 ## Structure
 
 ```text
-database/services/<service>  trusted sources and local additions
-scripts/                    generators and validation
-list-*.rsc                  generated MikroTik import files
-update-*.rsc                safe MikroTik updater scripts
-scheduler-*.rsc             MikroTik schedulers
-safe-install-*.rsc          one-command MikroTik installers
+safe-install-*.rsc            root MikroTik entry points
+services/<service>/database/  trusted sources and local additions
+services/<service>/output/    generated MikroTik import files
+services/<service>/routeros/  updater and scheduler scripts
+services/<service>/scripts/   service generator and validation
 ```
 
-The root `.rsc` files are kept intentionally because MikroTik can fetch them directly from GitHub.
+The repository root only keeps safe installers as MikroTik entry points. Service-specific files live under `services/<service>/`.
 
-## Telegram sources
+## Telegram Sources
 
 | Data | Source |
 | --- | --- |
-| Telegram domains | `database/services/telegram/service.conf` -> `v2fly/domain-list-community` |
-| Telegram CIDR | `database/services/telegram/service.conf` -> official Telegram CIDR |
+| Telegram domains | `services/telegram/database/service.conf` -> `v2fly/domain-list-community` |
+| Telegram CIDR | `services/telegram/database/service.conf` -> official Telegram CIDR |
 
-## Root files
+## Telegram Files
 
 | File | Purpose |
 | --- | --- |
-| `list-telegram-domains.rsc` | Telegram DNS Static FWD rules |
-| `list-telegram-cidr.rsc` | Telegram CIDR address-list rules |
-| `list-telegram-all.rsc` | Combined domains + CIDR import file |
-| `update-telegram-outbound.rsc` | MikroTik update script |
-| `scheduler-update-telegram-outbound.rsc` | MikroTik daily scheduler |
-| `safe-install-telegram-outbound.rsc` | Fetch updater + scheduler and run once |
+| `safe-install-telegram-outbound.rsc` | Root installer that fetches Telegram updater + scheduler and runs once |
+| `services/telegram/output/list-domains.rsc` | Telegram DNS Static FWD rules |
+| `services/telegram/output/list-cidr.rsc` | Telegram CIDR address-list rules |
+| `services/telegram/output/list-all.rsc` | Combined domains + CIDR import file |
+| `services/telegram/routeros/update.rsc` | MikroTik update script |
+| `services/telegram/routeros/scheduler.rsc` | MikroTik daily scheduler |
 
-## RouterOS list name
+## RouterOS List Name
 
 ```text
 DST-TO-OUTBOUND
 ```
 
-## Safe install
+## Safe Install
 
 Run this on MikroTik:
 
@@ -63,18 +62,18 @@ Run this on MikroTik:
 /file remove [find name=safe-install-telegram-outbound.rsc]
 ```
 
-## Manual install
+## Manual Install
 
 ```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/update-telegram-outbound.rsc" dst-path=update-telegram-outbound.rsc mode=https
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/services/telegram/routeros/update.rsc" dst-path=update-telegram-outbound.rsc mode=https
 /import file-name=update-telegram-outbound.rsc
 /system script run update-telegram-outbound
 ```
 
-## Scheduler install
+## Scheduler Install
 
 ```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/scheduler-update-telegram-outbound.rsc" dst-path=scheduler-update-telegram-outbound.rsc mode=https
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/services/telegram/routeros/scheduler.rsc" dst-path=scheduler-update-telegram-outbound.rsc mode=https
 /import file-name=scheduler-update-telegram-outbound.rsc
 /file remove [find name=scheduler-update-telegram-outbound.rsc]
 ```
@@ -85,7 +84,7 @@ Default schedule:
 04:20:00 daily
 ```
 
-## GitHub automation
+## GitHub Automation
 
 Workflow:
 
@@ -98,25 +97,25 @@ It runs daily and can be started manually from GitHub Actions.
 Update flow:
 
 ```text
-Telegram source domains + Telegram official CIDR -> scripts/build.sh -> list-telegram-*.rsc -> commit if changed
+Telegram source domains + Telegram official CIDR -> services/telegram/scripts/build.sh -> services/telegram/output/*.rsc -> commit if changed
 ```
 
-## Future services
+## Future Services
 
 New services should be added under:
 
 ```text
-database/services/<service-id>/
+services/<service-id>/
 ```
 
-Each service keeps its own source definition and local additions. The generated root files should keep the same naming style so users can choose which service list to install on MikroTik.
+Each service keeps its own source definition, local additions, generated output, updater, scheduler, and validation. The root should only get a `safe-install-<service>-outbound.rsc` entry point.
 
-## MikroTik update safety
+## MikroTik Update Safety
 
 The updater script:
 
 ```text
-1. downloads list-telegram-all.rsc
+1. downloads services/telegram/output/list-all.rsc
 2. checks the downloaded file exists
 3. checks minimum file size
 4. backs up current DNS Static records for DST-TO-OUTBOUND
@@ -130,7 +129,7 @@ The updater script:
 
 - Telegram mobile app often needs CIDR rules, not only domains.
 - Clients must use MikroTik DNS for DNS Static FWD rules to help.
-- The final client-facing import files are intentionally kept in the repository root.
+- The root only keeps safe installers. Telegram files live under `services/telegram/`.
 
 ## License
 
