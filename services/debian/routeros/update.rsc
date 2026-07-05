@@ -5,6 +5,7 @@
 # source-file=services/debian/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-debian-outbound"]] > 0) do={ remove [find name="update-debian-outbound"] }
 add dont-require-permissions=no name=update-debian-outbound owner=admin policy=read,write,policy,test source=":local fileName \"debian-outbound.rsc\"
 :local dnsBackup \"debian-dns-backup-before-update.rsc\"
 :local cidrBackup \"debian-cidr-backup-before-update.rsc\"

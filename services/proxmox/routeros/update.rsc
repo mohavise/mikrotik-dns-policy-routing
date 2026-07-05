@@ -5,6 +5,7 @@
 # source-file=services/proxmox/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-proxmox-outbound"]] > 0) do={ remove [find name="update-proxmox-outbound"] }
 add dont-require-permissions=no name=update-proxmox-outbound owner=admin policy=read,write,policy,test source=":local fileName \"proxmox-outbound.rsc\"
 :local dnsBackup \"proxmox-dns-backup-before-update.rsc\"
 :local cidrBackup \"proxmox-cidr-backup-before-update.rsc\"

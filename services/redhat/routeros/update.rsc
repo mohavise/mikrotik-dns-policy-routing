@@ -5,6 +5,7 @@
 # source-file=services/redhat/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-redhat-outbound"]] > 0) do={ remove [find name="update-redhat-outbound"] }
 add dont-require-permissions=no name=update-redhat-outbound owner=admin policy=read,write,policy,test source=":local fileName \"redhat-outbound.rsc\"
 :local dnsBackup \"redhat-dns-backup-before-update.rsc\"
 :local cidrBackup \"redhat-cidr-backup-before-update.rsc\"

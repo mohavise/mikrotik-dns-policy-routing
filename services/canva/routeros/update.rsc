@@ -5,6 +5,7 @@
 # source-file=services/canva/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-canva-outbound"]] > 0) do={ remove [find name="update-canva-outbound"] }
 add dont-require-permissions=no name=update-canva-outbound owner=admin policy=read,write,policy,test source=":local fileName \"canva-outbound.rsc\"
 :local dnsBackup \"canva-dns-backup-before-update.rsc\"
 :local cidrBackup \"canva-cidr-backup-before-update.rsc\"

@@ -5,6 +5,7 @@
 # source-file=profiles/music-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-music-outbound"]] > 0) do={ remove [find name="update-music-outbound"] }
 add dont-require-permissions=no name=update-music-outbound owner=admin policy=read,write,policy,test source=":local fileName \"music-outbound.rsc\"
 :local dnsBackup \"developer-dns-backup-before-update.rsc\"
 :local cidrBackup \"developer-cidr-backup-before-update.rsc\"

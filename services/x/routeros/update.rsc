@@ -5,6 +5,7 @@
 # source-file=services/x/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-x-outbound"]] > 0) do={ remove [find name="update-x-outbound"] }
 add dont-require-permissions=no name=update-x-outbound owner=admin policy=read,write,policy,test source=":local fileName \"x-outbound.rsc\"
 :local dnsBackup \"x-dns-backup-before-update.rsc\"
 :local cidrBackup \"x-cidr-backup-before-update.rsc\"

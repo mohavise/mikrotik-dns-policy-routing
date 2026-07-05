@@ -5,6 +5,7 @@
 # source-file=profiles/google-services-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-google-services-outbound"]] > 0) do={ remove [find name="update-google-services-outbound"] }
 add dont-require-permissions=no name=update-google-services-outbound owner=admin policy=read,write,policy,test source=":local fileName \"google-services-outbound.rsc\"
 :local dnsBackup \"developer-dns-backup-before-update.rsc\"
 :local cidrBackup \"developer-cidr-backup-before-update.rsc\"

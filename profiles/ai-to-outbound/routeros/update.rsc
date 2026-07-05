@@ -5,6 +5,7 @@
 # source-file=profiles/ai-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-ai-outbound"]] > 0) do={ remove [find name="update-ai-outbound"] }
 add dont-require-permissions=no name=update-ai-outbound owner=admin policy=read,write,policy,test source=":local fileName \"ai-outbound.rsc\"
 :local dnsBackup \"ai-dns-backup-before-update.rsc\"
 :local cidrBackup \"ai-cidr-backup-before-update.rsc\"

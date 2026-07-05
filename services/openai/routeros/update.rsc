@@ -5,6 +5,7 @@
 # source-file=services/openai/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-openai-outbound"]] > 0) do={ remove [find name="update-openai-outbound"] }
 add dont-require-permissions=no name=update-openai-outbound owner=admin policy=read,write,policy,test source=":local fileName \"openai-outbound.rsc\"
 :local dnsBackup \"openai-dns-backup-before-update.rsc\"
 :local cidrBackup \"openai-cidr-backup-before-update.rsc\"

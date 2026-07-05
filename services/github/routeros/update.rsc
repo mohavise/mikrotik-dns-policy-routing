@@ -5,6 +5,7 @@
 # source-file=services/github/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-github-outbound"]] > 0) do={ remove [find name="update-github-outbound"] }
 add dont-require-permissions=no name=update-github-outbound owner=admin policy=read,write,policy,test source=":local fileName \"github-outbound.rsc\"
 :local dnsBackup \"github-dns-backup-before-update.rsc\"
 :local cidrBackup \"github-cidr-backup-before-update.rsc\"

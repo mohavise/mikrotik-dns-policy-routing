@@ -61,6 +61,7 @@ scripts/validate-all.sh       root validation orchestrator
 ```
 
 The repository root only keeps safe installers as MikroTik entry points. Service-specific files live under `services/<service>/`.
+RouterOS updater and scheduler imports are repeat-safe: they remove the existing script or scheduler with the same name before adding the current version.
 
 ## Current Services
 

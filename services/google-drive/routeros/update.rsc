@@ -5,6 +5,7 @@
 # source-file=services/google-drive/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-google-drive-outbound"]] > 0) do={ remove [find name="update-google-drive-outbound"] }
 add dont-require-permissions=no name=update-google-drive-outbound owner=admin policy=read,write,policy,test source=":local fileName \"google-drive-outbound.rsc\"
 :local dnsBackup \"google-drive-dns-backup-before-update.rsc\"
 :local cidrBackup \"google-drive-cidr-backup-before-update.rsc\"

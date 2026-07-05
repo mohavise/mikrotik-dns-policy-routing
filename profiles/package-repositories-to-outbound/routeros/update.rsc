@@ -5,6 +5,7 @@
 # source-file=profiles/package-repositories-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-package-repositories-outbound"]] > 0) do={ remove [find name="update-package-repositories-outbound"] }
 add dont-require-permissions=no name=update-package-repositories-outbound owner=admin policy=read,write,policy,test source=":local fileName \"package-repositories-outbound.rsc\"
 :local dnsBackup \"package-repositories-dns-backup-before-update.rsc\"
 :local cidrBackup \"package-repositories-cidr-backup-before-update.rsc\"

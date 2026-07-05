@@ -5,6 +5,7 @@
 # source-file=services/instagram/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-instagram-outbound"]] > 0) do={ remove [find name="update-instagram-outbound"] }
 add dont-require-permissions=no name=update-instagram-outbound owner=admin policy=read,write,policy,test source=":local fileName \"instagram-outbound.rsc\"
 :local dnsBackup \"instagram-dns-backup-before-update.rsc\"
 :local cidrBackup \"instagram-cidr-backup-before-update.rsc\"

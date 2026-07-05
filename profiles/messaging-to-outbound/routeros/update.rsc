@@ -5,6 +5,7 @@
 # source-file=profiles/messaging-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-messaging-outbound"]] > 0) do={ remove [find name="update-messaging-outbound"] }
 add dont-require-permissions=no name=update-messaging-outbound owner=admin policy=read,write,policy,test source=":local fileName \"messaging-outbound.rsc\"
 :local dnsBackup \"messaging-dns-backup-before-update.rsc\"
 :local cidrBackup \"messaging-cidr-backup-before-update.rsc\"

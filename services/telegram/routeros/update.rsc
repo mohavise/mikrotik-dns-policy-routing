@@ -5,6 +5,7 @@
 # source-file=services/telegram/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-telegram-outbound"]] > 0) do={ remove [find name="update-telegram-outbound"] }
 add dont-require-permissions=no name=update-telegram-outbound owner=admin policy=read,write,policy,test source=":local fileName \"telegram-outbound.rsc\"
 :local dnsBackup \"telegram-dns-backup-before-update.rsc\"
 :local cidrBackup \"telegram-cidr-backup-before-update.rsc\"

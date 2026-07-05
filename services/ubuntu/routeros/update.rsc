@@ -5,6 +5,7 @@
 # source-file=services/ubuntu/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-ubuntu-outbound"]] > 0) do={ remove [find name="update-ubuntu-outbound"] }
 add dont-require-permissions=no name=update-ubuntu-outbound owner=admin policy=read,write,policy,test source=":local fileName \"ubuntu-outbound.rsc\"
 :local dnsBackup \"ubuntu-dns-backup-before-update.rsc\"
 :local cidrBackup \"ubuntu-cidr-backup-before-update.rsc\"

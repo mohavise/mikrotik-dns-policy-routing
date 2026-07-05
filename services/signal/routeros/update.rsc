@@ -5,6 +5,7 @@
 # source-file=services/signal/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-signal-outbound"]] > 0) do={ remove [find name="update-signal-outbound"] }
 add dont-require-permissions=no name=update-signal-outbound owner=admin policy=read,write,policy,test source=":local fileName \"signal-outbound.rsc\"
 :local dnsBackup \"signal-dns-backup-before-update.rsc\"
 :local cidrBackup \"signal-cidr-backup-before-update.rsc\"

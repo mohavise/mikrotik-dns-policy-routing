@@ -5,6 +5,7 @@
 # source-file=services/spotify/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-spotify-outbound"]] > 0) do={ remove [find name="update-spotify-outbound"] }
 add dont-require-permissions=no name=update-spotify-outbound owner=admin policy=read,write,policy,test source=":local fileName \"spotify-outbound.rsc\"
 :local dnsBackup \"spotify-dns-backup-before-update.rsc\"
 :local cidrBackup \"spotify-cidr-backup-before-update.rsc\"

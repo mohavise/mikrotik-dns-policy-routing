@@ -5,6 +5,7 @@
 # source-file=services/linkedin/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-linkedin-outbound"]] > 0) do={ remove [find name="update-linkedin-outbound"] }
 add dont-require-permissions=no name=update-linkedin-outbound owner=admin policy=read,write,policy,test source=":local fileName \"linkedin-outbound.rsc\"
 :local dnsBackup \"linkedin-dns-backup-before-update.rsc\"
 :local cidrBackup \"linkedin-cidr-backup-before-update.rsc\"

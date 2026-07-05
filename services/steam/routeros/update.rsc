@@ -5,6 +5,7 @@
 # source-file=services/steam/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-steam-outbound"]] > 0) do={ remove [find name="update-steam-outbound"] }
 add dont-require-permissions=no name=update-steam-outbound owner=admin policy=read,write,policy,test source=":local fileName \"steam-outbound.rsc\"
 :local dnsBackup \"steam-dns-backup-before-update.rsc\"
 :local cidrBackup \"steam-cidr-backup-before-update.rsc\"

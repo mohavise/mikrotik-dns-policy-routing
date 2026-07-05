@@ -5,6 +5,7 @@
 # source-file=profiles/social-media-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-social-media-outbound"]] > 0) do={ remove [find name="update-social-media-outbound"] }
 add dont-require-permissions=no name=update-social-media-outbound owner=admin policy=read,write,policy,test source=":local fileName \"social-media-outbound.rsc\"
 :local dnsBackup \"social-media-dns-backup-before-update.rsc\"
 :local cidrBackup \"social-media-cidr-backup-before-update.rsc\"

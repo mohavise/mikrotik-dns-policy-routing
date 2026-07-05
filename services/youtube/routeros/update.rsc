@@ -5,6 +5,7 @@
 # source-file=services/youtube/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-youtube-outbound"]] > 0) do={ remove [find name="update-youtube-outbound"] }
 add dont-require-permissions=no name=update-youtube-outbound owner=admin policy=read,write,policy,test source=":local fileName \"youtube-outbound.rsc\"
 :local dnsBackup \"youtube-dns-backup-before-update.rsc\"
 :local cidrBackup \"youtube-cidr-backup-before-update.rsc\"

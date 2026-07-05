@@ -5,6 +5,7 @@
 # source-file=services/figma/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-figma-outbound"]] > 0) do={ remove [find name="update-figma-outbound"] }
 add dont-require-permissions=no name=update-figma-outbound owner=admin policy=read,write,policy,test source=":local fileName \"figma-outbound.rsc\"
 :local dnsBackup \"figma-dns-backup-before-update.rsc\"
 :local cidrBackup \"figma-cidr-backup-before-update.rsc\"

@@ -5,6 +5,7 @@
 # source-file=profiles/developer-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-developer-outbound"]] > 0) do={ remove [find name="update-developer-outbound"] }
 add dont-require-permissions=no name=update-developer-outbound owner=admin policy=read,write,policy,test source=":local fileName \"developer-outbound.rsc\"
 :local dnsBackup \"developer-dns-backup-before-update.rsc\"
 :local cidrBackup \"developer-cidr-backup-before-update.rsc\"

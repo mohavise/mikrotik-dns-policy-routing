@@ -5,6 +5,7 @@
 # source-file=profiles/cloud-storage-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-cloud-storage-outbound"]] > 0) do={ remove [find name="update-cloud-storage-outbound"] }
 add dont-require-permissions=no name=update-cloud-storage-outbound owner=admin policy=read,write,policy,test source=":local fileName \"cloud-storage-outbound.rsc\"
 :local dnsBackup \"developer-dns-backup-before-update.rsc\"
 :local cidrBackup \"developer-cidr-backup-before-update.rsc\"

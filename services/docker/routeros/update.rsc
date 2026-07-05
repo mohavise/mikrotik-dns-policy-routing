@@ -5,6 +5,7 @@
 # source-file=services/docker/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-docker-outbound"]] > 0) do={ remove [find name="update-docker-outbound"] }
 add dont-require-permissions=no name=update-docker-outbound owner=admin policy=read,write,policy,test source=":local fileName \"docker-outbound.rsc\"
 :local dnsBackup \"docker-dns-backup-before-update.rsc\"
 :local cidrBackup \"docker-cidr-backup-before-update.rsc\"

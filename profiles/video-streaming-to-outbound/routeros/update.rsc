@@ -5,6 +5,7 @@
 # source-file=profiles/video-streaming-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-video-streaming-outbound"]] > 0) do={ remove [find name="update-video-streaming-outbound"] }
 add dont-require-permissions=no name=update-video-streaming-outbound owner=admin policy=read,write,policy,test source=":local fileName \"video-streaming-outbound.rsc\"
 :local dnsBackup \"developer-dns-backup-before-update.rsc\"
 :local cidrBackup \"developer-cidr-backup-before-update.rsc\"

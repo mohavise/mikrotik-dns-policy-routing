@@ -5,6 +5,7 @@
 # source-file=services/whatsapp/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-whatsapp-outbound"]] > 0) do={ remove [find name="update-whatsapp-outbound"] }
 add dont-require-permissions=no name=update-whatsapp-outbound owner=admin policy=read,write,policy,test source=":local fileName \"whatsapp-outbound.rsc\"
 :local dnsBackup \"whatsapp-dns-backup-before-update.rsc\"
 :local cidrBackup \"whatsapp-cidr-backup-before-update.rsc\"

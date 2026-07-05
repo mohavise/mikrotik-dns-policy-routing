@@ -5,6 +5,7 @@
 # source-file=profiles/design-to-outbound/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-design-outbound"]] > 0) do={ remove [find name="update-design-outbound"] }
 add dont-require-permissions=no name=update-design-outbound owner=admin policy=read,write,policy,test source=":local fileName \"design-outbound.rsc\"
 :local dnsBackup \"design-dns-backup-before-update.rsc\"
 :local cidrBackup \"design-cidr-backup-before-update.rsc\"

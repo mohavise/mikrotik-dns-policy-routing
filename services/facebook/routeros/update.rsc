@@ -5,6 +5,7 @@
 # source-file=services/facebook/output/list-all.rsc
 
 /system script
+:if ([:len [find name="update-facebook-outbound"]] > 0) do={ remove [find name="update-facebook-outbound"] }
 add dont-require-permissions=no name=update-facebook-outbound owner=admin policy=read,write,policy,test source=":local fileName \"facebook-outbound.rsc\"
 :local dnsBackup \"facebook-dns-backup-before-update.rsc\"
 :local cidrBackup \"facebook-cidr-backup-before-update.rsc\"
