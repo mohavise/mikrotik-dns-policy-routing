@@ -1,12 +1,12 @@
 # Video Streaming To Outbound Profile
 
-This profile is reserved for:
+This profile is active for:
 
 ```text
 DST-VIDEO-STREAMING-TO-OUTBOUND
 ```
 
-It will combine services from:
+It combines services from:
 
 ```text
 groups/video-streaming

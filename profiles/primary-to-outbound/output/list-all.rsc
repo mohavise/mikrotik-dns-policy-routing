@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-07-05 14:04:02 UTC
+# Last update: 2026-07-05 14:41:36 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -62,6 +62,153 @@ remove [find address-list=DST-TO-OUTBOUND comment~"figma:"]
 
 /ip firewall address-list
 remove [find list=DST-TO-OUTBOUND comment="figma-cidr"]
+
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"google-drive:"]
+:do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:accounts.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)docs\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:docs.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)drive\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:drive.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)drive\\.usercontent\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:drive.usercontent.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)forms\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:forms.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleusercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:googleusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)sheets\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:sheets.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)slides\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:slides.google.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="google-drive-cidr"]
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"youtube:"]
+:do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:accounts.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)ggpht\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:ggpht.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googlevideo\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:googlevideo.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)m\\.youtube\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:m.youtube.com" } on-error={}
+:do { add regexp="(^|.*\\.)www\\.youtube\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:www.youtube.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtu\\.be\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtu.be" } on-error={}
+:do { add regexp="(^|.*\\.)youtube\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtube.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtubei\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtubei.googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtube-nocookie\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
+:do { add regexp="(^|.*\\.)ytimg\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:ytimg.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="youtube-cidr"]
+
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"steam:"]
+:do { add regexp="(^|.*\\.)help\\.steampowered\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:help.steampowered.com" } on-error={}
+:do { add regexp="(^|.*\\.)steam\\.tv\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steam.tv" } on-error={}
+:do { add regexp="(^|.*\\.)steamcdn-a\\.akamaihd\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamcdn-a.akamaihd.net" } on-error={}
+:do { add regexp="(^|.*\\.)steam-chat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamcommunity\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamcommunity.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamcontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamcontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamgames\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamgames.com" } on-error={}
+:do { add regexp="(^|.*\\.)steampowered\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steampowered.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamserver\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamserver.net" } on-error={}
+:do { add regexp="(^|.*\\.)steamstatic\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamstore-a\\.akamaihd\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamstore-a.akamaihd.net" } on-error={}
+:do { add regexp="(^|.*\\.)steamusercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamuserimages-a\\.akamaihd\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamuserimages-a.akamaihd.net" } on-error={}
+:do { add regexp="(^|.*\\.)store\\.steampowered\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:store.steampowered.com" } on-error={}
+:do { add regexp="(^|.*\\.)valvesoftware\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:valvesoftware.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="steam-cidr"]
+
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"spotify:"]
+:do { add regexp="(^|.*\\.)accounts\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:accounts.spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)api\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:api.spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)audio4-ak-spotify-com\\.akamaized\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
+:do { add regexp="(^|.*\\.)audio-ak-spotify-com\\.akamaized\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
+:do { add regexp="(^|.*\\.)gew-spclient\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:gew-spclient.spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)open\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:open.spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)pscdn\\.co\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
+:do { add regexp="(^|.*\\.)scdn\\.co\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
+:do { add regexp="(^|.*\\.)spclient\\.wg\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:spclient.wg.spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)spotifycdn\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:spotifycdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)spotifycdn\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="spotify-cidr"]
+
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"ubuntu:"]
+:do { add regexp="(^|.*\\.)archive\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:archive.ubuntu.com" } on-error={}
+:do { add regexp="(^|.*\\.)changelogs\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:changelogs.ubuntu.com" } on-error={}
+:do { add regexp="(^|.*\\.)esm\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:esm.ubuntu.com" } on-error={}
+:do { add regexp="(^|.*\\.)keyserver\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:keyserver.ubuntu.com" } on-error={}
+:do { add regexp="(^|.*\\.)packages\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:packages.ubuntu.com" } on-error={}
+:do { add regexp="(^|.*\\.)ports\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:ports.ubuntu.com" } on-error={}
+:do { add regexp="(^|.*\\.)ppa\\.launchpadcontent\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:ppa.launchpadcontent.net" } on-error={}
+:do { add regexp="(^|.*\\.)security\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:security.ubuntu.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="ubuntu-cidr"]
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"debian:"]
+:do { add regexp="(^|.*\\.)deb\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:deb.debian.org" } on-error={}
+:do { add regexp="(^|.*\\.)ftp\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:ftp.debian.org" } on-error={}
+:do { add regexp="(^|.*\\.)ftp-master\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:ftp-master.debian.org" } on-error={}
+:do { add regexp="(^|.*\\.)packages\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:packages.debian.org" } on-error={}
+:do { add regexp="(^|.*\\.)security\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:security.debian.org" } on-error={}
+:do { add regexp="(^|.*\\.)snapshot\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:snapshot.debian.org" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="debian-cidr"]
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"redhat:"]
+:do { add regexp="(^|.*\\.)access\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:access.redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)cdn\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:cdn.redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)cloud\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:cloud.redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)console\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:console.redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)registry\\.access\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:registry.access.redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)registry\\.redhat\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:registry.redhat.io" } on-error={}
+:do { add regexp="(^|.*\\.)sso\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:sso.redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)subscription\\.rhn\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:subscription.rhn.redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)subscription\\.rhsm\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:subscription.rhsm.redhat.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="redhat-cidr"]
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"proxmox:"]
+:do { add regexp="(^|.*\\.)download\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:download.proxmox.com" } on-error={}
+:do { add regexp="(^|.*\\.)enterprise\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:enterprise.proxmox.com" } on-error={}
+:do { add regexp="(^|.*\\.)pbs\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:pbs.proxmox.com" } on-error={}
+:do { add regexp="(^|.*\\.)pve\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:pve.proxmox.com" } on-error={}
+:do { add regexp="(^|.*\\.)shop\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:shop.proxmox.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="proxmox-cidr"]
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"docker:"]
+:do { add regexp="(^|.*\\.)api\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:api.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)auth\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:auth.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)auth\\.docker\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:auth.docker.io" } on-error={}
+:do { add regexp="(^|.*\\.)desktop\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:desktop.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)docker\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:docker.io" } on-error={}
+:do { add regexp="(^|.*\\.)docs\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:docs.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)download\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:download.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)hub\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:hub.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)login\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:login.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)production\\.cloudfront\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:production.cloudfront.docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)registry-1\\.docker\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:registry-1.docker.io" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="docker-cidr"]
 
 
 /ip dns static

@@ -1,12 +1,12 @@
 # Gaming To Outbound Profile
 
-This profile is reserved for:
+This profile is active for:
 
 ```text
 DST-GAMING-TO-OUTBOUND
 ```
 
-It will combine services from:
+It combines services from:
 
 ```text
 groups/gaming

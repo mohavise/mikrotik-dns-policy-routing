@@ -1,0 +1,6 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=package-repositories-to-outbound
+# address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
+# group IDs, one per line
+package-repositories
+

@@ -2,7 +2,7 @@
 
 Cloud storage services belong here.
 
-Planned examples:
+Current services:
 
 ```text
 google-drive

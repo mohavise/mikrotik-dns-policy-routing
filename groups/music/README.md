@@ -2,7 +2,7 @@
 
 Music services belong here.
 
-Planned examples:
+Current services:
 
 ```text
 spotify

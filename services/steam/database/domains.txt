@@ -1,0 +1,19 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=steam
+# official/public Steam and Valve service domains, one per line
+steampowered.com
+store.steampowered.com
+help.steampowered.com
+steamcommunity.com
+steamstatic.com
+steamusercontent.com
+steamcontent.com
+steamserver.net
+steamgames.com
+steam-chat.com
+steam.tv
+valvesoftware.com
+steamcdn-a.akamaihd.net
+steamstore-a.akamaihd.net
+steamuserimages-a.akamaihd.net
+

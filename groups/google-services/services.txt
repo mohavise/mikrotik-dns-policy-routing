@@ -1,0 +1,6 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# group=google-services
+# service IDs, one per line
+google-drive
+youtube
+

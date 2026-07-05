@@ -1,0 +1,6 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=google-services-to-outbound
+# address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND
+# group IDs, one per line
+google-services
+

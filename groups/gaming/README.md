@@ -2,7 +2,7 @@
 
 Gaming services belong here.
 
-Planned examples:
+Current services:
 
 ```text
 steam

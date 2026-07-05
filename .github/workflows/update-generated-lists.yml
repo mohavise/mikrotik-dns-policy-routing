@@ -30,7 +30,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add services/*/output/list-domains.rsc services/*/output/list-cidr.rsc services/*/output/list-all.rsc profiles/ai-to-outbound/output/list-all.rsc profiles/developer-to-outbound/output/list-all.rsc profiles/design-to-outbound/output/list-all.rsc profiles/messaging-to-outbound/output/list-all.rsc profiles/social-media-to-outbound/output/list-all.rsc profiles/primary-to-outbound/output/list-all.rsc
+          git add services/*/output/list-domains.rsc services/*/output/list-cidr.rsc services/*/output/list-all.rsc profiles/ai-to-outbound/output/list-all.rsc profiles/developer-to-outbound/output/list-all.rsc profiles/package-repositories-to-outbound/output/list-all.rsc profiles/cloud-storage-to-outbound/output/list-all.rsc profiles/video-streaming-to-outbound/output/list-all.rsc profiles/google-services-to-outbound/output/list-all.rsc profiles/music-to-outbound/output/list-all.rsc profiles/gaming-to-outbound/output/list-all.rsc profiles/design-to-outbound/output/list-all.rsc profiles/messaging-to-outbound/output/list-all.rsc profiles/social-media-to-outbound/output/list-all.rsc profiles/primary-to-outbound/output/list-all.rsc
 
           if git diff --cached --quiet; then
             echo "No service list changes"

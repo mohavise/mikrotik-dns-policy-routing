@@ -1,0 +1,9 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=debian
+# official package/repository domains, one per line
+deb.debian.org
+security.debian.org
+ftp.debian.org
+packages.debian.org
+snapshot.debian.org
+ftp-master.debian.org

@@ -9,11 +9,11 @@ test -s "$output_file"
 grep -q '^# managed-by=mohavise-mikrotik-dns-policy-routing' "$output_file"
 grep -q 'DST-TO-OUTBOUND' "$output_file"
 
-for service in canva facebook figma github instagram linkedin openai signal telegram whatsapp x; do
+for service in canva debian docker facebook figma github google-drive instagram linkedin openai proxmox redhat signal spotify steam telegram ubuntu whatsapp x youtube; do
     grep -q "$service:" "$output_file"
 done
 
-if [ "$(grep -c 'type=FWD' "$output_file")" -lt 54 ]; then
+if [ "$(grep -c 'type=FWD' "$output_file")" -lt 124 ]; then
     echo "Too few primary domain entries"
     exit 1
 fi

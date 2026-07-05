@@ -1,0 +1,9 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# group=package-repositories
+# service IDs, one per line
+ubuntu
+debian
+redhat
+proxmox
+docker
+

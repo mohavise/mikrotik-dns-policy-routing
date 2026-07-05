@@ -1,0 +1,2 @@
+# Local Proxmox CIDR additions.
+# Keep this file empty unless a range is verified and missing from an official source.

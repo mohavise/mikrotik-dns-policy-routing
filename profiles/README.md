@@ -23,6 +23,10 @@ profiles/ai-to-outbound/groups.txt -> ai
 DST-AI-TO-OUTBOUND
 profiles/developer-to-outbound/groups.txt -> developer
 DST-DEVELOPER-TO-OUTBOUND
+profiles/package-repositories-to-outbound/groups.txt -> package-repositories
+DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
+profiles/google-services-to-outbound/groups.txt -> google-services
+DST-GOOGLE-SERVICES-TO-OUTBOUND
 ```
 
 The service database stays in `services/`. Profiles only choose what should be routed.
@@ -37,6 +41,8 @@ design-to-outbound
 video-streaming-to-outbound
 ai-to-outbound
 developer-to-outbound
+package-repositories-to-outbound
+google-services-to-outbound
 music-to-outbound
 gaming-to-outbound
 cloud-storage-to-outbound

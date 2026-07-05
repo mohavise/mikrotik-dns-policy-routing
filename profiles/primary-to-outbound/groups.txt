@@ -5,4 +5,8 @@
 ai-to-outbound
 developer-to-outbound
 design-to-outbound
+google-services-to-outbound
+gaming-to-outbound
+music-to-outbound
+package-repositories-to-outbound
 social-media-to-outbound

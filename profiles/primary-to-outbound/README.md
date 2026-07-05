@@ -12,6 +12,10 @@ Current selection:
 profiles/ai-to-outbound
 profiles/developer-to-outbound
 profiles/design-to-outbound
+profiles/google-services-to-outbound
+profiles/gaming-to-outbound
+profiles/music-to-outbound
+profiles/package-repositories-to-outbound
 profiles/social-media-to-outbound
 ```
 

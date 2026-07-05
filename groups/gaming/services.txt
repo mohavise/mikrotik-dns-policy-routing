@@ -1,4 +1,5 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # group=gaming
 # service IDs, one per line
+steam
 

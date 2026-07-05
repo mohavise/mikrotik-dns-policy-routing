@@ -1,0 +1,15 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=docker
+# official package/repository domains, one per line
+auth.docker.io
+registry-1.docker.io
+production.cloudfront.docker.com
+download.docker.com
+hub.docker.com
+desktop.docker.com
+login.docker.com
+auth.docker.com
+api.docker.com
+docker.com
+docker.io
+docs.docker.com

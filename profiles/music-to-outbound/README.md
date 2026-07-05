@@ -1,12 +1,12 @@
 # Music To Outbound Profile
 
-This profile is reserved for:
+This profile is active for:
 
 ```text
 DST-MUSIC-TO-OUTBOUND
 ```
 
-It will combine services from:
+It combines services from:
 
 ```text
 groups/music

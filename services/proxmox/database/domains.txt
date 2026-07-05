@@ -1,0 +1,8 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=proxmox
+# official package/repository domains, one per line
+download.proxmox.com
+enterprise.proxmox.com
+shop.proxmox.com
+pve.proxmox.com
+pbs.proxmox.com

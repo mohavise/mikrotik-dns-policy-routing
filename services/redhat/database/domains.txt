@@ -1,0 +1,12 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=redhat
+# official package/repository domains, one per line
+subscription.rhn.redhat.com
+subscription.rhsm.redhat.com
+cdn.redhat.com
+access.redhat.com
+registry.redhat.io
+registry.access.redhat.com
+sso.redhat.com
+console.redhat.com
+cloud.redhat.com

@@ -77,8 +77,23 @@ The repository root only keeps safe installers as MikroTik entry points. Service
 | Canva | `DST-CANVA-TO-OUTBOUND` | Canva-owned public/service domains |
 | GitHub | `DST-GITHUB-TO-OUTBOUND` | GitHub-owned public/service domains |
 | OpenAI / ChatGPT | `DST-OPENAI-TO-OUTBOUND` | OpenAI official ChatGPT network recommendations |
+| Ubuntu repositories | `DST-UBUNTU-TO-OUTBOUND` | Ubuntu package repository domains |
+| Debian repositories | `DST-DEBIAN-TO-OUTBOUND` | Debian mirror/repository domains |
+| Red Hat repositories | `DST-REDHAT-TO-OUTBOUND` | Red Hat RHSM/CDN/registry domains |
+| Proxmox repositories | `DST-PROXMOX-TO-OUTBOUND` | Proxmox package repository domains |
+| Docker repositories | `DST-DOCKER-TO-OUTBOUND` | Docker official allowlist domains |
+| Google Drive | `DST-GOOGLE-DRIVE-TO-OUTBOUND` | Google Drive public/service domains |
+| YouTube | `DST-YOUTUBE-TO-OUTBOUND` | YouTube public/service domains |
+| Spotify | `DST-SPOTIFY-TO-OUTBOUND` | Spotify public/service domains |
+| Steam | `DST-STEAM-TO-OUTBOUND` | Steam and Valve public/service domains |
 | AI profile | `DST-AI-TO-OUTBOUND` | Combined AI services |
 | Developer profile | `DST-DEVELOPER-TO-OUTBOUND` | Combined developer services |
+| Package Repositories profile | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` | Combined Linux package and container repository services |
+| Google Services profile | `DST-GOOGLE-SERVICES-TO-OUTBOUND` | Combined Google-owned services |
+| Cloud Storage profile | `DST-CLOUD-STORAGE-TO-OUTBOUND` | Combined cloud storage services |
+| Video Streaming profile | `DST-VIDEO-STREAMING-TO-OUTBOUND` | Combined video streaming services |
+| Music profile | `DST-MUSIC-TO-OUTBOUND` | Combined music services |
+| Gaming profile | `DST-GAMING-TO-OUTBOUND` | Combined gaming services |
 | Messaging profile | `DST-MESSAGING-TO-OUTBOUND` | Combined messaging services |
 | Social Media profile | `DST-SOCIAL-MEDIA-TO-OUTBOUND` | Combined strict social-media services |
 | Design profile | `DST-DESIGN-TO-OUTBOUND` | Combined design and visual collaboration services |
@@ -99,8 +114,23 @@ The repository root only keeps safe installers as MikroTik entry points. Service
 | `safe-install-canva-outbound.rsc` | Root installer that fetches Canva updater + scheduler and runs once |
 | `safe-install-github-outbound.rsc` | Root installer that fetches GitHub updater + scheduler and runs once |
 | `safe-install-openai-outbound.rsc` | Root installer that fetches OpenAI updater + scheduler and runs once |
+| `safe-install-ubuntu-outbound.rsc` | Root installer that fetches Ubuntu updater + scheduler and runs once |
+| `safe-install-debian-outbound.rsc` | Root installer that fetches Debian updater + scheduler and runs once |
+| `safe-install-redhat-outbound.rsc` | Root installer that fetches Red Hat updater + scheduler and runs once |
+| `safe-install-proxmox-outbound.rsc` | Root installer that fetches Proxmox updater + scheduler and runs once |
+| `safe-install-docker-outbound.rsc` | Root installer that fetches Docker updater + scheduler and runs once |
+| `safe-install-google-drive-outbound.rsc` | Root installer that fetches Google Drive updater + scheduler and runs once |
+| `safe-install-youtube-outbound.rsc` | Root installer that fetches YouTube updater + scheduler and runs once |
+| `safe-install-spotify-outbound.rsc` | Root installer that fetches Spotify updater + scheduler and runs once |
+| `safe-install-steam-outbound.rsc` | Root installer that fetches Steam updater + scheduler and runs once |
 | `safe-install-ai-outbound.rsc` | Root installer that fetches the combined AI updater + scheduler and runs once |
 | `safe-install-developer-outbound.rsc` | Root installer that fetches the combined developer updater + scheduler and runs once |
+| `safe-install-package-repositories-outbound.rsc` | Root installer that fetches the combined package repositories updater + scheduler and runs once |
+| `safe-install-google-services-outbound.rsc` | Root installer that fetches the combined Google services updater + scheduler and runs once |
+| `safe-install-cloud-storage-outbound.rsc` | Root installer that fetches the combined cloud storage updater + scheduler and runs once |
+| `safe-install-video-streaming-outbound.rsc` | Root installer that fetches the combined video streaming updater + scheduler and runs once |
+| `safe-install-music-outbound.rsc` | Root installer that fetches the combined music updater + scheduler and runs once |
+| `safe-install-gaming-outbound.rsc` | Root installer that fetches the combined gaming updater + scheduler and runs once |
 | `safe-install-messaging-outbound.rsc` | Root installer that fetches the combined messaging updater + scheduler and runs once |
 | `safe-install-social-media-outbound.rsc` | Root installer that fetches the combined social-media updater + scheduler and runs once |
 | `safe-install-design-outbound.rsc` | Root installer that fetches the combined design updater + scheduler and runs once |
@@ -125,8 +155,23 @@ DST-FIGMA-TO-OUTBOUND
 DST-CANVA-TO-OUTBOUND
 DST-GITHUB-TO-OUTBOUND
 DST-OPENAI-TO-OUTBOUND
+DST-UBUNTU-TO-OUTBOUND
+DST-DEBIAN-TO-OUTBOUND
+DST-REDHAT-TO-OUTBOUND
+DST-PROXMOX-TO-OUTBOUND
+DST-DOCKER-TO-OUTBOUND
+DST-GOOGLE-DRIVE-TO-OUTBOUND
+DST-YOUTUBE-TO-OUTBOUND
+DST-SPOTIFY-TO-OUTBOUND
+DST-STEAM-TO-OUTBOUND
 DST-AI-TO-OUTBOUND
 DST-DEVELOPER-TO-OUTBOUND
+DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
+DST-GOOGLE-SERVICES-TO-OUTBOUND
+DST-CLOUD-STORAGE-TO-OUTBOUND
+DST-VIDEO-STREAMING-TO-OUTBOUND
+DST-MUSIC-TO-OUTBOUND
+DST-GAMING-TO-OUTBOUND
 DST-MESSAGING-TO-OUTBOUND
 DST-SOCIAL-MEDIA-TO-OUTBOUND
 DST-DESIGN-TO-OUTBOUND
@@ -156,8 +201,23 @@ safe-install-figma-outbound.rsc
 safe-install-canva-outbound.rsc
 safe-install-github-outbound.rsc
 safe-install-openai-outbound.rsc
+safe-install-ubuntu-outbound.rsc
+safe-install-debian-outbound.rsc
+safe-install-redhat-outbound.rsc
+safe-install-proxmox-outbound.rsc
+safe-install-docker-outbound.rsc
+safe-install-google-drive-outbound.rsc
+safe-install-youtube-outbound.rsc
+safe-install-spotify-outbound.rsc
+safe-install-steam-outbound.rsc
 safe-install-ai-outbound.rsc
 safe-install-developer-outbound.rsc
+safe-install-package-repositories-outbound.rsc
+safe-install-google-services-outbound.rsc
+safe-install-cloud-storage-outbound.rsc
+safe-install-video-streaming-outbound.rsc
+safe-install-music-outbound.rsc
+safe-install-gaming-outbound.rsc
 safe-install-messaging-outbound.rsc
 safe-install-social-media-outbound.rsc
 safe-install-design-outbound.rsc
@@ -224,6 +284,8 @@ groups/messaging/services.txt
 groups/design/services.txt
 groups/ai/services.txt
 groups/developer/services.txt
+groups/package-repositories/services.txt
+groups/google-services/services.txt
 groups/video-streaming/services.txt
 groups/music/services.txt
 groups/gaming/services.txt
@@ -243,6 +305,14 @@ profiles/ai-to-outbound/groups.txt
 profiles/ai-to-outbound/services.txt
 profiles/developer-to-outbound/groups.txt
 profiles/developer-to-outbound/services.txt
+profiles/package-repositories-to-outbound/groups.txt
+profiles/package-repositories-to-outbound/services.txt
+profiles/google-services-to-outbound/groups.txt
+profiles/google-services-to-outbound/services.txt
+profiles/cloud-storage-to-outbound/groups.txt
+profiles/cloud-storage-to-outbound/services.txt
+profiles/video-streaming-to-outbound/groups.txt
+profiles/video-streaming-to-outbound/services.txt
 profiles/primary-to-outbound/groups.txt
 profiles/primary-to-outbound/services.txt
 ```
@@ -261,16 +331,37 @@ services/figma
 services/canva
 services/github
 services/openai
+services/ubuntu
+services/debian
+services/redhat
+services/proxmox
+services/docker
+services/google-drive
+services/youtube
+services/spotify
+services/steam
   -> groups/messaging
   -> groups/social-media
   -> groups/design
   -> groups/ai
   -> groups/developer
+  -> groups/package-repositories
+  -> groups/google-services
+  -> groups/cloud-storage
+  -> groups/video-streaming
+  -> groups/music
+  -> groups/gaming
   -> profiles/messaging-to-outbound
   -> profiles/social-media-to-outbound
   -> profiles/design-to-outbound
   -> profiles/ai-to-outbound
   -> profiles/developer-to-outbound
+  -> profiles/package-repositories-to-outbound
+  -> profiles/google-services-to-outbound
+  -> profiles/cloud-storage-to-outbound
+  -> profiles/video-streaming-to-outbound
+  -> profiles/music-to-outbound
+  -> profiles/gaming-to-outbound
   -> profiles/primary-to-outbound
 ```
 
@@ -290,6 +381,8 @@ profiles/messaging-to-outbound
 profiles/social-media-to-outbound
 profiles/design-to-outbound
 profiles/primary-to-outbound
+profiles/package-repositories-to-outbound
+profiles/google-services-to-outbound
 profiles/video-streaming-to-outbound
 profiles/ai-to-outbound
 profiles/developer-to-outbound

@@ -1,0 +1,14 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=google-drive
+# official/public Google Drive and supporting Google domains, one per line
+drive.google.com
+docs.google.com
+sheets.google.com
+slides.google.com
+forms.google.com
+drive.usercontent.google.com
+googleusercontent.com
+gstatic.com
+googleapis.com
+accounts.google.com
+
