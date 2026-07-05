@@ -9,7 +9,7 @@ add dont-require-permissions=no name=update-telegram-outbound owner=admin policy
 :local dnsBackup \"telegram-dns-backup-before-update.rsc\"
 :local cidrBackup \"telegram-cidr-backup-before-update.rsc\"
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/services/telegram/output/list-all.rsc\"
-:local addrList \"DST-TO-OUTBOUND\"
+:local addrList \"DST-TELEGRAM-TO-OUTBOUND\"
 :local minFileSize 1000
 
 :if ([:len [/file find name=\$fileName]] > 0) do={ /file remove \$fileName }

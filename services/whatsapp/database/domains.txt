@@ -1,0 +1,7 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=whatsapp
+# official-owned public domains, one per line
+whatsapp.com
+whatsapp.net
+wa.me
+

@@ -1,0 +1,6 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=primary-to-outbound
+# address-list=DST-TO-OUTBOUND
+# direct service IDs, one per line
+# Keep empty when services are included through profiles or groups.
+

@@ -1,0 +1,6 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=primary-to-outbound
+# address-list=DST-TO-OUTBOUND
+# group/profile IDs, one per line
+social-media-to-outbound
+
