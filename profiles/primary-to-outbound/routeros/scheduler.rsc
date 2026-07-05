@@ -4,4 +4,4 @@
 # scheduler=update-outbound daily
 
 /system scheduler
-add name=scheduler-update-outbound interval=1d start-time=04:55:00 on-event="/system script run update-outbound" policy=read,write,policy,test comment="Daily primary outbound list update"
+add name=scheduler-update-outbound interval=1d start-time=04:11:00 on-event="/system script run update-outbound" policy=read,write,policy,test comment="Daily primary outbound list update"

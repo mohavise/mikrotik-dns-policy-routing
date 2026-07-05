@@ -27,3 +27,33 @@ services/<service>/database/manual-cidr.txt
 
 Manual additions should stay empty unless the value is verified and missing from the selected upstream source.
 
+## Automation Order
+
+The GitHub workflow starts at:
+
+```text
+23:30 UTC daily
+```
+
+Root orchestration scripts:
+
+```text
+scripts/build-all.sh
+scripts/validate-all.sh
+```
+
+Build order:
+
+```text
+services first
+profiles second
+primary profile last
+```
+
+RouterOS scheduler order:
+
+```text
+04:01 services
+04:06 group/profile lists
+04:11 primary outbound list
+```

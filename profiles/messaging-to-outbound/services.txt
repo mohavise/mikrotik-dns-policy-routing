@@ -1,0 +1,5 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=messaging-to-outbound
+# address-list=DST-MESSAGING-TO-OUTBOUND
+# direct service IDs, one per line
+

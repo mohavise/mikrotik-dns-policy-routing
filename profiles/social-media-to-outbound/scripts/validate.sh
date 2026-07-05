@@ -9,7 +9,7 @@ test -s "$output_file"
 grep -q '^# managed-by=mohavise-mikrotik-dns-policy-routing' "$output_file"
 grep -q 'DST-SOCIAL-MEDIA-TO-OUTBOUND' "$output_file"
 
-for service in facebook instagram linkedin telegram whatsapp x; do
+for service in facebook instagram linkedin signal telegram whatsapp x; do
     grep -q "$service:" "$output_file"
 done
 

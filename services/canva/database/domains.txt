@@ -1,0 +1,6 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=canva
+# official-owned public/service domains, one per line
+canva.com
+canva-apps.com
+

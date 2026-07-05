@@ -1,9 +1,7 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # group=social-media
-# service IDs, one per line
+# direct service IDs, one per line
 facebook
 instagram
 linkedin
-telegram
-whatsapp
 x

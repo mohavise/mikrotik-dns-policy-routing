@@ -2,7 +2,7 @@ name: Update RouterOS service lists
 
 on:
   schedule:
-    - cron: "40 23 * * *"
+    - cron: "30 23 * * *"
   workflow_dispatch:
 
 permissions:
@@ -18,47 +18,19 @@ jobs:
 
       - name: Generate RouterOS service lists
         run: |
-          chmod +x services/telegram/scripts/build.sh
-          ./services/telegram/scripts/build.sh
-          chmod +x services/instagram/scripts/build.sh
-          ./services/instagram/scripts/build.sh
-          chmod +x services/whatsapp/scripts/build.sh
-          ./services/whatsapp/scripts/build.sh
-          chmod +x services/facebook/scripts/build.sh
-          ./services/facebook/scripts/build.sh
-          chmod +x services/x/scripts/build.sh
-          ./services/x/scripts/build.sh
-          chmod +x services/linkedin/scripts/build.sh
-          ./services/linkedin/scripts/build.sh
-          chmod +x profiles/social-media-to-outbound/scripts/build.sh
-          ./profiles/social-media-to-outbound/scripts/build.sh
-          chmod +x profiles/primary-to-outbound/scripts/build.sh
-          ./profiles/primary-to-outbound/scripts/build.sh
+          chmod +x scripts/build-all.sh
+          ./scripts/build-all.sh
 
       - name: Validate generated files
         run: |
-          chmod +x services/telegram/scripts/validate.sh
-          ./services/telegram/scripts/validate.sh
-          chmod +x services/instagram/scripts/validate.sh
-          ./services/instagram/scripts/validate.sh
-          chmod +x services/whatsapp/scripts/validate.sh
-          ./services/whatsapp/scripts/validate.sh
-          chmod +x services/facebook/scripts/validate.sh
-          ./services/facebook/scripts/validate.sh
-          chmod +x services/x/scripts/validate.sh
-          ./services/x/scripts/validate.sh
-          chmod +x services/linkedin/scripts/validate.sh
-          ./services/linkedin/scripts/validate.sh
-          chmod +x profiles/social-media-to-outbound/scripts/validate.sh
-          ./profiles/social-media-to-outbound/scripts/validate.sh
-          chmod +x profiles/primary-to-outbound/scripts/validate.sh
-          ./profiles/primary-to-outbound/scripts/validate.sh
+          chmod +x scripts/validate-all.sh
+          ./scripts/validate-all.sh
 
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add services/*/output/list-domains.rsc services/*/output/list-cidr.rsc services/*/output/list-all.rsc profiles/social-media-to-outbound/output/list-all.rsc profiles/primary-to-outbound/output/list-all.rsc
+          git add services/*/output/list-domains.rsc services/*/output/list-cidr.rsc services/*/output/list-all.rsc profiles/ai-to-outbound/output/list-all.rsc profiles/developer-to-outbound/output/list-all.rsc profiles/design-to-outbound/output/list-all.rsc profiles/messaging-to-outbound/output/list-all.rsc profiles/social-media-to-outbound/output/list-all.rsc profiles/primary-to-outbound/output/list-all.rsc
 
           if git diff --cached --quiet; then
             echo "No service list changes"

@@ -2,5 +2,7 @@
 # profile=primary-to-outbound
 # address-list=DST-TO-OUTBOUND
 # group/profile IDs, one per line
+ai-to-outbound
+developer-to-outbound
+design-to-outbound
 social-media-to-outbound
-

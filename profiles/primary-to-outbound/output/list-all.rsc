@@ -3,8 +3,66 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-07-05 09:46:02 UTC
+# Last update: 2026-07-05 14:04:02 UTC
 # do-not-edit-manually
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"openai:"]
+:do { add regexp="(^|.*\\.)auth\\.openai\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:auth.openai.com" } on-error={}
+:do { add regexp="(^|.*\\.)challenges\\.cloudflare\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:challenges.cloudflare.com" } on-error={}
+:do { add regexp="(^|.*\\.)chatgpt\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:chatgpt.com" } on-error={}
+:do { add regexp="(^|.*\\.)ct\\.sendgrid\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:ct.sendgrid.net" } on-error={}
+:do { add regexp="(^|.*\\.)humb\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:humb.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)images\\.workoscdn\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:images.workoscdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)intercom\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:intercom.io" } on-error={}
+:do { add regexp="(^|.*\\.)intercomcdn\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:intercomcdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)js\\.stripe\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:js.stripe.com" } on-error={}
+:do { add regexp="(^|.*\\.)o207216\\.ingest\\.sentry\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:o207216.ingest.sentry.io" } on-error={}
+:do { add regexp="(^|.*\\.)o33249\\.ingest\\.sentry\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:o33249.ingest.sentry.io" } on-error={}
+:do { add regexp="(^|.*\\.)oaistatic\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:oaistatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)oaistatsig\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:oaistatsig.com" } on-error={}
+:do { add regexp="(^|.*\\.)oaiusercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:oaiusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)openai\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:openai.com" } on-error={}
+:do { add regexp="(^|.*\\.)openaimerge\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:openaimerge.com" } on-error={}
+:do { add regexp="(^|.*\\.)rum\\.browser-intake-datadoghq\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:rum.browser-intake-datadoghq.com" } on-error={}
+:do { add regexp="(^|.*\\.)workos\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:workos.com" } on-error={}
+:do { add regexp="(^|.*\\.)workos\\.imgix\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:workos.imgix.net" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="openai-cidr"]
+
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"github:"]
+:do { add regexp="(^|.*\\.)github\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:github.com" } on-error={}
+:do { add regexp="(^|.*\\.)github\\.dev\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:github.dev" } on-error={}
+:do { add regexp="(^|.*\\.)github\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:github.io" } on-error={}
+:do { add regexp="(^|.*\\.)githubapp\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:githubapp.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubassets\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:githubassets.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubcopilot\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:githubcopilot.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubstatus\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:githubstatus.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubusercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:githubusercontent.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="github-cidr"]
+
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"canva:"]
+:do { add regexp="(^|.*\\.)canva\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="canva:canva.com" } on-error={}
+:do { add regexp="(^|.*\\.)canva-apps\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="canva:canva-apps.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="canva-cidr"]
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"figma:"]
+:do { add regexp="(^|.*\\.)figma\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:figma.com" } on-error={}
+:do { add regexp="(^|.*\\.)figmausercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:figmausercontent.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="figma-cidr"]
+
 
 /ip dns static
 remove [find address-list=DST-TO-OUTBOUND comment~"facebook:"]
@@ -35,6 +93,14 @@ remove [find address-list=DST-TO-OUTBOUND comment~"linkedin:"]
 
 /ip firewall address-list
 remove [find list=DST-TO-OUTBOUND comment="linkedin-cidr"]
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"signal:"]
+:do { add regexp="(^|.*\\.)signal\\.me\$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:signal.me" } on-error={}
+:do { add regexp="(^|.*\\.)signal\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:signal.org" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="signal-cidr"]
 
 /ip dns static
 remove [find address-list=DST-TO-OUTBOUND comment~"telegram:"]
@@ -90,4 +156,5 @@ remove [find address-list=DST-TO-OUTBOUND comment~"x:"]
 
 /ip firewall address-list
 remove [find list=DST-TO-OUTBOUND comment="x-cidr"]
+
 

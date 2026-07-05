@@ -1,0 +1,5 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# group=social-media
+# nested group IDs, one per line
+messaging
+

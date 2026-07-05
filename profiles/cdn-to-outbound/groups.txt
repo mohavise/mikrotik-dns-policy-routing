@@ -1,0 +1,6 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=cdn-to-outbound
+# address-list=DST-CDN-TO-OUTBOUND
+# group IDs, one per line
+cdn
+

@@ -1,0 +1,4 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# group=ai
+# service IDs, one per line
+openai

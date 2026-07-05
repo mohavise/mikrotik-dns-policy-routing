@@ -8,9 +8,39 @@ output_dir="$profile_root/output"
 profile_list="DST-SOCIAL-MEDIA-TO-OUTBOUND"
 last="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
 
-services_file="$repo_root/groups/social-media/services.txt"
+group_dir="$repo_root/groups/social-media"
 tmp="$output_dir/.list-all.tmp"
-trap 'rm -f "$tmp"' EXIT
+services_tmp="$output_dir/.services.tmp"
+trap 'rm -f "$tmp" "$services_tmp"' EXIT
+
+collect_group_services() {
+    local group_id="$1"
+    local group_path="$repo_root/groups/$group_id"
+    local nested_group
+    local service
+
+    if [ -f "$group_path/groups.txt" ]; then
+        while read -r nested_group; do
+            nested_group="$(printf '%s' "$nested_group" | tr -d '\r')"
+            case "$nested_group" in
+                ""|\#*) continue ;;
+            esac
+            collect_group_services "$nested_group"
+        done < "$group_path/groups.txt"
+    fi
+
+    if [ -f "$group_path/services.txt" ]; then
+        while read -r service; do
+            service="$(printf '%s' "$service" | tr -d '\r')"
+            case "$service" in
+                ""|\#*) continue ;;
+            esac
+            echo "$service"
+        done < "$group_path/services.txt"
+    fi
+}
+
+collect_group_services social-media | sort -u > "$services_tmp"
 
 {
     echo "# managed-by=mohavise-mikrotik-dns-policy-routing"
@@ -24,6 +54,7 @@ trap 'rm -f "$tmp"' EXIT
 } > "$tmp"
 
 while read -r service; do
+    service="$(printf '%s' "$service" | tr -d '\r')"
     case "$service" in
         ""|\#*) continue ;;
     esac
@@ -32,7 +63,7 @@ while read -r service; do
     sed '1,/^$/d' "$repo_root/services/$service/output/list-all.rsc" |
         sed "s/$service_list/$profile_list/g" >> "$tmp"
     echo >> "$tmp"
-done < "$services_file"
+done < "$services_tmp"
 
 mv "$tmp" "$output_dir/list-all.rsc"
 printf 'Generated social media profile output\n'

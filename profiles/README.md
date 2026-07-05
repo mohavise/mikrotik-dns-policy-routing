@@ -17,6 +17,29 @@ profiles/social-media-to-outbound/groups.txt -> social-media
 DST-SOCIAL-MEDIA-TO-OUTBOUND
 profiles/primary-to-outbound/groups.txt -> social-media-to-outbound
 DST-TO-OUTBOUND
+profiles/design-to-outbound/groups.txt -> design
+DST-DESIGN-TO-OUTBOUND
+profiles/ai-to-outbound/groups.txt -> ai
+DST-AI-TO-OUTBOUND
+profiles/developer-to-outbound/groups.txt -> developer
+DST-DEVELOPER-TO-OUTBOUND
 ```
 
 The service database stays in `services/`. Profiles only choose what should be routed.
+
+Current and reserved profile folders:
+
+```text
+social-media-to-outbound
+primary-to-outbound
+messaging-to-outbound
+design-to-outbound
+video-streaming-to-outbound
+ai-to-outbound
+developer-to-outbound
+music-to-outbound
+gaming-to-outbound
+cloud-storage-to-outbound
+search-to-outbound
+cdn-to-outbound
+```

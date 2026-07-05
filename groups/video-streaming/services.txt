@@ -1,0 +1,4 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# group=video-streaming
+# service IDs, one per line
+

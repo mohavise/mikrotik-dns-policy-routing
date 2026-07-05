@@ -1,0 +1,5 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=cloud-storage-to-outbound
+# address-list=DST-CLOUD-STORAGE-TO-OUTBOUND
+# direct service IDs, one per line
+

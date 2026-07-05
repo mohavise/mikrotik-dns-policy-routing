@@ -8,9 +8,13 @@ Current services:
 facebook
 instagram
 linkedin
-telegram
-whatsapp
 x
+```
+
+Nested groups:
+
+```text
+messaging
 ```
 
 Add more services here only after their own service folder exists under `services/`.

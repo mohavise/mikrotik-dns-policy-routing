@@ -56,6 +56,8 @@ services/<service>/routeros/  updater and scheduler scripts
 services/<service>/scripts/   service generator and validation
 groups/<group>/services.txt   service categories
 profiles/<profile>/           MikroTik routing targets
+scripts/build-all.sh          root build orchestrator
+scripts/validate-all.sh       root validation orchestrator
 ```
 
 The repository root only keeps safe installers as MikroTik entry points. Service-specific files live under `services/<service>/`.
@@ -70,7 +72,16 @@ The repository root only keeps safe installers as MikroTik entry points. Service
 | Facebook | `DST-FACEBOOK-TO-OUTBOUND` | Meta-owned public domains |
 | X/Twitter | `DST-X-TO-OUTBOUND` | X-owned public domains |
 | LinkedIn | `DST-LINKEDIN-TO-OUTBOUND` | LinkedIn-owned public domains |
+| Signal | `DST-SIGNAL-TO-OUTBOUND` | Signal-owned public domains |
+| Figma | `DST-FIGMA-TO-OUTBOUND` | Figma-owned public/service domains |
+| Canva | `DST-CANVA-TO-OUTBOUND` | Canva-owned public/service domains |
+| GitHub | `DST-GITHUB-TO-OUTBOUND` | GitHub-owned public/service domains |
+| OpenAI / ChatGPT | `DST-OPENAI-TO-OUTBOUND` | OpenAI official ChatGPT network recommendations |
+| AI profile | `DST-AI-TO-OUTBOUND` | Combined AI services |
+| Developer profile | `DST-DEVELOPER-TO-OUTBOUND` | Combined developer services |
+| Messaging profile | `DST-MESSAGING-TO-OUTBOUND` | Combined messaging services |
 | Social Media profile | `DST-SOCIAL-MEDIA-TO-OUTBOUND` | Combined strict social-media services |
+| Design profile | `DST-DESIGN-TO-OUTBOUND` | Combined design and visual collaboration services |
 | Primary profile | `DST-TO-OUTBOUND` | Combined selected outbound destinations |
 
 ## Telegram Files
@@ -83,7 +94,16 @@ The repository root only keeps safe installers as MikroTik entry points. Service
 | `safe-install-facebook-outbound.rsc` | Root installer that fetches Facebook updater + scheduler and runs once |
 | `safe-install-x-outbound.rsc` | Root installer that fetches X updater + scheduler and runs once |
 | `safe-install-linkedin-outbound.rsc` | Root installer that fetches LinkedIn updater + scheduler and runs once |
+| `safe-install-signal-outbound.rsc` | Root installer that fetches Signal updater + scheduler and runs once |
+| `safe-install-figma-outbound.rsc` | Root installer that fetches Figma updater + scheduler and runs once |
+| `safe-install-canva-outbound.rsc` | Root installer that fetches Canva updater + scheduler and runs once |
+| `safe-install-github-outbound.rsc` | Root installer that fetches GitHub updater + scheduler and runs once |
+| `safe-install-openai-outbound.rsc` | Root installer that fetches OpenAI updater + scheduler and runs once |
+| `safe-install-ai-outbound.rsc` | Root installer that fetches the combined AI updater + scheduler and runs once |
+| `safe-install-developer-outbound.rsc` | Root installer that fetches the combined developer updater + scheduler and runs once |
+| `safe-install-messaging-outbound.rsc` | Root installer that fetches the combined messaging updater + scheduler and runs once |
 | `safe-install-social-media-outbound.rsc` | Root installer that fetches the combined social-media updater + scheduler and runs once |
+| `safe-install-design-outbound.rsc` | Root installer that fetches the combined design updater + scheduler and runs once |
 | `safe-install-outbound.rsc` | Root installer that fetches the primary outbound updater + scheduler and runs once |
 | `services/telegram/output/list-domains.rsc` | Telegram DNS Static FWD rules |
 | `services/telegram/output/list-cidr.rsc` | Telegram CIDR address-list rules |
@@ -100,7 +120,16 @@ DST-WHATSAPP-TO-OUTBOUND
 DST-FACEBOOK-TO-OUTBOUND
 DST-X-TO-OUTBOUND
 DST-LINKEDIN-TO-OUTBOUND
+DST-SIGNAL-TO-OUTBOUND
+DST-FIGMA-TO-OUTBOUND
+DST-CANVA-TO-OUTBOUND
+DST-GITHUB-TO-OUTBOUND
+DST-OPENAI-TO-OUTBOUND
+DST-AI-TO-OUTBOUND
+DST-DEVELOPER-TO-OUTBOUND
+DST-MESSAGING-TO-OUTBOUND
 DST-SOCIAL-MEDIA-TO-OUTBOUND
+DST-DESIGN-TO-OUTBOUND
 DST-TO-OUTBOUND
 ```
 
@@ -122,7 +151,16 @@ safe-install-whatsapp-outbound.rsc
 safe-install-facebook-outbound.rsc
 safe-install-x-outbound.rsc
 safe-install-linkedin-outbound.rsc
+safe-install-signal-outbound.rsc
+safe-install-figma-outbound.rsc
+safe-install-canva-outbound.rsc
+safe-install-github-outbound.rsc
+safe-install-openai-outbound.rsc
+safe-install-ai-outbound.rsc
+safe-install-developer-outbound.rsc
+safe-install-messaging-outbound.rsc
 safe-install-social-media-outbound.rsc
+safe-install-design-outbound.rsc
 safe-install-outbound.rsc
 ```
 
@@ -145,7 +183,9 @@ safe-install-outbound.rsc
 Default schedule:
 
 ```text
-04:20:00 daily
+04:01:00 services
+04:06:00 group/profile lists
+04:11:00 primary outbound list
 ```
 
 ## GitHub Automation
@@ -156,12 +196,12 @@ Workflow:
 .github/workflows/update-generated-lists.yml
 ```
 
-It runs daily and can be started manually from GitHub Actions.
+It runs every day at `23:30 UTC` and can be started manually from GitHub Actions.
 
 Update flow:
 
 ```text
-service source data -> services/<service>/scripts/build.sh -> services/<service>/output/*.rsc -> commit if changed
+scripts/build-all.sh -> scripts/validate-all.sh -> commit generated outputs if changed
 ```
 
 ## Future Services
@@ -180,6 +220,16 @@ Groups collect services by category:
 
 ```text
 groups/social-media/services.txt
+groups/messaging/services.txt
+groups/design/services.txt
+groups/ai/services.txt
+groups/developer/services.txt
+groups/video-streaming/services.txt
+groups/music/services.txt
+groups/gaming/services.txt
+groups/cloud-storage/services.txt
+groups/search/services.txt
+groups/cdn/services.txt
 ```
 
 Profiles decide what should be routed to a MikroTik target:
@@ -187,6 +237,14 @@ Profiles decide what should be routed to a MikroTik target:
 ```text
 profiles/social-media-to-outbound/groups.txt
 profiles/social-media-to-outbound/services.txt
+profiles/design-to-outbound/groups.txt
+profiles/design-to-outbound/services.txt
+profiles/ai-to-outbound/groups.txt
+profiles/ai-to-outbound/services.txt
+profiles/developer-to-outbound/groups.txt
+profiles/developer-to-outbound/services.txt
+profiles/primary-to-outbound/groups.txt
+profiles/primary-to-outbound/services.txt
 ```
 
 Current model:
@@ -198,8 +256,21 @@ services/whatsapp
 services/facebook
 services/x
 services/linkedin
+services/signal
+services/figma
+services/canva
+services/github
+services/openai
+  -> groups/messaging
   -> groups/social-media
+  -> groups/design
+  -> groups/ai
+  -> groups/developer
+  -> profiles/messaging-to-outbound
   -> profiles/social-media-to-outbound
+  -> profiles/design-to-outbound
+  -> profiles/ai-to-outbound
+  -> profiles/developer-to-outbound
   -> profiles/primary-to-outbound
 ```
 
@@ -210,6 +281,23 @@ Naming and source rules:
 ```text
 docs/NAMING.md
 docs/SOURCES.md
+```
+
+Current and reserved profiles:
+
+```text
+profiles/messaging-to-outbound
+profiles/social-media-to-outbound
+profiles/design-to-outbound
+profiles/primary-to-outbound
+profiles/video-streaming-to-outbound
+profiles/ai-to-outbound
+profiles/developer-to-outbound
+profiles/music-to-outbound
+profiles/gaming-to-outbound
+profiles/cloud-storage-to-outbound
+profiles/search-to-outbound
+profiles/cdn-to-outbound
 ```
 
 ## MikroTik Update Safety
@@ -223,7 +311,7 @@ The updater script:
 4. backs up current DNS Static records for the target address-list
 5. backs up current firewall address-list records for the target address-list
 6. imports the new list
-7. checks Telegram CIDR entries exist after import
+7. checks imported records exist after import
 8. deletes temporary downloaded and backup files
 ```
 

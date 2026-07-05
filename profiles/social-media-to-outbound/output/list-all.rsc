@@ -3,7 +3,7 @@
 # profile=social-media-to-outbound
 # List: Social Media combined domains + CIDR
 # RouterOS address-list: DST-SOCIAL-MEDIA-TO-OUTBOUND
-# Last update: 2026-07-05 09:46:02 UTC
+# Last update: 2026-07-05 14:03:54 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -35,6 +35,14 @@ remove [find address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment~"linkedin:"]
 
 /ip firewall address-list
 remove [find list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin-cidr"]
+
+/ip dns static
+remove [find address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment~"signal:"]
+:do { add regexp="(^|.*\\.)signal\\.me\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="signal:signal.me" } on-error={}
+:do { add regexp="(^|.*\\.)signal\\.org\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="signal:signal.org" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="signal-cidr"]
 
 /ip dns static
 remove [find address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment~"telegram:"]
