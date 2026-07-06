@@ -81,12 +81,15 @@ categories/mobile-app-store/google-play/
 categories/mobile-app-store/mobile-app-store-to-outbound/
 ```
 
-The older `services/`, `groups/`, and `profiles/` implementation folders were removed after the category-first migration. Root `safe-install-*.rsc` files remain as compatibility wrappers.
+The older `services/`, `groups/`, and `profiles/` implementation folders were removed after the category-first migration. Category and service installers live under `safe-install/<category-id>/`.
+
+The primary outbound installer stays at the repository root as `safe-install-outbound.rsc`. Do not create `safe-install/primary/`.
 
 Do not add new services under legacy paths. See `STRUCTURE-MIGRATION.md` for historical migration notes and the service-to-category map.
 
 ```text
-safe-install-*.rsc            root MikroTik entry points
+safe-install-outbound.rsc     primary outbound MikroTik entry point
+safe-install/<category>/      category-first MikroTik safe installers
 categories/<category>/        category-first services and profiles
 docs/                         naming and source rules
 scripts/build-all.sh          root build orchestrator
@@ -94,7 +97,7 @@ scripts/validate-all.sh       root validation orchestrator
 scripts/audit-migration.sh    category-first migration audit
 ```
 
-The repository root only keeps safe installers as MikroTik entry points. Active migrated service files live under `categories/<category-id>/<service-id>/`.
+The repository root only keeps the primary installer as a MikroTik entry point. Active service files live under `categories/<category-id>/<service-id>/`, and official service/category install files live under `safe-install/<category-id>/`.
 RouterOS updater and scheduler imports are repeat-safe: they remove the existing script or scheduler with the same name before adding the current version.
 
 ## Supported Services
@@ -141,43 +144,27 @@ Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Tw
 
 ## Safe Installers And Example Files
 
+Official category and service installers live under `safe-install/<category-id>/`.
+
+Examples:
+
+```text
+safe-install/messaging/telegram/safe-install-telegram-outbound.rsc
+safe-install/messaging/safe-install-messaging-to-outbound.rsc
+safe-install/social-media/safe-install-social-media-to-outbound.rsc
+safe-install/mobile-app-store/google-play/safe-install-google-play-outbound.rsc
+```
+
+Primary outbound is the only root installer:
+
+```text
+safe-install-outbound.rsc
+```
+
+Generated RouterOS files stay under the category service or category profile:
+
 | File | Purpose |
 | --- | --- |
-| `safe-install-telegram-outbound.rsc` | Root installer that fetches Telegram updater + scheduler and runs once |
-| `safe-install-instagram-outbound.rsc` | Root installer that fetches Instagram updater + scheduler and runs once |
-| `safe-install-whatsapp-outbound.rsc` | Root installer that fetches WhatsApp updater + scheduler and runs once |
-| `safe-install-facebook-outbound.rsc` | Root installer that fetches Facebook updater + scheduler and runs once |
-| `safe-install-x-outbound.rsc` | Root installer that fetches X updater + scheduler and runs once |
-| `safe-install-linkedin-outbound.rsc` | Root installer that fetches LinkedIn updater + scheduler and runs once |
-| `safe-install-signal-outbound.rsc` | Root installer that fetches Signal updater + scheduler and runs once |
-| `safe-install-figma-outbound.rsc` | Root installer that fetches Figma updater + scheduler and runs once |
-| `safe-install-canva-outbound.rsc` | Root installer that fetches Canva updater + scheduler and runs once |
-| `safe-install-github-outbound.rsc` | Root installer that fetches GitHub updater + scheduler and runs once |
-| `safe-install-openai-outbound.rsc` | Root installer that fetches OpenAI updater + scheduler and runs once |
-| `safe-install-ubuntu-outbound.rsc` | Root installer that fetches Ubuntu updater + scheduler and runs once |
-| `safe-install-debian-outbound.rsc` | Root installer that fetches Debian updater + scheduler and runs once |
-| `safe-install-redhat-outbound.rsc` | Root installer that fetches Red Hat updater + scheduler and runs once |
-| `safe-install-proxmox-outbound.rsc` | Root installer that fetches Proxmox updater + scheduler and runs once |
-| `safe-install-docker-outbound.rsc` | Root installer that fetches Docker updater + scheduler and runs once |
-| `safe-install-google-drive-outbound.rsc` | Root installer that fetches Google Drive updater + scheduler and runs once |
-| `safe-install-youtube-outbound.rsc` | Root installer that fetches YouTube updater + scheduler and runs once |
-| `safe-install-spotify-outbound.rsc` | Root installer that fetches Spotify updater + scheduler and runs once |
-| `safe-install-steam-outbound.rsc` | Root installer that fetches Steam updater + scheduler and runs once |
-| `safe-install-apple-app-store-outbound.rsc` | Root installer that fetches Apple App Store updater + scheduler and runs once |
-| `safe-install-google-play-outbound.rsc` | Root installer that fetches Google Play updater + scheduler and runs once |
-| `safe-install-ai-outbound.rsc` | Root installer that fetches the combined AI updater + scheduler and runs once |
-| `safe-install-developer-outbound.rsc` | Root installer that fetches the combined developer updater + scheduler and runs once |
-| `safe-install-package-repositories-outbound.rsc` | Root installer that fetches the combined package repositories updater + scheduler and runs once |
-| `safe-install-google-services-outbound.rsc` | Root installer that fetches the combined Google services updater + scheduler and runs once |
-| `safe-install-cloud-storage-outbound.rsc` | Root installer that fetches the combined cloud storage updater + scheduler and runs once |
-| `safe-install-video-streaming-outbound.rsc` | Root installer that fetches the combined video streaming updater + scheduler and runs once |
-| `safe-install-music-outbound.rsc` | Root installer that fetches the combined music updater + scheduler and runs once |
-| `safe-install-gaming-outbound.rsc` | Root installer that fetches the combined gaming updater + scheduler and runs once |
-| `safe-install-mobile-app-store-outbound.rsc` | Root installer that fetches the combined mobile app store updater + scheduler and runs once |
-| `safe-install-messaging-outbound.rsc` | Root installer that fetches the combined messaging updater + scheduler and runs once |
-| `safe-install-social-media-outbound.rsc` | Root installer that fetches the combined social-media updater + scheduler and runs once |
-| `safe-install-design-outbound.rsc` | Root installer that fetches the combined design updater + scheduler and runs once |
-| `safe-install-outbound.rsc` | Root installer that fetches the primary outbound updater + scheduler and runs once |
 | `categories/messaging/telegram/output/list-domains.rsc` | Telegram DNS Static FWD rules |
 | `categories/messaging/telegram/output/list-cidr.rsc` | Telegram CIDR address-list rules |
 | `categories/messaging/telegram/output/list-all.rsc` | Combined domains + CIDR import file |
@@ -226,10 +213,10 @@ DST-TO-OUTBOUND
 
 ## Safe Install
 
-Telegram example:
+Telegram category-first example:
 
 ```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install-telegram-outbound.rsc" dst-path=safe-install-telegram-outbound.rsc mode=https
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/messaging/telegram/safe-install-telegram-outbound.rsc" dst-path=safe-install-telegram-outbound.rsc mode=https
 /import file-name=safe-install-telegram-outbound.rsc
 /file remove [find name=safe-install-telegram-outbound.rsc]
 ```
@@ -242,43 +229,21 @@ Primary outbound profile example:
 /file remove [find name=safe-install-outbound.rsc]
 ```
 
-Other safe installers:
+Other safe installers are category-first:
 
 ```text
-safe-install-instagram-outbound.rsc
-safe-install-whatsapp-outbound.rsc
-safe-install-facebook-outbound.rsc
-safe-install-x-outbound.rsc
-safe-install-linkedin-outbound.rsc
-safe-install-signal-outbound.rsc
-safe-install-figma-outbound.rsc
-safe-install-canva-outbound.rsc
-safe-install-github-outbound.rsc
-safe-install-openai-outbound.rsc
-safe-install-ubuntu-outbound.rsc
-safe-install-debian-outbound.rsc
-safe-install-redhat-outbound.rsc
-safe-install-proxmox-outbound.rsc
-safe-install-docker-outbound.rsc
-safe-install-google-drive-outbound.rsc
-safe-install-youtube-outbound.rsc
-safe-install-spotify-outbound.rsc
-safe-install-steam-outbound.rsc
-safe-install-apple-app-store-outbound.rsc
-safe-install-google-play-outbound.rsc
-safe-install-ai-outbound.rsc
-safe-install-developer-outbound.rsc
-safe-install-package-repositories-outbound.rsc
-safe-install-google-services-outbound.rsc
-safe-install-cloud-storage-outbound.rsc
-safe-install-video-streaming-outbound.rsc
-safe-install-music-outbound.rsc
-safe-install-gaming-outbound.rsc
-safe-install-mobile-app-store-outbound.rsc
-safe-install-messaging-outbound.rsc
-safe-install-social-media-outbound.rsc
-safe-install-design-outbound.rsc
-safe-install-outbound.rsc
+safe-install/messaging/
+safe-install/social-media/
+safe-install/design/
+safe-install/ai/
+safe-install/developer/
+safe-install/package-repositories/
+safe-install/google-services/
+safe-install/cloud-storage/
+safe-install/video-streaming/
+safe-install/music/
+safe-install/gaming/
+safe-install/mobile-app-store/
 ```
 
 ## Manual Install

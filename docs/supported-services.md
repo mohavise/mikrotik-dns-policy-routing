@@ -62,7 +62,7 @@ Install the primary outbound profile:
 Install only Telegram:
 
 ```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install-telegram-outbound.rsc" dst-path=safe-install-telegram-outbound.rsc mode=https
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/messaging/telegram/safe-install-telegram-outbound.rsc" dst-path=safe-install-telegram-outbound.rsc mode=https
 /import file-name=safe-install-telegram-outbound.rsc
 /file remove [find name=safe-install-telegram-outbound.rsc]
 ```

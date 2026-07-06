@@ -25,13 +25,42 @@ check_no_legacy_calls() {
     else
         pass "$label uses category-first execution paths"
     fi
+
+    if grep -F "categories/" "$script" >/dev/null 2>&1; then
+        pass "$label references categories/"
+    else
+        fail_check "$label references categories/"
+    fi
 }
 
 check_no_legacy_safe_fetches() {
     if grep -E "(:local (installerPath|updatePath|schedulerPath)|/tool fetch|/import).*\"($legacy_services|$legacy_profiles|$legacy_groups)$slash" safe-install-*.rsc >/dev/null 2>&1; then
         fail_check "root safe-install wrappers do not fetch/import legacy implementation paths"
     else
-        pass "root safe-install wrappers fetch category-first installers"
+        pass "root primary installer does not fetch legacy implementation paths"
+    fi
+}
+
+check_root_installers() {
+    extra_root_installers="$(find . -maxdepth 1 -name 'safe-install-*-outbound.rsc' ! -name 'safe-install-outbound.rsc' -type f -print)"
+
+    if [ -n "$extra_root_installers" ]; then
+        printf '%s\n' "$extra_root_installers"
+        fail_check "no root service/category safe installers exist"
+    else
+        pass "no root service/category safe installers exist"
+    fi
+
+    if [ -f safe-install-outbound.rsc ]; then
+        pass "root primary safe-install-outbound.rsc exists"
+    else
+        fail_check "root primary safe-install-outbound.rsc exists"
+    fi
+
+    if [ -d safe-install/primary ]; then
+        fail_check "safe-install/primary is absent"
+    else
+        pass "safe-install/primary is absent"
     fi
 }
 
@@ -58,6 +87,7 @@ check_category_profile_paths() {
 check_no_legacy_calls scripts/build-all.sh "build-all"
 check_no_legacy_calls scripts/validate-all.sh "validate-all"
 check_no_legacy_safe_fetches
+check_root_installers
 
 if grep -F "find categories -path '*/output/*.rsc' -type f -print0 | xargs -0 git add" .github/workflows/update-generated-lists.yml >/dev/null 2>&1; then
     pass "workflow stages generated output from categories/"

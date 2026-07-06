@@ -58,7 +58,7 @@ Category safe installers belong under:
 safe-install/<category-id>/<service-id>/safe-install-<service-id>-outbound.rsc
 ```
 
-The root `safe-install-*.rsc` files are compatibility wrappers and should not be used as the source-of-truth for new services.
+Do not add root `safe-install-*.rsc` files for new services. The only root installer is `safe-install-outbound.rsc` for the primary outbound profile. Do not create `safe-install/primary/`.
 
 ## Naming
 
