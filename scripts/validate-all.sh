@@ -14,13 +14,13 @@ printf 'managed-by=mohavise-mikrotik-dns-policy-routing\n'
 printf 'project=mikrotik-dns-policy-routing\n'
 printf 'job=validate-all\n'
 
-run_validate "service: telegram" "services/telegram/scripts/validate.sh"
+run_validate "category service: telegram" "categories/messaging/telegram/scripts/validate.sh"
 run_validate "service: instagram" "services/instagram/scripts/validate.sh"
-run_validate "service: whatsapp" "services/whatsapp/scripts/validate.sh"
+run_validate "category service: whatsapp" "categories/messaging/whatsapp/scripts/validate.sh"
 run_validate "service: facebook" "services/facebook/scripts/validate.sh"
 run_validate "service: x" "services/x/scripts/validate.sh"
 run_validate "service: linkedin" "services/linkedin/scripts/validate.sh"
-run_validate "service: signal" "services/signal/scripts/validate.sh"
+run_validate "category service: signal" "categories/messaging/signal/scripts/validate.sh"
 run_validate "service: figma" "services/figma/scripts/validate.sh"
 run_validate "service: canva" "services/canva/scripts/validate.sh"
 run_validate "service: github" "services/github/scripts/validate.sh"
@@ -47,7 +47,7 @@ run_validate "profile: google-services-to-outbound" "profiles/google-services-to
 run_validate "profile: music-to-outbound" "profiles/music-to-outbound/scripts/validate.sh"
 run_validate "profile: gaming-to-outbound" "profiles/gaming-to-outbound/scripts/validate.sh"
 run_validate "category profile: mobile-app-store-to-outbound" "categories/mobile-app-store/mobile-app-store-to-outbound/scripts/validate.sh"
-run_validate "profile: messaging-to-outbound" "profiles/messaging-to-outbound/scripts/validate.sh"
+run_validate "category profile: messaging-to-outbound" "categories/messaging/messaging-to-outbound/scripts/validate.sh"
 run_validate "profile: social-media-to-outbound" "profiles/social-media-to-outbound/scripts/validate.sh"
 run_validate "profile: design-to-outbound" "profiles/design-to-outbound/scripts/validate.sh"
 run_validate "profile: primary-to-outbound" "profiles/primary-to-outbound/scripts/validate.sh"

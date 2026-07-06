@@ -14,13 +14,13 @@ printf 'managed-by=mohavise-mikrotik-dns-policy-routing\n'
 printf 'project=mikrotik-dns-policy-routing\n'
 printf 'job=build-all\n'
 
-run_build "service: telegram" "services/telegram/scripts/build.sh"
+run_build "category service: telegram" "categories/messaging/telegram/scripts/build.sh"
 run_build "service: instagram" "services/instagram/scripts/build.sh"
-run_build "service: whatsapp" "services/whatsapp/scripts/build.sh"
+run_build "category service: whatsapp" "categories/messaging/whatsapp/scripts/build.sh"
 run_build "service: facebook" "services/facebook/scripts/build.sh"
 run_build "service: x" "services/x/scripts/build.sh"
 run_build "service: linkedin" "services/linkedin/scripts/build.sh"
-run_build "service: signal" "services/signal/scripts/build.sh"
+run_build "category service: signal" "categories/messaging/signal/scripts/build.sh"
 run_build "service: figma" "services/figma/scripts/build.sh"
 run_build "service: canva" "services/canva/scripts/build.sh"
 run_build "service: github" "services/github/scripts/build.sh"
@@ -47,7 +47,7 @@ run_build "profile: google-services-to-outbound" "profiles/google-services-to-ou
 run_build "profile: music-to-outbound" "profiles/music-to-outbound/scripts/build.sh"
 run_build "profile: gaming-to-outbound" "profiles/gaming-to-outbound/scripts/build.sh"
 run_build "category profile: mobile-app-store-to-outbound" "categories/mobile-app-store/mobile-app-store-to-outbound/scripts/build.sh"
-run_build "profile: messaging-to-outbound" "profiles/messaging-to-outbound/scripts/build.sh"
+run_build "category profile: messaging-to-outbound" "categories/messaging/messaging-to-outbound/scripts/build.sh"
 run_build "profile: social-media-to-outbound" "profiles/social-media-to-outbound/scripts/build.sh"
 run_build "profile: design-to-outbound" "profiles/design-to-outbound/scripts/build.sh"
 run_build "profile: primary-to-outbound" "profiles/primary-to-outbound/scripts/build.sh"
