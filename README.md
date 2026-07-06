@@ -66,8 +66,26 @@ This project helps build and update destination lists for those services using:
 
 ## Structure
 
+New development uses the category-first structure:
+
+```text
+categories/<category>/<service>/
+categories/<category>/<category>-to-outbound/
+```
+
+For example, Apple App Store and Google Play are active from:
+
+```text
+categories/mobile-app-store/apple-app-store/
+categories/mobile-app-store/google-play/
+categories/mobile-app-store/mobile-app-store-to-outbound/
+```
+
+The older `services/`, `groups/`, and `profiles/` folders are legacy compatibility paths for existing services until each category is migrated.
+
 ```text
 safe-install-*.rsc            root MikroTik entry points
+categories/<category>/        category-first services and profiles
 docs/                         naming and source rules
 services/<service>/database/  trusted sources and local additions
 services/<service>/output/    generated MikroTik import files
