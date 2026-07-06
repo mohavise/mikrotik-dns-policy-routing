@@ -30,6 +30,7 @@ The goal is service-based routing: route selected destinations through an outbou
 | Steam | `DST-STEAM-TO-OUTBOUND` | gaming |
 | Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` | mobile app store |
 | Google Play | `DST-GOOGLE-PLAY-TO-OUTBOUND` | mobile app store |
+| Samsung Galaxy Store | `DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND` | mobile app store |
 
 ## Combined Profiles
 
