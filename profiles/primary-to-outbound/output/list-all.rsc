@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-07-05 14:41:36 UTC
+# Last update: 2026-07-06 09:08:33 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -119,6 +119,27 @@ remove [find address-list=DST-TO-OUTBOUND comment~"steam:"]
 
 /ip firewall address-list
 remove [find list=DST-TO-OUTBOUND comment="steam-cidr"]
+
+
+/ip dns static
+remove [find address-list=DST-TO-OUTBOUND comment~"apple-app-store:"]
+:do { add regexp="(^|.*\\.)api\\.apple-cloudkit\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:api.apple-cloudkit.com" } on-error={}
+:do { add regexp="(^|.*\\.)appattest\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:appattest.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)apps-marketplace\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:apps-marketplace.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)audiocontentdownload\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:audiocontentdownload.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)devimages-cdn\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:devimages-cdn.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)download\\.developer\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:download.developer.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)itunes\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:itunes.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)mzstatic\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:mzstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)playgrounds-assets-cdn\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:playgrounds-assets-cdn.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)playgrounds-cdn\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:playgrounds-cdn.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)ppq\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:ppq.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)sylvan\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:sylvan.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)token\\.safebrowsing\\.apple\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:token.safebrowsing.apple" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-TO-OUTBOUND comment="apple-app-store-cidr"]
 
 
 /ip dns static
@@ -261,11 +282,11 @@ remove [find address-list=DST-TO-OUTBOUND comment~"telegram:"]
 :do { add regexp="(^|.*\\.)tdesktop\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:tdesktop.com" } on-error={}
 :do { add regexp="(^|.*\\.)telega\\.one\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telega.one" } on-error={}
 :do { add regexp="(^|.*\\.)telegra\\.ph\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegra.ph" } on-error={}
-:do { add regexp="(^|.*\\.)telegram-cdn\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram-cdn.org" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.dog\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.dog" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.me\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.me" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.org" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.space\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.space" } on-error={}
+:do { add regexp="(^|.*\\.)telegram-cdn\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram-cdn.org" } on-error={}
 :do { add regexp="(^|.*\\.)telesco\\.pe\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telesco.pe" } on-error={}
 :do { add regexp="(^|.*\\.)tg\\.dev\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:tg.dev" } on-error={}
 :do { add regexp="(^|.*\\.)ton\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:ton.org" } on-error={}

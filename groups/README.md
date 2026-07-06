@@ -23,6 +23,7 @@ package-repositories
 google-services
 music
 gaming
+mobile-app-store
 cloud-storage
 search
 cdn
@@ -43,4 +44,5 @@ DST-SOCIAL-MEDIA-TO-OUTBOUND
 DST-DESIGN-TO-OUTBOUND
 DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
 DST-GOOGLE-SERVICES-TO-OUTBOUND
+DST-MOBILE-APP-STORE-TO-OUTBOUND
 ```

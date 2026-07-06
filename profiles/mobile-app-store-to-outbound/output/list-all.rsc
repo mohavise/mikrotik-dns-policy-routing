@@ -1,0 +1,28 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# profile=mobile-app-store-to-outbound
+# List: Mobile App Store combined domains + CIDR
+# RouterOS address-list: DST-MOBILE-APP-STORE-TO-OUTBOUND
+# Last update: 2026-07-06 09:08:32 UTC
+# do-not-edit-manually
+
+/ip dns static
+remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"apple-app-store:"]
+:do { add regexp="(^|.*\\.)api\\.apple-cloudkit\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:api.apple-cloudkit.com" } on-error={}
+:do { add regexp="(^|.*\\.)appattest\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:appattest.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)apps-marketplace\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps-marketplace.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)audiocontentdownload\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:audiocontentdownload.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)devimages-cdn\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:devimages-cdn.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)download\\.developer\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:download.developer.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)itunes\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:itunes.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)mzstatic\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:mzstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)playgrounds-assets-cdn\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:playgrounds-assets-cdn.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)playgrounds-cdn\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:playgrounds-cdn.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)ppq\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:ppq.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)sylvan\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:sylvan.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)token\\.safebrowsing\\.apple\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:token.safebrowsing.apple" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store-cidr"]
+

@@ -1,0 +1,4 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=apple-app-store
+# manual verified CIDR additions only

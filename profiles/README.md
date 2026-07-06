@@ -27,6 +27,8 @@ profiles/package-repositories-to-outbound/groups.txt -> package-repositories
 DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
 profiles/google-services-to-outbound/groups.txt -> google-services
 DST-GOOGLE-SERVICES-TO-OUTBOUND
+profiles/mobile-app-store-to-outbound/groups.txt -> mobile-app-store
+DST-MOBILE-APP-STORE-TO-OUTBOUND
 ```
 
 The service database stays in `services/`. Profiles only choose what should be routed.
@@ -45,6 +47,7 @@ package-repositories-to-outbound
 google-services-to-outbound
 music-to-outbound
 gaming-to-outbound
+mobile-app-store-to-outbound
 cloud-storage-to-outbound
 search-to-outbound
 cdn-to-outbound

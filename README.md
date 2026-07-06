@@ -1,8 +1,14 @@
 # MikroTik DNS Policy Routing
 
-Database-first RouterOS list updater for routing selected services through a custom outbound path.
+![GitHub repo size](https://img.shields.io/github/repo-size/mohavise/mikrotik-dns-policy-routing)
+![GitHub last commit](https://img.shields.io/github/last-commit/mohavise/mikrotik-dns-policy-routing)
+![GitHub license](https://img.shields.io/github/license/mohavise/mikrotik-dns-policy-routing)
 
-First service family: **Meta social services**.
+Service-based MikroTik RouterOS DNS policy routing lists with regex, address-lists, safe updaters, and schedulers.
+
+This repository builds RouterOS DNS Static FWD regex rules and firewall address-list imports for routing selected services through a custom outbound path such as Xray, VPN, WireGuard, WARP, proxy, or WAN2.
+
+It is useful for MikroTik administrators who want service-based routing for destinations such as Telegram, WhatsApp, GitHub, OpenAI ChatGPT, YouTube, Docker, Linux repositories, Google Drive, Apple App Store, and other applications without routing all traffic.
 
 ## Purpose
 
@@ -45,6 +51,19 @@ DST-SOCIAL-MEDIA-TO-OUTBOUND
 DST-TO-OUTBOUND
 ```
 
+## What Problem Does This Solve?
+
+Many MikroTik networks need to route only selected services through a special outbound path while normal traffic stays on the default WAN.
+
+This project helps build and update destination lists for those services using:
+
+- RouterOS DNS Static FWD regex rules
+- MikroTik firewall address-lists
+- service folders
+- generated `.rsc` import files
+- safe update scripts
+- daily schedulers
+
 ## Structure
 
 ```text
@@ -63,7 +82,9 @@ scripts/validate-all.sh       root validation orchestrator
 The repository root only keeps safe installers as MikroTik entry points. Service-specific files live under `services/<service>/`.
 RouterOS updater and scheduler imports are repeat-safe: they remove the existing script or scheduler with the same name before adding the current version.
 
-## Current Services
+## Supported Services
+
+Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Twitter, LinkedIn, Signal, Figma, Canva, GitHub, OpenAI ChatGPT, Ubuntu repositories, Debian repositories, Red Hat repositories, Proxmox repositories, Docker, Google Drive, YouTube, Spotify, Steam, and Apple App Store.
 
 | Service | Address list | Source approach |
 | --- | --- |
@@ -87,6 +108,7 @@ RouterOS updater and scheduler imports are repeat-safe: they remove the existing
 | YouTube | `DST-YOUTUBE-TO-OUTBOUND` | YouTube public/service domains |
 | Spotify | `DST-SPOTIFY-TO-OUTBOUND` | Spotify public/service domains |
 | Steam | `DST-STEAM-TO-OUTBOUND` | Steam and Valve public/service domains |
+| Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` | Apple official app store/content hosts |
 | AI profile | `DST-AI-TO-OUTBOUND` | Combined AI services |
 | Developer profile | `DST-DEVELOPER-TO-OUTBOUND` | Combined developer services |
 | Package Repositories profile | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` | Combined Linux package and container repository services |
@@ -95,6 +117,7 @@ RouterOS updater and scheduler imports are repeat-safe: they remove the existing
 | Video Streaming profile | `DST-VIDEO-STREAMING-TO-OUTBOUND` | Combined video streaming services |
 | Music profile | `DST-MUSIC-TO-OUTBOUND` | Combined music services |
 | Gaming profile | `DST-GAMING-TO-OUTBOUND` | Combined gaming services |
+| Mobile App Store profile | `DST-MOBILE-APP-STORE-TO-OUTBOUND` | Combined mobile app store services |
 | Messaging profile | `DST-MESSAGING-TO-OUTBOUND` | Combined messaging services |
 | Social Media profile | `DST-SOCIAL-MEDIA-TO-OUTBOUND` | Combined strict social-media services |
 | Design profile | `DST-DESIGN-TO-OUTBOUND` | Combined design and visual collaboration services |
@@ -124,6 +147,7 @@ RouterOS updater and scheduler imports are repeat-safe: they remove the existing
 | `safe-install-youtube-outbound.rsc` | Root installer that fetches YouTube updater + scheduler and runs once |
 | `safe-install-spotify-outbound.rsc` | Root installer that fetches Spotify updater + scheduler and runs once |
 | `safe-install-steam-outbound.rsc` | Root installer that fetches Steam updater + scheduler and runs once |
+| `safe-install-apple-app-store-outbound.rsc` | Root installer that fetches Apple App Store updater + scheduler and runs once |
 | `safe-install-ai-outbound.rsc` | Root installer that fetches the combined AI updater + scheduler and runs once |
 | `safe-install-developer-outbound.rsc` | Root installer that fetches the combined developer updater + scheduler and runs once |
 | `safe-install-package-repositories-outbound.rsc` | Root installer that fetches the combined package repositories updater + scheduler and runs once |
@@ -132,6 +156,7 @@ RouterOS updater and scheduler imports are repeat-safe: they remove the existing
 | `safe-install-video-streaming-outbound.rsc` | Root installer that fetches the combined video streaming updater + scheduler and runs once |
 | `safe-install-music-outbound.rsc` | Root installer that fetches the combined music updater + scheduler and runs once |
 | `safe-install-gaming-outbound.rsc` | Root installer that fetches the combined gaming updater + scheduler and runs once |
+| `safe-install-mobile-app-store-outbound.rsc` | Root installer that fetches the combined mobile app store updater + scheduler and runs once |
 | `safe-install-messaging-outbound.rsc` | Root installer that fetches the combined messaging updater + scheduler and runs once |
 | `safe-install-social-media-outbound.rsc` | Root installer that fetches the combined social-media updater + scheduler and runs once |
 | `safe-install-design-outbound.rsc` | Root installer that fetches the combined design updater + scheduler and runs once |
@@ -165,6 +190,7 @@ DST-GOOGLE-DRIVE-TO-OUTBOUND
 DST-YOUTUBE-TO-OUTBOUND
 DST-SPOTIFY-TO-OUTBOUND
 DST-STEAM-TO-OUTBOUND
+DST-APPLE-APP-STORE-TO-OUTBOUND
 DST-AI-TO-OUTBOUND
 DST-DEVELOPER-TO-OUTBOUND
 DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
@@ -173,6 +199,7 @@ DST-CLOUD-STORAGE-TO-OUTBOUND
 DST-VIDEO-STREAMING-TO-OUTBOUND
 DST-MUSIC-TO-OUTBOUND
 DST-GAMING-TO-OUTBOUND
+DST-MOBILE-APP-STORE-TO-OUTBOUND
 DST-MESSAGING-TO-OUTBOUND
 DST-SOCIAL-MEDIA-TO-OUTBOUND
 DST-DESIGN-TO-OUTBOUND
@@ -189,7 +216,15 @@ Telegram example:
 /file remove [find name=safe-install-telegram-outbound.rsc]
 ```
 
-Other Meta service installers:
+Primary outbound profile example:
+
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install-outbound.rsc" dst-path=safe-install-outbound.rsc mode=https
+/import file-name=safe-install-outbound.rsc
+/file remove [find name=safe-install-outbound.rsc]
+```
+
+Other safe installers:
 
 ```text
 safe-install-instagram-outbound.rsc
@@ -211,6 +246,7 @@ safe-install-google-drive-outbound.rsc
 safe-install-youtube-outbound.rsc
 safe-install-spotify-outbound.rsc
 safe-install-steam-outbound.rsc
+safe-install-apple-app-store-outbound.rsc
 safe-install-ai-outbound.rsc
 safe-install-developer-outbound.rsc
 safe-install-package-repositories-outbound.rsc
@@ -219,6 +255,7 @@ safe-install-cloud-storage-outbound.rsc
 safe-install-video-streaming-outbound.rsc
 safe-install-music-outbound.rsc
 safe-install-gaming-outbound.rsc
+safe-install-mobile-app-store-outbound.rsc
 safe-install-messaging-outbound.rsc
 safe-install-social-media-outbound.rsc
 safe-install-design-outbound.rsc
@@ -290,6 +327,7 @@ groups/google-services/services.txt
 groups/video-streaming/services.txt
 groups/music/services.txt
 groups/gaming/services.txt
+groups/mobile-app-store/services.txt
 groups/cloud-storage/services.txt
 groups/search/services.txt
 groups/cdn/services.txt
@@ -341,6 +379,7 @@ services/google-drive
 services/youtube
 services/spotify
 services/steam
+services/apple-app-store
   -> groups/messaging
   -> groups/social-media
   -> groups/design
@@ -352,6 +391,7 @@ services/steam
   -> groups/video-streaming
   -> groups/music
   -> groups/gaming
+  -> groups/mobile-app-store
   -> profiles/messaging-to-outbound
   -> profiles/social-media-to-outbound
   -> profiles/design-to-outbound
@@ -363,6 +403,7 @@ services/steam
   -> profiles/video-streaming-to-outbound
   -> profiles/music-to-outbound
   -> profiles/gaming-to-outbound
+  -> profiles/mobile-app-store-to-outbound
   -> profiles/primary-to-outbound
 ```
 
@@ -373,6 +414,8 @@ Naming and source rules:
 ```text
 docs/NAMING.md
 docs/SOURCES.md
+docs/supported-services.md
+docs/add-new-service.md
 ```
 
 Current and reserved profiles:
@@ -389,6 +432,7 @@ profiles/ai-to-outbound
 profiles/developer-to-outbound
 profiles/music-to-outbound
 profiles/gaming-to-outbound
+profiles/mobile-app-store-to-outbound
 profiles/cloud-storage-to-outbound
 profiles/search-to-outbound
 profiles/cdn-to-outbound
@@ -414,6 +458,24 @@ The updater script:
 - Telegram mobile app often needs CIDR rules, not only domains.
 - Clients must use MikroTik DNS for DNS Static FWD rules to help.
 - The root only keeps safe installers. Telegram files live under `services/telegram/`.
+
+## Search Keywords
+
+This project may help with:
+
+- MikroTik DNS policy routing
+- RouterOS DNS regex
+- MikroTik address-list automation
+- MikroTik split tunneling
+- route selected services through VPN
+- route selected services through Xray
+- route selected services through WireGuard
+- MikroTik service-based routing
+- RouterOS firewall address-list updater
+- MikroTik Telegram routing
+- MikroTik GitHub routing
+- MikroTik OpenAI ChatGPT routing
+- MikroTik YouTube routing
 
 ## License
 

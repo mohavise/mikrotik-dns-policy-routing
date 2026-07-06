@@ -1,0 +1,4 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# group=mobile-app-store
+# service IDs, one per line
+apple-app-store
