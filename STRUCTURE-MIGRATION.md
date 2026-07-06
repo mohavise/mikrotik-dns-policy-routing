@@ -132,11 +132,78 @@ mobile-app-store:
 - Do not change generated output logic during structure migration.
 - Keep service data in exactly one active source-of-truth path after each category migration is complete.
 
+## Skeleton-First Migration Workflow
+
+Each category migration must be split into two separate tasks.
+
+### Task A: Skeleton only
+
+Create folders and non-code placeholder files first.
+
+Allowed in Task A:
+
+```text
+categories/<category-id>/README.md
+categories/<category-id>/<service-id>/README.md
+categories/<category-id>/<service-id>/database/.gitkeep
+categories/<category-id>/<service-id>/output/.gitkeep
+categories/<category-id>/<service-id>/routeros/.gitkeep
+categories/<category-id>/<service-id>/scripts/.gitkeep
+categories/<category-id>/<category-id>-to-outbound/README.md
+categories/<category-id>/<category-id>-to-outbound/services.txt
+categories/<category-id>/<category-id>-to-outbound/output/.gitkeep
+categories/<category-id>/<category-id>-to-outbound/routeros/.gitkeep
+categories/<category-id>/<category-id>-to-outbound/scripts/.gitkeep
+safe-install/<category-id>/README.md
+safe-install/<category-id>/<service-id>/README.md
+```
+
+Task A must not copy or write executable code.
+
+Do not write or modify in Task A:
+
+```text
+scripts/build-all.sh
+scripts/validate-all.sh
+*/scripts/build.sh
+*/scripts/validate.sh
+*/routeros/update.rsc
+*/routeros/scheduler.rsc
+*/output/*.rsc
+safe-install/**/*.rsc
+```
+
+### Task B: Code and migration logic
+
+Only after Task A is reviewed, Codex may copy or write code files.
+
+Allowed in Task B:
+
+```text
+categories/<category-id>/<service-id>/database/*
+categories/<category-id>/<service-id>/routeros/*.rsc
+categories/<category-id>/<service-id>/scripts/*.sh
+categories/<category-id>/<service-id>/output/*.rsc
+categories/<category-id>/<category-id>-to-outbound/routeros/*.rsc
+categories/<category-id>/<category-id>-to-outbound/scripts/*.sh
+categories/<category-id>/<category-id>-to-outbound/output/*.rsc
+safe-install/<category-id>/**/*.rsc
+scripts/build-all.sh
+scripts/validate-all.sh
+```
+
+Task B must update root build and validate scripts only for the category being migrated.
+
+This two-step workflow exists so humans can confirm folder design before Codex writes or moves code.
+
 ## Recommended Migration Order
 
 1. Finish and verify `mobile-app-store` as the first category-first category.
 2. Migrate one existing category at a time.
-3. Update `scripts/build-all.sh` and `scripts/validate-all.sh` per migrated category.
-4. Add category-first safe installers per migrated category.
-5. Keep old root safe installers until compatibility behavior is decided.
-6. Remove or archive legacy paths only after all references are tested.
+3. For each category, run Task A skeleton first.
+4. Review folder layout.
+5. Run Task B code migration for that category.
+6. Update `scripts/build-all.sh` and `scripts/validate-all.sh` per migrated category.
+7. Add category-first safe installers per migrated category.
+8. Keep old root safe installers until compatibility behavior is decided.
+9. Remove or archive legacy paths only after all references are tested.
