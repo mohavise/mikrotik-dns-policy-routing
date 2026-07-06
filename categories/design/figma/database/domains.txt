@@ -2,5 +2,5 @@
 # service=figma
 # official-owned public/service domains, one per line
 figma.com
+figma.net
 figmausercontent.com
-
