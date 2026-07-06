@@ -8,7 +8,7 @@ Service-based MikroTik RouterOS DNS policy routing lists with regex, address-lis
 
 This repository builds RouterOS DNS Static FWD regex rules and firewall address-list imports for routing selected services through a custom outbound path such as Xray, VPN, WireGuard, WARP, proxy, or WAN2.
 
-It is useful for MikroTik administrators who want service-based routing for destinations such as Telegram, WhatsApp, GitHub, OpenAI ChatGPT, YouTube, Docker, Linux repositories, Google Drive, Apple App Store, Google Play, and other applications without routing all traffic.
+It is useful for MikroTik administrators who want service-based routing for selected destinations such as Telegram, WhatsApp, GitHub, OpenAI ChatGPT, YouTube, Docker, Linux repositories, Google Drive, Apple App Store, Google Play, Samsung Galaxy Store, and other applications without routing all traffic.
 
 ## Purpose
 
@@ -59,53 +59,57 @@ This project helps build and update destination lists for those services using:
 
 - RouterOS DNS Static FWD regex rules
 - MikroTik firewall address-lists
-- service folders
+- category-first service folders
 - generated `.rsc` import files
 - safe update scripts
 - daily schedulers
 
 ## Structure
 
-New development uses the category-first structure. Active migrated categories live under `categories/<category-id>/`:
+Active development uses the category-first structure. Services and category profiles live under `categories/<category-id>/`:
 
 ```text
 categories/<category-id>/<service-id>/
 categories/<category-id>/<category-id>-to-outbound/
 ```
 
-For example, Apple App Store and Google Play are active from:
+Example:
 
 ```text
 categories/mobile-app-store/apple-app-store/
 categories/mobile-app-store/google-play/
+categories/mobile-app-store/samsung-galaxy-store/
 categories/mobile-app-store/mobile-app-store-to-outbound/
 ```
 
-The older `services/`, `groups/`, and `profiles/` implementation folders were removed after the category-first migration. Category and service installers live under `safe-install/<category-id>/`.
+The older `services/`, `groups/`, and `profiles/` implementation folders were removed after the category-first migration. Historical migration notes live in `docs/STRUCTURE-MIGRATION.md`.
 
-The primary outbound installer stays at the repository root as `safe-install-outbound.rsc`. Do not create `safe-install/primary/`.
+The repository root keeps only one MikroTik installer:
 
-Do not add new services under legacy paths. See `STRUCTURE-MIGRATION.md` for historical migration notes and the service-to-category map.
+```text
+safe-install-outbound.rsc
+```
+
+Do not create root service/category installers. All service/category installers belong under `safe-install/<category-id>/`.
 
 ```text
 safe-install-outbound.rsc     primary outbound MikroTik entry point
 safe-install/<category>/      category-first MikroTik safe installers
 categories/<category>/        category-first services and profiles
-docs/                         naming and source rules
+docs/                         naming, source, and migration notes
 scripts/build-all.sh          root build orchestrator
 scripts/validate-all.sh       root validation orchestrator
 scripts/audit-migration.sh    category-first migration audit
 ```
 
-The repository root only keeps the primary installer as a MikroTik entry point. Active service files live under `categories/<category-id>/<service-id>/`, and official service/category install files live under `safe-install/<category-id>/`.
 RouterOS updater and scheduler imports are repeat-safe: they remove the existing script or scheduler with the same name before adding the current version.
 
 ## Supported Services
 
-Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Twitter, LinkedIn, Signal, Figma, Canva, GitHub, OpenAI ChatGPT, Ubuntu repositories, Debian repositories, Red Hat repositories, Proxmox repositories, Docker, Google Drive, YouTube, Spotify, Steam, Apple App Store, and Google Play.
+Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Twitter, LinkedIn, Signal, Figma, Canva, GitHub, OpenAI ChatGPT, Ubuntu repositories, Debian repositories, Red Hat repositories, Proxmox repositories, Docker, Google Drive, YouTube, Spotify, Steam, Apple App Store, Google Play, and Samsung Galaxy Store.
 
 | Service | Address list | Source approach |
-| --- | --- |
+| --- | --- | --- |
 | Telegram | `DST-TELEGRAM-TO-OUTBOUND` | community domains + official Telegram CIDR |
 | Instagram | `DST-INSTAGRAM-TO-OUTBOUND` | Meta-owned public domains |
 | WhatsApp | `DST-WHATSAPP-TO-OUTBOUND` | Meta-owned public domains |
@@ -128,6 +132,7 @@ Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Tw
 | Steam | `DST-STEAM-TO-OUTBOUND` | Steam and Valve public/service domains |
 | Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` | Apple official app store/content hosts |
 | Google Play | `DST-GOOGLE-PLAY-TO-OUTBOUND` | Google official Android Enterprise and Managed Google Play endpoints |
+| Samsung Galaxy Store | `DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND` | Samsung official app store/service endpoints |
 | AI profile | `DST-AI-TO-OUTBOUND` | Combined AI services |
 | Developer profile | `DST-DEVELOPER-TO-OUTBOUND` | Combined developer services |
 | Package Repositories profile | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` | Combined Linux package and container repository services |
@@ -196,6 +201,7 @@ DST-SPOTIFY-TO-OUTBOUND
 DST-STEAM-TO-OUTBOUND
 DST-APPLE-APP-STORE-TO-OUTBOUND
 DST-GOOGLE-PLAY-TO-OUTBOUND
+DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND
 DST-AI-TO-OUTBOUND
 DST-DEVELOPER-TO-OUTBOUND
 DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
@@ -306,7 +312,9 @@ Do not add CDN providers or cloud providers as services, such as Cloudflare, Aka
 
 ## Historical Migration Notes
 
-Legacy `services/`, `groups/`, and `profiles/` implementation folders were replaced by category-first paths. New category profiles should use:
+Legacy `services/`, `groups/`, and `profiles/` implementation folders were replaced by category-first paths. See `docs/STRUCTURE-MIGRATION.md` for historical migration notes and the service-to-category map.
+
+New category profiles should use:
 
 ```text
 categories/<category-id>/<category-id>-to-outbound/services.txt
@@ -325,6 +333,7 @@ docs/NAMING.md
 docs/SOURCES.md
 docs/supported-services.md
 docs/add-new-service.md
+docs/STRUCTURE-MIGRATION.md
 ```
 
 Current category profiles:
@@ -364,7 +373,7 @@ The updater script:
 
 - Telegram mobile app often needs CIDR rules, not only domains.
 - Clients must use MikroTik DNS for DNS Static FWD rules to help.
-- The root only keeps safe installers. Active migrated Telegram files live under `categories/messaging/telegram/`.
+- The root only keeps `safe-install-outbound.rsc`. Active service files live under `categories/`.
 
 ## Search Keywords
 
