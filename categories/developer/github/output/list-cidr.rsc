@@ -4,7 +4,7 @@
 # List: GitHub CIDR
 # RouterOS address-list: DST-GITHUB-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 16:00:09 UTC
+# Last update: 2026-07-06 16:06:35 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

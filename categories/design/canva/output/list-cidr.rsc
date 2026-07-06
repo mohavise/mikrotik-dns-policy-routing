@@ -4,7 +4,7 @@
 # List: Canva CIDR
 # RouterOS address-list: DST-CANVA-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 16:00:07 UTC
+# Last update: 2026-07-06 16:06:33 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

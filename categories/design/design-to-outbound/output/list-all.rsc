@@ -3,7 +3,7 @@
 # profile=design-to-outbound
 # List: Design combined domains + CIDR
 # RouterOS address-list: DST-DESIGN-TO-OUTBOUND
-# Last update: 2026-07-06 16:01:07 UTC
+# Last update: 2026-07-06 16:07:29 UTC
 # do-not-edit-manually
 
 /ip dns static

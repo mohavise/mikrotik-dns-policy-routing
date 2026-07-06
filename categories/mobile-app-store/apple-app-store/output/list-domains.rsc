@@ -4,7 +4,7 @@
 # List: Apple App Store domains
 # RouterOS address-list: DST-APPLE-APP-STORE-TO-OUTBOUND
 # Source: Apple products on enterprise networks (official-vendor-docs)
-# Last update: 2026-07-06 16:00:39 UTC
+# Last update: 2026-07-06 16:07:02 UTC
 # do-not-edit-manually
 
 /ip dns static

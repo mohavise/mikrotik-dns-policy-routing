@@ -4,7 +4,7 @@
 # List: X domains
 # RouterOS address-list: DST-X-TO-OUTBOUND
 # Source: X-owned public domains (official-owned-domains)
-# Last update: 2026-07-06 16:00:01 UTC
+# Last update: 2026-07-06 16:06:28 UTC
 # do-not-edit-manually
 
 /ip dns static

@@ -4,7 +4,7 @@
 # List: Samsung Galaxy Store CIDR
 # RouterOS address-list: DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 16:00:49 UTC
+# Last update: 2026-07-06 16:07:12 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

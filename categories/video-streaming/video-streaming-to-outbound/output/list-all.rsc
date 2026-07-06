@@ -3,7 +3,7 @@
 # profile=video-streaming-to-outbound
 # List: Video Streaming combined domains + CIDR
 # RouterOS address-list: DST-VIDEO-STREAMING-TO-OUTBOUND
-# Last update: 2026-07-06 16:00:57 UTC
+# Last update: 2026-07-06 16:07:19 UTC
 # do-not-edit-manually
 
 /ip dns static

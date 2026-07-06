@@ -4,7 +4,7 @@
 # List: Steam CIDR
 # RouterOS address-list: DST-STEAM-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 16:00:35 UTC
+# Last update: 2026-07-06 16:06:59 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

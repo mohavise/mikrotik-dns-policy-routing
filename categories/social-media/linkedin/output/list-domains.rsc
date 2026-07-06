@@ -4,7 +4,7 @@
 # List: LinkedIn domains
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Source: LinkedIn-owned public domains (official-owned-domains)
-# Last update: 2026-07-06 16:00:03 UTC
+# Last update: 2026-07-06 16:06:29 UTC
 # do-not-edit-manually
 
 /ip dns static

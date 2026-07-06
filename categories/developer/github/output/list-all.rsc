@@ -4,7 +4,7 @@
 # List: GitHub combined domains + CIDR
 # RouterOS address-list: DST-GITHUB-TO-OUTBOUND
 # Domain source: GitHub-owned public/service domains (official-meta-and-owned-domains)
-# Last update: 2026-07-06 16:00:09 UTC
+# Last update: 2026-07-06 16:06:35 UTC
 # do-not-edit-manually
 
 /ip dns static

@@ -3,7 +3,7 @@
 # profile=gaming-to-outbound
 # List: Gaming combined domains + CIDR
 # RouterOS address-list: DST-GAMING-TO-OUTBOUND
-# Last update: 2026-07-06 16:01:00 UTC
+# Last update: 2026-07-06 16:07:22 UTC
 # do-not-edit-manually
 
 /ip dns static

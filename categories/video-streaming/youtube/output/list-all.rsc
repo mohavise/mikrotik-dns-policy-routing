@@ -4,7 +4,7 @@
 # List: YouTube combined domains + CIDR
 # RouterOS address-list: DST-YOUTUBE-TO-OUTBOUND
 # Domain source: YouTube public/service domains (official-google-service-domains)
-# Last update: 2026-07-06 16:00:29 UTC
+# Last update: 2026-07-06 16:06:53 UTC
 # do-not-edit-manually
 
 /ip dns static
