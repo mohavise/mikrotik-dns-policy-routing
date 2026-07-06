@@ -52,4 +52,7 @@ run_validate "category profile: social-media-to-outbound" "categories/social-med
 run_validate "category profile: design-to-outbound" "categories/design/design-to-outbound/scripts/validate.sh"
 run_validate "category profile: primary-to-outbound" "categories/primary/primary-to-outbound/scripts/validate.sh"
 
+printf '\n==> validate generated output safety\n'
+sh "$ROOT_DIR/scripts/validate-authoritative-cleanup.sh"
+
 printf '\nValidation complete\n'
