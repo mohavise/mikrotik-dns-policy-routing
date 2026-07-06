@@ -6,6 +6,7 @@ Current services:
 
 ```text
 apple-app-store
+google-play
 ```
 
 Services are added only after their own folder exists under `services/`.

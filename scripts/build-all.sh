@@ -35,6 +35,7 @@ run_build "service: youtube" "services/youtube/scripts/build.sh"
 run_build "service: spotify" "services/spotify/scripts/build.sh"
 run_build "service: steam" "services/steam/scripts/build.sh"
 run_build "service: apple-app-store" "services/apple-app-store/scripts/build.sh"
+run_build "service: google-play" "services/google-play/scripts/build.sh"
 
 run_build "profile: ai-to-outbound" "profiles/ai-to-outbound/scripts/build.sh"
 run_build "profile: developer-to-outbound" "profiles/developer-to-outbound/scripts/build.sh"

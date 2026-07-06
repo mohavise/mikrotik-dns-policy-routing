@@ -2,3 +2,4 @@
 # group=mobile-app-store
 # service IDs, one per line
 apple-app-store
+google-play

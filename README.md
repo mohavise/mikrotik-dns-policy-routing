@@ -8,7 +8,7 @@ Service-based MikroTik RouterOS DNS policy routing lists with regex, address-lis
 
 This repository builds RouterOS DNS Static FWD regex rules and firewall address-list imports for routing selected services through a custom outbound path such as Xray, VPN, WireGuard, WARP, proxy, or WAN2.
 
-It is useful for MikroTik administrators who want service-based routing for destinations such as Telegram, WhatsApp, GitHub, OpenAI ChatGPT, YouTube, Docker, Linux repositories, Google Drive, Apple App Store, and other applications without routing all traffic.
+It is useful for MikroTik administrators who want service-based routing for destinations such as Telegram, WhatsApp, GitHub, OpenAI ChatGPT, YouTube, Docker, Linux repositories, Google Drive, Apple App Store, Google Play, and other applications without routing all traffic.
 
 ## Purpose
 
@@ -84,7 +84,7 @@ RouterOS updater and scheduler imports are repeat-safe: they remove the existing
 
 ## Supported Services
 
-Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Twitter, LinkedIn, Signal, Figma, Canva, GitHub, OpenAI ChatGPT, Ubuntu repositories, Debian repositories, Red Hat repositories, Proxmox repositories, Docker, Google Drive, YouTube, Spotify, Steam, and Apple App Store.
+Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Twitter, LinkedIn, Signal, Figma, Canva, GitHub, OpenAI ChatGPT, Ubuntu repositories, Debian repositories, Red Hat repositories, Proxmox repositories, Docker, Google Drive, YouTube, Spotify, Steam, Apple App Store, and Google Play.
 
 | Service | Address list | Source approach |
 | --- | --- |
@@ -109,6 +109,7 @@ Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Tw
 | Spotify | `DST-SPOTIFY-TO-OUTBOUND` | Spotify public/service domains |
 | Steam | `DST-STEAM-TO-OUTBOUND` | Steam and Valve public/service domains |
 | Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` | Apple official app store/content hosts |
+| Google Play | `DST-GOOGLE-PLAY-TO-OUTBOUND` | Google official Android Enterprise and Managed Google Play endpoints |
 | AI profile | `DST-AI-TO-OUTBOUND` | Combined AI services |
 | Developer profile | `DST-DEVELOPER-TO-OUTBOUND` | Combined developer services |
 | Package Repositories profile | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` | Combined Linux package and container repository services |
@@ -148,6 +149,7 @@ Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Tw
 | `safe-install-spotify-outbound.rsc` | Root installer that fetches Spotify updater + scheduler and runs once |
 | `safe-install-steam-outbound.rsc` | Root installer that fetches Steam updater + scheduler and runs once |
 | `safe-install-apple-app-store-outbound.rsc` | Root installer that fetches Apple App Store updater + scheduler and runs once |
+| `safe-install-google-play-outbound.rsc` | Root installer that fetches Google Play updater + scheduler and runs once |
 | `safe-install-ai-outbound.rsc` | Root installer that fetches the combined AI updater + scheduler and runs once |
 | `safe-install-developer-outbound.rsc` | Root installer that fetches the combined developer updater + scheduler and runs once |
 | `safe-install-package-repositories-outbound.rsc` | Root installer that fetches the combined package repositories updater + scheduler and runs once |
@@ -191,6 +193,7 @@ DST-YOUTUBE-TO-OUTBOUND
 DST-SPOTIFY-TO-OUTBOUND
 DST-STEAM-TO-OUTBOUND
 DST-APPLE-APP-STORE-TO-OUTBOUND
+DST-GOOGLE-PLAY-TO-OUTBOUND
 DST-AI-TO-OUTBOUND
 DST-DEVELOPER-TO-OUTBOUND
 DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
@@ -247,6 +250,7 @@ safe-install-youtube-outbound.rsc
 safe-install-spotify-outbound.rsc
 safe-install-steam-outbound.rsc
 safe-install-apple-app-store-outbound.rsc
+safe-install-google-play-outbound.rsc
 safe-install-ai-outbound.rsc
 safe-install-developer-outbound.rsc
 safe-install-package-repositories-outbound.rsc
@@ -380,6 +384,7 @@ services/youtube
 services/spotify
 services/steam
 services/apple-app-store
+services/google-play
   -> groups/messaging
   -> groups/social-media
   -> groups/design

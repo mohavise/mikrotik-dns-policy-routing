@@ -35,6 +35,7 @@ run_validate "service: youtube" "services/youtube/scripts/validate.sh"
 run_validate "service: spotify" "services/spotify/scripts/validate.sh"
 run_validate "service: steam" "services/steam/scripts/validate.sh"
 run_validate "service: apple-app-store" "services/apple-app-store/scripts/validate.sh"
+run_validate "service: google-play" "services/google-play/scripts/validate.sh"
 
 run_validate "profile: ai-to-outbound" "profiles/ai-to-outbound/scripts/validate.sh"
 run_validate "profile: developer-to-outbound" "profiles/developer-to-outbound/scripts/validate.sh"
