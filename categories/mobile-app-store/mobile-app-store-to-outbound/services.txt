@@ -1,0 +1,5 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=mobile-app-store-to-outbound
+# service IDs, one per line
+apple-app-store
+google-play

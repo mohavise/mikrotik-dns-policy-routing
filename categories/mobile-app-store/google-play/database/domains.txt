@@ -1,0 +1,49 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=google-play
+# source=https://support.google.com/work/android/answer/10513641
+# source=https://support.google.com/googleplay/work/answer/7042221
+
+play.google.com
+android.com
+google-analytics.com
+googleusercontent.com
+gstatic.com
+gvt1.com
+ggpht.com
+dl.google.com
+dl-ssl.google.com
+android.apis.google.com
+gvt2.com
+gvt3.com
+googleapis.com
+m.google.com
+accounts.google.com
+gcm-http.googleapis.com
+gcm-xmpp.googleapis.com
+android.googleapis.com
+fcm.googleapis.com
+fcm-xmpp.googleapis.com
+firebaseinstallations.googleapis.com
+firebaselogging.googleapis.com
+pki.google.com
+clients1.google.com
+clients2.google.com
+clients3.google.com
+clients4.google.com
+clients5.google.com
+clients6.google.com
+www.googleapis.com
+androidmanagement.googleapis.com
+www.google.com
+fonts.googleapis.com
+accounts.youtube.com
+crl.pki.goog
+ocsp.pki.goog
+apis.google.com
+ajax.googleapis.com
+payments.google.com
+google.com
+ogs.google.com
+notifications.google.com
+enterprise.google.com
