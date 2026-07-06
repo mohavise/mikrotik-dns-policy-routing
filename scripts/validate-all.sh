@@ -43,13 +43,13 @@ run_validate "category profile: developer-to-outbound" "categories/developer/dev
 run_validate "category profile: package-repositories-to-outbound" "categories/package-repositories/package-repositories-to-outbound/scripts/validate.sh"
 run_validate "category profile: cloud-storage-to-outbound" "categories/cloud-storage/cloud-storage-to-outbound/scripts/validate.sh"
 run_validate "category profile: video-streaming-to-outbound" "categories/video-streaming/video-streaming-to-outbound/scripts/validate.sh"
-run_validate "profile: google-services-to-outbound" "profiles/google-services-to-outbound/scripts/validate.sh"
+run_validate "category profile: google-services-to-outbound" "categories/google-services/google-services-to-outbound/scripts/validate.sh"
 run_validate "category profile: music-to-outbound" "categories/music/music-to-outbound/scripts/validate.sh"
 run_validate "category profile: gaming-to-outbound" "categories/gaming/gaming-to-outbound/scripts/validate.sh"
 run_validate "category profile: mobile-app-store-to-outbound" "categories/mobile-app-store/mobile-app-store-to-outbound/scripts/validate.sh"
 run_validate "category profile: messaging-to-outbound" "categories/messaging/messaging-to-outbound/scripts/validate.sh"
 run_validate "category profile: social-media-to-outbound" "categories/social-media/social-media-to-outbound/scripts/validate.sh"
 run_validate "category profile: design-to-outbound" "categories/design/design-to-outbound/scripts/validate.sh"
-run_validate "profile: primary-to-outbound" "profiles/primary-to-outbound/scripts/validate.sh"
+run_validate "category profile: primary-to-outbound" "categories/primary/primary-to-outbound/scripts/validate.sh"
 
 printf '\nValidation complete\n'

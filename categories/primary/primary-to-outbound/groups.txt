@@ -1,0 +1,14 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# profile=primary-to-outbound
+# address-list=DST-TO-OUTBOUND
+# group/profile IDs, one per line
+ai-to-outbound
+developer-to-outbound
+design-to-outbound
+google-services-to-outbound
+gaming-to-outbound
+messaging-to-outbound
+mobile-app-store-to-outbound
+music-to-outbound
+package-repositories-to-outbound
+social-media-to-outbound
