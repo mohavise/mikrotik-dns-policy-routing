@@ -81,7 +81,9 @@ categories/mobile-app-store/google-play/
 categories/mobile-app-store/mobile-app-store-to-outbound/
 ```
 
-The older `services/`, `groups/`, and `profiles/` folders are legacy compatibility paths for existing services until each category is migrated.
+Existing services are being migrated category by category. The older `services/`, `groups/`, and `profiles/` folders are legacy compatibility paths and remain temporarily until their categories are migrated.
+
+Do not add new services under legacy paths. See `STRUCTURE-MIGRATION.md` for the migration plan and service-to-category map.
 
 ```text
 safe-install-*.rsc            root MikroTik entry points
