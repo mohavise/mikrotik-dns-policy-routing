@@ -3,12 +3,13 @@
 # profile=design-to-outbound
 # List: Design combined domains + CIDR
 # RouterOS address-list: DST-DESIGN-TO-OUTBOUND
-# Last update: 2026-07-06 16:07:29 UTC
+# Last update: 2026-07-06 16:44:55 UTC
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-DESIGN-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)figma\\.com\$" type=FWD address-list=DST-DESIGN-TO-OUTBOUND comment="figma:figma.com" } on-error={}
+:do { add regexp="(^|.*\\.)figma\\.net\$" type=FWD address-list=DST-DESIGN-TO-OUTBOUND comment="figma:figma.net" } on-error={}
 :do { add regexp="(^|.*\\.)figmausercontent\\.com\$" type=FWD address-list=DST-DESIGN-TO-OUTBOUND comment="figma:figmausercontent.com" } on-error={}
 
 /ip firewall address-list

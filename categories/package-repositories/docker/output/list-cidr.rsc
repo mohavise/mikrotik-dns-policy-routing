@@ -4,7 +4,7 @@
 # List: Docker CIDR
 # RouterOS address-list: DST-DOCKER-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 16:06:48 UTC
+# Last update: 2026-07-06 16:44:55 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

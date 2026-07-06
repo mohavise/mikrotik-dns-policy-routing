@@ -4,7 +4,7 @@
 # List: Google Play CIDR
 # RouterOS address-list: DST-GOOGLE-PLAY-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 16:07:05 UTC
+# Last update: 2026-07-06 16:44:55 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

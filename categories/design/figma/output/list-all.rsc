@@ -4,12 +4,13 @@
 # List: Figma combined domains + CIDR
 # RouterOS address-list: DST-FIGMA-TO-OUTBOUND
 # Domain source: Figma-owned public/service domains (official-owned-domains)
-# Last update: 2026-07-06 16:06:32 UTC
+# Last update: 2026-07-06 16:44:55 UTC
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-FIGMA-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)figma\\.com\$" type=FWD address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.com" } on-error={}
+:do { add regexp="(^|.*\\.)figma\\.net\$" type=FWD address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.net" } on-error={}
 :do { add regexp="(^|.*\\.)figmausercontent\\.com\$" type=FWD address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figmausercontent.com" } on-error={}
 
 /ip firewall address-list
