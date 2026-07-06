@@ -16,14 +16,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare scripts
+        run: |
+          chmod +x scripts/*.sh
+          find categories -path '*/scripts/*.sh' -type f -exec chmod +x {} \;
+
       - name: Generate RouterOS service lists
         run: |
-          chmod +x scripts/build-all.sh
           ./scripts/build-all.sh
 
       - name: Validate generated files
         run: |
-          chmod +x scripts/validate-all.sh
           ./scripts/validate-all.sh
 
       - name: Commit changes
