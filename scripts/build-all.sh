@@ -52,4 +52,7 @@ run_build "category profile: social-media-to-outbound" "categories/social-media/
 run_build "category profile: design-to-outbound" "categories/design/design-to-outbound/scripts/build.sh"
 run_build "category profile: primary-to-outbound" "categories/primary/primary-to-outbound/scripts/build.sh"
 
+printf '\n==> postprocess generated RouterOS outputs\n'
+sh "$ROOT_DIR/scripts/enforce-authoritative-cleanup.sh"
+
 printf '\nBuild complete\n'
