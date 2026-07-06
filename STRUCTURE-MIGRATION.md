@@ -131,6 +131,12 @@ mobile-app-store:
 - Do not change RouterOS DNS regex generation during structure migration.
 - Do not change generated output logic during structure migration.
 - Keep service data in exactly one active source-of-truth path after each category migration is complete.
+- Migration should be copy/connect work, not rewrite work.
+- Copy existing working service/profile files from legacy paths to category-first paths.
+- Root scripts are the upper/orchestrator scripts.
+- Category service/profile scripts are the lower/execution scripts.
+- During migration, Codex should connect upper scripts to lower scripts by changing paths in `scripts/build-all.sh` and `scripts/validate-all.sh`.
+- Codex must not redesign lower script logic unless a path reference breaks after copy.
 
 ## Skeleton-First Migration Workflow
 
@@ -173,9 +179,21 @@ scripts/validate-all.sh
 safe-install/**/*.rsc
 ```
 
-### Task B: Code and migration logic
+### Task B: Copy and connect only
 
-Only after Task A is reviewed, Codex may copy or write code files.
+Only after Task A is reviewed, Codex may copy existing working files and connect the upper scripts to the new lower paths.
+
+Task B is not a rewrite task.
+
+Codex should mostly do this:
+
+```text
+copy legacy service files -> category service folder
+copy legacy profile files -> category profile folder
+copy or adapt safe-install files -> category safe-install folder
+connect scripts/build-all.sh -> new category scripts
+connect scripts/validate-all.sh -> new category validate scripts
+```
 
 Allowed in Task B:
 
@@ -194,7 +212,23 @@ scripts/validate-all.sh
 
 Task B must update root build and validate scripts only for the category being migrated.
 
-This two-step workflow exists so humans can confirm folder design before Codex writes or moves code.
+Task B should not rewrite lower scripts. It may only adjust internal path variables if copied scripts still point to old legacy paths.
+
+Example upper-to-lower connection:
+
+```sh
+run_build "category service: figma" "categories/design/figma/scripts/build.sh"
+run_build "category service: canva" "categories/design/canva/scripts/build.sh"
+run_build "category profile: design-to-outbound" "categories/design/design-to-outbound/scripts/build.sh"
+```
+
+```sh
+run_validate "category service: figma" "categories/design/figma/scripts/validate.sh"
+run_validate "category service: canva" "categories/design/canva/scripts/validate.sh"
+run_validate "category profile: design-to-outbound" "categories/design/design-to-outbound/scripts/validate.sh"
+```
+
+This two-step workflow exists so humans can confirm folder design before Codex writes or moves code, and so code changes stay limited to copy/connect work.
 
 ## Recommended Migration Order
 
@@ -202,7 +236,7 @@ This two-step workflow exists so humans can confirm folder design before Codex w
 2. Migrate one existing category at a time.
 3. For each category, run Task A skeleton first.
 4. Review folder layout.
-5. Run Task B code migration for that category.
+5. Run Task B copy/connect migration for that category.
 6. Update `scripts/build-all.sh` and `scripts/validate-all.sh` per migrated category.
 7. Add category-first safe installers per migrated category.
 8. Keep old root safe installers until compatibility behavior is decided.
