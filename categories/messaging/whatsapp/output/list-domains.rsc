@@ -4,11 +4,11 @@
 # List: WhatsApp domains
 # RouterOS address-list: DST-WHATSAPP-TO-OUTBOUND
 # Source: Meta-owned WhatsApp public domains (official-owned-domains)
-# Last update: 2026-07-06 11:18:53 UTC
+# Last update: 2026-07-06 15:59:57 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-WHATSAPP-TO-OUTBOUND comment~"whatsapp:"]
+remove [find address-list=DST-WHATSAPP-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)wa\\.me\$" type=FWD address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:wa.me" } on-error={}
 :do { add regexp="(^|.*\\.)whatsapp\\.com\$" type=FWD address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:whatsapp.com" } on-error={}
 :do { add regexp="(^|.*\\.)whatsapp\\.net\$" type=FWD address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:whatsapp.net" } on-error={}

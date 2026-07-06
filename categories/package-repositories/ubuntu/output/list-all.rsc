@@ -4,11 +4,11 @@
 # List: Ubuntu combined domains + CIDR
 # RouterOS address-list: DST-UBUNTU-TO-OUTBOUND
 # Domain source: Ubuntu repository documentation (official-repository-domains)
-# Last update: 2026-07-06 12:26:09 UTC
+# Last update: 2026-07-06 16:00:15 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-UBUNTU-TO-OUTBOUND comment~"ubuntu:"]
+remove [find address-list=DST-UBUNTU-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)archive\\.ubuntu\\.com\$" type=FWD address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:archive.ubuntu.com" } on-error={}
 :do { add regexp="(^|.*\\.)changelogs\\.ubuntu\\.com\$" type=FWD address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:changelogs.ubuntu.com" } on-error={}
 :do { add regexp="(^|.*\\.)esm\\.ubuntu\\.com\$" type=FWD address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:esm.ubuntu.com" } on-error={}
@@ -19,4 +19,4 @@ remove [find address-list=DST-UBUNTU-TO-OUTBOUND comment~"ubuntu:"]
 :do { add regexp="(^|.*\\.)security\\.ubuntu\\.com\$" type=FWD address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:security.ubuntu.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu-cidr"]
+remove [find list=DST-UBUNTU-TO-OUTBOUND]

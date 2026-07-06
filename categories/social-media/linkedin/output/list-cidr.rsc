@@ -4,8 +4,8 @@
 # List: LinkedIn CIDR
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 11:32:23 UTC
+# Last update: 2026-07-06 16:00:03 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
-remove [find list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin-cidr"]
+remove [find list=DST-LINKEDIN-TO-OUTBOUND]

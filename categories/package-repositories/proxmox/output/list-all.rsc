@@ -4,11 +4,11 @@
 # List: Proxmox combined domains + CIDR
 # RouterOS address-list: DST-PROXMOX-TO-OUTBOUND
 # Domain source: Proxmox package repository documentation (official-repository-domains)
-# Last update: 2026-07-06 12:26:15 UTC
+# Last update: 2026-07-06 16:00:22 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-PROXMOX-TO-OUTBOUND comment~"proxmox:"]
+remove [find address-list=DST-PROXMOX-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)download\\.proxmox\\.com\$" type=FWD address-list=DST-PROXMOX-TO-OUTBOUND comment="proxmox:download.proxmox.com" } on-error={}
 :do { add regexp="(^|.*\\.)enterprise\\.proxmox\\.com\$" type=FWD address-list=DST-PROXMOX-TO-OUTBOUND comment="proxmox:enterprise.proxmox.com" } on-error={}
 :do { add regexp="(^|.*\\.)pbs\\.proxmox\\.com\$" type=FWD address-list=DST-PROXMOX-TO-OUTBOUND comment="proxmox:pbs.proxmox.com" } on-error={}
@@ -16,4 +16,4 @@ remove [find address-list=DST-PROXMOX-TO-OUTBOUND comment~"proxmox:"]
 :do { add regexp="(^|.*\\.)shop\\.proxmox\\.com\$" type=FWD address-list=DST-PROXMOX-TO-OUTBOUND comment="proxmox:shop.proxmox.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-PROXMOX-TO-OUTBOUND comment="proxmox-cidr"]
+remove [find list=DST-PROXMOX-TO-OUTBOUND]

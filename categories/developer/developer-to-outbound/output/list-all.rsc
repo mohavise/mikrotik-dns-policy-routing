@@ -3,11 +3,11 @@
 # profile=developer-to-outbound
 # List: Developer combined domains + CIDR
 # RouterOS address-list: DST-DEVELOPER-TO-OUTBOUND
-# Last update: 2026-07-06 12:26:47 UTC
+# Last update: 2026-07-06 16:00:53 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-DEVELOPER-TO-OUTBOUND comment~"github:"]
+remove [find address-list=DST-DEVELOPER-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)github\\.com\$" type=FWD address-list=DST-DEVELOPER-TO-OUTBOUND comment="github:github.com" } on-error={}
 :do { add regexp="(^|.*\\.)github\\.dev\$" type=FWD address-list=DST-DEVELOPER-TO-OUTBOUND comment="github:github.dev" } on-error={}
 :do { add regexp="(^|.*\\.)github\\.io\$" type=FWD address-list=DST-DEVELOPER-TO-OUTBOUND comment="github:github.io" } on-error={}
@@ -18,5 +18,5 @@ remove [find address-list=DST-DEVELOPER-TO-OUTBOUND comment~"github:"]
 :do { add regexp="(^|.*\\.)githubusercontent\\.com\$" type=FWD address-list=DST-DEVELOPER-TO-OUTBOUND comment="github:githubusercontent.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-DEVELOPER-TO-OUTBOUND comment="github-cidr"]
+remove [find list=DST-DEVELOPER-TO-OUTBOUND]
 

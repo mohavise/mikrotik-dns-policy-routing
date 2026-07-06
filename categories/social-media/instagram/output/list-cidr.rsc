@@ -4,8 +4,8 @@
 # List: Instagram CIDR
 # RouterOS address-list: DST-INSTAGRAM-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-06 11:32:15 UTC
+# Last update: 2026-07-06 15:59:56 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
-remove [find list=DST-INSTAGRAM-TO-OUTBOUND comment="instagram-cidr"]
+remove [find list=DST-INSTAGRAM-TO-OUTBOUND]

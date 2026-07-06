@@ -3,11 +3,11 @@
 # profile=cloud-storage-to-outbound
 # List: Cloud Storage combined domains + CIDR
 # RouterOS address-list: DST-CLOUD-STORAGE-TO-OUTBOUND
-# Last update: 2026-07-06 12:26:50 UTC
+# Last update: 2026-07-06 16:00:56 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment~"google-drive:"]
+remove [find address-list=DST-CLOUD-STORAGE-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:accounts.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)docs\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:docs.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)drive\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:drive.google.com" } on-error={}
@@ -20,5 +20,5 @@ remove [find address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment~"google-drive:"]
 :do { add regexp="(^|.*\\.)slides\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:slides.google.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive-cidr"]
+remove [find list=DST-CLOUD-STORAGE-TO-OUTBOUND]
 

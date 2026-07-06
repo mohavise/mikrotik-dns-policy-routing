@@ -4,15 +4,15 @@
 # List: Steam domains
 # RouterOS address-list: DST-STEAM-TO-OUTBOUND
 # Source: Steam and Valve public/service domains (official-owned-domains)
-# Last update: 2026-07-06 12:26:29 UTC
+# Last update: 2026-07-06 16:00:35 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-STEAM-TO-OUTBOUND comment~"steam:"]
+remove [find address-list=DST-STEAM-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)help\\.steampowered\\.com\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:help.steampowered.com" } on-error={}
+:do { add regexp="(^|.*\\.)steam-chat\\.com\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
 :do { add regexp="(^|.*\\.)steam\\.tv\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:steam.tv" } on-error={}
 :do { add regexp="(^|.*\\.)steamcdn-a\\.akamaihd\\.net\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamcdn-a.akamaihd.net" } on-error={}
-:do { add regexp="(^|.*\\.)steam-chat\\.com\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
 :do { add regexp="(^|.*\\.)steamcommunity\\.com\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamcommunity.com" } on-error={}
 :do { add regexp="(^|.*\\.)steamcontent\\.com\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamcontent.com" } on-error={}
 :do { add regexp="(^|.*\\.)steamgames\\.com\$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamgames.com" } on-error={}

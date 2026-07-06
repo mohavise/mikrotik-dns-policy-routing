@@ -3,15 +3,15 @@
 # profile=mobile-app-store-to-outbound
 # List: Mobile App Store combined domains + CIDR
 # RouterOS address-list: DST-MOBILE-APP-STORE-TO-OUTBOUND
-# Last update: 2026-07-06 10:59:44 UTC
+# Last update: 2026-07-06 16:01:01 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"apple-app-store:"]
+remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)api\\.apple-cloudkit\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:api.apple-cloudkit.com" } on-error={}
 :do { add regexp="(^|.*\\.)appattest\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:appattest.apple.com" } on-error={}
-:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)apps-marketplace\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps-marketplace.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)audiocontentdownload\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:audiocontentdownload.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)devimages-cdn\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:devimages-cdn.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)download\\.developer\\.apple\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:download.developer.apple.com" } on-error={}
@@ -24,10 +24,9 @@ remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"apple-app-st
 :do { add regexp="(^|.*\\.)token\\.safebrowsing\\.apple\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:token.safebrowsing.apple" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store-cidr"]
+remove [find list=DST-MOBILE-APP-STORE-TO-OUTBOUND]
 
 /ip dns static
-remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"google-play:"]
 :do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:accounts.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)accounts\\.youtube\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:accounts.youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)ajax\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:ajax.googleapis.com" } on-error={}
@@ -43,19 +42,19 @@ remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"google-play:
 :do { add regexp="(^|.*\\.)clients5\\.google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:clients5.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)clients6\\.google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:clients6.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)crl\\.pki\\.goog\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:crl.pki.goog" } on-error={}
-:do { add regexp="(^|.*\\.)dl\\.google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dl.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)dl-ssl\\.google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dl-ssl.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)dl\\.google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dl.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)enterprise\\.google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:enterprise.google.com" } on-error={}
-:do { add regexp="(^|.*\\.)fcm\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:fcm.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)fcm-xmpp\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:fcm-xmpp.googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)fcm\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:fcm.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)firebaseinstallations\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:firebaseinstallations.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)firebaselogging\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:firebaselogging.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)fonts\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:fonts.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)gcm-http\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:gcm-http.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)gcm-xmpp\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:gcm-xmpp.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)ggpht\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:ggpht.com" } on-error={}
-:do { add regexp="(^|.*\\.)google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:google.com" } on-error={}
 :do { add regexp="(^|.*\\.)google-analytics\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:google-analytics.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:google.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleusercontent\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:googleusercontent.com" } on-error={}
 :do { add regexp="(^|.*\\.)gstatic\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:gstatic.com" } on-error={}
@@ -73,13 +72,11 @@ remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"google-play:
 :do { add regexp="(^|.*\\.)www\\.googleapis\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:www.googleapis.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play-cidr"]
 
 /ip dns static
-remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"samsung-galaxy-store:"]
+:do { add regexp="(^|.*\\.)apps-dn2\\.ospserver\\.net\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:apps-dn2.ospserver.net" } on-error={}
 :do { add regexp="(^|.*\\.)apps\\.samsung\\.cn\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:apps.samsung.cn" } on-error={}
 :do { add regexp="(^|.*\\.)apps\\.samsung\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:apps.samsung.com" } on-error={}
-:do { add regexp="(^|.*\\.)apps-dn2\\.ospserver\\.net\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:apps-dn2.ospserver.net" } on-error={}
 :do { add regexp="(^|.*\\.)cdnet-dn\\.gw\\.samsungapps\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:cdnet-dn.gw.samsungapps.com" } on-error={}
 :do { add regexp="(^|.*\\.)cf-dn\\.gw\\.samsungapps\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:cf-dn.gw.samsungapps.com" } on-error={}
 :do { add regexp="(^|.*\\.)cn-ms\\.samsungapps\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:cn-ms.samsungapps.com" } on-error={}
@@ -91,5 +88,4 @@ remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment~"samsung-gala
 :do { add regexp="(^|.*\\.)vas\\.samsungapps\\.com\$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:vas.samsungapps.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store-cidr"]
 

@@ -4,15 +4,15 @@
 # List: Apple App Store combined domains + CIDR
 # RouterOS address-list: DST-APPLE-APP-STORE-TO-OUTBOUND
 # Domain source: Apple products on enterprise networks (official-vendor-docs)
-# Last update: 2026-07-06 10:43:31 UTC
+# Last update: 2026-07-06 16:00:39 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment~"apple-app-store:"]
+remove [find address-list=DST-APPLE-APP-STORE-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)api\\.apple-cloudkit\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:api.apple-cloudkit.com" } on-error={}
 :do { add regexp="(^|.*\\.)appattest\\.apple\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:appattest.apple.com" } on-error={}
-:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)apps-marketplace\\.apple\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps-marketplace.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)audiocontentdownload\\.apple\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:audiocontentdownload.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)devimages-cdn\\.apple\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:devimages-cdn.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)download\\.developer\\.apple\\.com\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:download.developer.apple.com" } on-error={}
@@ -25,4 +25,4 @@ remove [find address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment~"apple-app-sto
 :do { add regexp="(^|.*\\.)token\\.safebrowsing\\.apple\$" type=FWD address-list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store:token.safebrowsing.apple" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-APPLE-APP-STORE-TO-OUTBOUND comment="apple-app-store-cidr"]
+remove [find list=DST-APPLE-APP-STORE-TO-OUTBOUND]

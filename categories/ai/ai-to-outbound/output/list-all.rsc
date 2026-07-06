@@ -3,11 +3,11 @@
 # profile=ai-to-outbound
 # List: AI combined domains + CIDR
 # RouterOS address-list: DST-AI-TO-OUTBOUND
-# Last update: 2026-07-06 12:26:47 UTC
+# Last update: 2026-07-06 16:00:52 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-AI-TO-OUTBOUND comment~"openai:"]
+remove [find address-list=DST-AI-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)auth\\.openai\\.com\$" type=FWD address-list=DST-AI-TO-OUTBOUND comment="openai:auth.openai.com" } on-error={}
 :do { add regexp="(^|.*\\.)challenges\\.cloudflare\\.com\$" type=FWD address-list=DST-AI-TO-OUTBOUND comment="openai:challenges.cloudflare.com" } on-error={}
 :do { add regexp="(^|.*\\.)chatgpt\\.com\$" type=FWD address-list=DST-AI-TO-OUTBOUND comment="openai:chatgpt.com" } on-error={}
@@ -29,5 +29,5 @@ remove [find address-list=DST-AI-TO-OUTBOUND comment~"openai:"]
 :do { add regexp="(^|.*\\.)workos\\.imgix\\.net\$" type=FWD address-list=DST-AI-TO-OUTBOUND comment="openai:workos.imgix.net" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-AI-TO-OUTBOUND comment="openai-cidr"]
+remove [find list=DST-AI-TO-OUTBOUND]
 

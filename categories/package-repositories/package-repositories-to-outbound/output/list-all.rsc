@@ -3,11 +3,11 @@
 # profile=package-repositories-to-outbound
 # List: Package Repositories combined domains + CIDR
 # RouterOS address-list: DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
-# Last update: 2026-07-06 12:26:48 UTC
+# Last update: 2026-07-06 16:00:54 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"ubuntu:"]
+remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)archive\\.ubuntu\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="ubuntu:archive.ubuntu.com" } on-error={}
 :do { add regexp="(^|.*\\.)changelogs\\.ubuntu\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="ubuntu:changelogs.ubuntu.com" } on-error={}
 :do { add regexp="(^|.*\\.)esm\\.ubuntu\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="ubuntu:esm.ubuntu.com" } on-error={}
@@ -18,22 +18,19 @@ remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"ubuntu:"
 :do { add regexp="(^|.*\\.)security\\.ubuntu\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="ubuntu:security.ubuntu.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="ubuntu-cidr"]
+remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND]
 
 /ip dns static
-remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"debian:"]
 :do { add regexp="(^|.*\\.)deb\\.debian\\.org\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian:deb.debian.org" } on-error={}
-:do { add regexp="(^|.*\\.)ftp\\.debian\\.org\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian:ftp.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)ftp-master\\.debian\\.org\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian:ftp-master.debian.org" } on-error={}
+:do { add regexp="(^|.*\\.)ftp\\.debian\\.org\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian:ftp.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)packages\\.debian\\.org\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian:packages.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)security\\.debian\\.org\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian:security.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)snapshot\\.debian\\.org\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian:snapshot.debian.org" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="debian-cidr"]
 
 /ip dns static
-remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"redhat:"]
 :do { add regexp="(^|.*\\.)access\\.redhat\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:access.redhat.com" } on-error={}
 :do { add regexp="(^|.*\\.)cdn\\.redhat\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:cdn.redhat.com" } on-error={}
 :do { add regexp="(^|.*\\.)cloud\\.redhat\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:cloud.redhat.com" } on-error={}
@@ -45,10 +42,8 @@ remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"redhat:"
 :do { add regexp="(^|.*\\.)subscription\\.rhsm\\.redhat\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:subscription.rhsm.redhat.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat-cidr"]
 
 /ip dns static
-remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"proxmox:"]
 :do { add regexp="(^|.*\\.)download\\.proxmox\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="proxmox:download.proxmox.com" } on-error={}
 :do { add regexp="(^|.*\\.)enterprise\\.proxmox\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="proxmox:enterprise.proxmox.com" } on-error={}
 :do { add regexp="(^|.*\\.)pbs\\.proxmox\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="proxmox:pbs.proxmox.com" } on-error={}
@@ -56,10 +51,8 @@ remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"proxmox:
 :do { add regexp="(^|.*\\.)shop\\.proxmox\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="proxmox:shop.proxmox.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="proxmox-cidr"]
 
 /ip dns static
-remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"docker:"]
 :do { add regexp="(^|.*\\.)api\\.docker\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:api.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.com\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:auth.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.io\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:auth.docker.io" } on-error={}
@@ -74,5 +67,4 @@ remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment~"docker:"
 :do { add regexp="(^|.*\\.)registry-1\\.docker\\.io\$" type=FWD address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:registry-1.docker.io" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker-cidr"]
 

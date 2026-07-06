@@ -4,11 +4,11 @@
 # List: Facebook domains
 # RouterOS address-list: DST-FACEBOOK-TO-OUTBOUND
 # Source: Meta-owned Facebook public domains (official-owned-domains)
-# Last update: 2026-07-06 11:32:18 UTC
+# Last update: 2026-07-06 15:59:59 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-FACEBOOK-TO-OUTBOUND comment~"facebook:"]
+remove [find address-list=DST-FACEBOOK-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)facebook\\.com\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:facebook.com" } on-error={}
 :do { add regexp="(^|.*\\.)fb\\.com\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fb.com" } on-error={}
 :do { add regexp="(^|.*\\.)fbcdn\\.net\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fbcdn.net" } on-error={}

@@ -4,11 +4,11 @@
 # List: OpenAI domains
 # RouterOS address-list: DST-OPENAI-TO-OUTBOUND
 # Source: OpenAI ChatGPT network recommendations (official-allowlist)
-# Last update: 2026-07-06 12:26:05 UTC
+# Last update: 2026-07-06 16:00:11 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-OPENAI-TO-OUTBOUND comment~"openai:"]
+remove [find address-list=DST-OPENAI-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)auth\\.openai\\.com\$" type=FWD address-list=DST-OPENAI-TO-OUTBOUND comment="openai:auth.openai.com" } on-error={}
 :do { add regexp="(^|.*\\.)challenges\\.cloudflare\\.com\$" type=FWD address-list=DST-OPENAI-TO-OUTBOUND comment="openai:challenges.cloudflare.com" } on-error={}
 :do { add regexp="(^|.*\\.)chatgpt\\.com\$" type=FWD address-list=DST-OPENAI-TO-OUTBOUND comment="openai:chatgpt.com" } on-error={}

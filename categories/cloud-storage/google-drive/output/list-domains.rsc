@@ -4,11 +4,11 @@
 # List: Google Drive domains
 # RouterOS address-list: DST-GOOGLE-DRIVE-TO-OUTBOUND
 # Source: Google Drive public/service domains (official-google-service-domains)
-# Last update: 2026-07-06 12:26:20 UTC
+# Last update: 2026-07-06 16:00:27 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment~"google-drive:"]
+remove [find address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:accounts.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)docs\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:docs.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)drive\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:drive.google.com" } on-error={}

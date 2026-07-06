@@ -4,11 +4,11 @@
 # List: LinkedIn domains
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Source: LinkedIn-owned public domains (official-owned-domains)
-# Last update: 2026-07-06 11:32:23 UTC
+# Last update: 2026-07-06 16:00:03 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-LINKEDIN-TO-OUTBOUND comment~"linkedin:"]
+remove [find address-list=DST-LINKEDIN-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)licdn\\.com\$" type=FWD address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:licdn.com" } on-error={}
 :do { add regexp="(^|.*\\.)linkedin\\.com\$" type=FWD address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:linkedin.com" } on-error={}
 :do { add regexp="(^|.*\\.)lnkd\\.in\$" type=FWD address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:lnkd.in" } on-error={}

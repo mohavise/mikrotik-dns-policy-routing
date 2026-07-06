@@ -4,10 +4,10 @@
 # List: Signal domains
 # RouterOS address-list: DST-SIGNAL-TO-OUTBOUND
 # Source: Signal-owned public domains (official-owned-domains)
-# Last update: 2026-07-06 11:19:00 UTC
+# Last update: 2026-07-06 16:00:04 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-SIGNAL-TO-OUTBOUND comment~"signal:"]
+remove [find address-list=DST-SIGNAL-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)signal\\.me\$" type=FWD address-list=DST-SIGNAL-TO-OUTBOUND comment="signal:signal.me" } on-error={}
 :do { add regexp="(^|.*\\.)signal\\.org\$" type=FWD address-list=DST-SIGNAL-TO-OUTBOUND comment="signal:signal.org" } on-error={}

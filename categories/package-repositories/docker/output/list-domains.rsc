@@ -4,11 +4,11 @@
 # List: Docker domains
 # RouterOS address-list: DST-DOCKER-TO-OUTBOUND
 # Source: Docker official allowlist (official-allowlist)
-# Last update: 2026-07-06 12:26:17 UTC
+# Last update: 2026-07-06 16:00:24 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-DOCKER-TO-OUTBOUND comment~"docker:"]
+remove [find address-list=DST-DOCKER-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)api\\.docker\\.com\$" type=FWD address-list=DST-DOCKER-TO-OUTBOUND comment="docker:api.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.com\$" type=FWD address-list=DST-DOCKER-TO-OUTBOUND comment="docker:auth.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.io\$" type=FWD address-list=DST-DOCKER-TO-OUTBOUND comment="docker:auth.docker.io" } on-error={}

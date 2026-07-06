@@ -4,11 +4,11 @@
 # List: Google Play domains
 # RouterOS address-list: DST-GOOGLE-PLAY-TO-OUTBOUND
 # Source: Android Enterprise Network Requirements (official-vendor-docs)
-# Last update: 2026-07-06 10:43:35 UTC
+# Last update: 2026-07-06 16:00:42 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment~"google-play:"]
+remove [find address-list=DST-GOOGLE-PLAY-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:accounts.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)accounts\\.youtube\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:accounts.youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)ajax\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:ajax.googleapis.com" } on-error={}
@@ -24,19 +24,19 @@ remove [find address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment~"google-play:"]
 :do { add regexp="(^|.*\\.)clients5\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:clients5.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)clients6\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:clients6.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)crl\\.pki\\.goog\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:crl.pki.goog" } on-error={}
-:do { add regexp="(^|.*\\.)dl\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dl.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)dl-ssl\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dl-ssl.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)dl\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dl.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)enterprise\\.google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:enterprise.google.com" } on-error={}
-:do { add regexp="(^|.*\\.)fcm\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:fcm.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)fcm-xmpp\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:fcm-xmpp.googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)fcm\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:fcm.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)firebaseinstallations\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:firebaseinstallations.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)firebaselogging\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:firebaselogging.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)fonts\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:fonts.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)gcm-http\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:gcm-http.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)gcm-xmpp\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:gcm-xmpp.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)ggpht\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:ggpht.com" } on-error={}
-:do { add regexp="(^|.*\\.)google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:google.com" } on-error={}
 :do { add regexp="(^|.*\\.)google-analytics\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:google-analytics.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:google.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleusercontent\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:googleusercontent.com" } on-error={}
 :do { add regexp="(^|.*\\.)gstatic\\.com\$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:gstatic.com" } on-error={}

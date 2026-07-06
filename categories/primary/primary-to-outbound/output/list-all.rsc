@@ -3,11 +3,11 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-07-06 12:56:08 UTC
+# Last update: 2026-07-06 16:01:08 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"openai:"]
+remove [find address-list=DST-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)auth\\.openai\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:auth.openai.com" } on-error={}
 :do { add regexp="(^|.*\\.)challenges\\.cloudflare\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:challenges.cloudflare.com" } on-error={}
 :do { add regexp="(^|.*\\.)chatgpt\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:chatgpt.com" } on-error={}
@@ -29,11 +29,10 @@ remove [find address-list=DST-TO-OUTBOUND comment~"openai:"]
 :do { add regexp="(^|.*\\.)workos\\.imgix\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:workos.imgix.net" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="openai-cidr"]
+remove [find list=DST-TO-OUTBOUND]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"github:"]
 :do { add regexp="(^|.*\\.)github\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:github.com" } on-error={}
 :do { add regexp="(^|.*\\.)github\\.dev\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:github.dev" } on-error={}
 :do { add regexp="(^|.*\\.)github\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:github.io" } on-error={}
@@ -44,28 +43,22 @@ remove [find address-list=DST-TO-OUTBOUND comment~"github:"]
 :do { add regexp="(^|.*\\.)githubusercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="github:githubusercontent.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="github-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"figma:"]
 :do { add regexp="(^|.*\\.)figma\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:figma.com" } on-error={}
 :do { add regexp="(^|.*\\.)figmausercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:figmausercontent.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="figma-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"canva:"]
-:do { add regexp="(^|.*\\.)canva\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="canva:canva.com" } on-error={}
 :do { add regexp="(^|.*\\.)canva-apps\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="canva:canva-apps.com" } on-error={}
+:do { add regexp="(^|.*\\.)canva\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="canva:canva.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="canva-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"google-drive:"]
 :do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:accounts.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)docs\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:docs.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)drive\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:drive.google.com" } on-error={}
@@ -78,10 +71,8 @@ remove [find address-list=DST-TO-OUTBOUND comment~"google-drive:"]
 :do { add regexp="(^|.*\\.)slides\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:slides.google.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="google-drive-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"youtube:"]
 :do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:accounts.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)ggpht\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:ggpht.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:googleapis.com" } on-error={}
@@ -90,21 +81,19 @@ remove [find address-list=DST-TO-OUTBOUND comment~"youtube:"]
 :do { add regexp="(^|.*\\.)m\\.youtube\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:m.youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)www\\.youtube\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:www.youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtu\\.be\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtu.be" } on-error={}
+:do { add regexp="(^|.*\\.)youtube-nocookie\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtube\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtubei\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtubei.googleapis.com" } on-error={}
-:do { add regexp="(^|.*\\.)youtube-nocookie\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
 :do { add regexp="(^|.*\\.)ytimg\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:ytimg.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="youtube-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"steam:"]
 :do { add regexp="(^|.*\\.)help\\.steampowered\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:help.steampowered.com" } on-error={}
+:do { add regexp="(^|.*\\.)steam-chat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
 :do { add regexp="(^|.*\\.)steam\\.tv\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steam.tv" } on-error={}
 :do { add regexp="(^|.*\\.)steamcdn-a\\.akamaihd\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamcdn-a.akamaihd.net" } on-error={}
-:do { add regexp="(^|.*\\.)steam-chat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
 :do { add regexp="(^|.*\\.)steamcommunity\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamcommunity.com" } on-error={}
 :do { add regexp="(^|.*\\.)steamcontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamcontent.com" } on-error={}
 :do { add regexp="(^|.*\\.)steamgames\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:steamgames.com" } on-error={}
@@ -118,11 +107,9 @@ remove [find address-list=DST-TO-OUTBOUND comment~"steam:"]
 :do { add regexp="(^|.*\\.)valvesoftware\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:valvesoftware.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="steam-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"telegram:"]
 :do { add regexp="(^|.*\\.)cdn-telegram\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:cdn-telegram.org" } on-error={}
 :do { add regexp="(^|.*\\.)comments\\.app\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:comments.app" } on-error={}
 :do { add regexp="(^|.*\\.)contest\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:contest.com" } on-error={}
@@ -133,11 +120,11 @@ remove [find address-list=DST-TO-OUTBOUND comment~"telegram:"]
 :do { add regexp="(^|.*\\.)tdesktop\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:tdesktop.com" } on-error={}
 :do { add regexp="(^|.*\\.)telega\\.one\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telega.one" } on-error={}
 :do { add regexp="(^|.*\\.)telegra\\.ph\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegra.ph" } on-error={}
+:do { add regexp="(^|.*\\.)telegram-cdn\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram-cdn.org" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.dog\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.dog" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.me\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.me" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.org" } on-error={}
 :do { add regexp="(^|.*\\.)telegram\\.space\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram.space" } on-error={}
-:do { add regexp="(^|.*\\.)telegram-cdn\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telegram-cdn.org" } on-error={}
 :do { add regexp="(^|.*\\.)telesco\\.pe\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:telesco.pe" } on-error={}
 :do { add regexp="(^|.*\\.)tg\\.dev\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:tg.dev" } on-error={}
 :do { add regexp="(^|.*\\.)ton\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:ton.org" } on-error={}
@@ -146,7 +133,6 @@ remove [find address-list=DST-TO-OUTBOUND comment~"telegram:"]
 :do { add regexp="(^|.*\\.)usercontent\\.dev\$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:usercontent.dev" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="telegram-cidr"]
 :do { add list=DST-TO-OUTBOUND address=149.154.160.0/20 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=185.76.151.0/24 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=91.105.192.0/23 comment="telegram-cidr" } on-error={}
@@ -158,29 +144,24 @@ remove [find list=DST-TO-OUTBOUND comment="telegram-cidr"]
 :do { add list=DST-TO-OUTBOUND address=91.108.8.0/22 comment="telegram-cidr" } on-error={}
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"whatsapp:"]
 :do { add regexp="(^|.*\\.)wa\\.me\$" type=FWD address-list=DST-TO-OUTBOUND comment="whatsapp:wa.me" } on-error={}
 :do { add regexp="(^|.*\\.)whatsapp\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="whatsapp:whatsapp.com" } on-error={}
 :do { add regexp="(^|.*\\.)whatsapp\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="whatsapp:whatsapp.net" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="whatsapp-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"signal:"]
 :do { add regexp="(^|.*\\.)signal\\.me\$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:signal.me" } on-error={}
 :do { add regexp="(^|.*\\.)signal\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:signal.org" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="signal-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"apple-app-store:"]
 :do { add regexp="(^|.*\\.)api\\.apple-cloudkit\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:api.apple-cloudkit.com" } on-error={}
 :do { add regexp="(^|.*\\.)appattest\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:appattest.apple.com" } on-error={}
-:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)apps-marketplace\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:apps-marketplace.apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)apps\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:apps.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)audiocontentdownload\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:audiocontentdownload.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)devimages-cdn\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:devimages-cdn.apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)download\\.developer\\.apple\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:download.developer.apple.com" } on-error={}
@@ -193,10 +174,8 @@ remove [find address-list=DST-TO-OUTBOUND comment~"apple-app-store:"]
 :do { add regexp="(^|.*\\.)token\\.safebrowsing\\.apple\$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:token.safebrowsing.apple" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="apple-app-store-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"google-play:"]
 :do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:accounts.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)accounts\\.youtube\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:accounts.youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)ajax\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:ajax.googleapis.com" } on-error={}
@@ -212,19 +191,19 @@ remove [find address-list=DST-TO-OUTBOUND comment~"google-play:"]
 :do { add regexp="(^|.*\\.)clients5\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:clients5.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)clients6\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:clients6.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)crl\\.pki\\.goog\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:crl.pki.goog" } on-error={}
-:do { add regexp="(^|.*\\.)dl\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dl.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)dl-ssl\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dl-ssl.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)dl\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dl.google.com" } on-error={}
 :do { add regexp="(^|.*\\.)enterprise\\.google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:enterprise.google.com" } on-error={}
-:do { add regexp="(^|.*\\.)fcm\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:fcm.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)fcm-xmpp\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:fcm-xmpp.googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)fcm\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:fcm.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)firebaseinstallations\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:firebaseinstallations.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)firebaselogging\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:firebaselogging.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)fonts\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:fonts.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)gcm-http\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:gcm-http.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)gcm-xmpp\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:gcm-xmpp.googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)ggpht\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:ggpht.com" } on-error={}
-:do { add regexp="(^|.*\\.)google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:google.com" } on-error={}
 :do { add regexp="(^|.*\\.)google-analytics\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:google-analytics.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:google.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleusercontent\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:googleusercontent.com" } on-error={}
 :do { add regexp="(^|.*\\.)gstatic\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:gstatic.com" } on-error={}
@@ -242,13 +221,11 @@ remove [find address-list=DST-TO-OUTBOUND comment~"google-play:"]
 :do { add regexp="(^|.*\\.)www\\.googleapis\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:www.googleapis.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="google-play-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"samsung-galaxy-store:"]
+:do { add regexp="(^|.*\\.)apps-dn2\\.ospserver\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:apps-dn2.ospserver.net" } on-error={}
 :do { add regexp="(^|.*\\.)apps\\.samsung\\.cn\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:apps.samsung.cn" } on-error={}
 :do { add regexp="(^|.*\\.)apps\\.samsung\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:apps.samsung.com" } on-error={}
-:do { add regexp="(^|.*\\.)apps-dn2\\.ospserver\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:apps-dn2.ospserver.net" } on-error={}
 :do { add regexp="(^|.*\\.)cdnet-dn\\.gw\\.samsungapps\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:cdnet-dn.gw.samsungapps.com" } on-error={}
 :do { add regexp="(^|.*\\.)cf-dn\\.gw\\.samsungapps\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:cf-dn.gw.samsungapps.com" } on-error={}
 :do { add regexp="(^|.*\\.)cn-ms\\.samsungapps\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:cn-ms.samsungapps.com" } on-error={}
@@ -260,15 +237,13 @@ remove [find address-list=DST-TO-OUTBOUND comment~"samsung-galaxy-store:"]
 :do { add regexp="(^|.*\\.)vas\\.samsungapps\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:vas.samsungapps.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="samsung-galaxy-store-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"spotify:"]
 :do { add regexp="(^|.*\\.)accounts\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:accounts.spotify.com" } on-error={}
 :do { add regexp="(^|.*\\.)api\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:api.spotify.com" } on-error={}
-:do { add regexp="(^|.*\\.)audio4-ak-spotify-com\\.akamaized\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
 :do { add regexp="(^|.*\\.)audio-ak-spotify-com\\.akamaized\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
+:do { add regexp="(^|.*\\.)audio4-ak-spotify-com\\.akamaized\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
 :do { add regexp="(^|.*\\.)gew-spclient\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:gew-spclient.spotify.com" } on-error={}
 :do { add regexp="(^|.*\\.)open\\.spotify\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:open.spotify.com" } on-error={}
 :do { add regexp="(^|.*\\.)pscdn\\.co\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
@@ -279,11 +254,9 @@ remove [find address-list=DST-TO-OUTBOUND comment~"spotify:"]
 :do { add regexp="(^|.*\\.)spotifycdn\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="spotify-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"ubuntu:"]
 :do { add regexp="(^|.*\\.)archive\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:archive.ubuntu.com" } on-error={}
 :do { add regexp="(^|.*\\.)changelogs\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:changelogs.ubuntu.com" } on-error={}
 :do { add regexp="(^|.*\\.)esm\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:esm.ubuntu.com" } on-error={}
@@ -294,22 +267,18 @@ remove [find address-list=DST-TO-OUTBOUND comment~"ubuntu:"]
 :do { add regexp="(^|.*\\.)security\\.ubuntu\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:security.ubuntu.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="ubuntu-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"debian:"]
 :do { add regexp="(^|.*\\.)deb\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:deb.debian.org" } on-error={}
-:do { add regexp="(^|.*\\.)ftp\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:ftp.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)ftp-master\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:ftp-master.debian.org" } on-error={}
+:do { add regexp="(^|.*\\.)ftp\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:ftp.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)packages\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:packages.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)security\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:security.debian.org" } on-error={}
 :do { add regexp="(^|.*\\.)snapshot\\.debian\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:snapshot.debian.org" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="debian-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"redhat:"]
 :do { add regexp="(^|.*\\.)access\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:access.redhat.com" } on-error={}
 :do { add regexp="(^|.*\\.)cdn\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:cdn.redhat.com" } on-error={}
 :do { add regexp="(^|.*\\.)cloud\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:cloud.redhat.com" } on-error={}
@@ -321,10 +290,8 @@ remove [find address-list=DST-TO-OUTBOUND comment~"redhat:"]
 :do { add regexp="(^|.*\\.)subscription\\.rhsm\\.redhat\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:subscription.rhsm.redhat.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="redhat-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"proxmox:"]
 :do { add regexp="(^|.*\\.)download\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:download.proxmox.com" } on-error={}
 :do { add regexp="(^|.*\\.)enterprise\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:enterprise.proxmox.com" } on-error={}
 :do { add regexp="(^|.*\\.)pbs\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:pbs.proxmox.com" } on-error={}
@@ -332,10 +299,8 @@ remove [find address-list=DST-TO-OUTBOUND comment~"proxmox:"]
 :do { add regexp="(^|.*\\.)shop\\.proxmox\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:shop.proxmox.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="proxmox-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"docker:"]
 :do { add regexp="(^|.*\\.)api\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:api.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:auth.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:auth.docker.io" } on-error={}
@@ -350,20 +315,16 @@ remove [find address-list=DST-TO-OUTBOUND comment~"docker:"]
 :do { add regexp="(^|.*\\.)registry-1\\.docker\\.io\$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:registry-1.docker.io" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="docker-cidr"]
 
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"instagram:"]
 :do { add regexp="(^|.*\\.)cdninstagram\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="instagram:cdninstagram.com" } on-error={}
 :do { add regexp="(^|.*\\.)ig\\.me\$" type=FWD address-list=DST-TO-OUTBOUND comment="instagram:ig.me" } on-error={}
 :do { add regexp="(^|.*\\.)instagram\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="instagram:instagram.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="instagram-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"facebook:"]
 :do { add regexp="(^|.*\\.)facebook\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:facebook.com" } on-error={}
 :do { add regexp="(^|.*\\.)fb\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:fb.com" } on-error={}
 :do { add regexp="(^|.*\\.)fbcdn\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:fbcdn.net" } on-error={}
@@ -372,25 +333,20 @@ remove [find address-list=DST-TO-OUTBOUND comment~"facebook:"]
 :do { add regexp="(^|.*\\.)messenger\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:messenger.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="facebook-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"x:"]
 :do { add regexp="(^|.*\\.)t\\.co\$" type=FWD address-list=DST-TO-OUTBOUND comment="x:t.co" } on-error={}
 :do { add regexp="(^|.*\\.)twimg\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="x:twimg.com" } on-error={}
 :do { add regexp="(^|.*\\.)twitter\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="x:twitter.com" } on-error={}
 :do { add regexp="(^|.*\\.)x\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="x:x.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="x-cidr"]
 
 /ip dns static
-remove [find address-list=DST-TO-OUTBOUND comment~"linkedin:"]
 :do { add regexp="(^|.*\\.)licdn\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="linkedin:licdn.com" } on-error={}
 :do { add regexp="(^|.*\\.)linkedin\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="linkedin:linkedin.com" } on-error={}
 :do { add regexp="(^|.*\\.)lnkd\\.in\$" type=FWD address-list=DST-TO-OUTBOUND comment="linkedin:lnkd.in" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-TO-OUTBOUND comment="linkedin-cidr"]
 
 

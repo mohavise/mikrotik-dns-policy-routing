@@ -4,11 +4,11 @@
 # List: Red Hat combined domains + CIDR
 # RouterOS address-list: DST-REDHAT-TO-OUTBOUND
 # Domain source: Red Hat RHSM firewall guidance (official-allowlist)
-# Last update: 2026-07-06 12:26:13 UTC
+# Last update: 2026-07-06 16:00:20 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-REDHAT-TO-OUTBOUND comment~"redhat:"]
+remove [find address-list=DST-REDHAT-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)access\\.redhat\\.com\$" type=FWD address-list=DST-REDHAT-TO-OUTBOUND comment="redhat:access.redhat.com" } on-error={}
 :do { add regexp="(^|.*\\.)cdn\\.redhat\\.com\$" type=FWD address-list=DST-REDHAT-TO-OUTBOUND comment="redhat:cdn.redhat.com" } on-error={}
 :do { add regexp="(^|.*\\.)cloud\\.redhat\\.com\$" type=FWD address-list=DST-REDHAT-TO-OUTBOUND comment="redhat:cloud.redhat.com" } on-error={}
@@ -20,4 +20,4 @@ remove [find address-list=DST-REDHAT-TO-OUTBOUND comment~"redhat:"]
 :do { add regexp="(^|.*\\.)subscription\\.rhsm\\.redhat\\.com\$" type=FWD address-list=DST-REDHAT-TO-OUTBOUND comment="redhat:subscription.rhsm.redhat.com" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-REDHAT-TO-OUTBOUND comment="redhat-cidr"]
+remove [find list=DST-REDHAT-TO-OUTBOUND]

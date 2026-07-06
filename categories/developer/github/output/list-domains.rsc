@@ -4,11 +4,11 @@
 # List: GitHub domains
 # RouterOS address-list: DST-GITHUB-TO-OUTBOUND
 # Source: GitHub-owned public/service domains (official-meta-and-owned-domains)
-# Last update: 2026-07-06 12:26:03 UTC
+# Last update: 2026-07-06 16:00:09 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-GITHUB-TO-OUTBOUND comment~"github:"]
+remove [find address-list=DST-GITHUB-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)github\\.com\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.com" } on-error={}
 :do { add regexp="(^|.*\\.)github\\.dev\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.dev" } on-error={}
 :do { add regexp="(^|.*\\.)github\\.io\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.io" } on-error={}

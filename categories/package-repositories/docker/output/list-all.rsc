@@ -4,11 +4,11 @@
 # List: Docker combined domains + CIDR
 # RouterOS address-list: DST-DOCKER-TO-OUTBOUND
 # Domain source: Docker official allowlist (official-allowlist)
-# Last update: 2026-07-06 12:26:17 UTC
+# Last update: 2026-07-06 16:00:24 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=DST-DOCKER-TO-OUTBOUND comment~"docker:"]
+remove [find address-list=DST-DOCKER-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)api\\.docker\\.com\$" type=FWD address-list=DST-DOCKER-TO-OUTBOUND comment="docker:api.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.com\$" type=FWD address-list=DST-DOCKER-TO-OUTBOUND comment="docker:auth.docker.com" } on-error={}
 :do { add regexp="(^|.*\\.)auth\\.docker\\.io\$" type=FWD address-list=DST-DOCKER-TO-OUTBOUND comment="docker:auth.docker.io" } on-error={}
@@ -23,4 +23,4 @@ remove [find address-list=DST-DOCKER-TO-OUTBOUND comment~"docker:"]
 :do { add regexp="(^|.*\\.)registry-1\\.docker\\.io\$" type=FWD address-list=DST-DOCKER-TO-OUTBOUND comment="docker:registry-1.docker.io" } on-error={}
 
 /ip firewall address-list
-remove [find list=DST-DOCKER-TO-OUTBOUND comment="docker-cidr"]
+remove [find list=DST-DOCKER-TO-OUTBOUND]
