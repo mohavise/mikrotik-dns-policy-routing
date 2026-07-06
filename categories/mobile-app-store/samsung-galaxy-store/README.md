@@ -1,5 +1,11 @@
 # Samsung Galaxy Store
 
-Reserved folder for the future Samsung Galaxy Store service.
+MikroTik RouterOS DNS policy routing list for Samsung Galaxy Store / Samsung Apps endpoints.
 
-No RouterOS list is generated from this folder yet. Add the service only after official Samsung sources are reviewed and the full service structure is created.
+Address list:
+
+```text
+DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND
+```
+
+Official sources are documented in `database/sources.md`.

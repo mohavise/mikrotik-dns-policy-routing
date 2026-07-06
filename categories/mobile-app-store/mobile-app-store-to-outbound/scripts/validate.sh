@@ -9,8 +9,10 @@ test -s "$output_file"
 grep -q '^# managed-by=mohavise-mikrotik-dns-policy-routing' "$output_file"
 grep -q 'DST-MOBILE-APP-STORE-TO-OUTBOUND' "$output_file"
 grep -q 'apple-app-store:' "$output_file"
+grep -q 'google-play:' "$output_file"
+grep -q 'samsung-galaxy-store:' "$output_file"
 
-if [ "$(grep -c 'type=FWD' "$output_file")" -lt 13 ]; then
+if [ "$(grep -c 'type=FWD' "$output_file")" -lt 65 ]; then
     echo "Too few mobile app store domain entries"
     exit 1
 fi

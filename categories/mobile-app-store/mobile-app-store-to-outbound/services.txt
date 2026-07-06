@@ -3,3 +3,4 @@
 # service IDs, one per line
 apple-app-store
 google-play
+samsung-galaxy-store

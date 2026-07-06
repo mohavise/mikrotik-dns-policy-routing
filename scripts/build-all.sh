@@ -36,6 +36,7 @@ run_build "service: spotify" "services/spotify/scripts/build.sh"
 run_build "service: steam" "services/steam/scripts/build.sh"
 run_build "category service: apple-app-store" "categories/mobile-app-store/apple-app-store/scripts/build.sh"
 run_build "category service: google-play" "categories/mobile-app-store/google-play/scripts/build.sh"
+run_build "category service: samsung-galaxy-store" "categories/mobile-app-store/samsung-galaxy-store/scripts/build.sh"
 
 run_build "profile: ai-to-outbound" "profiles/ai-to-outbound/scripts/build.sh"
 run_build "profile: developer-to-outbound" "profiles/developer-to-outbound/scripts/build.sh"

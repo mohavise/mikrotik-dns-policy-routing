@@ -7,11 +7,6 @@ Current active services:
 ```text
 apple-app-store
 google-play
-```
-
-Reserved service:
-
-```text
 samsung-galaxy-store
 ```
 

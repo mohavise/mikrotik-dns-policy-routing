@@ -1,0 +1,18 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=samsung-galaxy-store
+# source=https://docs.samsungknox.com/admin/knox-platform-for-enterprise/kbas/kba-115012547907/
+# source=https://docs.samsungknox.com/admin/knox-admin-portal/get-started/samsung-knox-firewall-exceptions/
+
+samsungapps.com
+apps.samsung.com
+apps.samsung.cn
+img.samsungapps.com
+vas.samsungapps.com
+odc.samsungapps.com
+hub-odc.samsungapps.com
+cn-ms.samsungapps.com
+cf-dn.gw.samsungapps.com
+cdnet-dn.gw.samsungapps.com
+apps-dn2.ospserver.net
+samsappsbn.vo.llnwd.net

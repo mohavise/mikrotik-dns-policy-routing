@@ -36,6 +36,7 @@ run_validate "service: spotify" "services/spotify/scripts/validate.sh"
 run_validate "service: steam" "services/steam/scripts/validate.sh"
 run_validate "category service: apple-app-store" "categories/mobile-app-store/apple-app-store/scripts/validate.sh"
 run_validate "category service: google-play" "categories/mobile-app-store/google-play/scripts/validate.sh"
+run_validate "category service: samsung-galaxy-store" "categories/mobile-app-store/samsung-galaxy-store/scripts/validate.sh"
 
 run_validate "profile: ai-to-outbound" "profiles/ai-to-outbound/scripts/validate.sh"
 run_validate "profile: developer-to-outbound" "profiles/developer-to-outbound/scripts/validate.sh"

@@ -1,5 +1,7 @@
 # Samsung Galaxy Store Safe Install
 
-Reserved for the future Samsung Galaxy Store service.
-
-The installer will be added after the service database and RouterOS output are created from official Samsung sources.
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/mobile-app-store/samsung-galaxy-store/safe-install-samsung-galaxy-store-outbound.rsc" dst-path=safe-install-samsung-galaxy-store-outbound.rsc mode=https
+/import file-name=safe-install-samsung-galaxy-store-outbound.rsc
+/file remove [find name=safe-install-samsung-galaxy-store-outbound.rsc]
+```
