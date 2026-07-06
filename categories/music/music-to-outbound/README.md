@@ -1,5 +1,14 @@
-# music-to-outbound
+# Music To Outbound Profile
 
-Category-first outbound profile for the `music` category.
+This profile is active for:
 
-Services are listed in `services.txt`.
+```text
+DST-MUSIC-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/music/music-to-outbound
+```
+

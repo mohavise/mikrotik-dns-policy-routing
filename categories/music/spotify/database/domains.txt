@@ -1,0 +1,16 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=spotify
+# official/public Spotify service domains, one per line
+spotify.com
+open.spotify.com
+accounts.spotify.com
+api.spotify.com
+spclient.wg.spotify.com
+gew-spclient.spotify.com
+spotifycdn.com
+scdn.co
+spotifycdn.net
+pscdn.co
+audio-ak-spotify-com.akamaized.net
+audio4-ak-spotify-com.akamaized.net
+

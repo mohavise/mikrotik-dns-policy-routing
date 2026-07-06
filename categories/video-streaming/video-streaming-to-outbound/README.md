@@ -1,5 +1,14 @@
-# video-streaming-to-outbound
+# Video Streaming To Outbound Profile
 
-Category-first outbound profile for the `video-streaming` category.
+This profile is active for:
 
-Services are listed in `services.txt`.
+```text
+DST-VIDEO-STREAMING-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/video-streaming/video-streaming-to-outbound
+```
+

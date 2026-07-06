@@ -1,0 +1,24 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# profile=cloud-storage-to-outbound
+# List: Cloud Storage combined domains + CIDR
+# RouterOS address-list: DST-CLOUD-STORAGE-TO-OUTBOUND
+# Last update: 2026-07-06 12:26:50 UTC
+# do-not-edit-manually
+
+/ip dns static
+remove [find address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment~"google-drive:"]
+:do { add regexp="(^|.*\\.)accounts\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:accounts.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)docs\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:docs.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)drive\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:drive.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)drive\\.usercontent\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:drive.usercontent.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)forms\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:forms.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleusercontent\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:googleusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)sheets\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:sheets.google.com" } on-error={}
+:do { add regexp="(^|.*\\.)slides\\.google\\.com\$" type=FWD address-list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive:slides.google.com" } on-error={}
+
+/ip firewall address-list
+remove [find list=DST-CLOUD-STORAGE-TO-OUTBOUND comment="google-drive-cidr"]
+

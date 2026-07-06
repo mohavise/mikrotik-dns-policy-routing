@@ -1,0 +1,2 @@
+# Local Ubuntu domain additions.
+# Keep this file empty unless a domain is verified and missing from domains.txt.

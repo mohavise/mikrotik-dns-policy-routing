@@ -1,5 +1,14 @@
-# package-repositories-to-outbound
+# Package Repositories To Outbound Profile
 
-Category-first outbound profile for the `package-repositories` category.
+This profile is active for:
 
-Services are listed in `services.txt`.
+```text
+DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/package-repositories/package-repositories-to-outbound
+```
+

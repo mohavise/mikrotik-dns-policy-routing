@@ -1,5 +1,13 @@
-# developer-to-outbound
+# Developer To Outbound Profile
 
-Category-first outbound profile for the `developer` category.
+This profile is active for:
 
-Services are listed in `services.txt`.
+```text
+DST-DEVELOPER-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/developer/developer-to-outbound
+```

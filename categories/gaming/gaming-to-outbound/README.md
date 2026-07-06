@@ -1,5 +1,14 @@
-# gaming-to-outbound
+# Gaming To Outbound Profile
 
-Category-first outbound profile for the `gaming` category.
+This profile is active for:
 
-Services are listed in `services.txt`.
+```text
+DST-GAMING-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/gaming/gaming-to-outbound
+```
+

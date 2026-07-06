@@ -1,5 +1,13 @@
-# ai-to-outbound
+# AI To Outbound Profile
 
-Category-first outbound profile for the `ai` category.
+This profile is active for:
 
-Services are listed in `services.txt`.
+```text
+DST-AI-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/ai/ai-to-outbound
+```

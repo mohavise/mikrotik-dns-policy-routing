@@ -1,5 +1,14 @@
-# design-to-outbound
+# Design To Outbound Profile
 
-Category-first outbound profile for the `design` category.
+This profile is reserved for:
 
-Services are listed in `services.txt`.
+```text
+DST-DESIGN-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/design/design-to-outbound
+```
+

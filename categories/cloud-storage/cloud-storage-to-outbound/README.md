@@ -1,5 +1,14 @@
-# cloud-storage-to-outbound
+# Cloud Storage To Outbound Profile
 
-Category-first outbound profile for the `cloud-storage` category.
+This profile is active for:
 
-Services are listed in `services.txt`.
+```text
+DST-CLOUD-STORAGE-TO-OUTBOUND
+```
+
+It combines services from:
+
+```text
+categories/cloud-storage/cloud-storage-to-outbound
+```
+

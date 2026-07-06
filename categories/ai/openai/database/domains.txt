@@ -1,0 +1,22 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# service=openai
+# official ChatGPT/OpenAI network recommendation domains, one per line
+auth.openai.com
+chatgpt.com
+ct.sendgrid.net
+intercom.io
+intercomcdn.com
+oaistatic.com
+oaiusercontent.com
+openai.com
+oaistatsig.com
+openaimerge.com
+workos.com
+challenges.cloudflare.com
+humb.apple.com
+images.workoscdn.com
+js.stripe.com
+o207216.ingest.sentry.io
+o33249.ingest.sentry.io
+rum.browser-intake-datadoghq.com
+workos.imgix.net
