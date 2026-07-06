@@ -1,6 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# profile=video-streaming-to-outbound
-# address-list=DST-VIDEO-STREAMING-TO-OUTBOUND
-# group IDs, one per line
-video-streaming
-

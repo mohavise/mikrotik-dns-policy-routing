@@ -1,37 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# profile=mobile-app-store-to-outbound
-# safe-install=mobile-app-store-outbound
+# compatibility-wrapper=safe-install-mobile-app-store-outbound.rsc
+# safe-install=mobile-app-store-to-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "profiles/mobile-app-store-to-outbound/routeros/update.rsc"
-:local schedulerPath "profiles/mobile-app-store-to-outbound/routeros/scheduler.rsc"
-:local updateFile "update-mobile-app-store-outbound.rsc"
-:local schedulerFile "scheduler-update-mobile-app-store-outbound.rsc"
+:local installerPath "safe-install/mobile-app-store/safe-install-mobile-app-store-to-outbound.rsc"
+:local installerFile "compat-safe-install-mobile-app-store-to-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Mobile app store outbound safe install: updater install failed"
+    :log error "Mobile App Store outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Mobile app store outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-mobile-app-store-outbound
-} on-error={
-    :log error "Mobile app store outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Mobile app store outbound safe install: completed"
+:log warning "Mobile App Store outbound compatibility safe install: completed"

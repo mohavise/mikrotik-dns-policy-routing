@@ -1,37 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# profile=social-media-to-outbound
-# safe-install=social-media-outbound
+# compatibility-wrapper=safe-install-social-media-outbound.rsc
+# safe-install=social-media-to-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "profiles/social-media-to-outbound/routeros/update.rsc"
-:local schedulerPath "profiles/social-media-to-outbound/routeros/scheduler.rsc"
-:local updateFile "update-social-media-outbound.rsc"
-:local schedulerFile "scheduler-update-social-media-outbound.rsc"
+:local installerPath "safe-install/social-media/safe-install-social-media-to-outbound.rsc"
+:local installerFile "compat-safe-install-social-media-to-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Social media outbound safe install: updater install failed"
+    :log error "Social Media outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Social media outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-social-media-outbound
-} on-error={
-    :log error "Social media outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Social media outbound safe install: completed"
+:log warning "Social Media outbound compatibility safe install: completed"

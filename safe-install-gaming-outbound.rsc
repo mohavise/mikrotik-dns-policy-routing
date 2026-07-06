@@ -1,38 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# profile=gaming-to-outbound
-# safe-install=gaming-outbound
+# compatibility-wrapper=safe-install-gaming-outbound.rsc
+# safe-install=gaming-to-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "profiles/gaming-to-outbound/routeros/update.rsc"
-:local schedulerPath "profiles/gaming-to-outbound/routeros/scheduler.rsc"
-:local updateFile "update-gaming-outbound.rsc"
-:local schedulerFile "scheduler-update-gaming-outbound.rsc"
+:local installerPath "safe-install/gaming/safe-install-gaming-to-outbound.rsc"
+:local installerFile "compat-safe-install-gaming-to-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Gaming outbound safe install: updater install failed"
+    :log error "Gaming outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Gaming outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-gaming-outbound
-} on-error={
-    :log error "Gaming outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Gaming outbound safe install: completed"
-
+:log warning "Gaming outbound compatibility safe install: completed"

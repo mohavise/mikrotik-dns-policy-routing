@@ -1,37 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# service=instagram
+# compatibility-wrapper=safe-install-instagram-outbound.rsc
 # safe-install=instagram-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "services/instagram/routeros/update.rsc"
-:local schedulerPath "services/instagram/routeros/scheduler.rsc"
-:local updateFile "update-instagram-outbound.rsc"
-:local schedulerFile "scheduler-update-instagram-outbound.rsc"
+:local installerPath "safe-install/social-media/instagram/safe-install-instagram-outbound.rsc"
+:local installerFile "compat-safe-install-instagram-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Instagram outbound safe install: updater install failed"
+    :log error "Instagram outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Instagram outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-instagram-outbound
-} on-error={
-    :log error "Instagram outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Instagram outbound safe install: completed"
+:log warning "Instagram outbound compatibility safe install: completed"

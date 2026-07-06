@@ -1,5 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# profile=social-media-to-outbound
-# address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND
-# group IDs, one per line
-social-media

@@ -1,8 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# service=x
-# official-owned public/service domains, one per line
-x.com
-twitter.com
-t.co
-twimg.com
-

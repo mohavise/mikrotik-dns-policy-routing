@@ -1,6 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# service=linkedin
-# official-owned public/service domains, one per line
-linkedin.com
-lnkd.in
-licdn.com

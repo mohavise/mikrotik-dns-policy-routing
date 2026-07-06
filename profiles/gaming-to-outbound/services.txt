@@ -1,5 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# profile=gaming-to-outbound
-# address-list=DST-GAMING-TO-OUTBOUND
-# direct service IDs, one per line
-

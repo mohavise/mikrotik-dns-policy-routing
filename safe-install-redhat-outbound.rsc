@@ -1,37 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# service=redhat
+# compatibility-wrapper=safe-install-redhat-outbound.rsc
 # safe-install=redhat-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "services/redhat/routeros/update.rsc"
-:local schedulerPath "services/redhat/routeros/scheduler.rsc"
-:local updateFile "update-redhat-outbound.rsc"
-:local schedulerFile "scheduler-update-redhat-outbound.rsc"
+:local installerPath "safe-install/package-repositories/redhat/safe-install-redhat-outbound.rsc"
+:local installerFile "compat-safe-install-redhat-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Red Hat outbound safe install: updater install failed"
+    :log error "Red Hat outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Red Hat outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-redhat-outbound
-} on-error={
-    :log error "Red Hat outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Red Hat outbound safe install: completed"
+:log warning "Red Hat outbound compatibility safe install: completed"

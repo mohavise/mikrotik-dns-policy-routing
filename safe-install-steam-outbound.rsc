@@ -1,38 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# service=steam
+# compatibility-wrapper=safe-install-steam-outbound.rsc
 # safe-install=steam-outbound
 
-:local baseUrl "https://raw.steamusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "services/steam/routeros/update.rsc"
-:local schedulerPath "services/steam/routeros/scheduler.rsc"
-:local updateFile "update-steam-outbound.rsc"
-:local schedulerFile "scheduler-update-steam-outbound.rsc"
+:local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
+:local installerPath "safe-install/gaming/steam/safe-install-steam-outbound.rsc"
+:local installerFile "compat-safe-install-steam-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "steam outbound safe install: updater install failed"
+    :log error "Steam outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "steam outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-steam-outbound
-} on-error={
-    :log error "steam outbound safe install: first update failed"
-    :return
-}
-
-:log warning "steam outbound safe install: completed"
-
+:log warning "Steam outbound compatibility safe install: completed"

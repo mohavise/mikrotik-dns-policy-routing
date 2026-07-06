@@ -81,19 +81,17 @@ categories/mobile-app-store/google-play/
 categories/mobile-app-store/mobile-app-store-to-outbound/
 ```
 
-The older `services/`, `groups/`, and `profiles/` folders are compatibility paths only. They remain temporarily for legacy users and compatibility with older root safe installers.
+The older `services/`, `groups/`, and `profiles/` implementation folders were removed after the category-first migration. Root `safe-install-*.rsc` files remain as compatibility wrappers.
 
-Do not add new services under legacy paths. See `STRUCTURE-MIGRATION.md` for the migration plan and service-to-category map.
+Do not add new services under legacy paths. See `STRUCTURE-MIGRATION.md` for historical migration notes and the service-to-category map.
 
 ```text
 safe-install-*.rsc            root MikroTik entry points
 categories/<category>/        category-first services and profiles
 docs/                         naming and source rules
-services/<service>/           legacy compatibility service paths
-groups/<group>/               legacy compatibility group paths
-profiles/<profile>/           legacy compatibility profile paths
 scripts/build-all.sh          root build orchestrator
 scripts/validate-all.sh       root validation orchestrator
+scripts/audit-migration.sh    category-first migration audit
 ```
 
 The repository root only keeps safe installers as MikroTik entry points. Active migrated service files live under `categories/<category-id>/<service-id>/`.
@@ -323,6 +321,12 @@ Update flow:
 scripts/build-all.sh -> scripts/validate-all.sh -> commit generated outputs if changed
 ```
 
+Maintainer migration audit:
+
+```sh
+./scripts/audit-migration.sh
+```
+
 ## Future Services
 
 New services must be added under category-first paths:
@@ -335,106 +339,12 @@ Each service keeps its own source definition, local additions, generated output,
 
 Do not add CDN providers or cloud providers as services, such as Cloudflare, Akamai, Fastly, AWS, Azure, or GCP. Service-owned CDN-looking hostnames may stay only when required by official service documentation.
 
-## Legacy Compatibility Groups And Profiles
+## Historical Migration Notes
 
-Legacy `groups/` and `profiles/` paths remain for compatibility only. New category profiles should use:
+Legacy `services/`, `groups/`, and `profiles/` implementation folders were replaced by category-first paths. New category profiles should use:
 
 ```text
 categories/<category-id>/<category-id>-to-outbound/services.txt
-```
-
-Legacy groups collected services by category:
-
-```text
-groups/social-media/services.txt
-groups/messaging/services.txt
-groups/design/services.txt
-groups/ai/services.txt
-groups/developer/services.txt
-groups/package-repositories/services.txt
-groups/google-services/services.txt
-groups/video-streaming/services.txt
-groups/music/services.txt
-groups/gaming/services.txt
-groups/mobile-app-store/services.txt
-groups/cloud-storage/services.txt
-groups/search/services.txt
-groups/cdn/services.txt
-```
-
-Legacy profiles decided what should be routed to a MikroTik target:
-
-```text
-profiles/social-media-to-outbound/groups.txt
-profiles/social-media-to-outbound/services.txt
-profiles/design-to-outbound/groups.txt
-profiles/design-to-outbound/services.txt
-profiles/ai-to-outbound/groups.txt
-profiles/ai-to-outbound/services.txt
-profiles/developer-to-outbound/groups.txt
-profiles/developer-to-outbound/services.txt
-profiles/package-repositories-to-outbound/groups.txt
-profiles/package-repositories-to-outbound/services.txt
-profiles/google-services-to-outbound/groups.txt
-profiles/google-services-to-outbound/services.txt
-profiles/cloud-storage-to-outbound/groups.txt
-profiles/cloud-storage-to-outbound/services.txt
-profiles/video-streaming-to-outbound/groups.txt
-profiles/video-streaming-to-outbound/services.txt
-profiles/primary-to-outbound/groups.txt
-profiles/primary-to-outbound/services.txt
-```
-
-Legacy compatibility model:
-
-```text
-services/telegram
-services/instagram
-services/whatsapp
-services/facebook
-services/x
-services/linkedin
-services/signal
-services/figma
-services/canva
-services/github
-services/openai
-services/ubuntu
-services/debian
-services/redhat
-services/proxmox
-services/docker
-services/google-drive
-services/youtube
-services/spotify
-services/steam
-services/apple-app-store
-services/google-play
-  -> groups/messaging
-  -> groups/social-media
-  -> groups/design
-  -> groups/ai
-  -> groups/developer
-  -> groups/package-repositories
-  -> groups/google-services
-  -> groups/cloud-storage
-  -> groups/video-streaming
-  -> groups/music
-  -> groups/gaming
-  -> groups/mobile-app-store
-  -> profiles/messaging-to-outbound
-  -> profiles/social-media-to-outbound
-  -> profiles/design-to-outbound
-  -> profiles/ai-to-outbound
-  -> profiles/developer-to-outbound
-  -> profiles/package-repositories-to-outbound
-  -> profiles/google-services-to-outbound
-  -> profiles/cloud-storage-to-outbound
-  -> profiles/video-streaming-to-outbound
-  -> profiles/music-to-outbound
-  -> profiles/gaming-to-outbound
-  -> profiles/mobile-app-store-to-outbound
-  -> profiles/primary-to-outbound
 ```
 
 Do not copy domains or CIDR ranges into groups, profiles, or category profiles. Keep real data in service database folders, then reference services by ID.
@@ -452,24 +362,22 @@ docs/supported-services.md
 docs/add-new-service.md
 ```
 
-Current and reserved profiles:
+Current category profiles:
 
 ```text
-profiles/messaging-to-outbound
-profiles/social-media-to-outbound
-profiles/design-to-outbound
-profiles/primary-to-outbound
-profiles/package-repositories-to-outbound
-profiles/google-services-to-outbound
-profiles/video-streaming-to-outbound
-profiles/ai-to-outbound
-profiles/developer-to-outbound
-profiles/music-to-outbound
-profiles/gaming-to-outbound
-profiles/mobile-app-store-to-outbound
-profiles/cloud-storage-to-outbound
-profiles/search-to-outbound
-profiles/cdn-to-outbound
+categories/messaging/messaging-to-outbound
+categories/social-media/social-media-to-outbound
+categories/design/design-to-outbound
+categories/primary/primary-to-outbound
+categories/package-repositories/package-repositories-to-outbound
+categories/google-services/google-services-to-outbound
+categories/video-streaming/video-streaming-to-outbound
+categories/ai/ai-to-outbound
+categories/developer/developer-to-outbound
+categories/music/music-to-outbound
+categories/gaming/gaming-to-outbound
+categories/mobile-app-store/mobile-app-store-to-outbound
+categories/cloud-storage/cloud-storage-to-outbound
 ```
 
 ## MikroTik Update Safety

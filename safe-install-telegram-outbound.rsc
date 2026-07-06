@@ -1,37 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# service=telegram
+# compatibility-wrapper=safe-install-telegram-outbound.rsc
 # safe-install=telegram-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "services/telegram/routeros/update.rsc"
-:local schedulerPath "services/telegram/routeros/scheduler.rsc"
-:local updateFile "update-telegram-outbound.rsc"
-:local schedulerFile "scheduler-update-telegram-outbound.rsc"
+:local installerPath "safe-install/messaging/telegram/safe-install-telegram-outbound.rsc"
+:local installerFile "compat-safe-install-telegram-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Telegram outbound safe install: updater install failed"
+    :log error "Telegram outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Telegram outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-telegram-outbound
-} on-error={
-    :log error "Telegram outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Telegram outbound safe install: completed"
+:log warning "Telegram outbound compatibility safe install: completed"

@@ -1,6 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# profile=design-to-outbound
-# address-list=DST-DESIGN-TO-OUTBOUND
-# group IDs, one per line
-design
-

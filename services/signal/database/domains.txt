@@ -1,6 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# service=signal
-# official-owned public/service domains, one per line
-signal.org
-signal.me
-

@@ -1,4 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# group=developer
-# service IDs, one per line
-github

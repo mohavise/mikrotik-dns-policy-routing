@@ -1,0 +1,95 @@
+#!/bin/sh
+set -eu
+
+fail=0
+legacy_services="services"
+legacy_groups="groups"
+legacy_profiles="profiles"
+slash="/"
+
+pass() {
+    printf 'PASS: %s\n' "$1"
+}
+
+fail_check() {
+    printf 'FAIL: %s\n' "$1"
+    fail=1
+}
+
+check_no_legacy_calls() {
+    script="$1"
+    label="$2"
+
+    if grep -Eq "\"$legacy_services$slash[^\"]*/scripts/(build|validate)\\.sh\"|\"$legacy_profiles$slash[^\"]*/scripts/(build|validate)\\.sh\"| $legacy_groups$slash|^$legacy_groups$slash" "$script"; then
+        fail_check "$label does not call legacy implementation paths"
+    else
+        pass "$label uses category-first execution paths"
+    fi
+}
+
+check_no_legacy_safe_fetches() {
+    if grep -E "(:local (installerPath|updatePath|schedulerPath)|/tool fetch|/import).*\"($legacy_services|$legacy_profiles|$legacy_groups)$slash" safe-install-*.rsc >/dev/null 2>&1; then
+        fail_check "root safe-install wrappers do not fetch/import legacy implementation paths"
+    else
+        pass "root safe-install wrappers fetch category-first installers"
+    fi
+}
+
+check_category_profile_paths() {
+    missing=0
+
+    for script in scripts/build-all.sh scripts/validate-all.sh; do
+        sed -n 's/.*"\(categories\/[^"]*\/scripts\/[^"]*\.sh\)".*/\1/p' "$script" |
+        while IFS= read -r path; do
+            if [ ! -f "$path" ]; then
+                printf 'FAIL: missing category execution script: %s\n' "$path"
+                exit 1
+            fi
+        done || missing=1
+    done
+
+    if [ "$missing" -eq 0 ]; then
+        pass "all category execution scripts referenced by build/validate exist"
+    else
+        fail=1
+    fi
+}
+
+check_no_legacy_calls scripts/build-all.sh "build-all"
+check_no_legacy_calls scripts/validate-all.sh "validate-all"
+check_no_legacy_safe_fetches
+
+if grep -F "find categories -path '*/output/*.rsc' -type f -print0 | xargs -0 git add" .github/workflows/update-generated-lists.yml >/dev/null 2>&1; then
+    pass "workflow stages generated output from categories/"
+else
+    fail_check "workflow stages generated output from categories/"
+fi
+
+if [ -d categories ]; then
+    pass "categories/ exists"
+else
+    fail_check "categories/ exists"
+fi
+
+if [ -d safe-install ]; then
+    pass "safe-install/ exists"
+else
+    fail_check "safe-install/ exists"
+fi
+
+for legacy_dir in "$legacy_services" "$legacy_groups" "$legacy_profiles"; do
+    if [ -d "$legacy_dir" ]; then
+        fail_check "legacy $legacy_dir directory has been removed"
+    else
+        pass "legacy $legacy_dir directory has been removed"
+    fi
+done
+
+check_category_profile_paths
+
+if [ "$fail" -eq 0 ]; then
+    printf 'Migration audit passed\n'
+else
+    printf 'Migration audit failed\n'
+    exit 1
+fi

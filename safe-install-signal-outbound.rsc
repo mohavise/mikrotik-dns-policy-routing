@@ -1,37 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# service=signal
+# compatibility-wrapper=safe-install-signal-outbound.rsc
 # safe-install=signal-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "services/signal/routeros/update.rsc"
-:local schedulerPath "services/signal/routeros/scheduler.rsc"
-:local updateFile "update-signal-outbound.rsc"
-:local schedulerFile "scheduler-update-signal-outbound.rsc"
+:local installerPath "safe-install/messaging/signal/safe-install-signal-outbound.rsc"
+:local installerFile "compat-safe-install-signal-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Signal outbound safe install: updater install failed"
+    :log error "Signal outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Signal outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-signal-outbound
-} on-error={
-    :log error "Signal outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Signal outbound safe install: completed"
+:log warning "Signal outbound compatibility safe install: completed"

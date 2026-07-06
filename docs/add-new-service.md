@@ -1,6 +1,6 @@
 # Add a New Service
 
-This repository is database-first. Add real service data only under `services/<service-id>/database/`, then reference the service from groups and profiles.
+This repository is database-first. Add real service data only under `categories/<category-id>/<service-id>/database/`, then reference the service from category profiles.
 
 ## Scope Rules
 
@@ -23,14 +23,14 @@ Do not use random blogs, copied firewall lists, DNS logs, unofficial databases, 
 Document sources in:
 
 ```text
-services/<service-id>/database/sources.md
+categories/<category-id>/<service-id>/database/sources.md
 ```
 
 Manual additions belong only in:
 
 ```text
-services/<service-id>/database/manual-domains.txt
-services/<service-id>/database/manual-cidr.txt
+categories/<category-id>/<service-id>/database/manual-domains.txt
+categories/<category-id>/<service-id>/database/manual-cidr.txt
 ```
 
 ## Required Service Files
@@ -38,25 +38,27 @@ services/<service-id>/database/manual-cidr.txt
 Create:
 
 ```text
-services/<service-id>/database/service.conf
-services/<service-id>/database/sources.md
-services/<service-id>/database/domains.txt
-services/<service-id>/database/manual-domains.txt
-services/<service-id>/database/manual-cidr.txt
-services/<service-id>/output/list-domains.rsc
-services/<service-id>/output/list-cidr.rsc
-services/<service-id>/output/list-all.rsc
-services/<service-id>/routeros/update.rsc
-services/<service-id>/routeros/scheduler.rsc
-services/<service-id>/scripts/build.sh
-services/<service-id>/scripts/validate.sh
+categories/<category-id>/<service-id>/database/service.conf
+categories/<category-id>/<service-id>/database/sources.md
+categories/<category-id>/<service-id>/database/domains.txt
+categories/<category-id>/<service-id>/database/manual-domains.txt
+categories/<category-id>/<service-id>/database/manual-cidr.txt
+categories/<category-id>/<service-id>/output/list-domains.rsc
+categories/<category-id>/<service-id>/output/list-cidr.rsc
+categories/<category-id>/<service-id>/output/list-all.rsc
+categories/<category-id>/<service-id>/routeros/update.rsc
+categories/<category-id>/<service-id>/routeros/scheduler.rsc
+categories/<category-id>/<service-id>/scripts/build.sh
+categories/<category-id>/<service-id>/scripts/validate.sh
 ```
 
-The repository root should only get:
+Category safe installers belong under:
 
 ```text
-safe-install-<service-id>-outbound.rsc
+safe-install/<category-id>/<service-id>/safe-install-<service-id>-outbound.rsc
 ```
+
+The root `safe-install-*.rsc` files are compatibility wrappers and should not be used as the source-of-truth for new services.
 
 ## Naming
 
@@ -92,17 +94,17 @@ scripts/validate-all.sh
 Then run:
 
 ```sh
-./services/<service-id>/scripts/build.sh
-./services/<service-id>/scripts/validate.sh
+./categories/<category-id>/<service-id>/scripts/build.sh
+./categories/<category-id>/<service-id>/scripts/validate.sh
 ./scripts/validate-all.sh
 ```
 
-If the service belongs to a new group, create:
+If the service belongs to a new category, create:
 
 ```text
-groups/<group-id>/services.txt
-profiles/<group-id>-to-outbound/
-safe-install-<group-id>-outbound.rsc
+categories/<category-id>/<category-id>-to-outbound/services.txt
+categories/<category-id>/<category-id>-to-outbound/
+safe-install/<category-id>/safe-install-<category-id>-to-outbound.rsc
 ```
 
-Do not copy domains or CIDR ranges into groups or profiles. Groups and profiles should reference service IDs only.
+Do not copy domains or CIDR ranges into category profiles. Category profiles should reference service IDs only.

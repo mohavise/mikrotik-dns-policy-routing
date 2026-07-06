@@ -1,5 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# profile=ai-to-outbound
-# address-list=DST-AI-TO-OUTBOUND
-# direct service IDs, one per line
-

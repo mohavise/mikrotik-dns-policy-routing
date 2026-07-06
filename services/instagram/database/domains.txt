@@ -1,7 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# service=instagram
-# official-owned public domains, one per line
-instagram.com
-cdninstagram.com
-ig.me
-

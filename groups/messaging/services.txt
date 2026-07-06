@@ -1,6 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# group=messaging
-# service IDs, one per line
-signal
-telegram
-whatsapp

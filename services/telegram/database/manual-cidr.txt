@@ -1,3 +1,0 @@
-# Local Telegram CIDR additions.
-# Keep this file empty unless an address range is verified and missing from the official source.
-

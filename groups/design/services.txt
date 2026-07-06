@@ -1,6 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# group=design
-# service IDs, one per line
-canva
-figma
-

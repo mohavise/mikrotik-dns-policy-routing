@@ -1,38 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# profile=video-streaming-to-outbound
-# safe-install=video-streaming-outbound
+# compatibility-wrapper=safe-install-video-streaming-outbound.rsc
+# safe-install=video-streaming-to-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "profiles/video-streaming-to-outbound/routeros/update.rsc"
-:local schedulerPath "profiles/video-streaming-to-outbound/routeros/scheduler.rsc"
-:local updateFile "update-video-streaming-outbound.rsc"
-:local schedulerFile "scheduler-update-video-streaming-outbound.rsc"
+:local installerPath "safe-install/video-streaming/safe-install-video-streaming-to-outbound.rsc"
+:local installerFile "compat-safe-install-video-streaming-to-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Video Streaming outbound safe install: updater install failed"
+    :log error "Video Streaming outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Video Streaming outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-video-streaming-outbound
-} on-error={
-    :log error "Video Streaming outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Video Streaming outbound safe install: completed"
-
+:log warning "Video Streaming outbound compatibility safe install: completed"

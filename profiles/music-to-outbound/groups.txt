@@ -1,6 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# profile=music-to-outbound
-# address-list=DST-MUSIC-TO-OUTBOUND
-# group IDs, one per line
-music
-

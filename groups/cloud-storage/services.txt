@@ -1,5 +1,0 @@
-# managed-by=mohavise-mikrotik-dns-policy-routing
-# group=cloud-storage
-# service IDs, one per line
-google-drive
-

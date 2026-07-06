@@ -1,38 +1,21 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
-# profile=developer-to-outbound
-# safe-install=developer-outbound
+# compatibility-wrapper=safe-install-developer-outbound.rsc
+# safe-install=developer-to-outbound
 
 :local baseUrl "https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
-:local updatePath "profiles/developer-to-outbound/routeros/update.rsc"
-:local schedulerPath "profiles/developer-to-outbound/routeros/scheduler.rsc"
-:local updateFile "update-developer-outbound.rsc"
-:local schedulerFile "scheduler-update-developer-outbound.rsc"
+:local installerPath "safe-install/developer/safe-install-developer-to-outbound.rsc"
+:local installerFile "compat-safe-install-developer-to-outbound.rsc"
+
+:if ([:len [/file find name=$installerFile]] > 0) do={ /file remove $installerFile }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
-    /import file-name=$updateFile
-    /file remove $updateFile
+    /tool fetch url=($baseUrl . "/" . $installerPath) dst-path=$installerFile mode=https
+    /import file-name=$installerFile
+    /file remove $installerFile
 } on-error={
-    :log error "Developer outbound safe install: updater install failed"
+    :log error "Developer outbound compatibility safe install: category installer failed"
     :return
 }
 
-:do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
-    /import file-name=$schedulerFile
-    /file remove $schedulerFile
-} on-error={
-    :log error "Developer outbound safe install: scheduler install failed"
-    :return
-}
-
-:do {
-    /system script run update-developer-outbound
-} on-error={
-    :log error "Developer outbound safe install: first update failed"
-    :return
-}
-
-:log warning "Developer outbound safe install: completed"
-
+:log warning "Developer outbound compatibility safe install: completed"

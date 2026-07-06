@@ -12,18 +12,11 @@ Preferred source order:
 
 Do not copy domains or CIDR ranges into groups, profiles, or category profiles. Real data belongs in service database folders.
 
-For migrated services, source-of-truth data lives under:
+Source-of-truth data lives under:
 
 ```text
 categories/<category-id>/<service-id>/database/
 categories/<category-id>/<service-id>/database/sources.md
-```
-
-For legacy compatibility services, source-of-truth data may still live under:
-
-```text
-services/<service-id>/database/
-services/<service-id>/database/sources.md
 ```
 
 Manual additions should go into the service database folder:
