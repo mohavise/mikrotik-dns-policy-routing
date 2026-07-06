@@ -16,22 +16,22 @@ It is useful for MikroTik administrators who want service-based routing for dest
 service domains + optional CIDR -> DST-<GROUP>-TO-<TARGET> -> mangle -> route target
 ```
 
-This repository is designed like an adblock/IP-list repo with service folders:
+This repository is designed like an adblock/IP-list repo with category-first service folders:
 
 ```text
 service database -> generator script -> service output -> MikroTik updater script -> scheduler
 ```
 
-The future routing model has three layers:
+The category-first routing model has three layers:
 
 ```text
-services -> groups -> profiles
+category service -> category profile -> MikroTik route target
 ```
 
 ```text
-Service = what the destination is
-Group   = what category it belongs to
-Profile = where MikroTik should route it
+Service          = what the destination is
+Category profile = what category target it belongs to
+Route target     = where MikroTik should route it
 ```
 
 MikroTik address-list naming pattern:
@@ -66,11 +66,11 @@ This project helps build and update destination lists for those services using:
 
 ## Structure
 
-New development uses the category-first structure:
+New development uses the category-first structure. Active migrated categories live under `categories/<category-id>/`:
 
 ```text
-categories/<category>/<service>/
-categories/<category>/<category>-to-outbound/
+categories/<category-id>/<service-id>/
+categories/<category-id>/<category-id>-to-outbound/
 ```
 
 For example, Apple App Store and Google Play are active from:
@@ -81,7 +81,7 @@ categories/mobile-app-store/google-play/
 categories/mobile-app-store/mobile-app-store-to-outbound/
 ```
 
-Existing services are being migrated category by category. The older `services/`, `groups/`, and `profiles/` folders are legacy compatibility paths and remain temporarily until their categories are migrated.
+The older `services/`, `groups/`, and `profiles/` folders are compatibility paths only. They remain temporarily for legacy users and compatibility with older root safe installers.
 
 Do not add new services under legacy paths. See `STRUCTURE-MIGRATION.md` for the migration plan and service-to-category map.
 
@@ -89,17 +89,14 @@ Do not add new services under legacy paths. See `STRUCTURE-MIGRATION.md` for the
 safe-install-*.rsc            root MikroTik entry points
 categories/<category>/        category-first services and profiles
 docs/                         naming and source rules
-services/<service>/database/  trusted sources and local additions
-services/<service>/output/    generated MikroTik import files
-services/<service>/routeros/  updater and scheduler scripts
-services/<service>/scripts/   service generator and validation
-groups/<group>/services.txt   service categories
-profiles/<profile>/           MikroTik routing targets
+services/<service>/           legacy compatibility service paths
+groups/<group>/               legacy compatibility group paths
+profiles/<profile>/           legacy compatibility profile paths
 scripts/build-all.sh          root build orchestrator
 scripts/validate-all.sh       root validation orchestrator
 ```
 
-The repository root only keeps safe installers as MikroTik entry points. Service-specific files live under `services/<service>/`.
+The repository root only keeps safe installers as MikroTik entry points. Active migrated service files live under `categories/<category-id>/<service-id>/`.
 RouterOS updater and scheduler imports are repeat-safe: they remove the existing script or scheduler with the same name before adding the current version.
 
 ## Supported Services
@@ -144,7 +141,7 @@ Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Tw
 | Design profile | `DST-DESIGN-TO-OUTBOUND` | Combined design and visual collaboration services |
 | Primary profile | `DST-TO-OUTBOUND` | Combined selected outbound destinations |
 
-## Telegram Files
+## Safe Installers And Example Files
 
 | File | Purpose |
 | --- | --- |
@@ -183,11 +180,11 @@ Current supported services include Telegram, Instagram, WhatsApp, Facebook, X/Tw
 | `safe-install-social-media-outbound.rsc` | Root installer that fetches the combined social-media updater + scheduler and runs once |
 | `safe-install-design-outbound.rsc` | Root installer that fetches the combined design updater + scheduler and runs once |
 | `safe-install-outbound.rsc` | Root installer that fetches the primary outbound updater + scheduler and runs once |
-| `services/telegram/output/list-domains.rsc` | Telegram DNS Static FWD rules |
-| `services/telegram/output/list-cidr.rsc` | Telegram CIDR address-list rules |
-| `services/telegram/output/list-all.rsc` | Combined domains + CIDR import file |
-| `services/telegram/routeros/update.rsc` | MikroTik update script |
-| `services/telegram/routeros/scheduler.rsc` | MikroTik daily scheduler |
+| `categories/messaging/telegram/output/list-domains.rsc` | Telegram DNS Static FWD rules |
+| `categories/messaging/telegram/output/list-cidr.rsc` | Telegram CIDR address-list rules |
+| `categories/messaging/telegram/output/list-all.rsc` | Combined domains + CIDR import file |
+| `categories/messaging/telegram/routeros/update.rsc` | MikroTik update script |
+| `categories/messaging/telegram/routeros/scheduler.rsc` | MikroTik daily scheduler |
 
 ## RouterOS List Names
 
@@ -289,7 +286,7 @@ safe-install-outbound.rsc
 ## Manual Install
 
 ```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/services/telegram/routeros/update.rsc" dst-path=update-telegram-outbound.rsc mode=https
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/messaging/telegram/routeros/update.rsc" dst-path=update-telegram-outbound.rsc mode=https
 /import file-name=update-telegram-outbound.rsc
 /system script run update-telegram-outbound
 ```
@@ -297,7 +294,7 @@ safe-install-outbound.rsc
 ## Scheduler Install
 
 ```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/services/telegram/routeros/scheduler.rsc" dst-path=scheduler-update-telegram-outbound.rsc mode=https
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/messaging/telegram/routeros/scheduler.rsc" dst-path=scheduler-update-telegram-outbound.rsc mode=https
 /import file-name=scheduler-update-telegram-outbound.rsc
 /file remove [find name=scheduler-update-telegram-outbound.rsc]
 ```
@@ -328,17 +325,25 @@ scripts/build-all.sh -> scripts/validate-all.sh -> commit generated outputs if c
 
 ## Future Services
 
-New services should be added under:
+New services must be added under category-first paths:
 
 ```text
-services/<service-id>/
+categories/<category-id>/<service-id>/
 ```
 
-Each service keeps its own source definition, local additions, generated output, updater, scheduler, and validation. The root should only get a `safe-install-<service>-outbound.rsc` entry point.
+Each service keeps its own source definition, local additions, generated output, updater, scheduler, and validation. Add category safe installers under `safe-install/<category-id>/`.
 
-## Groups And Profiles
+Do not add CDN providers or cloud providers as services, such as Cloudflare, Akamai, Fastly, AWS, Azure, or GCP. Service-owned CDN-looking hostnames may stay only when required by official service documentation.
 
-Groups collect services by category:
+## Legacy Compatibility Groups And Profiles
+
+Legacy `groups/` and `profiles/` paths remain for compatibility only. New category profiles should use:
+
+```text
+categories/<category-id>/<category-id>-to-outbound/services.txt
+```
+
+Legacy groups collected services by category:
 
 ```text
 groups/social-media/services.txt
@@ -357,7 +362,7 @@ groups/search/services.txt
 groups/cdn/services.txt
 ```
 
-Profiles decide what should be routed to a MikroTik target:
+Legacy profiles decided what should be routed to a MikroTik target:
 
 ```text
 profiles/social-media-to-outbound/groups.txt
@@ -380,7 +385,7 @@ profiles/primary-to-outbound/groups.txt
 profiles/primary-to-outbound/services.txt
 ```
 
-Current model:
+Legacy compatibility model:
 
 ```text
 services/telegram
@@ -432,7 +437,11 @@ services/google-play
   -> profiles/primary-to-outbound
 ```
 
-Do not copy domains or CIDR ranges into groups or profiles. Keep real data in service folders, then reference services by ID.
+Do not copy domains or CIDR ranges into groups, profiles, or category profiles. Keep real data in service database folders, then reference services by ID.
+
+MikroTik uses generated RouterOS regex. Database files must contain normal domains only, like `domain.com`. Do not add `*.domain.com` to MikroTik database files.
+
+Wildcard format like `*.domain.com` is only for future FortiGate output/export.
 
 Naming and source rules:
 
@@ -482,7 +491,7 @@ The updater script:
 
 - Telegram mobile app often needs CIDR rules, not only domains.
 - Clients must use MikroTik DNS for DNS Static FWD rules to help.
-- The root only keeps safe installers. Telegram files live under `services/telegram/`.
+- The root only keeps safe installers. Active migrated Telegram files live under `categories/messaging/telegram/`.
 
 ## Search Keywords
 

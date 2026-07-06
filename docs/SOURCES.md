@@ -10,22 +10,36 @@ Preferred source order:
 4. mature community-maintained list with public history
 5. local manual addition with a short reason
 
-Do not copy domains or CIDR ranges into groups or profiles. Real data belongs in `services/<service>/database/`.
+Do not copy domains or CIDR ranges into groups, profiles, or category profiles. Real data belongs in service database folders.
 
-Each service should document its sources in:
+For migrated services, source-of-truth data lives under:
 
 ```text
-services/<service>/database/sources.md
+categories/<category-id>/<service-id>/database/
+categories/<category-id>/<service-id>/database/sources.md
 ```
 
-Manual additions should go into:
+For legacy compatibility services, source-of-truth data may still live under:
 
 ```text
-services/<service>/database/manual-domains.txt
-services/<service>/database/manual-cidr.txt
+services/<service-id>/database/
+services/<service-id>/database/sources.md
+```
+
+Manual additions should go into the service database folder:
+
+```text
+database/manual-domains.txt
+database/manual-cidr.txt
 ```
 
 Manual additions should stay empty unless the value is verified and missing from the selected upstream source.
+
+MikroTik uses generated RouterOS regex. Database files must contain normal domains only, like `domain.com`. Do not add `*.domain.com` to MikroTik database files.
+
+Wildcard format like `*.domain.com` is only for future FortiGate output/export.
+
+Do not add CDN providers or cloud providers as services, such as Cloudflare, Akamai, Fastly, AWS, Azure, or GCP. Service-owned CDN-looking hostnames may stay only when required by official service documentation.
 
 ## Automation Order
 
@@ -45,8 +59,8 @@ scripts/validate-all.sh
 Build order:
 
 ```text
-services first
-profiles second
+category services first
+category profiles second
 primary profile last
 ```
 
