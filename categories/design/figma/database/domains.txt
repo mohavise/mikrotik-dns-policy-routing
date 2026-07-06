@@ -1,6 +1,6 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # service=figma
-# official-owned public/service domains, one per line
+# Figma public/service domains, including observed required app domains, one per line
 figma.com
 figma.net
 figma.site
