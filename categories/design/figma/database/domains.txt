@@ -3,4 +3,5 @@
 # official-owned public/service domains, one per line
 figma.com
 figma.net
+figma.site
 figmausercontent.com
