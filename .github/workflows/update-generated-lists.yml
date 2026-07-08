@@ -19,7 +19,6 @@ jobs:
       - name: Prepare scripts
         run: |
           chmod +x scripts/*.sh
-          find categories -path '*/scripts/*.sh' -type f -exec chmod +x {} \;
 
       - name: Generate RouterOS service lists
         run: |

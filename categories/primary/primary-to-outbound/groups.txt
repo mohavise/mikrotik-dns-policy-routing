@@ -8,6 +8,7 @@ design-to-outbound
 google-services-to-outbound
 gaming-to-outbound
 messaging-to-outbound
+microsoft-services-to-outbound
 mobile-app-store-to-outbound
 music-to-outbound
 package-repositories-to-outbound

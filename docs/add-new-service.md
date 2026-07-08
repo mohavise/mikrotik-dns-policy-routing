@@ -48,8 +48,6 @@ categories/<category-id>/<service-id>/output/list-cidr.rsc
 categories/<category-id>/<service-id>/output/list-all.rsc
 categories/<category-id>/<service-id>/routeros/update.rsc
 categories/<category-id>/<service-id>/routeros/scheduler.rsc
-categories/<category-id>/<service-id>/scripts/build.sh
-categories/<category-id>/<service-id>/scripts/validate.sh
 ```
 
 Category safe installers belong under:
@@ -84,18 +82,16 @@ DST-APPLE-APP-STORE-TO-OUTBOUND
 
 ## Build and Validate
 
-Add the service to:
+Add the service to its category profile:
 
 ```text
-scripts/build-all.sh
-scripts/validate-all.sh
+categories/<category-id>/<category-id>-to-outbound/services.txt
 ```
 
 Then run:
 
 ```sh
-./categories/<category-id>/<service-id>/scripts/build.sh
-./categories/<category-id>/<service-id>/scripts/validate.sh
+./scripts/build-all.sh
 ./scripts/validate-all.sh
 ```
 

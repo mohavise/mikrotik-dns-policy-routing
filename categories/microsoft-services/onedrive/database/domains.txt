@@ -1,0 +1,11 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=onedrive
+
+1drv.ms
+files.1drv.com
+onedrive.com
+onedrive.live.com
+public.dm.files.1drv.com
+sharepoint.com
+storage.live.com

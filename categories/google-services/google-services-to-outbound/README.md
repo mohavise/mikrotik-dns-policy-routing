@@ -9,6 +9,6 @@ DST-GOOGLE-SERVICES-TO-OUTBOUND
 It combines category-first services from:
 
 ```text
-categories/cloud-storage/google-drive
-categories/video-streaming/youtube
+categories/google-services/google-drive
+categories/google-services/youtube
 ```

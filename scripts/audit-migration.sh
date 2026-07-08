@@ -84,10 +84,34 @@ check_category_profile_paths() {
     fi
 }
 
+check_no_category_scripts_dirs() {
+    category_scripts="$(find categories -path '*/scripts' -type d -print)"
+
+    if [ -n "$category_scripts" ]; then
+        printf '%s\n' "$category_scripts"
+        fail_check "category-local scripts directories are absent"
+    else
+        pass "category-local scripts directories are absent"
+    fi
+}
+
+check_no_empty_directories() {
+    empty_dirs="$(find categories safe-install -type d -empty -print)"
+
+    if [ -n "$empty_dirs" ]; then
+        printf '%s\n' "$empty_dirs"
+        fail_check "empty category/safe-install directories are absent"
+    else
+        pass "empty category/safe-install directories are absent"
+    fi
+}
+
 check_no_legacy_calls scripts/build-all.sh "build-all"
 check_no_legacy_calls scripts/validate-all.sh "validate-all"
 check_no_legacy_safe_fetches
 check_root_installers
+check_no_category_scripts_dirs
+check_no_empty_directories
 
 if grep -F "find categories -path '*/output/*.rsc' -type f -print0 | xargs -0 git add" .github/workflows/update-generated-lists.yml >/dev/null 2>&1; then
     pass "workflow stages generated output from categories/"

@@ -24,9 +24,6 @@ categories/<category-id>/
     routeros/
       update.rsc
       scheduler.rsc
-    scripts/
-      build.sh
-      validate.sh
   <category-id>-to-outbound/
     README.md
     services.txt
@@ -35,10 +32,9 @@ categories/<category-id>/
     routeros/
       update.rsc
       scheduler.rsc
-    scripts/
-      build.sh
-      validate.sh
 ```
+
+Build and validation scripts are centralized under the repository root `scripts/` directory.
 
 Category-first safe installers use the same category layout:
 
@@ -100,11 +96,15 @@ package-repositories:
   - proxmox
   - docker
 
-cloud-storage:
+google-services:
   - google-drive
-
-video-streaming:
   - youtube
+
+microsoft-services:
+  - microsoft-365
+  - onedrive
+  - teams
+  - windows-update
 
 music:
   - spotify
@@ -149,12 +149,10 @@ categories/<category-id>/<service-id>/README.md
 categories/<category-id>/<service-id>/database/.gitkeep
 categories/<category-id>/<service-id>/output/.gitkeep
 categories/<category-id>/<service-id>/routeros/.gitkeep
-categories/<category-id>/<service-id>/scripts/.gitkeep
 categories/<category-id>/<category-id>-to-outbound/README.md
 categories/<category-id>/<category-id>-to-outbound/services.txt
 categories/<category-id>/<category-id>-to-outbound/output/.gitkeep
 categories/<category-id>/<category-id>-to-outbound/routeros/.gitkeep
-categories/<category-id>/<category-id>-to-outbound/scripts/.gitkeep
 safe-install/<category-id>/README.md
 safe-install/<category-id>/<service-id>/README.md
 ```
@@ -166,8 +164,6 @@ Do not write or modify in Task A:
 ```text
 scripts/build-all.sh
 scripts/validate-all.sh
-*/scripts/build.sh
-*/scripts/validate.sh
 */routeros/update.rsc
 */routeros/scheduler.rsc
 */output/*.rsc
@@ -186,8 +182,8 @@ Task B should mostly do this:
 copy legacy service files -> category service folder
 copy legacy profile files -> category profile folder
 copy or adapt safe-install files -> category safe-install folder
-connect scripts/build-all.sh -> new category scripts
-connect scripts/validate-all.sh -> new category validate scripts
+connect scripts/build-all.sh -> centralized root builders
+connect scripts/validate-all.sh -> centralized root validators
 ```
 
 Allowed in Task B:
@@ -195,32 +191,23 @@ Allowed in Task B:
 ```text
 categories/<category-id>/<service-id>/database/*
 categories/<category-id>/<service-id>/routeros/*.rsc
-categories/<category-id>/<service-id>/scripts/*.sh
 categories/<category-id>/<service-id>/output/*.rsc
 categories/<category-id>/<category-id>-to-outbound/routeros/*.rsc
-categories/<category-id>/<category-id>-to-outbound/scripts/*.sh
 categories/<category-id>/<category-id>-to-outbound/output/*.rsc
 safe-install/<category-id>/**/*.rsc
 scripts/build-all.sh
 scripts/validate-all.sh
 ```
 
-Task B must update root build and validate scripts only for the category being migrated.
+Task B must update root build and validate wiring only for the category being migrated.
 
-Task B should not rewrite lower scripts. It may only adjust internal path variables if copied scripts still point to old legacy paths.
-
-Example upper-to-lower connection:
+Example centralized connection:
 
 ```sh
-run_build "category service: figma" "categories/design/figma/scripts/build.sh"
-run_build "category service: canva" "categories/design/canva/scripts/build.sh"
-run_build "category profile: design-to-outbound" "categories/design/design-to-outbound/scripts/build.sh"
-```
-
-```sh
-run_validate "category service: figma" "categories/design/figma/scripts/validate.sh"
-run_validate "category service: canva" "categories/design/canva/scripts/validate.sh"
-run_validate "category profile: design-to-outbound" "categories/design/design-to-outbound/scripts/validate.sh"
+sh "$ROOT_DIR/scripts/build-service.sh" "$service_root"
+sh "$ROOT_DIR/scripts/build-profile.sh" "$profile_root"
+sh "$ROOT_DIR/scripts/validate-service.sh" "$service_root"
+sh "$ROOT_DIR/scripts/validate-profile.sh" "$profile_root"
 ```
 
 This two-step workflow existed so humans could confirm folder design before code was copied or connected, and so code changes stayed limited to copy/connect work.
@@ -232,7 +219,7 @@ This two-step workflow existed so humans could confirm folder design before code
 3. For each category, run Task A skeleton first.
 4. Review folder layout.
 5. Run Task B copy/connect migration for that category.
-6. Update `scripts/build-all.sh` and `scripts/validate-all.sh` per migrated category.
+6. Keep centralized discovery in `scripts/build-all.sh` and `scripts/validate-all.sh` compatible with the migrated category.
 7. Add category-first safe installers per migrated category.
 8. Keep root `safe-install-outbound.rsc` as the only root installer.
 9. Remove legacy paths only after all references are tested.

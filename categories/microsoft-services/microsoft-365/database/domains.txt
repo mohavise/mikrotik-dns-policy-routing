@@ -1,0 +1,16 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=microsoft-365
+
+microsoft365.com
+microsoftonline.com
+msauth.net
+msftauth.net
+msocdn.com
+office.com
+office.net
+office365.com
+officeapps.live.com
+outlook.office.com
+protection.outlook.com
+sharepoint.com

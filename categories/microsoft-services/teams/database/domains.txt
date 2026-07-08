@@ -1,0 +1,12 @@
+# managed-by=mohavise-mikrotik-dns-policy-routing
+# project=mikrotik-dns-policy-routing
+# service=teams
+
+lync.com
+sfbassets.com
+skype.com
+statics.teams.cdn.office.net
+teams.cdn.office.net
+teams.live.com
+teams.microsoft.com
+users.storage.live.com

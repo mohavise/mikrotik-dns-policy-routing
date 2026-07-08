@@ -24,8 +24,12 @@ The goal is service-based routing: route selected destinations through an outbou
 | Red Hat repositories | `DST-REDHAT-TO-OUTBOUND` | package repositories |
 | Proxmox repositories | `DST-PROXMOX-TO-OUTBOUND` | package repositories |
 | Docker repositories | `DST-DOCKER-TO-OUTBOUND` | package repositories |
-| Google Drive | `DST-GOOGLE-DRIVE-TO-OUTBOUND` | cloud storage, Google services |
-| YouTube | `DST-YOUTUBE-TO-OUTBOUND` | video streaming, Google services |
+| Google Drive | `DST-GOOGLE-DRIVE-TO-OUTBOUND` | Google services |
+| YouTube | `DST-YOUTUBE-TO-OUTBOUND` | Google services |
+| Microsoft 365 | `DST-MICROSOFT-365-TO-OUTBOUND` | Microsoft services |
+| OneDrive | `DST-ONEDRIVE-TO-OUTBOUND` | Microsoft services |
+| Microsoft Teams | `DST-TEAMS-TO-OUTBOUND` | Microsoft services |
+| Windows Update | `DST-WINDOWS-UPDATE-TO-OUTBOUND` | Microsoft services |
 | Spotify | `DST-SPOTIFY-TO-OUTBOUND` | music |
 | Steam | `DST-STEAM-TO-OUTBOUND` | gaming |
 | Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` | mobile app store |
@@ -40,8 +44,7 @@ The goal is service-based routing: route selected destinations through an outbou
 | Developer | `DST-DEVELOPER-TO-OUTBOUND` | Combined developer services |
 | Package Repositories | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` | Combined Linux package and container repository services |
 | Google Services | `DST-GOOGLE-SERVICES-TO-OUTBOUND` | Combined Google-owned services |
-| Cloud Storage | `DST-CLOUD-STORAGE-TO-OUTBOUND` | Combined cloud storage services |
-| Video Streaming | `DST-VIDEO-STREAMING-TO-OUTBOUND` | Combined video streaming services |
+| Microsoft Services | `DST-MICROSOFT-SERVICES-TO-OUTBOUND` | Combined Microsoft-owned services |
 | Music | `DST-MUSIC-TO-OUTBOUND` | Combined music services |
 | Gaming | `DST-GAMING-TO-OUTBOUND` | Combined gaming services |
 | Mobile App Store | `DST-MOBILE-APP-STORE-TO-OUTBOUND` | Combined mobile app store services |

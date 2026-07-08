@@ -113,6 +113,10 @@ This installs only Telegram and creates/updates `DST-TELEGRAM-TO-OUTBOUND`.
 | Canva | `DST-CANVA-TO-OUTBOUND` |
 | GitHub | `DST-GITHUB-TO-OUTBOUND` |
 | OpenAI / ChatGPT | `DST-OPENAI-TO-OUTBOUND` |
+| Microsoft 365 | `DST-MICROSOFT-365-TO-OUTBOUND` |
+| OneDrive | `DST-ONEDRIVE-TO-OUTBOUND` |
+| Microsoft Teams | `DST-TEAMS-TO-OUTBOUND` |
+| Windows Update | `DST-WINDOWS-UPDATE-TO-OUTBOUND` |
 | Ubuntu repositories | `DST-UBUNTU-TO-OUTBOUND` |
 | Debian repositories | `DST-DEBIAN-TO-OUTBOUND` |
 | Red Hat repositories | `DST-REDHAT-TO-OUTBOUND` |
@@ -134,8 +138,7 @@ This installs only Telegram and creates/updates `DST-TELEGRAM-TO-OUTBOUND`.
 | Developer | `DST-DEVELOPER-TO-OUTBOUND` |
 | Package repositories | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` |
 | Google services | `DST-GOOGLE-SERVICES-TO-OUTBOUND` |
-| Cloud storage | `DST-CLOUD-STORAGE-TO-OUTBOUND` |
-| Video streaming | `DST-VIDEO-STREAMING-TO-OUTBOUND` |
+| Microsoft services | `DST-MICROSOFT-SERVICES-TO-OUTBOUND` |
 | Music | `DST-MUSIC-TO-OUTBOUND` |
 | Gaming | `DST-GAMING-TO-OUTBOUND` |
 | Mobile app store | `DST-MOBILE-APP-STORE-TO-OUTBOUND` |
@@ -175,9 +178,9 @@ output/list-cidr.rsc          firewall address-list CIDR rules
 output/list-all.rsc           combined import file
 routeros/update.rsc           repeat-safe updater script
 routeros/scheduler.rsc        daily scheduler installer
-scripts/build.sh              local build script
-scripts/validate.sh           local validation script
 ```
+
+Build and validation logic is centralized in the repository root `scripts/` directory.
 
 ## DNS And Domain Rules
 
