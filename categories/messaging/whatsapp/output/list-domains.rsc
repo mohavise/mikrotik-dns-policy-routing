@@ -4,7 +4,7 @@
 # List: WhatsApp domains
 # RouterOS address-list: DST-WHATSAPP-TO-OUTBOUND
 # Source: Meta-owned WhatsApp public domains (official-owned-domains)
-# Last update: 2026-07-08 07:59:29 UTC
+# Last update: 2026-07-09 10:40:39 UTC
 # do-not-edit-manually
 
 /ip dns static

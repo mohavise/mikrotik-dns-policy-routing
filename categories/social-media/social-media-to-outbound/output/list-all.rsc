@@ -1,9 +1,9 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
 # profile=social-media-to-outbound
-# List: Social Media combined domains + CIDR
+# List: social media combined domains + CIDR
 # RouterOS address-list: DST-SOCIAL-MEDIA-TO-OUTBOUND
-# Last update: 2026-07-08 07:59:30 UTC
+# Last update: 2026-07-09 10:40:40 UTC
 # do-not-edit-manually
 
 /ip dns static

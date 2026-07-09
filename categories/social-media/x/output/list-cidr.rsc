@@ -4,7 +4,7 @@
 # List: X CIDR
 # RouterOS address-list: DST-X-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-08 07:59:30 UTC
+# Last update: 2026-07-09 10:40:40 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

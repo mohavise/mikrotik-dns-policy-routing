@@ -3,7 +3,7 @@
 # profile=google-services-to-outbound
 # List: google services combined domains + CIDR
 # RouterOS address-list: DST-GOOGLE-SERVICES-TO-OUTBOUND
-# Last update: 2026-07-08 13:24:15 UTC
+# Last update: 2026-07-09 10:40:40 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -31,9 +31,9 @@ remove [find list=DST-GOOGLE-SERVICES-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)m\\.youtube\\.com\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:m.youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)www\\.youtube\\.com\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:www.youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtu\\.be\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtu.be" } on-error={}
+:do { add regexp="(^|.*\\.)youtube-nocookie\\.com\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtube\\.com\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtube.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtubei\\.googleapis\\.com\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtubei.googleapis.com" } on-error={}
-:do { add regexp="(^|.*\\.)youtube-nocookie\\.com\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
 :do { add regexp="(^|.*\\.)ytimg\\.com\$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:ytimg.com" } on-error={}
 
 /ip firewall address-list

@@ -4,7 +4,7 @@
 # List: LinkedIn combined domains + CIDR
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Domain source: LinkedIn-owned public domains (official-owned-domains)
-# Last update: 2026-07-08 07:59:30 UTC
+# Last update: 2026-07-09 10:40:40 UTC
 # do-not-edit-manually
 
 /ip dns static

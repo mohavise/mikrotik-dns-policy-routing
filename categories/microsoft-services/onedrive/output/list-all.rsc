@@ -4,7 +4,7 @@
 # List: OneDrive combined domains + CIDR
 # RouterOS address-list: DST-ONEDRIVE-TO-OUTBOUND
 # Domain source: Microsoft 365 URLs and IP address ranges (official-endpoint-docs)
-# Last update: 2026-07-08 13:23:05 UTC
+# Last update: 2026-07-09 10:40:39 UTC
 # do-not-edit-manually
 
 /ip dns static

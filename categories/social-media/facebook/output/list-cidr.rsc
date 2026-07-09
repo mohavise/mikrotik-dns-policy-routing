@@ -4,7 +4,7 @@
 # List: Facebook CIDR
 # RouterOS address-list: DST-FACEBOOK-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-08 07:59:29 UTC
+# Last update: 2026-07-09 10:40:40 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

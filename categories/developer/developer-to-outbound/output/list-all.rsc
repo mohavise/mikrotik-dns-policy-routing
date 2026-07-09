@@ -1,9 +1,9 @@
 # managed-by=mohavise-mikrotik-dns-policy-routing
 # project=mikrotik-dns-policy-routing
 # profile=developer-to-outbound
-# List: Developer combined domains + CIDR
+# List: developer combined domains + CIDR
 # RouterOS address-list: DST-DEVELOPER-TO-OUTBOUND
-# Last update: 2026-07-08 07:59:30 UTC
+# Last update: 2026-07-09 10:40:40 UTC
 # do-not-edit-manually
 
 /ip dns static
