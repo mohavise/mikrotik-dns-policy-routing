@@ -4,7 +4,7 @@
 # List: Signal CIDR
 # RouterOS address-list: DST-SIGNAL-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-09 10:40:38 UTC
+# Last update: 2026-07-10 10:38:31 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

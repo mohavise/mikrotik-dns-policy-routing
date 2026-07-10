@@ -4,7 +4,7 @@
 # List: OpenAI CIDR
 # RouterOS address-list: DST-OPENAI-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-09 10:40:38 UTC
+# Last update: 2026-07-10 10:38:30 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

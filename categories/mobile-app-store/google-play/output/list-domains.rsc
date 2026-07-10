@@ -4,7 +4,7 @@
 # List: Google Play domains
 # RouterOS address-list: DST-GOOGLE-PLAY-TO-OUTBOUND
 # Source: Android Enterprise Network Requirements (official-vendor-docs)
-# Last update: 2026-07-09 10:40:39 UTC
+# Last update: 2026-07-10 10:38:31 UTC
 # do-not-edit-manually
 
 /ip dns static
