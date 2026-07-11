@@ -4,7 +4,7 @@
 # List: Figma domains
 # RouterOS address-list: DST-FIGMA-TO-OUTBOUND
 # Source: Figma public/service domains with observed required app domains (official-and-observed-domains)
-# Last update: 2026-07-10 10:38:30 UTC
+# Last update: 2026-07-11 00:57:20 UTC
 # do-not-edit-manually
 
 /ip dns static

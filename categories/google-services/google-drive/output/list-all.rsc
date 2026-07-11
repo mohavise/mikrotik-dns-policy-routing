@@ -4,7 +4,7 @@
 # List: Google Drive combined domains + CIDR
 # RouterOS address-list: DST-GOOGLE-DRIVE-TO-OUTBOUND
 # Domain source: Google Drive public/service domains (official-google-service-domains)
-# Last update: 2026-07-10 10:38:31 UTC
+# Last update: 2026-07-11 00:57:20 UTC
 # do-not-edit-manually
 
 /ip dns static

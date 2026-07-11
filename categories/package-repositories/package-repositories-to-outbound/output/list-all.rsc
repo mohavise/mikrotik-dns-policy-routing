@@ -3,7 +3,7 @@
 # profile=package-repositories-to-outbound
 # List: package repositories combined domains + CIDR
 # RouterOS address-list: DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
-# Last update: 2026-07-10 10:38:32 UTC
+# Last update: 2026-07-11 00:57:22 UTC
 # do-not-edit-manually
 
 /ip dns static
