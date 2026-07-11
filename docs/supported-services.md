@@ -35,6 +35,8 @@ The goal is service-based routing: route selected destinations through an outbou
 | Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` | mobile app store |
 | Google Play | `DST-GOOGLE-PLAY-TO-OUTBOUND` | mobile app store |
 | Samsung Galaxy Store | `DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND` | mobile app store |
+| Speedtest | `SPEEDTEST` | network tools |
+| IP Detection | `IP-DETECTION` | network tools |
 
 ## Combined Profiles
 
@@ -52,6 +54,8 @@ The goal is service-based routing: route selected destinations through an outbou
 | Social Media | `DST-SOCIAL-MEDIA-TO-OUTBOUND` | Combined strict social-media services |
 | Design | `DST-DESIGN-TO-OUTBOUND` | Combined design and visual collaboration services |
 | Primary | `DST-TO-OUTBOUND` | Combined selected outbound destinations |
+
+`SPEEDTEST` and `IP-DETECTION` intentionally keep exact custom list names because they are designed for local firewall policy rules, not the primary outbound routing profile.
 
 ## Install Examples
 
