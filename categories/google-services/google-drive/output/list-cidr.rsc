@@ -4,7 +4,7 @@
 # List: Google Drive CIDR
 # RouterOS address-list: DST-GOOGLE-DRIVE-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-11 00:57:20 UTC
+# Last update: 2026-07-12 01:05:02 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

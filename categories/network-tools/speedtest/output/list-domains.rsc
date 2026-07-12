@@ -4,11 +4,11 @@
 # List: Speedtest domains
 # RouterOS address-list: SPEEDTEST
 # Source: Local MikroTik DNS policy list (manual-curated)
-# Last update: 2026-07-11 07:23:55 UTC
+# Last update: 2026-07-12 01:05:03 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=SPEEDTEST comment~"speedtest:"]
+remove [find address-list=SPEEDTEST]
 :do { add regexp="(^|.*\\.)bandwidthplace\\.com\$" type=FWD address-list=SPEEDTEST comment="speedtest:bandwidthplace.com" } on-error={}
 :do { add regexp="(^|.*\\.)broadbandspeedchecker\\.co\\.uk\$" type=FWD address-list=SPEEDTEST comment="speedtest:broadbandspeedchecker.co.uk" } on-error={}
 :do { add regexp="(^|.*\\.)dslreports\\.com\$" type=FWD address-list=SPEEDTEST comment="speedtest:dslreports.com" } on-error={}

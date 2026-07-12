@@ -4,11 +4,11 @@
 # List: IP Detection domains
 # RouterOS address-list: IP-DETECTION
 # Source: Local MikroTik DNS policy list (manual-curated)
-# Last update: 2026-07-11 07:24:03 UTC
+# Last update: 2026-07-12 01:05:03 UTC
 # do-not-edit-manually
 
 /ip dns static
-remove [find address-list=IP-DETECTION comment~"ip-detection:"]
+remove [find address-list=IP-DETECTION]
 :do { add regexp="(^|.*\\.)browserleaks\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:browserleaks.com" } on-error={}
 :do { add regexp="(^|.*\\.)checkip\\.amazonaws\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:checkip.amazonaws.com" } on-error={}
 :do { add regexp="(^|.*\\.)dnsleaktest\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:dnsleaktest.com" } on-error={}
@@ -16,12 +16,12 @@ remove [find address-list=IP-DETECTION comment~"ip-detection:"]
 :do { add regexp="(^|.*\\.)ident\\.me\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ident.me" } on-error={}
 :do { add regexp="(^|.*\\.)ifconfig\\.co\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ifconfig.co" } on-error={}
 :do { add regexp="(^|.*\\.)ifconfig\\.me\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ifconfig.me" } on-error={}
+:do { add regexp="(^|.*\\.)ip-api\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ip-api.com" } on-error={}
 :do { add regexp="(^|.*\\.)ip\\.me\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ip.me" } on-error={}
 :do { add regexp="(^|.*\\.)ip\\.sb\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ip.sb" } on-error={}
 :do { add regexp="(^|.*\\.)ip2location\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ip2location.com" } on-error={}
 :do { add regexp="(^|.*\\.)ipaddress\\.my\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ipaddress.my" } on-error={}
 :do { add regexp="(^|.*\\.)ipapi\\.co\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ipapi.co" } on-error={}
-:do { add regexp="(^|.*\\.)ip-api\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ip-api.com" } on-error={}
 :do { add regexp="(^|.*\\.)ipapi\\.is\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ipapi.is" } on-error={}
 :do { add regexp="(^|.*\\.)ipbase\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ipbase.com" } on-error={}
 :do { add regexp="(^|.*\\.)ipchicken\\.com\$" type=FWD address-list=IP-DETECTION comment="ip-detection:ipchicken.com" } on-error={}

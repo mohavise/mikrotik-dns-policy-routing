@@ -4,7 +4,7 @@
 # List: Red Hat CIDR
 # RouterOS address-list: DST-REDHAT-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-11 00:57:21 UTC
+# Last update: 2026-07-12 01:05:04 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

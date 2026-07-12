@@ -4,7 +4,7 @@
 # List: Microsoft 365 CIDR
 # RouterOS address-list: DST-MICROSOFT-365-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-11 00:57:21 UTC
+# Last update: 2026-07-12 01:05:03 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
