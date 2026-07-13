@@ -4,7 +4,7 @@
 # List: Proxmox combined domains + CIDR
 # RouterOS address-list: DST-PROXMOX-TO-OUTBOUND
 # Domain source: Proxmox package repository documentation (official-repository-domains)
-# Last update: 2026-07-12 01:05:04 UTC
+# Last update: 2026-07-13 01:05:35 UTC
 # do-not-edit-manually
 
 /ip dns static

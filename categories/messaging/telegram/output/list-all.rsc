@@ -7,7 +7,7 @@
 # Domain source URL: https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
 # CIDR source: Telegram official CIDR (official)
 # CIDR source URL: https://core.telegram.org/resources/cidr.txt
-# Last update: 2026-07-12 01:05:03 UTC
+# Last update: 2026-07-13 01:05:34 UTC
 # do-not-edit-manually
 
 /ip dns static
