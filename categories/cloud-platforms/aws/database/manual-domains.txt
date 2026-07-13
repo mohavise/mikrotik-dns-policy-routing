@@ -1,0 +1,2 @@
+# Local AWS control-plane domain additions.
+# Do not add generic amazonaws.com, CloudFront, or customer workload domains.

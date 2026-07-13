@@ -6,7 +6,9 @@ This repository is database-first. Add real service data only under `categories/
 
 Add final-user services, app stores, communication apps, productivity apps, developer tools used directly by users, package repositories, streaming apps, payment apps, AI apps, and device ecosystem services.
 
-Do not add cloud providers, CDN providers, hosting/VPS providers, or generic infrastructure providers. Broad infrastructure lists can route unrelated websites and applications.
+Do not add broad cloud-provider, CDN-provider, hosting/VPS, or generic infrastructure lists. Public provider IP ranges and customer workload domains can route unrelated websites and applications.
+
+A tightly scoped cloud control-plane service is allowed when it contains only official provider websites, documentation, sign-in, console, management endpoints, and explicitly required console dependencies. Document every included domain and explicitly exclude customer hosting domains and public cloud IP ranges.
 
 ## Source Rules
 

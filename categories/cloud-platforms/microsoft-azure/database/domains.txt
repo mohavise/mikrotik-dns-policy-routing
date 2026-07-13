@@ -1,0 +1,13 @@
+azure.com
+azure.microsoft.com
+graph.microsoft.com
+graph.windows.net
+login.live.com
+login.microsoft.com
+login.microsoftonline.com
+microsoftonline-p.com
+msauth.net
+msauthimages.net
+msftauth.net
+msftauthimages.net
+portal.azure.net

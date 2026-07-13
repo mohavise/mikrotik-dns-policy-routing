@@ -129,6 +129,10 @@ This installs only Telegram and creates/updates `DST-TELEGRAM-TO-OUTBOUND`.
 | Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` |
 | Google Play | `DST-GOOGLE-PLAY-TO-OUTBOUND` |
 | Samsung Galaxy Store | `DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND` |
+| Wise | `DST-WISE-TO-OUTBOUND` |
+| Amazon Web Services | `DST-AWS-TO-OUTBOUND` |
+| Microsoft Azure | `DST-MICROSOFT-AZURE-TO-OUTBOUND` |
+| Google Cloud | `DST-GOOGLE-CLOUD-TO-OUTBOUND` |
 
 ## Supported Category Profiles
 
@@ -145,6 +149,8 @@ This installs only Telegram and creates/updates `DST-TELEGRAM-TO-OUTBOUND`.
 | Messaging | `DST-MESSAGING-TO-OUTBOUND` |
 | Social media | `DST-SOCIAL-MEDIA-TO-OUTBOUND` |
 | Design | `DST-DESIGN-TO-OUTBOUND` |
+| Financial services | `DST-FINANCIAL-SERVICES-TO-OUTBOUND` |
+| Cloud platforms | `DST-CLOUD-PLATFORMS-TO-OUTBOUND` |
 | Optional primary aggregate | `DST-TO-OUTBOUND` |
 
 ## Repository Structure
@@ -231,7 +237,8 @@ categories/<category-id>/<service-id>/
 
 Rules:
 
-- Do not add CDN or cloud providers as standalone services, such as Cloudflare, Akamai, Fastly, AWS, Azure, or GCP.
+- Do not add broad CDN or cloud-hosting lists, public provider IP ranges, or generic customer workload domains.
+- A cloud provider may have a tightly scoped control-plane service for its first-party website, documentation, sign-in, console, and management dependencies.
 - Service-owned CDN-looking hostnames may stay only when required by official service documentation.
 - Keep real domain/CIDR data inside service database folders.
 - Category profiles should reference services by service ID.

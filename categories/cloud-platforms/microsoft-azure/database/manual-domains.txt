@@ -1,0 +1,2 @@
+# Local Microsoft Azure control-plane domain additions.
+# Do not add generic Azure customer hosting or storage domains.

@@ -1,0 +1,2 @@
+# Local Google Cloud control-plane domain additions.
+# Do not add Google Cloud customer workload or storage hostnames.

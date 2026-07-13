@@ -32,7 +32,7 @@ MikroTik uses generated RouterOS regex. Database files must contain normal domai
 
 Wildcard format like `*.domain.com` is only for future FortiGate output/export.
 
-Do not add CDN providers or cloud providers as services, such as Cloudflare, Akamai, Fastly, AWS, Azure, or GCP. Service-owned CDN-looking hostnames may stay only when required by official service documentation.
+Do not add broad CDN or cloud-hosting provider lists, public provider IP ranges, or generic customer workload domains. Scoped cloud control-plane modules may include official websites, documentation, sign-in, console, management endpoints, and console dependencies explicitly required by official documentation. Service-owned CDN-looking hostnames may stay only when required by official service documentation.
 
 ## Automation Order
 

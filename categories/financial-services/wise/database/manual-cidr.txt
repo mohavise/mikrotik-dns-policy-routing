@@ -1,0 +1,2 @@
+# Local Wise CIDR additions.
+# Keep this file empty unless a dedicated service-owned range is officially verified.

@@ -3,8 +3,10 @@
 # address-list=DST-TO-OUTBOUND
 # group/profile IDs, one per line
 ai-to-outbound
+cloud-platforms-to-outbound
 developer-to-outbound
 design-to-outbound
+financial-services-to-outbound
 google-services-to-outbound
 gaming-to-outbound
 messaging-to-outbound

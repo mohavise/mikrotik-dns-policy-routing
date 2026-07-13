@@ -37,6 +37,10 @@ The goal is service-based routing: route selected destinations through an outbou
 | Samsung Galaxy Store | `DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND` | mobile app store |
 | Speedtest | `SPEEDTEST` | network tools |
 | IP Detection | `IP-DETECTION` | network tools |
+| Wise | `DST-WISE-TO-OUTBOUND` | financial services, banking, money transfers |
+| Amazon Web Services | `DST-AWS-TO-OUTBOUND` | cloud platform website and console |
+| Microsoft Azure | `DST-MICROSOFT-AZURE-TO-OUTBOUND` | cloud platform website and portal |
+| Google Cloud | `DST-GOOGLE-CLOUD-TO-OUTBOUND` | cloud platform website and console |
 
 ## Combined Profiles
 
@@ -53,9 +57,13 @@ The goal is service-based routing: route selected destinations through an outbou
 | Messaging | `DST-MESSAGING-TO-OUTBOUND` | Combined messaging services |
 | Social Media | `DST-SOCIAL-MEDIA-TO-OUTBOUND` | Combined strict social-media services |
 | Design | `DST-DESIGN-TO-OUTBOUND` | Combined design and visual collaboration services |
+| Financial Services | `DST-FINANCIAL-SERVICES-TO-OUTBOUND` | Combined financial and banking services |
+| Cloud Platforms | `DST-CLOUD-PLATFORMS-TO-OUTBOUND` | Combined AWS, Azure, and Google Cloud control planes |
 | Primary | `DST-TO-OUTBOUND` | Combined selected outbound destinations |
 
 `SPEEDTEST` and `IP-DETECTION` intentionally keep exact custom list names because they are designed for local firewall policy rules, not the primary outbound routing profile.
+
+Cloud-platform lists cover first-party websites, documentation, sign-in, consoles, and management dependencies. They intentionally exclude public cloud IP ranges and generic customer workload domains.
 
 ## Install Examples
 

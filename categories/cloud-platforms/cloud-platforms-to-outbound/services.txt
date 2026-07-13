@@ -1,0 +1,3 @@
+aws
+google-cloud
+microsoft-azure

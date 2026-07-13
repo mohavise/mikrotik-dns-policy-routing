@@ -1,0 +1,5 @@
+aws.amazon.com
+awsstatic.com
+console.aws.a2z.com
+opfcaptcha-prod.s3.amazonaws.com
+signin.aws
