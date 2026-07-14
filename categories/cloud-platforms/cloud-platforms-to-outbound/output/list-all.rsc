@@ -3,7 +3,7 @@
 # profile=cloud-platforms-to-outbound
 # List: cloud platforms combined domains + CIDR
 # RouterOS address-list: DST-CLOUD-PLATFORMS-TO-OUTBOUND
-# Last update: 2026-07-13 11:51:08 UTC
+# Last update: 2026-07-14 00:53:35 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -28,6 +28,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)reauth\\.cloud\\.google\\.com\$" type=FWD address-list=DST-CLOUD-PLATFORMS-TO-OUTBOUND comment="google-cloud:reauth.cloud.google.com" } on-error={}
 
 /ip firewall address-list
+
 /ip dns static
 :do { add regexp="(^|.*\\.)azure\\.com\$" type=FWD address-list=DST-CLOUD-PLATFORMS-TO-OUTBOUND comment="microsoft-azure:azure.com" } on-error={}
 :do { add regexp="(^|.*\\.)azure\\.microsoft\\.com\$" type=FWD address-list=DST-CLOUD-PLATFORMS-TO-OUTBOUND comment="microsoft-azure:azure.microsoft.com" } on-error={}
@@ -44,3 +45,4 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)portal\\.azure\\.net\$" type=FWD address-list=DST-CLOUD-PLATFORMS-TO-OUTBOUND comment="microsoft-azure:portal.azure.net" } on-error={}
 
 /ip firewall address-list
+

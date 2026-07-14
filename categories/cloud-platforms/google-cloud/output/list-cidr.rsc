@@ -4,7 +4,7 @@
 # List: Google Cloud CIDR
 # RouterOS address-list: DST-GOOGLE-CLOUD-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-13 11:50:59 UTC
+# Last update: 2026-07-14 00:53:33 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

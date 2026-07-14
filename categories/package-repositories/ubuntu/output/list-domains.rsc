@@ -4,7 +4,7 @@
 # List: Ubuntu domains
 # RouterOS address-list: DST-UBUNTU-TO-OUTBOUND
 # Source: Ubuntu repository documentation (official-repository-domains)
-# Last update: 2026-07-13 01:05:35 UTC
+# Last update: 2026-07-14 00:53:35 UTC
 # do-not-edit-manually
 
 /ip dns static

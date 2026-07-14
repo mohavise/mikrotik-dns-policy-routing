@@ -4,7 +4,7 @@
 # List: Google Cloud domains
 # RouterOS address-list: DST-GOOGLE-CLOUD-TO-OUTBOUND
 # Source: Google official Cloud console required domains (official-control-plane-domains)
-# Last update: 2026-07-13 11:50:59 UTC
+# Last update: 2026-07-14 00:53:33 UTC
 # do-not-edit-manually
 
 /ip dns static

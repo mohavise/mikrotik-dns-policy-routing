@@ -4,7 +4,7 @@
 # List: Samsung Galaxy Store domains
 # RouterOS address-list: DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND
 # Source: Samsung Apps authenticated proxy allowlist (official-vendor-docs)
-# Last update: 2026-07-13 01:05:35 UTC
+# Last update: 2026-07-14 00:53:34 UTC
 # do-not-edit-manually
 
 /ip dns static

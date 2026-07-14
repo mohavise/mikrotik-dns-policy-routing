@@ -4,7 +4,7 @@
 # List: Facebook domains
 # RouterOS address-list: DST-FACEBOOK-TO-OUTBOUND
 # Source: Meta-owned Facebook public domains (official-owned-domains)
-# Last update: 2026-07-13 01:05:35 UTC
+# Last update: 2026-07-14 00:53:35 UTC
 # do-not-edit-manually
 
 /ip dns static

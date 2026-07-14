@@ -4,7 +4,7 @@
 # List: Docker combined domains + CIDR
 # RouterOS address-list: DST-DOCKER-TO-OUTBOUND
 # Domain source: Docker official allowlist (official-allowlist)
-# Last update: 2026-07-13 01:05:35 UTC
+# Last update: 2026-07-14 00:53:34 UTC
 # do-not-edit-manually
 
 /ip dns static

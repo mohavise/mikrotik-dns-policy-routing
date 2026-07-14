@@ -4,7 +4,7 @@
 # List: Wise domains
 # RouterOS address-list: DST-WISE-TO-OUTBOUND
 # Source: Wise official production domains (official-owned-domains)
-# Last update: 2026-07-13 11:35:16 UTC
+# Last update: 2026-07-14 00:53:33 UTC
 # do-not-edit-manually
 
 /ip dns static
