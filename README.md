@@ -110,6 +110,7 @@ This installs only Telegram and creates/updates `DST-TELEGRAM-TO-OUTBOUND`.
 | LinkedIn | `DST-LINKEDIN-TO-OUTBOUND` |
 | Reddit | `DST-REDDIT-TO-OUTBOUND` |
 | Signal | `DST-SIGNAL-TO-OUTBOUND` |
+| Discord | `DST-DISCORD-TO-OUTBOUND` |
 | Figma | `DST-FIGMA-TO-OUTBOUND` |
 | Canva | `DST-CANVA-TO-OUTBOUND` |
 | GitHub | `DST-GITHUB-TO-OUTBOUND` |

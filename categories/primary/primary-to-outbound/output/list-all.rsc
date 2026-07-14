@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-07-14 14:07:16 UTC
+# Last update: 2026-07-14 15:05:55 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -201,6 +201,14 @@ remove [find list=DST-TO-OUTBOUND]
 /ip dns static
 :do { add regexp="(^|.*\\.)signal\\.me\$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:signal.me" } on-error={}
 :do { add regexp="(^|.*\\.)signal\\.org\$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:signal.org" } on-error={}
+
+/ip firewall address-list
+
+/ip dns static
+:do { add regexp="(^|.*\\.)discord\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:discord.com" } on-error={}
+:do { add regexp="(^|.*\\.)discord\\.gg\$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:discord.gg" } on-error={}
+:do { add regexp="(^|.*\\.)discordapp\\.com\$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:discordapp.com" } on-error={}
+:do { add regexp="(^|.*\\.)discordapp\\.net\$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:discordapp.net" } on-error={}
 
 /ip firewall address-list
 

@@ -1,0 +1,2 @@
+# Local Discord domain additions.
+# Keep this file empty unless a Discord-owned production domain is officially verified.

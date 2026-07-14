@@ -16,6 +16,7 @@ The goal is service-based routing: route selected destinations through an outbou
 | LinkedIn | `DST-LINKEDIN-TO-OUTBOUND` | social media |
 | Reddit | `DST-REDDIT-TO-OUTBOUND` | social media, communities |
 | Signal | `DST-SIGNAL-TO-OUTBOUND` | messaging, social media |
+| Discord | `DST-DISCORD-TO-OUTBOUND` | messaging, gaming communities |
 | Figma | `DST-FIGMA-TO-OUTBOUND` | design |
 | Canva | `DST-CANVA-TO-OUTBOUND` | design |
 | GitHub | `DST-GITHUB-TO-OUTBOUND` | developer |

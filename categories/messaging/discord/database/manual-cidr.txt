@@ -1,0 +1,1 @@
+# Deliberately empty: Discord does not publish stable dedicated service CIDRs for this use.

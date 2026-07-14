@@ -1,3 +1,4 @@
 telegram
 whatsapp
 signal
+discord
