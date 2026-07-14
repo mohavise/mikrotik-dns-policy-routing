@@ -3,7 +3,7 @@
 # profile=social-media-to-outbound
 # List: social media combined domains + CIDR
 # RouterOS address-list: DST-SOCIAL-MEDIA-TO-OUTBOUND
-# Last update: 2026-07-14 00:53:35 UTC
+# Last update: 2026-07-14 14:07:13 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -37,6 +37,14 @@ remove [find list=DST-SOCIAL-MEDIA-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)licdn\\.com\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:licdn.com" } on-error={}
 :do { add regexp="(^|.*\\.)linkedin\\.com\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:linkedin.com" } on-error={}
 :do { add regexp="(^|.*\\.)lnkd\\.in\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:lnkd.in" } on-error={}
+
+/ip firewall address-list
+
+/ip dns static
+:do { add regexp="(^|.*\\.)redd\\.it\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:redd.it" } on-error={}
+:do { add regexp="(^|.*\\.)reddit\\.com\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:reddit.com" } on-error={}
+:do { add regexp="(^|.*\\.)redditmedia\\.com\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:redditmedia.com" } on-error={}
+:do { add regexp="(^|.*\\.)redditstatic\\.com\$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:redditstatic.com" } on-error={}
 
 /ip firewall address-list
 

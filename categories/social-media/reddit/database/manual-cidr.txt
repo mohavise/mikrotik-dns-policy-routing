@@ -1,0 +1,1 @@
+# Deliberately empty: Reddit does not publish dedicated service CIDR ranges for this use.
