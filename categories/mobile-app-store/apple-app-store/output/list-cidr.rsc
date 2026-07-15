@@ -4,7 +4,7 @@
 # List: Apple App Store CIDR
 # RouterOS address-list: DST-APPLE-APP-STORE-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-14 00:53:34 UTC
+# Last update: 2026-07-15 00:51:08 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

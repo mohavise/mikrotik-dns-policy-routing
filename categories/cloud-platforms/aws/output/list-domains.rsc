@@ -4,7 +4,7 @@
 # List: Amazon Web Services domains
 # RouterOS address-list: DST-AWS-TO-OUTBOUND
 # Source: AWS official website and console allowlist (official-control-plane-domains)
-# Last update: 2026-07-14 00:53:33 UTC
+# Last update: 2026-07-15 00:51:07 UTC
 # do-not-edit-manually
 
 /ip dns static

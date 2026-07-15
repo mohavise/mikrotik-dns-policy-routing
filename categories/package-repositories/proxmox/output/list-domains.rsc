@@ -4,7 +4,7 @@
 # List: Proxmox domains
 # RouterOS address-list: DST-PROXMOX-TO-OUTBOUND
 # Source: Proxmox package repository documentation (official-repository-domains)
-# Last update: 2026-07-14 00:53:34 UTC
+# Last update: 2026-07-15 00:51:09 UTC
 # do-not-edit-manually
 
 /ip dns static

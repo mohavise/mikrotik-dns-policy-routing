@@ -4,7 +4,7 @@
 # List: Reddit CIDR
 # RouterOS address-list: DST-REDDIT-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-14 14:07:09 UTC
+# Last update: 2026-07-15 00:51:09 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
