@@ -4,7 +4,7 @@
 # List: Google Play combined domains + CIDR
 # RouterOS address-list: DST-GOOGLE-PLAY-TO-OUTBOUND
 # Domain source: Android Enterprise Network Requirements (official-vendor-docs)
-# Last update: 2026-07-15 00:51:08 UTC
+# Last update: 2026-07-16 00:56:31 UTC
 # do-not-edit-manually
 
 /ip dns static

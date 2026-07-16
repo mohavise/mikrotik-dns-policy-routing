@@ -4,7 +4,7 @@
 # List: IP Detection combined domains + CIDR
 # RouterOS address-list: IP-DETECTION
 # Domain source: Local MikroTik DNS policy list (manual-curated)
-# Last update: 2026-07-15 00:51:08 UTC
+# Last update: 2026-07-16 00:56:32 UTC
 # do-not-edit-manually
 
 /ip dns static
