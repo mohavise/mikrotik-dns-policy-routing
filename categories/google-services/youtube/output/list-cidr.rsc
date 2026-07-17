@@ -4,7 +4,7 @@
 # List: YouTube CIDR
 # RouterOS address-list: DST-YOUTUBE-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-16 00:56:31 UTC
+# Last update: 2026-07-17 01:02:08 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

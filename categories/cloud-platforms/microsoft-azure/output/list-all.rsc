@@ -4,7 +4,7 @@
 # List: Microsoft Azure combined domains + CIDR
 # RouterOS address-list: DST-MICROSOFT-AZURE-TO-OUTBOUND
 # Domain source: Microsoft official Azure portal allowlist (official-control-plane-domains)
-# Last update: 2026-07-16 00:56:31 UTC
+# Last update: 2026-07-17 01:02:07 UTC
 # do-not-edit-manually
 
 /ip dns static

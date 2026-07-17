@@ -3,7 +3,7 @@
 # profile=financial-services-to-outbound
 # List: financial services combined domains + CIDR
 # RouterOS address-list: DST-FINANCIAL-SERVICES-TO-OUTBOUND
-# Last update: 2026-07-16 00:56:32 UTC
+# Last update: 2026-07-17 01:02:11 UTC
 # do-not-edit-manually
 
 /ip dns static

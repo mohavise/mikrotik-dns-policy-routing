@@ -4,7 +4,7 @@
 # List: Spotify CIDR
 # RouterOS address-list: DST-SPOTIFY-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-16 00:56:32 UTC
+# Last update: 2026-07-17 01:02:10 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

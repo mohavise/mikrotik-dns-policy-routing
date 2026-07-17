@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-TELEGRAM-TO-OUTBOUND
 # Source: Telegram official CIDR (official)
 # Source URL: https://core.telegram.org/resources/cidr.txt
-# Last update: 2026-07-16 00:56:31 UTC
+# Last update: 2026-07-17 01:02:08 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

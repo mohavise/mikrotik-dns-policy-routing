@@ -4,7 +4,7 @@
 # List: OpenAI combined domains + CIDR
 # RouterOS address-list: DST-OPENAI-TO-OUTBOUND
 # Domain source: OpenAI ChatGPT network recommendations (official-allowlist)
-# Last update: 2026-07-16 00:56:30 UTC
+# Last update: 2026-07-17 01:02:07 UTC
 # do-not-edit-manually
 
 /ip dns static
