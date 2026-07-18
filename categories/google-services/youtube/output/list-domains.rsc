@@ -4,7 +4,7 @@
 # List: YouTube domains
 # RouterOS address-list: DST-YOUTUBE-TO-OUTBOUND
 # Source: YouTube public/service domains (official-google-service-domains)
-# Last update: 2026-07-17 01:02:08 UTC
+# Last update: 2026-07-18 00:56:22 UTC
 # do-not-edit-manually
 
 /ip dns static

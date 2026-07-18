@@ -4,7 +4,7 @@
 # List: Signal domains
 # RouterOS address-list: DST-SIGNAL-TO-OUTBOUND
 # Source: Signal-owned public domains (official-owned-domains)
-# Last update: 2026-07-17 01:02:08 UTC
+# Last update: 2026-07-18 00:56:22 UTC
 # do-not-edit-manually
 
 /ip dns static

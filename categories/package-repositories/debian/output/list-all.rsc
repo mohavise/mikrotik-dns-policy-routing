@@ -4,7 +4,7 @@
 # List: Debian combined domains + CIDR
 # RouterOS address-list: DST-DEBIAN-TO-OUTBOUND
 # Domain source: Debian mirror documentation (official-repository-domains)
-# Last update: 2026-07-17 01:02:11 UTC
+# Last update: 2026-07-18 00:56:23 UTC
 # do-not-edit-manually
 
 /ip dns static

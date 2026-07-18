@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-TELEGRAM-TO-OUTBOUND
 # Source: v2fly/domain-list-community telegram (community-maintained)
 # Source URL: https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
-# Last update: 2026-07-17 01:02:08 UTC
+# Last update: 2026-07-18 00:56:22 UTC
 # do-not-edit-manually
 
 /ip dns static
