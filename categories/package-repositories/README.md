@@ -27,7 +27,7 @@ Install the complete **Package Repositories** category as one managed destinatio
 | [Proxmox](./proxmox/) | `DST-PROXMOX-TO-OUTBOUND` |
 | [Docker](./docker/) | `DST-DOCKER-TO-OUTBOUND` |
 
-To install only one service, open that service folder and use its own README.
+To install only one service, open that service folder and use its README.
 
 ## Requirements
 

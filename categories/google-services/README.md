@@ -24,7 +24,7 @@ Install the complete **Google Services** category as one managed destination lis
 | [Google Drive](./google-drive/) | `DST-GOOGLE-DRIVE-TO-OUTBOUND` |
 | [YouTube](./youtube/) | `DST-YOUTUBE-TO-OUTBOUND` |
 
-To install only one service, open that service folder and use its own README.
+To install only one service, open that service folder and use its README.
 
 ## Requirements
 

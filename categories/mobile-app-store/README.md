@@ -25,7 +25,7 @@ Install the complete **Mobile App Store** category as one managed destination li
 | [Google Play](./google-play/) | `DST-GOOGLE-PLAY-TO-OUTBOUND` |
 | [Samsung Galaxy Store](./samsung-galaxy-store/) | `DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND` |
 
-To install only one service, open that service folder and use its own README.
+To install only one service, open that service folder and use its README.
 
 ## Requirements
 

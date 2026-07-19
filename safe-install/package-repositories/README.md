@@ -1,44 +1,70 @@
-# Package Repositories Safe Installers
+# Package Repositories Category for MikroTik
 
-Safe installer entry points for the `package-repositories` category.
+Install the complete **Package Repositories** category as one managed destination list.
 
-## Category profile
+| Item | Value |
+| --- | --- |
+| Category address list | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` |
+| Update script | `update-package-repositories-to-outbound` |
+| Daily scheduler | `update-package-repositories-to-outbound` |
+| Installer | `safe-install/package-repositories/safe-install-package-repositories-to-outbound.rsc` |
 
-Import this file when you want one combined package repository list:
+## Install the complete category
 
 ```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/package-repositories/safe-install-package-repositories-to-outbound.rsc" dst-path=safe-install-package-repositories-to-outbound.rsc check-certificate=yes-without-crl
 /import file-name=safe-install-package-repositories-to-outbound.rsc
+/file remove [find name=safe-install-package-repositories-to-outbound.rsc]
 ```
 
-It installs and runs:
+## Included services
 
-```text
-update-package-repositories-outbound
-DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
+| Service | Individual list |
+| --- | --- |
+| [Ubuntu](./ubuntu/) | `DST-UBUNTU-TO-OUTBOUND` |
+| [Debian](./debian/) | `DST-DEBIAN-TO-OUTBOUND` |
+| [Red Hat](./redhat/) | `DST-REDHAT-TO-OUTBOUND` |
+| [Proxmox](./proxmox/) | `DST-PROXMOX-TO-OUTBOUND` |
+| [Docker](./docker/) | `DST-DOCKER-TO-OUTBOUND` |
+
+To install only one service, open that service folder and use its README.
+
+## Requirements
+
+```routeros
+/ip dns set allow-remote-requests=yes
 ```
 
-The category profile combines:
+Clients must use the MikroTik router for DNS. DNS bypass prevention is a separate firewall design decision.
 
-```text
-ubuntu
-debian
-redhat
-proxmox
-docker
+## Verify
+
+```routeros
+/ip dns static print where address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
+/ip firewall address-list print where list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
+/system script print where name=update-package-repositories-to-outbound
+/system scheduler print where name=update-package-repositories-to-outbound
 ```
 
-## Service installers
+Run an update manually:
 
-Use these only when you want one package repository service instead of the full category:
-
-```text
-debian/safe-install-debian-outbound.rsc
-docker/safe-install-docker-outbound.rsc
-proxmox/safe-install-proxmox-outbound.rsc
-redhat/safe-install-redhat-outbound.rsc
-ubuntu/safe-install-ubuntu-outbound.rsc
+```routeros
+/system script run update-package-repositories-to-outbound
 ```
 
-## Primary profile
+## Policy-routing example
 
-The primary safe installer already includes this category through `package-repositories-to-outbound`, so importing the primary profile also refreshes package repository destinations.
+```routeros
+/ip firewall mangle add chain=prerouting dst-address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND action=mark-routing new-routing-mark=to-outbound passthrough=no comment="Package Repositories to outbound"
+```
+
+## Remove
+
+```routeros
+/system scheduler remove [find name=update-package-repositories-to-outbound]
+/system script remove [find name=update-package-repositories-to-outbound]
+/ip dns static remove [find address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND]
+/ip firewall address-list remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND]
+```
+
+Do not manually add entries to the managed category list. Use a separate custom list.

@@ -26,7 +26,7 @@ Install the complete **Microsoft Services** category as one managed destination 
 | [Microsoft Teams](./teams/) | `DST-TEAMS-TO-OUTBOUND` |
 | [Windows Update](./windows-update/) | `DST-WINDOWS-UPDATE-TO-OUTBOUND` |
 
-To install only one service, open that service folder and use its own README.
+To install only one service, open that service folder and use its README.
 
 ## Requirements
 

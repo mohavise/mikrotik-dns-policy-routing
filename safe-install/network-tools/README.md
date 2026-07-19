@@ -1,12 +1,6 @@
-# Network Tools Safe Installers
+# Network Tools Installers
 
-Safe installer entry points for diagnostic and network measurement services.
+This category does not currently provide one combined category installer. Install the required services individually.
 
-These installers keep exact MikroTik address-list names used by firewall rules:
-
-```text
-SPEEDTEST
-IP-DETECTION
-```
-
-They are intentionally not included in the primary `DST-TO-OUTBOUND` profile.
+| Service | Address list |
+| --- | --- |

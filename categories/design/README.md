@@ -24,7 +24,7 @@ Install the complete **Design** category as one managed destination list.
 | [Figma](./figma/) | `DST-FIGMA-TO-OUTBOUND` |
 | [Canva](./canva/) | `DST-CANVA-TO-OUTBOUND` |
 
-To install only one service, open that service folder and use its own README.
+To install only one service, open that service folder and use its README.
 
 ## Requirements
 

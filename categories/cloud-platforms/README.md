@@ -25,7 +25,7 @@ Install the complete **Cloud Platforms** category as one managed destination lis
 | [Google Cloud](./google-cloud/) | `DST-GOOGLE-CLOUD-TO-OUTBOUND` |
 | [Microsoft Azure](./microsoft-azure/) | `DST-MICROSOFT-AZURE-TO-OUTBOUND` |
 
-To install only one service, open that service folder and use its own README.
+To install only one service, open that service folder and use its README.
 
 ## Requirements
 

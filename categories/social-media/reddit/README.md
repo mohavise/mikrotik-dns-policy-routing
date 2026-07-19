@@ -46,13 +46,11 @@ Run an update manually:
 
 ## Use for policy routing
 
-Example only:
-
 ```routeros
 /ip firewall mangle add chain=prerouting dst-address-list=DST-REDDIT-TO-OUTBOUND action=mark-routing new-routing-mark=to-outbound passthrough=no comment="Reddit to outbound"
 ```
 
-Create the routing table and default route separately for your own VPN, Xray, WireGuard, proxy gateway, or secondary WAN.
+Create the routing table and default route separately for your VPN, Xray, WireGuard, proxy gateway, or secondary WAN.
 
 ## Remove
 
