@@ -24,6 +24,27 @@ The repository creates destination lists only. It does not create your gateway, 
 
 Generated lists are authoritative for their own names. Keep manual entries in a separate list such as `DST-CUSTOM-TO-OUTBOUND`.
 
+## Installation Guides
+
+Open a category guide to install the complete category or select an individual service.
+
+| Category | Installation guide |
+| --- | --- |
+| AI | [Category and services](safe-install/ai/) |
+| Cloud platforms | [Category and services](safe-install/cloud-platforms/) |
+| Design | [Category and services](safe-install/design/) |
+| Developer | [Category and services](safe-install/developer/) |
+| Financial services | [Category and services](safe-install/financial-services/) |
+| Gaming | [Category and services](safe-install/gaming/) |
+| Google services | [Category and services](safe-install/google-services/) |
+| Messaging | [Category and services](safe-install/messaging/) |
+| Microsoft services | [Category and services](safe-install/microsoft-services/) |
+| Mobile app stores | [Category and services](safe-install/mobile-app-store/) |
+| Music | [Category and services](safe-install/music/) |
+| Network tools | [Individual services](safe-install/network-tools/) |
+| Package repositories | [Category and services](safe-install/package-repositories/) |
+| Social media | [Category and services](safe-install/social-media/) |
+
 ## Install Primary Aggregate
 
 ```routeros
@@ -32,11 +53,7 @@ Generated lists are authoritative for their own names. Keep manual entries in a 
 /file remove [find name="safe-install-outbound.rsc"]
 ```
 
-This installs the updater and scheduler for:
-
-```text
-DST-TO-OUTBOUND
-```
+This installs the updater and scheduler for `DST-TO-OUTBOUND`.
 
 ## Install a Category
 
@@ -57,27 +74,6 @@ Telegram example:
 /import file-name="safe-install-telegram-outbound.rsc"
 /file remove [find name="safe-install-telegram-outbound.rsc"]
 ```
-
-## Supported Categories
-
-```text
-AI
-Developer
-Package repositories
-Google services
-Microsoft services
-Music
-Gaming
-Mobile app stores
-Messaging
-Social media
-Design
-Financial services
-Cloud platforms
-Primary aggregate
-```
-
-Service examples include Telegram, Instagram, WhatsApp, GitHub, OpenAI, Microsoft 365, Ubuntu, Debian, Red Hat, Proxmox, Docker, Google Drive, YouTube, Spotify, Steam, Apple App Store, Google Play, Wise, AWS, Azure, and Google Cloud.
 
 ## Generated Files
 
@@ -102,9 +98,9 @@ Clients must use the MikroTik router as DNS for DNS-learned destination addresse
 ## Build and Validate
 
 ```bash
-./scripts/audit-migration.sh
-./scripts/build-all.sh
-./scripts/validate-all.sh
+sh ./scripts/audit-migration.sh
+sh ./scripts/build-all.sh
+sh ./scripts/validate-all.sh
 ```
 
 The build pipeline checks:
@@ -148,7 +144,7 @@ Workflow:
 .github/workflows/update-generated-lists.yml
 ```
 
-It runs daily at `23:30 UTC` and supports manual execution. The workflow audits the repository, rebuilds all lists, validates every generated output, commits only real changes, prevents overlapping runs, and rebases before pushing.
+It runs daily at `23:30 UTC` and supports manual execution. The workflow audits the repository, rebuilds all lists and installation guides, validates generated output, commits only real changes, prevents overlapping runs, and rebases before pushing.
 
 ## Repository Structure
 
@@ -157,6 +153,7 @@ categories/<category>/<service>/
 categories/<category>/<category>-to-outbound/
 categories/primary/primary-to-outbound/
 safe-install/<category>/
+safe-install/<category>/<service>/
 scripts/
 docs/
 ```
