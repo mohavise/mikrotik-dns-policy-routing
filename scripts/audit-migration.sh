@@ -109,10 +109,10 @@ check_no_empty_directories() {
 check_workflow_staging() {
     workflow_file=".github/workflows/update-generated-lists.yml"
 
-    if grep -F "find categories safe-install" "$workflow_file" >/dev/null 2>&1 &&
-       grep -F "-name '*.rsc'" "$workflow_file" >/dev/null 2>&1 &&
-       grep -F "-name 'README.md'" "$workflow_file" >/dev/null 2>&1 &&
-       grep -F "git add" "$workflow_file" >/dev/null 2>&1; then
+    if grep -F -- "find categories safe-install" "$workflow_file" >/dev/null 2>&1 &&
+       grep -F -- "-name '*.rsc'" "$workflow_file" >/dev/null 2>&1 &&
+       grep -F -- "-name 'README.md'" "$workflow_file" >/dev/null 2>&1 &&
+       grep -F -- "git add" "$workflow_file" >/dev/null 2>&1; then
         pass "workflow stages generated RouterOS files"
         pass "workflow stages generated category and service install guides"
     else
