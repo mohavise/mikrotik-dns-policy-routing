@@ -3,16 +3,17 @@ set -eu
 
 ROOT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 BASE_URL="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main"
+BT='`'
 
 install_block() {
     file_name="$1"
     relative_path="$2"
     cat <<EOF
-```routeros
+${BT}${BT}${BT}routeros
 /tool fetch url="$BASE_URL/$relative_path" dst-path=$file_name check-certificate=yes-without-crl
 /import file-name=$file_name
 /file remove [find name=$file_name]
-```
+${BT}${BT}${BT}
 EOF
 }
 
@@ -21,12 +22,12 @@ verify_block() {
     script_name="$2"
     scheduler_name="$3"
     cat <<EOF
-```routeros
+${BT}${BT}${BT}routeros
 /ip dns static print where address-list=$list_name
 /ip firewall address-list print where list=$list_name
 /system script print where name=$script_name
 /system scheduler print where name=$scheduler_name
-```
+${BT}${BT}${BT}
 EOF
 }
 
@@ -50,10 +51,10 @@ Install only the **$service_name** destination list.
 
 | Item | Value |
 | --- | --- |
-| RouterOS address list | `$list_name` |
-| Update script | `$update_script` |
-| Daily scheduler | `$scheduler` |
-| Installer | `$install_path` |
+| RouterOS address list | ${BT}$list_name${BT} |
+| Update script | ${BT}$update_script${BT} |
+| Daily scheduler | ${BT}$scheduler${BT} |
+| Installer | ${BT}$install_path${BT} |
 
 ## Install
 
@@ -65,9 +66,9 @@ The installer downloads the managed updater and scheduler, installs them without
 
 Clients must use the MikroTik router for DNS so DNS Static FWD rules can learn destination IP addresses:
 
-```routeros
+${BT}${BT}${BT}routeros
 /ip dns set allow-remote-requests=yes
-```
+${BT}${BT}${BT}
 
 Prevent client DNS bypass separately when required by your network design.
 
@@ -77,28 +78,28 @@ $(verify_block "$list_name" "$update_script" "$scheduler")
 
 Run an update manually:
 
-```routeros
+${BT}${BT}${BT}routeros
 /system script run $update_script
-```
+${BT}${BT}${BT}
 
 ## Use for policy routing
 
-```routeros
+${BT}${BT}${BT}routeros
 /ip firewall mangle add chain=prerouting dst-address-list=$list_name action=mark-routing new-routing-mark=to-outbound passthrough=no comment="$service_name to outbound"
-```
+${BT}${BT}${BT}
 
 Create the routing table and default route separately for your VPN, Xray, WireGuard, proxy gateway, or secondary WAN.
 
 ## Remove
 
-```routeros
+${BT}${BT}${BT}routeros
 /system scheduler remove [find name=$scheduler]
 /system script remove [find name=$update_script]
 /ip dns static remove [find address-list=$list_name]
 /ip firewall address-list remove [find list=$list_name]
-```
+${BT}${BT}${BT}
 
-Do not manually add custom entries to `$list_name`; use a separate custom address list.
+Do not manually add custom entries to ${BT}$list_name${BT}; use a separate custom address list.
 EOF
 }
 
@@ -139,7 +140,7 @@ while IFS= read -r services_file; do
             LIST_NAME=""
             . "$service_conf"
             service_rows="$service_rows
-| [$SERVICE_NAME](./$service_id/) | `$LIST_NAME` |"
+| [$SERVICE_NAME](./$service_id/) | ${BT}$LIST_NAME${BT} |"
         fi
     done < "$services_file"
 
@@ -151,10 +152,10 @@ Install the complete **$display_name** category as one managed destination list.
 
 | Item | Value |
 | --- | --- |
-| Category address list | `$list_name` |
-| Update script | `$update_script` |
-| Daily scheduler | `$scheduler` |
-| Installer | `$install_path` |
+| Category address list | ${BT}$list_name${BT} |
+| Update script | ${BT}$update_script${BT} |
+| Daily scheduler | ${BT}$scheduler${BT} |
+| Installer | ${BT}$install_path${BT} |
 
 ## Install the complete category
 
@@ -169,9 +170,9 @@ To install only one service, open that service folder and use its README.
 
 ## Requirements
 
-```routeros
+${BT}${BT}${BT}routeros
 /ip dns set allow-remote-requests=yes
-```
+${BT}${BT}${BT}
 
 Clients must use the MikroTik router for DNS. DNS bypass prevention is a separate firewall design decision.
 
@@ -181,24 +182,24 @@ $(verify_block "$list_name" "$update_script" "$scheduler")
 
 Run an update manually:
 
-```routeros
+${BT}${BT}${BT}routeros
 /system script run $update_script
-```
+${BT}${BT}${BT}
 
 ## Policy-routing example
 
-```routeros
+${BT}${BT}${BT}routeros
 /ip firewall mangle add chain=prerouting dst-address-list=$list_name action=mark-routing new-routing-mark=to-outbound passthrough=no comment="$display_name to outbound"
-```
+${BT}${BT}${BT}
 
 ## Remove
 
-```routeros
+${BT}${BT}${BT}routeros
 /system scheduler remove [find name=$scheduler]
 /system script remove [find name=$update_script]
 /ip dns static remove [find address-list=$list_name]
 /ip firewall address-list remove [find list=$list_name]
-```
+${BT}${BT}${BT}
 
 Do not manually add entries to the managed category list. Use a separate custom list.
 EOF
@@ -227,7 +228,7 @@ while IFS= read -r category_root; do
         LIST_NAME=""
         . "$service_conf"
         rows="$rows
-| [$SERVICE_NAME](./$service_id/) | `$LIST_NAME` |"
+| [$SERVICE_NAME](./$service_id/) | ${BT}$LIST_NAME${BT} |"
     done
 
     cat > "$safe_category/README.md" <<EOF
