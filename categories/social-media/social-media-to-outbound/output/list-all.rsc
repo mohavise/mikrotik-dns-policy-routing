@@ -3,7 +3,7 @@
 # profile=social-media-to-outbound
 # List: social media combined domains + CIDR
 # RouterOS address-list: DST-SOCIAL-MEDIA-TO-OUTBOUND
-# Last update: 2026-07-19 14:16:50 UTC
+# Last update: 2026-07-19 14:19:55 UTC
 # do-not-edit-manually
 
 /ip dns static
