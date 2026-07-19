@@ -23,17 +23,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Prepare scripts
-        run: chmod +x scripts/*.sh
-
       - name: Audit repository structure
-        run: ./scripts/audit-migration.sh
+        run: sh ./scripts/audit-migration.sh
 
       - name: Generate RouterOS lists and install guides
-        run: ./scripts/build-all.sh
+        run: sh ./scripts/build-all.sh
 
       - name: Validate generated files
-        run: ./scripts/validate-all.sh
+        run: sh ./scripts/validate-all.sh
 
       - name: Commit changes
         run: |
