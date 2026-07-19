@@ -106,26 +106,28 @@ check_no_empty_directories() {
     fi
 }
 
+check_workflow_staging() {
+    workflow_file=".github/workflows/update-generated-lists.yml"
+
+    if grep -F "find categories safe-install" "$workflow_file" >/dev/null 2>&1 &&
+       grep -F "-name '*.rsc'" "$workflow_file" >/dev/null 2>&1 &&
+       grep -F "-name 'README.md'" "$workflow_file" >/dev/null 2>&1 &&
+       grep -F "git add" "$workflow_file" >/dev/null 2>&1; then
+        pass "workflow stages generated RouterOS files"
+        pass "workflow stages generated category and service install guides"
+    else
+        fail_check "workflow stages generated RouterOS files"
+        fail_check "workflow stages generated category and service install guides"
+    fi
+}
+
 check_no_legacy_calls scripts/build-all.sh "build-all"
 check_no_legacy_calls scripts/validate-all.sh "validate-all"
 check_no_legacy_safe_fetches
 check_root_installers
 check_no_category_scripts_dirs
 check_no_empty_directories
-
-workflow_file=".github/workflows/update-generated-lists.yml"
-
-if grep -F "find categories safe-install -type f -name '*.rsc' -print0" "$workflow_file" >/dev/null 2>&1; then
-    pass "workflow stages generated RouterOS files"
-else
-    fail_check "workflow stages generated RouterOS files"
-fi
-
-if grep -F "find categories -type f -name 'README.md' -print0" "$workflow_file" >/dev/null 2>&1; then
-    pass "workflow stages generated category and service install guides"
-else
-    fail_check "workflow stages generated category and service install guides"
-fi
+check_workflow_staging
 
 if grep -F "scripts/generate-install-readmes.sh" scripts/build-all.sh >/dev/null 2>&1; then
     pass "build-all generates category and service install guides"
