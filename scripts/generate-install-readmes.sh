@@ -220,8 +220,12 @@ while IFS= read -r category_root; do
 
     display_name="$(printf '%s' "$category_id" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++){$i=toupper(substr($i,1,1)) substr($i,2)}}1')"
     rows=""
-    find "$category_root" -mindepth 3 -maxdepth 3 -path '*/database/service.conf' -type f | sort |
-    while IFS= read -r service_conf; do
+    service_conf_list="$(find "$category_root" -mindepth 3 -maxdepth 3 -path '*/database/service.conf' -type f | sort)"
+    old_ifs=$IFS
+    IFS='
+'
+    for service_conf in $service_conf_list; do
+        [ -n "$service_conf" ] || continue
         service_root="$(dirname "$(dirname "$service_conf")")"
         service_id="$(basename "$service_root")"
         SERVICE_NAME=""
@@ -230,6 +234,7 @@ while IFS= read -r category_root; do
         rows="$rows
 | [$SERVICE_NAME](./$service_id/) | ${BT}$LIST_NAME${BT} |"
     done
+    IFS=$old_ifs
 
     cat > "$safe_category/README.md" <<EOF
 # $display_name Installers
