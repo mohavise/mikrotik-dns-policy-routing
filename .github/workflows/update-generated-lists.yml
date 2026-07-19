@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          find categories -path '*/output/*.rsc' -type f -print0 | xargs -0 -r git add
+          find categories safe-install -type f -name '*.rsc' -print0 | xargs -0 -r git add
 
           if git diff --cached --quiet; then
             echo "No service list changes"
