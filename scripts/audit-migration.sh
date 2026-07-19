@@ -68,7 +68,7 @@ check_category_profile_paths() {
     missing=0
 
     for script in scripts/build-all.sh scripts/validate-all.sh; do
-        sed -n 's/.*"\(categories\/[^"]*\/scripts\/[^"]*\.sh\)".*/\1/p' "$script" |
+        sed -n 's/.*"\(categories\/[^\"]*\/scripts\/[^\"]*\.sh\)".*/\1/p' "$script" |
         while IFS= read -r path; do
             if [ ! -f "$path" ]; then
                 printf 'FAIL: missing category execution script: %s\n' "$path"
@@ -113,10 +113,24 @@ check_root_installers
 check_no_category_scripts_dirs
 check_no_empty_directories
 
-if grep -F "find categories -path '*/output/*.rsc' -type f -print0 | xargs -0 git add" .github/workflows/update-generated-lists.yml >/dev/null 2>&1; then
-    pass "workflow stages generated output from categories/"
+workflow_file=".github/workflows/update-generated-lists.yml"
+
+if grep -F "find categories safe-install -type f -name '*.rsc' -print0" "$workflow_file" >/dev/null 2>&1; then
+    pass "workflow stages generated RouterOS files"
 else
-    fail_check "workflow stages generated output from categories/"
+    fail_check "workflow stages generated RouterOS files"
+fi
+
+if grep -F "find categories -type f -name 'README.md' -print0" "$workflow_file" >/dev/null 2>&1; then
+    pass "workflow stages generated category and service install guides"
+else
+    fail_check "workflow stages generated category and service install guides"
+fi
+
+if grep -F "scripts/generate-install-readmes.sh" scripts/build-all.sh >/dev/null 2>&1; then
+    pass "build-all generates category and service install guides"
+else
+    fail_check "build-all generates category and service install guides"
 fi
 
 if [ -d categories ]; then
