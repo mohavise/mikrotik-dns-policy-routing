@@ -32,4 +32,7 @@ sh "$ROOT_DIR/scripts/build-primary.sh"
 printf '\n==> postprocess generated RouterOS outputs\n'
 sh "$ROOT_DIR/scripts/enforce-authoritative-cleanup.sh"
 
+printf '\n==> enforce secure RouterOS fetch settings\n'
+sh "$ROOT_DIR/scripts/harden-routeros-fetch.sh"
+
 printf '\nBuild complete\n'
