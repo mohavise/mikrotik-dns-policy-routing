@@ -34,4 +34,10 @@ grep -q 'DST-TO-OUTBOUND' "$ROOT_DIR/categories/primary/primary-to-outbound/outp
 printf '\n==> validate generated output safety\n'
 sh "$ROOT_DIR/scripts/validate-authoritative-cleanup.sh"
 
+printf '\n==> validate secure RouterOS fetch settings\n'
+if grep -R -n --include='*.rsc' 'mode=https' "$ROOT_DIR/safe-install" "$ROOT_DIR/categories"; then
+    echo 'Insecure RouterOS mode=https setting found' >&2
+    exit 1
+fi
+
 printf '\nValidation complete\n'
