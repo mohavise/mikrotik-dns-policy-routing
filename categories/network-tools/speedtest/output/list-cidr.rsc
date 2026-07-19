@@ -4,7 +4,7 @@
 # List: Speedtest CIDR
 # RouterOS address-list: SPEEDTEST
 # Source: manual verified additions
-# Last update: 2026-07-18 00:56:23 UTC
+# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

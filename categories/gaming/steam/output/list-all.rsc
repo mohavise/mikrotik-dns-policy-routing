@@ -4,7 +4,7 @@
 # List: Steam combined domains + CIDR
 # RouterOS address-list: DST-STEAM-TO-OUTBOUND
 # Domain source: Steam and Valve public/service domains (official-owned-domains)
-# Last update: 2026-07-18 00:56:21 UTC
+# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

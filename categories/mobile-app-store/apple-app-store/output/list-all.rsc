@@ -4,7 +4,7 @@
 # List: Apple App Store combined domains + CIDR
 # RouterOS address-list: DST-APPLE-APP-STORE-TO-OUTBOUND
 # Domain source: Apple products on enterprise networks (official-vendor-docs)
-# Last update: 2026-07-18 00:56:22 UTC
+# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static

@@ -4,7 +4,7 @@
 # List: Red Hat combined domains + CIDR
 # RouterOS address-list: DST-REDHAT-TO-OUTBOUND
 # Domain source: Red Hat RHSM firewall guidance (official-allowlist)
-# Last update: 2026-07-18 00:56:23 UTC
+# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static

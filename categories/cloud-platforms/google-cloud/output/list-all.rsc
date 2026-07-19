@@ -4,7 +4,7 @@
 # List: Google Cloud combined domains + CIDR
 # RouterOS address-list: DST-GOOGLE-CLOUD-TO-OUTBOUND
 # Domain source: Google official Cloud console required domains (official-control-plane-domains)
-# Last update: 2026-07-18 00:56:21 UTC
+# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

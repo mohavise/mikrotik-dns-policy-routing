@@ -4,7 +4,7 @@
 # List: Microsoft Azure CIDR
 # RouterOS address-list: DST-MICROSOFT-AZURE-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-18 00:56:21 UTC
+# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

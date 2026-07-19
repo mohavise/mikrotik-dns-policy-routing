@@ -4,7 +4,7 @@
 # List: Microsoft Azure domains
 # RouterOS address-list: DST-MICROSOFT-AZURE-TO-OUTBOUND
 # Source: Microsoft official Azure portal allowlist (official-control-plane-domains)
-# Last update: 2026-07-18 00:56:21 UTC
+# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

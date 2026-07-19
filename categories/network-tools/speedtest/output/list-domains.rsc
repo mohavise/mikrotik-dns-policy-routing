@@ -4,7 +4,7 @@
 # List: Speedtest domains
 # RouterOS address-list: SPEEDTEST
 # Source: Local MikroTik DNS policy list (manual-curated)
-# Last update: 2026-07-18 00:56:23 UTC
+# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static
