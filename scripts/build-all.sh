@@ -35,4 +35,7 @@ sh "$ROOT_DIR/scripts/enforce-authoritative-cleanup.sh"
 printf '\n==> enforce secure RouterOS fetch settings\n'
 sh "$ROOT_DIR/scripts/harden-routeros-fetch.sh"
 
+printf '\n==> generate category and service installation guides\n'
+sh "$ROOT_DIR/scripts/generate-install-readmes.sh"
+
 printf '\nBuild complete\n'
