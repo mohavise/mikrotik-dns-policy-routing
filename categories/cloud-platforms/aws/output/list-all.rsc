@@ -3,8 +3,6 @@
 # service=aws
 # List: Amazon Web Services combined domains + CIDR
 # RouterOS address-list: DST-AWS-TO-OUTBOUND
-# Domain source: AWS official website and console allowlist (official-control-plane-domains)
-# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

@@ -10,7 +10,7 @@
 :local schedulerFile "scheduler-update-discord-outbound.rsc"
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile mode=https
+    /tool fetch url=($baseUrl . "/" . $updatePath) dst-path=$updateFile check-certificate=yes-without-crl
     /import file-name=$updateFile
     /file remove $updateFile
 } on-error={
@@ -19,7 +19,7 @@
 }
 
 :do {
-    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile mode=https
+    /tool fetch url=($baseUrl . "/" . $schedulerPath) dst-path=$schedulerFile check-certificate=yes-without-crl
     /import file-name=$schedulerFile
     /file remove $schedulerFile
 } on-error={

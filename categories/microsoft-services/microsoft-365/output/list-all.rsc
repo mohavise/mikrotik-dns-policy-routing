@@ -3,8 +3,6 @@
 # service=microsoft-365
 # List: Microsoft 365 combined domains + CIDR
 # RouterOS address-list: DST-MICROSOFT-365-TO-OUTBOUND
-# Domain source: Microsoft 365 URLs and IP address ranges (official-endpoint-docs)
-# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static

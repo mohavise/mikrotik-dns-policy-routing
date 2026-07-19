@@ -4,7 +4,6 @@
 # List: Reddit domains
 # RouterOS address-list: DST-REDDIT-TO-OUTBOUND
 # Source: Reddit first-party service and media domains (official-owned-domains)
-# Last update: 2026-07-19 01:01:58 UTC
 # do-not-edit-manually
 
 /ip dns static

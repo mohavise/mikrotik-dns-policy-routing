@@ -3,8 +3,6 @@
 # service=wise
 # List: Wise combined domains + CIDR
 # RouterOS address-list: DST-WISE-TO-OUTBOUND
-# Domain source: Wise official production domains (official-owned-domains)
-# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

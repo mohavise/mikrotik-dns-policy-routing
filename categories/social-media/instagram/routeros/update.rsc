@@ -19,7 +19,7 @@ add dont-require-permissions=no name=update-instagram-outbound owner=admin polic
 :do { /ip dns static export file=\$dnsBackup where address-list=\$addrList } on-error={ :log warning \"Instagram outbound update: could not create DNS backup; stopping\"; :return }
 :do { /ip firewall address-list export file=\$cidrBackup where list=\$addrList } on-error={ :log warning \"Instagram outbound update: could not create address-list backup; stopping\"; :return }
 
-:do { /tool fetch url=\$url dst-path=\$fileName mode=https } on-error={ :log warning \"Instagram outbound update: download failed; keeping old list\"; :return }
+:do { /tool fetch url=\$url dst-path=\$fileName check-certificate=yes-without-crl } on-error={ :log warning \"Instagram outbound update: download failed; keeping old list\"; :return }
 
 :if ([:len [/file find name=\$fileName]] = 0) do={ :log warning \"Instagram outbound update: downloaded file not found; keeping old list\"; :return }
 

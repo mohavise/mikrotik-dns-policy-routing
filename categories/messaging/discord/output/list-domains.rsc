@@ -4,7 +4,6 @@
 # List: Discord domains
 # RouterOS address-list: DST-DISCORD-TO-OUTBOUND
 # Source: Discord official application and media domains (official-owned-domains)
-# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

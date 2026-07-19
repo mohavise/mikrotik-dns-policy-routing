@@ -3,8 +3,6 @@
 # service=instagram
 # List: Instagram combined domains + CIDR
 # RouterOS address-list: DST-INSTAGRAM-TO-OUTBOUND
-# Domain source: Meta-owned Instagram public domains (official-owned-domains)
-# Last update: 2026-07-19 01:01:58 UTC
 # do-not-edit-manually
 
 /ip dns static

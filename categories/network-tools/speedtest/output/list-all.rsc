@@ -3,8 +3,6 @@
 # service=speedtest
 # List: Speedtest combined domains + CIDR
 # RouterOS address-list: SPEEDTEST
-# Domain source: Local MikroTik DNS policy list (manual-curated)
-# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static

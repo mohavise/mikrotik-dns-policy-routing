@@ -3,8 +3,6 @@
 # service=facebook
 # List: Facebook combined domains + CIDR
 # RouterOS address-list: DST-FACEBOOK-TO-OUTBOUND
-# Domain source: Meta-owned Facebook public domains (official-owned-domains)
-# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static

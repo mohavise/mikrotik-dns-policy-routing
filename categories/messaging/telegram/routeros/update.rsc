@@ -31,7 +31,7 @@ add dont-require-permissions=no name=update-telegram-outbound owner=admin policy
 }
 
 :do {
-    /tool fetch url=\$url dst-path=\$fileName mode=https
+    /tool fetch url=\$url dst-path=\$fileName check-certificate=yes-without-crl
 } on-error={
     :log warning \"Telegram outbound update: download failed; keeping old list\"
     :return

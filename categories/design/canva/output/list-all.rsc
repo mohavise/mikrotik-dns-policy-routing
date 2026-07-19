@@ -3,8 +3,6 @@
 # service=canva
 # List: Canva combined domains + CIDR
 # RouterOS address-list: DST-CANVA-TO-OUTBOUND
-# Domain source: Canva-owned public/service domains (official-owned-domains)
-# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

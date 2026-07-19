@@ -4,7 +4,6 @@
 # List: Docker domains
 # RouterOS address-list: DST-DOCKER-TO-OUTBOUND
 # Source: Docker official allowlist (official-allowlist)
-# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static

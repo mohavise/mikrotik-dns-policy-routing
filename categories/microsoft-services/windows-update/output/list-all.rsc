@@ -3,8 +3,6 @@
 # service=windows-update
 # List: Windows Update combined domains + CIDR
 # RouterOS address-list: DST-WINDOWS-UPDATE-TO-OUTBOUND
-# Domain source: Windows Update endpoint documentation (official-endpoint-docs)
-# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static

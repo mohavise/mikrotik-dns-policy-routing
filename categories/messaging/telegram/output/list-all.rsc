@@ -3,11 +3,6 @@
 # service=telegram
 # List: Telegram combined domains + CIDR
 # RouterOS address-list: DST-TELEGRAM-TO-OUTBOUND
-# Domain source: v2fly/domain-list-community telegram (community-maintained)
-# Domain source URL: https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
-# CIDR source: Telegram official CIDR (official)
-# CIDR source URL: https://core.telegram.org/resources/cidr.txt
-# Last update: 2026-07-19 01:01:56 UTC
 # do-not-edit-manually
 
 /ip dns static

@@ -4,7 +4,6 @@
 # List: Ubuntu CIDR
 # RouterOS address-list: DST-UBUNTU-TO-OUTBOUND
 # Source: manual verified additions
-# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

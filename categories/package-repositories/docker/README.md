@@ -1,3 +1,66 @@
-# Docker
+# Docker for MikroTik
 
-Category-first service folder for `docker`.
+Install only the **Docker** destination list.
+
+| Item | Value |
+| --- | --- |
+| RouterOS address list | `DST-DOCKER-TO-OUTBOUND` |
+| Update script | `update-docker-outbound` |
+| Daily scheduler | `update-docker-outbound` |
+| Installer | `safe-install/package-repositories/docker/safe-install-docker-outbound.rsc` |
+
+## Install
+
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/package-repositories/docker/safe-install-docker-outbound.rsc" dst-path=safe-install-docker-outbound.rsc check-certificate=yes-without-crl
+/import file-name=safe-install-docker-outbound.rsc
+/file remove [find name=safe-install-docker-outbound.rsc]
+```
+
+The installer downloads the managed updater and scheduler, installs them without duplicates, and runs the first update.
+
+## Requirements
+
+Clients must use the MikroTik router for DNS so DNS Static FWD rules can learn destination IP addresses:
+
+```routeros
+/ip dns set allow-remote-requests=yes
+```
+
+Prevent client DNS bypass separately when required by your network design.
+
+## Verify
+
+```routeros
+/ip dns static print where address-list=DST-DOCKER-TO-OUTBOUND
+/ip firewall address-list print where list=DST-DOCKER-TO-OUTBOUND
+/system script print where name=update-docker-outbound
+/system scheduler print where name=update-docker-outbound
+```
+
+Run an update manually:
+
+```routeros
+/system script run update-docker-outbound
+```
+
+## Use for policy routing
+
+Example only:
+
+```routeros
+/ip firewall mangle add chain=prerouting dst-address-list=DST-DOCKER-TO-OUTBOUND action=mark-routing new-routing-mark=to-outbound passthrough=no comment="Docker to outbound"
+```
+
+Create the routing table and default route separately for your own VPN, Xray, WireGuard, proxy gateway, or secondary WAN.
+
+## Remove
+
+```routeros
+/system scheduler remove [find name=update-docker-outbound]
+/system script remove [find name=update-docker-outbound]
+/ip dns static remove [find address-list=DST-DOCKER-TO-OUTBOUND]
+/ip firewall address-list remove [find list=DST-DOCKER-TO-OUTBOUND]
+```
+
+Do not manually add custom entries to `DST-DOCKER-TO-OUTBOUND`; use a separate custom address list.

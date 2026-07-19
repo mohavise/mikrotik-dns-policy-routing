@@ -4,7 +4,6 @@
 # List: Spotify domains
 # RouterOS address-list: DST-SPOTIFY-TO-OUTBOUND
 # Source: Spotify public/service domains (official-owned-domains)
-# Last update: 2026-07-19 01:01:57 UTC
 # do-not-edit-manually
 
 /ip dns static
