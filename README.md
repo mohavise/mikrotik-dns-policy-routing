@@ -1,252 +1,178 @@
 # MikroTik DNS Policy Routing
 
-![GitHub repo size](https://img.shields.io/github/repo-size/mohavise/mikrotik-dns-policy-routing)
-![GitHub last commit](https://img.shields.io/github/last-commit/mohavise/mikrotik-dns-policy-routing)
-![GitHub license](https://img.shields.io/github/license/mohavise/mikrotik-dns-policy-routing)
-
-Service-based **MikroTik RouterOS DNS policy routing** lists for routing selected websites, apps, and repositories through a chosen outbound path such as Xray, VPN, WireGuard, WARP, proxy, or WAN2.
-
-This project generates RouterOS DNS Static FWD regex rules, firewall address-list entries, safe updater scripts, and daily schedulers. It is useful when you want selected destinations such as Telegram, WhatsApp, GitHub, OpenAI ChatGPT, YouTube, Docker, Linux repositories, Google Drive, Apple App Store, Google Play, Samsung Galaxy Store, and similar services to use a special route without routing all traffic.
-
-## What This Solves
-
-Many MikroTik networks need split routing:
+Service-based RouterOS destination lists for routing selected websites and applications through Xray, VPN, WireGuard, WARP, another WAN, or another administrator-defined outbound path.
 
 ```text
-normal traffic -> normal WAN
-selected service traffic -> outbound path chosen by administrator
+service domains and CIDRs
+        ↓
+generated RouterOS DNS static and address-list rules
+        ↓
+service, category, or aggregate destination list
+        ↓
+MikroTik policy routing chosen by the administrator
 ```
 
-This repository provides managed destination lists that can be used in MikroTik mangle, routing marks, policy routing, and firewall rules.
+The repository creates destination lists only. It does not create your gateway, routing table, mangle policy, or VPN connection.
 
-The repository does not decide the final route. The MikroTik administrator decides which generated list is used in routing rules.
+## List Levels
 
-## Routing List Levels
-
-The project supports three levels of lists.
-
-| Level | Purpose | Example list |
-| --- | --- | --- |
-| Service list | One service only | `DST-TELEGRAM-TO-OUTBOUND` |
-| Category profile | Combined services inside one category | `DST-MESSAGING-TO-OUTBOUND` |
-| Primary aggregate profile | Optional one-list profile for simple setups | `DST-TO-OUTBOUND` |
-
-Examples:
-
-```text
-Telegram service       -> DST-TELEGRAM-TO-OUTBOUND
-Messaging category     -> DST-MESSAGING-TO-OUTBOUND
-Developer category     -> DST-DEVELOPER-TO-OUTBOUND
-AI category            -> DST-AI-TO-OUTBOUND
-Primary aggregate      -> DST-TO-OUTBOUND
-```
-
-You can install a service list, a category profile, the optional primary aggregate profile, or a mix of them.
-
-## Update Safety
-
-Generated RouterOS output is designed to be repeat-safe and endpoint-safe.
-
-Expected behavior:
-
-```text
-run safe install again      -> no duplicate scripts or schedulers
-run updater again           -> no duplicate DNS/static/list entries
-run scheduled update daily  -> refreshes current repo state
-remove domain from repo     -> removed from endpoint on next update
-remove CIDR from repo       -> removed from endpoint on next update
-remove service from profile -> removed from endpoint on next update
-```
-
-Generated repo-managed lists are authoritative for their own target list. Do not manually add custom entries to generated list names such as `DST-TO-OUTBOUND`, `DST-MESSAGING-TO-OUTBOUND`, or `DST-TELEGRAM-TO-OUTBOUND`.
-
-For manual entries, use a separate custom list, for example:
-
-```text
-DST-CUSTOM-TO-OUTBOUND
-```
-
-## Quick Install
-
-### Optional primary aggregate profile
-
-This installs the optional aggregate profile that creates/updates `DST-TO-OUTBOUND`.
-
-```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install-outbound.rsc" dst-path=safe-install-outbound.rsc mode=https
-/import file-name=safe-install-outbound.rsc
-/file remove [find name=safe-install-outbound.rsc]
-```
-
-### Category profile example
-
-This installs the messaging category profile that creates/updates `DST-MESSAGING-TO-OUTBOUND`.
-
-```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/messaging/safe-install-messaging-to-outbound.rsc" dst-path=safe-install-messaging-to-outbound.rsc mode=https
-/import file-name=safe-install-messaging-to-outbound.rsc
-/file remove [find name=safe-install-messaging-to-outbound.rsc]
-```
-
-### Service-only example
-
-This installs only Telegram and creates/updates `DST-TELEGRAM-TO-OUTBOUND`.
-
-```routeros
-/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/messaging/telegram/safe-install-telegram-outbound.rsc" dst-path=safe-install-telegram-outbound.rsc mode=https
-/import file-name=safe-install-telegram-outbound.rsc
-/file remove [find name=safe-install-telegram-outbound.rsc]
-```
-
-## Supported Service Lists
-
-| Service | RouterOS list |
+| Level | Example |
 | --- | --- |
-| Telegram | `DST-TELEGRAM-TO-OUTBOUND` |
-| Instagram | `DST-INSTAGRAM-TO-OUTBOUND` |
-| WhatsApp | `DST-WHATSAPP-TO-OUTBOUND` |
-| Facebook | `DST-FACEBOOK-TO-OUTBOUND` |
-| X / Twitter | `DST-X-TO-OUTBOUND` |
-| LinkedIn | `DST-LINKEDIN-TO-OUTBOUND` |
-| Reddit | `DST-REDDIT-TO-OUTBOUND` |
-| Signal | `DST-SIGNAL-TO-OUTBOUND` |
-| Discord | `DST-DISCORD-TO-OUTBOUND` |
-| Figma | `DST-FIGMA-TO-OUTBOUND` |
-| Canva | `DST-CANVA-TO-OUTBOUND` |
-| GitHub | `DST-GITHUB-TO-OUTBOUND` |
-| OpenAI / ChatGPT | `DST-OPENAI-TO-OUTBOUND` |
-| Microsoft 365 | `DST-MICROSOFT-365-TO-OUTBOUND` |
-| OneDrive | `DST-ONEDRIVE-TO-OUTBOUND` |
-| Microsoft Teams | `DST-TEAMS-TO-OUTBOUND` |
-| Windows Update | `DST-WINDOWS-UPDATE-TO-OUTBOUND` |
-| Ubuntu repositories | `DST-UBUNTU-TO-OUTBOUND` |
-| Debian repositories | `DST-DEBIAN-TO-OUTBOUND` |
-| Red Hat repositories | `DST-REDHAT-TO-OUTBOUND` |
-| Proxmox repositories | `DST-PROXMOX-TO-OUTBOUND` |
-| Docker repositories | `DST-DOCKER-TO-OUTBOUND` |
-| Google Drive | `DST-GOOGLE-DRIVE-TO-OUTBOUND` |
-| YouTube | `DST-YOUTUBE-TO-OUTBOUND` |
-| Spotify | `DST-SPOTIFY-TO-OUTBOUND` |
-| Steam | `DST-STEAM-TO-OUTBOUND` |
-| Apple App Store | `DST-APPLE-APP-STORE-TO-OUTBOUND` |
-| Google Play | `DST-GOOGLE-PLAY-TO-OUTBOUND` |
-| Samsung Galaxy Store | `DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND` |
-| Wise | `DST-WISE-TO-OUTBOUND` |
-| Amazon Web Services | `DST-AWS-TO-OUTBOUND` |
-| Microsoft Azure | `DST-MICROSOFT-AZURE-TO-OUTBOUND` |
-| Google Cloud | `DST-GOOGLE-CLOUD-TO-OUTBOUND` |
+| Service | `DST-TELEGRAM-TO-OUTBOUND` |
+| Category | `DST-MESSAGING-TO-OUTBOUND` |
+| Primary aggregate | `DST-TO-OUTBOUND` |
 
-## Supported Category Profiles
+Generated lists are authoritative for their own names. Keep manual entries in a separate list such as `DST-CUSTOM-TO-OUTBOUND`.
 
-| Category profile | RouterOS list |
-| --- | --- |
-| AI | `DST-AI-TO-OUTBOUND` |
-| Developer | `DST-DEVELOPER-TO-OUTBOUND` |
-| Package repositories | `DST-PACKAGE-REPOSITORIES-TO-OUTBOUND` |
-| Google services | `DST-GOOGLE-SERVICES-TO-OUTBOUND` |
-| Microsoft services | `DST-MICROSOFT-SERVICES-TO-OUTBOUND` |
-| Music | `DST-MUSIC-TO-OUTBOUND` |
-| Gaming | `DST-GAMING-TO-OUTBOUND` |
-| Mobile app store | `DST-MOBILE-APP-STORE-TO-OUTBOUND` |
-| Messaging | `DST-MESSAGING-TO-OUTBOUND` |
-| Social media | `DST-SOCIAL-MEDIA-TO-OUTBOUND` |
-| Design | `DST-DESIGN-TO-OUTBOUND` |
-| Financial services | `DST-FINANCIAL-SERVICES-TO-OUTBOUND` |
-| Cloud platforms | `DST-CLOUD-PLATFORMS-TO-OUTBOUND` |
-| Optional primary aggregate | `DST-TO-OUTBOUND` |
+## Install Primary Aggregate
 
-## Repository Structure
-
-```text
-safe-install-outbound.rsc        optional primary aggregate installer
-safe-install/<category>/         service and category safe installers
-categories/<category>/           active service and category profile source
-docs/                            naming, source, and migration notes
-scripts/build-all.sh             build all generated RouterOS outputs
-scripts/validate-all.sh          validate generated outputs and safety rules
-scripts/audit-migration.sh       repository structure audit
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install-outbound.rsc" dst-path="safe-install-outbound.rsc" check-certificate=yes-without-crl
+/import file-name="safe-install-outbound.rsc"
+/file remove [find name="safe-install-outbound.rsc"]
 ```
 
-Active service folders use this pattern:
+This installs the updater and scheduler for:
 
 ```text
-categories/<category-id>/<service-id>/
-categories/<category-id>/<category-id>-to-outbound/
+DST-TO-OUTBOUND
 ```
 
-The old `services/`, `groups/`, and `profiles/` implementation folders were removed after migration to the category-first structure.
+## Install a Category
+
+Messaging example:
+
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/messaging/safe-install-messaging-to-outbound.rsc" dst-path="safe-install-messaging-to-outbound.rsc" check-certificate=yes-without-crl
+/import file-name="safe-install-messaging-to-outbound.rsc"
+/file remove [find name="safe-install-messaging-to-outbound.rsc"]
+```
+
+## Install One Service
+
+Telegram example:
+
+```routeros
+/tool fetch url="https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/safe-install/messaging/telegram/safe-install-telegram-outbound.rsc" dst-path="safe-install-telegram-outbound.rsc" check-certificate=yes-without-crl
+/import file-name="safe-install-telegram-outbound.rsc"
+/file remove [find name="safe-install-telegram-outbound.rsc"]
+```
+
+## Supported Categories
+
+```text
+AI
+Developer
+Package repositories
+Google services
+Microsoft services
+Music
+Gaming
+Mobile app stores
+Messaging
+Social media
+Design
+Financial services
+Cloud platforms
+Primary aggregate
+```
+
+Service examples include Telegram, Instagram, WhatsApp, GitHub, OpenAI, Microsoft 365, Ubuntu, Debian, Red Hat, Proxmox, Docker, Google Drive, YouTube, Spotify, Steam, Apple App Store, Google Play, Wise, AWS, Azure, and Google Cloud.
 
 ## Generated Files
 
-Each service or category profile can contain:
+Each service or category may contain:
 
 ```text
-output/list-domains.rsc       DNS Static FWD regex rules
-output/list-cidr.rsc          firewall address-list CIDR rules
-output/list-all.rsc           combined import file
-routeros/update.rsc           repeat-safe updater script
-routeros/scheduler.rsc        daily scheduler installer
+output/list-domains.rsc
+output/list-cidr.rsc
+output/list-all.rsc
+routeros/update.rsc
+routeros/scheduler.rsc
 ```
 
-Build and validation logic is centralized in the repository root `scripts/` directory.
+DNS rules use RouterOS `type=FWD` with an `address-list`. CIDR rules use `/ip firewall address-list`.
 
-## DNS And Domain Rules
+Clients must use the MikroTik router as DNS for DNS-learned destination addresses to populate:
 
-MikroTik database files must contain normal domains only:
-
-```text
-domain.com
-example.org
+```routeros
+/ip dns set allow-remote-requests=yes
 ```
 
-Do not add wildcard format to MikroTik database files:
+## Build and Validate
 
-```text
-*.domain.com
-```
-
-The generator creates RouterOS regex rules that match both the root domain and subdomains.
-
-Wildcard format is reserved for possible future non-MikroTik exporters such as FortiGate.
-
-## Build And Validate
-
-```sh
+```bash
 ./scripts/audit-migration.sh
 ./scripts/build-all.sh
 ./scripts/validate-all.sh
 ```
 
-The build process also post-processes generated RouterOS outputs to keep updates authoritative. The validation process checks generated output safety, updater repeat-safety, and scheduler repeat-safety.
+The build pipeline checks:
+
+```text
+HTTPS-only external sources
+download retries and timeouts
+strict domain syntax
+IPv4 CIDR octets and prefix lengths
+minimum service counts
+20% sudden-drop protection
+deterministic sorted output
+no duplicate generated rules
+combined-output entry consistency
+authoritative cleanup safety
+repository migration structure
+```
+
+Generated files do not include timestamps, so unchanged source data does not create unnecessary commits.
+
+## RouterOS Installer Safety
+
+The primary safe installer:
+
+```text
+removes stale temporary files
+uses HTTPS certificate verification
+downloads updater and scheduler files
+checks that each file exists
+dry-runs each RouterOS import
+imports only after validation
+cleans temporary files on success or failure
+runs the first update
+```
 
 ## GitHub Automation
 
-The GitHub Actions workflow is:
+Workflow:
 
 ```text
 .github/workflows/update-generated-lists.yml
 ```
 
-It can be run manually and also updates generated outputs automatically when the workflow runs.
+It runs daily at `23:30 UTC` and supports manual execution. The workflow audits the repository, rebuilds all lists, validates every generated output, commits only real changes, prevents overlapping runs, and rebases before pushing.
 
-## Adding New Services
-
-New services must be added under category-first paths:
+## Repository Structure
 
 ```text
-categories/<category-id>/<service-id>/
+categories/<category>/<service>/
+categories/<category>/<category>-to-outbound/
+categories/primary/primary-to-outbound/
+safe-install/<category>/
+scripts/
+docs/
 ```
 
-Rules:
+Database domain files must contain normal domains only:
 
-- Do not add broad CDN or cloud-hosting lists, public provider IP ranges, or generic customer workload domains.
-- A cloud provider may have a tightly scoped control-plane service for its first-party website, documentation, sign-in, console, and management dependencies.
-- Service-owned CDN-looking hostnames may stay only when required by official service documentation.
-- Keep real domain/CIDR data inside service database folders.
-- Category profiles should reference services by service ID.
-- Add safe installers under `safe-install/<category-id>/`, not in the repository root.
+```text
+example.com
+service.example.org
+```
 
-More details:
+Do not use `*.example.com`; the generator creates regex rules that match the root and its subdomains.
+
+Do not add broad public cloud ranges, generic CDN ranges, or unrelated customer workloads. Use only service-owned or tightly scoped dependencies required for the intended service.
+
+More documentation:
 
 ```text
 docs/add-new-service.md
@@ -255,10 +181,6 @@ docs/SOURCES.md
 docs/supported-services.md
 docs/STRUCTURE-MIGRATION.md
 ```
-
-## Search Keywords
-
-MikroTik DNS policy routing, RouterOS DNS Static FWD, MikroTik address-list automation, MikroTik split tunneling, MikroTik service-based routing, route selected websites through VPN, route selected services through Xray, WireGuard policy routing, RouterOS firewall address-list updater, MikroTik Telegram routing, MikroTik GitHub routing, MikroTik OpenAI ChatGPT routing, MikroTik YouTube routing.
 
 ## License
 
