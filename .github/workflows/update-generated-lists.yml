@@ -29,7 +29,7 @@ jobs:
       - name: Audit repository structure
         run: ./scripts/audit-migration.sh
 
-      - name: Generate RouterOS service lists
+      - name: Generate RouterOS lists and install guides
         run: ./scripts/build-all.sh
 
       - name: Validate generated files
@@ -39,13 +39,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          find categories safe-install -type f -name '*.rsc' -print0 | xargs -0 -r git add
+          find categories safe-install -type f \( -name '*.rsc' -o -name 'README.md' \) -print0 | xargs -0 -r git add
 
           if git diff --cached --quiet; then
-            echo "No service list changes"
+            echo "No generated list or documentation changes"
             exit 0
           fi
 
-          git commit -m "Update generated RouterOS service lists"
+          git commit -m "Update generated RouterOS lists and install guides"
           git pull --rebase origin main
           git push origin HEAD:main
