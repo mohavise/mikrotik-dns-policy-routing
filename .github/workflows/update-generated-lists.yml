@@ -8,35 +8,44 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-routeros-service-lists
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Prepare scripts
-        run: |
-          chmod +x scripts/*.sh
+        run: chmod +x scripts/*.sh
+
+      - name: Audit repository structure
+        run: ./scripts/audit-migration.sh
 
       - name: Generate RouterOS service lists
-        run: |
-          ./scripts/build-all.sh
+        run: ./scripts/build-all.sh
 
       - name: Validate generated files
-        run: |
-          ./scripts/validate-all.sh
+        run: ./scripts/validate-all.sh
 
       - name: Commit changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          find categories -path '*/output/*.rsc' -type f -print0 | xargs -0 git add
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find categories -path '*/output/*.rsc' -type f -print0 | xargs -0 -r git add
 
           if git diff --cached --quiet; then
             echo "No service list changes"
-          else
-            git commit -m "Automatic service list update"
-            git push
+            exit 0
           fi
+
+          git commit -m "Update generated RouterOS service lists"
+          git pull --rebase origin main
+          git push origin HEAD:main
