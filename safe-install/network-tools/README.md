@@ -4,3 +4,5 @@ This category does not currently provide one combined category installer. Instal
 
 | Service | Address list |
 | --- | --- |
+| [IP Detection](./ip-detection/) | `IP-DETECTION` |
+| [Speedtest](./speedtest/) | `SPEEDTEST` |
