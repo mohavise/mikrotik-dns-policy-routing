@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Google Drive outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Google Drive outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-google-drive-outbound
 } on-error={
     :log error "Google Drive outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Google Drive outbound safe install: completed"

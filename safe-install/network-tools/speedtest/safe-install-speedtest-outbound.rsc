@@ -15,7 +15,7 @@
     /file remove [find name=$updateFile]
 } on-error={
     :log error "Speedtest safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove [find name=$schedulerFile]
 } on-error={
     :log error "Speedtest safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-speedtest-outbound
 } on-error={
     :log error "Speedtest safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Speedtest safe install: completed"

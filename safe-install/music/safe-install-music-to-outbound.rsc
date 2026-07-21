@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Music outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Music outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-music-outbound
 } on-error={
     :log error "Music outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Music outbound safe install: completed"

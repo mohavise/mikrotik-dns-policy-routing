@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Design outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Design outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-design-outbound
 } on-error={
     :log error "Design outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Design outbound safe install: completed"

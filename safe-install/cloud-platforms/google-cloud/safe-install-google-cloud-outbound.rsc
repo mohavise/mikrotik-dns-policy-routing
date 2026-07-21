@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Google Cloud outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Google Cloud outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-google-cloud-outbound
 } on-error={
     :log error "Google Cloud outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Google Cloud outbound safe install: completed"

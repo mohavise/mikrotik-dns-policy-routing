@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "steam outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "steam outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-steam-outbound
 } on-error={
     :log error "steam outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "steam outbound safe install: completed"

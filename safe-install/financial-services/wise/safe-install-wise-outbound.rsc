@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Wise outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Wise outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-wise-outbound
 } on-error={
     :log error "Wise outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Wise outbound safe install: completed"

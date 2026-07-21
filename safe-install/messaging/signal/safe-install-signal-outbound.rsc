@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Signal outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Signal outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-signal-outbound
 } on-error={
     :log error "Signal outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Signal outbound safe install: completed"

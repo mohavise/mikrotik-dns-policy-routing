@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Mobile app store outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Mobile app store outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-mobile-app-store-outbound
 } on-error={
     :log error "Mobile app store outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Mobile app store outbound safe install: completed"

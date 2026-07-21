@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Samsung Galaxy Store outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Samsung Galaxy Store outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-samsung-galaxy-store-outbound
 } on-error={
     :log error "Samsung Galaxy Store outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Samsung Galaxy Store outbound safe install: completed"

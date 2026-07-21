@@ -21,7 +21,7 @@
 } on-error={
     :if ([:len [/file find name=$updateFile]] > 0) do={ /file remove [find name=$updateFile] }
     :log error "Primary outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -33,14 +33,14 @@
 } on-error={
     :if ([:len [/file find name=$schedulerFile]] > 0) do={ /file remove [find name=$schedulerFile] }
     :log error "Primary outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-outbound
 } on-error={
     :log error "Primary outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Primary outbound safe install: completed"

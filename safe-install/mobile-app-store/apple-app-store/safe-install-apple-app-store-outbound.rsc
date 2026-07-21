@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Apple App Store outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Apple App Store outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-apple-app-store-outbound
 } on-error={
     :log error "Apple App Store outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Apple App Store outbound safe install: completed"

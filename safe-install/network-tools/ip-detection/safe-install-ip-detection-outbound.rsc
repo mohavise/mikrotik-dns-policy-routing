@@ -15,7 +15,7 @@
     /file remove [find name=$updateFile]
 } on-error={
     :log error "IP Detection safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove [find name=$schedulerFile]
 } on-error={
     :log error "IP Detection safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-ip-detection-outbound
 } on-error={
     :log error "IP Detection safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "IP Detection safe install: completed"

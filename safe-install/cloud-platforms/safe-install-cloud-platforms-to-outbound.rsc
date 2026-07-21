@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Cloud platforms outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Cloud platforms outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-cloud-platforms-outbound
 } on-error={
     :log error "Cloud platforms outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Cloud platforms outbound safe install: completed"

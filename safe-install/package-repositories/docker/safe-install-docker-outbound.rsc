@@ -15,7 +15,7 @@
     /file remove $updateFile
 } on-error={
     :log error "Docker outbound safe install: updater install failed"
-    :return
+    :return ""
 }
 
 :do {
@@ -24,14 +24,14 @@
     /file remove $schedulerFile
 } on-error={
     :log error "Docker outbound safe install: scheduler install failed"
-    :return
+    :return ""
 }
 
 :do {
     /system script run update-docker-outbound
 } on-error={
     :log error "Docker outbound safe install: first update failed"
-    :return
+    :return ""
 }
 
 :log warning "Docker outbound safe install: completed"

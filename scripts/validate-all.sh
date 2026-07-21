@@ -40,4 +40,7 @@ if grep -R -n --include='*.rsc' 'mode=https' "$ROOT_DIR/safe-install" "$ROOT_DIR
     exit 1
 fi
 
+printf '\n==> validate RouterOS updater control flow\n'
+sh "$ROOT_DIR/scripts/validate-routeros-updaters.sh"
+
 printf '\nValidation complete\n'
