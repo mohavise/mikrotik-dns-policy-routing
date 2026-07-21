@@ -18,9 +18,14 @@ fi
 
 find "$ROOT_DIR/categories" -path '*/routeros/update.rsc' -type f | sort |
 while read -r updater; do
-    grep -q -- '-UPDATE-BACKUP' "$updater" || fail "missing staged backup in $updater"
+    if grep -q -- '-UPDATE-BACKUP' "$updater"; then
+        fail "DNS-entry staging collision risk found in $updater"
+    fi
+    grep -q 'last-good-' "$updater" || fail "missing last-known-good payload in $updater"
+    grep -q '/file copy' "$updater" || fail "missing rollback payload persistence in $updater"
+    grep -q 'verbose=yes dry-run' "$updater" || fail "missing import syntax preflight in $updater"
     grep -q 'downloaded file failed validation' "$updater" || fail "missing payload validation in $updater"
-    grep -q 'restoring old list' "$updater" || fail "missing rollback in $updater"
+    grep -q 'restoring last-known-good list' "$updater" || fail "missing rollback in $updater"
 done
 
 find "$ROOT_DIR/categories" -path '*/output/list-all.rsc' -type f | sort |
