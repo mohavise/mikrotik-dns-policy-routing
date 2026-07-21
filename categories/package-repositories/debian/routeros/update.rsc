@@ -7,22 +7,17 @@
 /system script
 :if ([:len [find name="update-debian-outbound"]] > 0) do={ remove [find name="update-debian-outbound"] }
 add dont-require-permissions=no name=update-debian-outbound owner=admin policy=read,write,policy,test source=":local fileName \"debian-outbound.rsc\"
-:local lastGoodFile (\"last-good-\" . \$fileName)
+:local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/package-repositories/debian/output/list-all.rsc\"
 :local addrList \"DST-DEBIAN-TO-OUTBOUND\"
 :if ([:len [/file find name=\$fileName]] > 0) do={ /file remove [find name=\$fileName] }
+:if ([:len [/file find name=\$legacyLastGoodFile]] > 0) do={ /file remove [find name=\$legacyLastGoodFile] }
 :do { /tool fetch url=\$url dst-path=\$fileName check-certificate=yes-without-crl } on-error={ :log warning \"Debian outbound update: download failed; keeping old list\"; :return \"\" }
 :if ([:len [/file find name=\$fileName]] = 0) do={ :log warning \"Debian outbound update: downloaded file not found; keeping old list\"; :return \"\" }
 :local payload [/file get [find name=\$fileName] contents]
 :if (([:len \$payload] = 0) || ([:find \$payload \$addrList] = nil)) do={ /file remove [find name=\$fileName]; :log warning \"Debian outbound update: downloaded file failed validation; keeping old list\"; :return \"\" }
 :do { /import file-name=\$fileName verbose=yes dry-run } on-error={ /file remove [find name=\$fileName]; :log warning \"Debian outbound update: syntax validation failed; keeping old list\"; :return \"\" }
-:if ([:len [/file find name=\$lastGoodFile]] = 0) do={
-    :do { /file copy \$fileName name=\$lastGoodFile } on-error={ /file remove [find name=\$fileName]; :log warning \"Debian outbound update: could not seed rollback payload; keeping old list\"; :return \"\" }
-}
-:do { /import file-name=\$fileName } on-error={ :log error \"Debian outbound update: import failed; restoring last-known-good list\"; :do { /ip dns static remove [find address-list=\$addrList] } on-error={}; :do { /ip firewall address-list remove [find list=\$addrList] } on-error={}; :do { /import file-name=\$lastGoodFile } on-error={ :log error \"Debian outbound update: last-known-good rollback failed\" }; /file remove [find name=\$fileName]; :return \"\" }
-:if (([:len [/ip dns static find address-list=\$addrList]] = 0) && ([:len [/ip firewall address-list find list=\$addrList]] = 0)) do={ :log error \"Debian outbound update: imported list is empty; restoring last-known-good list\"; :do { /ip dns static remove [find address-list=\$addrList] } on-error={}; :do { /ip firewall address-list remove [find list=\$addrList] } on-error={}; :do { /import file-name=\$lastGoodFile } on-error={ :log error \"Debian outbound update: last-known-good rollback failed\" }; /file remove [find name=\$fileName]; :return \"\" }
-:if ([:len [/file find name=\$lastGoodFile]] > 0) do={ /file remove [find name=\$lastGoodFile] }
-:do { /file copy \$fileName name=\$lastGoodFile } on-error={ :log warning \"Debian outbound update: completed, but could not retain rollback payload\" }
+:do { /import file-name=\$fileName } on-error={ :log error \"Debian outbound update: import failed; downloaded file removed\"; /file remove [find name=\$fileName]; :return \"\" }
+:if (([:len [/ip dns static find address-list=\$addrList]] = 0) && ([:len [/ip firewall address-list find list=\$addrList]] = 0)) do={ :log error \"Debian outbound update: imported list is empty; downloaded file removed\"; /file remove [find name=\$fileName]; :return \"\" }
 /file remove [find name=\$fileName]
-:log warning \"Debian outbound update: completed successfully\"
-"
+:log warning \"Debian outbound update: completed successfully; downloaded file removed\""

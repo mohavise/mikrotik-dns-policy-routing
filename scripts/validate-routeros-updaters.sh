@@ -21,11 +21,14 @@ while read -r updater; do
     if grep -q -- '-UPDATE-BACKUP' "$updater"; then
         fail "DNS-entry staging collision risk found in $updater"
     fi
-    grep -q 'last-good-' "$updater" || fail "missing last-known-good payload in $updater"
-    grep -q '/file copy' "$updater" || fail "missing rollback payload persistence in $updater"
+    grep -q 'legacyLastGoodFile' "$updater" || fail "missing legacy rollback-file cleanup in $updater"
+    if grep -q '/file copy' "$updater"; then
+        fail "persistent updater payload found in $updater"
+    fi
     grep -q 'verbose=yes dry-run' "$updater" || fail "missing import syntax preflight in $updater"
     grep -q 'downloaded file failed validation' "$updater" || fail "missing payload validation in $updater"
-    grep -q 'restoring last-known-good list' "$updater" || fail "missing rollback in $updater"
+    grep -Fq '/file remove [find name=\$legacyLastGoodFile]' "$updater" || fail "legacy rollback file is not removed in $updater"
+    grep -Fq '/file remove [find name=\$fileName]' "$updater" || fail "downloaded payload is not removed in $updater"
 done
 
 find "$ROOT_DIR/categories" -path '*/output/list-all.rsc' -type f | sort |
