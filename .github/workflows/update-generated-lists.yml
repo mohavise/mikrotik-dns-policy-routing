@@ -1,6 +1,11 @@
 name: Update RouterOS service lists
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/harden-routeros-fetch.sh"
   schedule:
     - cron: "30 23 * * *"
   workflow_dispatch:
