@@ -5,4 +5,4 @@
 
 /system scheduler
 :if ([:len [find name="scheduler-update-windows-update-outbound"]] > 0) do={ remove [find name="scheduler-update-windows-update-outbound"] }
-add name=scheduler-update-windows-update-outbound interval=1d start-time=04:24:00 on-event="/system script run update-windows-update-outbound" policy=read,write,policy,test comment="Daily Windows Update outbound list update"
+add name=scheduler-update-windows-update-outbound interval=1d start-time=04:24:00 on-event="/system script run update-windows-update-outbound" policy=ftp,read,write,policy,test comment="Daily Windows Update outbound list update"

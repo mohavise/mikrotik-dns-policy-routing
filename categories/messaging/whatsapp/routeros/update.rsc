@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-whatsapp-outbound"]] > 0) do={ remove [find name="update-whatsapp-outbound"] }
-add dont-require-permissions=no name=update-whatsapp-outbound owner=admin policy=read,write,policy,test source=":local fileName \"whatsapp-outbound.rsc\"
+add dont-require-permissions=no name=update-whatsapp-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"whatsapp-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/messaging/whatsapp/output/list-all.rsc\"
 :local addrList \"DST-WHATSAPP-TO-OUTBOUND\"

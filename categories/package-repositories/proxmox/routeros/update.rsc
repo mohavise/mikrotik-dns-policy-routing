@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-proxmox-outbound"]] > 0) do={ remove [find name="update-proxmox-outbound"] }
-add dont-require-permissions=no name=update-proxmox-outbound owner=admin policy=read,write,policy,test source=":local fileName \"proxmox-outbound.rsc\"
+add dont-require-permissions=no name=update-proxmox-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"proxmox-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/package-repositories/proxmox/output/list-all.rsc\"
 :local addrList \"DST-PROXMOX-TO-OUTBOUND\"

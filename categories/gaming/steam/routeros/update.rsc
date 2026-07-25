@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-steam-outbound"]] > 0) do={ remove [find name="update-steam-outbound"] }
-add dont-require-permissions=no name=update-steam-outbound owner=admin policy=read,write,policy,test source=":local fileName \"steam-outbound.rsc\"
+add dont-require-permissions=no name=update-steam-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"steam-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.steamusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/gaming/steam/output/list-all.rsc\"
 :local addrList \"DST-steam-TO-OUTBOUND\"

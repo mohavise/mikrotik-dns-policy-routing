@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-samsung-galaxy-store-outbound"]] > 0) do={ remove [find name="update-samsung-galaxy-store-outbound"] }
-add dont-require-permissions=no name=update-samsung-galaxy-store-outbound owner=admin policy=read,write,policy,test source=":local fileName \"samsung-galaxy-store-outbound.rsc\"
+add dont-require-permissions=no name=update-samsung-galaxy-store-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"samsung-galaxy-store-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/mobile-app-store/samsung-galaxy-store/output/list-all.rsc\"
 :local addrList \"DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND\"

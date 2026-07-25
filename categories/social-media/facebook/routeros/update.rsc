@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-facebook-outbound"]] > 0) do={ remove [find name="update-facebook-outbound"] }
-add dont-require-permissions=no name=update-facebook-outbound owner=admin policy=read,write,policy,test source=":local fileName \"facebook-outbound.rsc\"
+add dont-require-permissions=no name=update-facebook-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"facebook-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/social-media/facebook/output/list-all.rsc\"
 :local addrList \"DST-FACEBOOK-TO-OUTBOUND\"

@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-windows-update-outbound"]] > 0) do={ remove [find name="update-windows-update-outbound"] }
-add dont-require-permissions=no name=update-windows-update-outbound owner=admin policy=read,write,policy,test source=":local fileName \"windows-update-outbound.rsc\"
+add dont-require-permissions=no name=update-windows-update-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"windows-update-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/microsoft-services/windows-update/output/list-all.rsc\"
 :local addrList \"DST-WINDOWS-UPDATE-TO-OUTBOUND\"

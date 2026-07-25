@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-cloud-platforms-outbound"]] > 0) do={ remove [find name="update-cloud-platforms-outbound"] }
-add dont-require-permissions=no name=update-cloud-platforms-outbound owner=admin policy=read,write,policy,test source=":local fileName \"cloud-platforms-outbound.rsc\"
+add dont-require-permissions=no name=update-cloud-platforms-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"cloud-platforms-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/cloud-platforms/cloud-platforms-to-outbound/output/list-all.rsc\"
 :local addrList \"DST-CLOUD-PLATFORMS-TO-OUTBOUND\"

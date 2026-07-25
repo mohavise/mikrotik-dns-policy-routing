@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-gaming-outbound"]] > 0) do={ remove [find name="update-gaming-outbound"] }
-add dont-require-permissions=no name=update-gaming-outbound owner=admin policy=read,write,policy,test source=":local fileName \"gaming-outbound.rsc\"
+add dont-require-permissions=no name=update-gaming-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"gaming-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/gaming/gaming-to-outbound/output/list-all.rsc\"
 :local addrList \"DST-GAMING-TO-OUTBOUND\"

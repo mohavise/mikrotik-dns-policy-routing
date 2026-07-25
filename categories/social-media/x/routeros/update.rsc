@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-x-outbound"]] > 0) do={ remove [find name="update-x-outbound"] }
-add dont-require-permissions=no name=update-x-outbound owner=admin policy=read,write,policy,test source=":local fileName \"x-outbound.rsc\"
+add dont-require-permissions=no name=update-x-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"x-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/social-media/x/output/list-all.rsc\"
 :local addrList \"DST-X-TO-OUTBOUND\"

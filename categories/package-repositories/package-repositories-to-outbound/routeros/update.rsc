@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-package-repositories-outbound"]] > 0) do={ remove [find name="update-package-repositories-outbound"] }
-add dont-require-permissions=no name=update-package-repositories-outbound owner=admin policy=read,write,policy,test source=":local fileName \"package-repositories-outbound.rsc\"
+add dont-require-permissions=no name=update-package-repositories-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"package-repositories-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/package-repositories/package-repositories-to-outbound/output/list-all.rsc\"
 :local addrList \"DST-PACKAGE-REPOSITORIES-TO-OUTBOUND\"

@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-teams-outbound"]] > 0) do={ remove [find name="update-teams-outbound"] }
-add dont-require-permissions=no name=update-teams-outbound owner=admin policy=read,write,policy,test source=":local fileName \"teams-outbound.rsc\"
+add dont-require-permissions=no name=update-teams-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"teams-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/microsoft-services/teams/output/list-all.rsc\"
 :local addrList \"DST-TEAMS-TO-OUTBOUND\"

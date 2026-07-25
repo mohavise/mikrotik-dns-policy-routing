@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-spotify-outbound"]] > 0) do={ remove [find name="update-spotify-outbound"] }
-add dont-require-permissions=no name=update-spotify-outbound owner=admin policy=read,write,policy,test source=":local fileName \"spotify-outbound.rsc\"
+add dont-require-permissions=no name=update-spotify-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"spotify-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.spotifyusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/music/spotify/output/list-all.rsc\"
 :local addrList \"DST-spotify-TO-OUTBOUND\"

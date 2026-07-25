@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-redhat-outbound"]] > 0) do={ remove [find name="update-redhat-outbound"] }
-add dont-require-permissions=no name=update-redhat-outbound owner=admin policy=read,write,policy,test source=":local fileName \"redhat-outbound.rsc\"
+add dont-require-permissions=no name=update-redhat-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"redhat-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/package-repositories/redhat/output/list-all.rsc\"
 :local addrList \"DST-REDHAT-TO-OUTBOUND\"

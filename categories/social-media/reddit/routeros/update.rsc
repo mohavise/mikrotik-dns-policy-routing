@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-reddit-outbound"]] > 0) do={ remove [find name="update-reddit-outbound"] }
-add dont-require-permissions=no name=update-reddit-outbound owner=admin policy=read,write,policy,test source=":local fileName \"reddit-outbound.rsc\"
+add dont-require-permissions=no name=update-reddit-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"reddit-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/social-media/reddit/output/list-all.rsc\"
 :local addrList \"DST-REDDIT-TO-OUTBOUND\"

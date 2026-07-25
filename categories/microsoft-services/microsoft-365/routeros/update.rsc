@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-microsoft-365-outbound"]] > 0) do={ remove [find name="update-microsoft-365-outbound"] }
-add dont-require-permissions=no name=update-microsoft-365-outbound owner=admin policy=read,write,policy,test source=":local fileName \"microsoft-365-outbound.rsc\"
+add dont-require-permissions=no name=update-microsoft-365-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"microsoft-365-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/microsoft-services/microsoft-365/output/list-all.rsc\"
 :local addrList \"DST-MICROSOFT-365-TO-OUTBOUND\"

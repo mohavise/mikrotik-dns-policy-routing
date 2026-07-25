@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-onedrive-outbound"]] > 0) do={ remove [find name="update-onedrive-outbound"] }
-add dont-require-permissions=no name=update-onedrive-outbound owner=admin policy=read,write,policy,test source=":local fileName \"onedrive-outbound.rsc\"
+add dont-require-permissions=no name=update-onedrive-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"onedrive-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/microsoft-services/onedrive/output/list-all.rsc\"
 :local addrList \"DST-ONEDRIVE-TO-OUTBOUND\"

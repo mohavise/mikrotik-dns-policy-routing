@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-music-outbound"]] > 0) do={ remove [find name="update-music-outbound"] }
-add dont-require-permissions=no name=update-music-outbound owner=admin policy=read,write,policy,test source=":local fileName \"music-outbound.rsc\"
+add dont-require-permissions=no name=update-music-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"music-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/music/music-to-outbound/output/list-all.rsc\"
 :local addrList \"DST-MUSIC-TO-OUTBOUND\"

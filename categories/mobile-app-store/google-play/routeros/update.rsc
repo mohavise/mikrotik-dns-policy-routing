@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-google-play-outbound"]] > 0) do={ remove [find name="update-google-play-outbound"] }
-add dont-require-permissions=no name=update-google-play-outbound owner=admin policy=read,write,policy,test source=":local fileName \"google-play-outbound.rsc\"
+add dont-require-permissions=no name=update-google-play-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"google-play-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/mobile-app-store/google-play/output/list-all.rsc\"
 :local addrList \"DST-GOOGLE-PLAY-TO-OUTBOUND\"

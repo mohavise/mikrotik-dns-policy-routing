@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-speedtest-outbound"]] > 0) do={ remove [find name="update-speedtest-outbound"] }
-add dont-require-permissions=no name=update-speedtest-outbound owner=admin policy=read,write,policy,test source=":local fileName \"speedtest-outbound.rsc\"
+add dont-require-permissions=no name=update-speedtest-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"speedtest-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/network-tools/speedtest/output/list-all.rsc\"
 :local addrList \"SPEEDTEST\"

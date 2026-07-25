@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-signal-outbound"]] > 0) do={ remove [find name="update-signal-outbound"] }
-add dont-require-permissions=no name=update-signal-outbound owner=admin policy=read,write,policy,test source=":local fileName \"signal-outbound.rsc\"
+add dont-require-permissions=no name=update-signal-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"signal-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/messaging/signal/output/list-all.rsc\"
 :local addrList \"DST-SIGNAL-TO-OUTBOUND\"

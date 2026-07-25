@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-youtube-outbound"]] > 0) do={ remove [find name="update-youtube-outbound"] }
-add dont-require-permissions=no name=update-youtube-outbound owner=admin policy=read,write,policy,test source=":local fileName \"youtube-outbound.rsc\"
+add dont-require-permissions=no name=update-youtube-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"youtube-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/google-services/youtube/output/list-all.rsc\"
 :local addrList \"DST-YOUTUBE-TO-OUTBOUND\"

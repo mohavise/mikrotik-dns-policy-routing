@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-financial-services-outbound"]] > 0) do={ remove [find name="update-financial-services-outbound"] }
-add dont-require-permissions=no name=update-financial-services-outbound owner=admin policy=read,write,policy,test source=":local fileName \"financial-services-outbound.rsc\"
+add dont-require-permissions=no name=update-financial-services-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"financial-services-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/financial-services/financial-services-to-outbound/output/list-all.rsc\"
 :local addrList \"DST-FINANCIAL-SERVICES-TO-OUTBOUND\"

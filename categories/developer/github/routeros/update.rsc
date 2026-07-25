@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-github-outbound"]] > 0) do={ remove [find name="update-github-outbound"] }
-add dont-require-permissions=no name=update-github-outbound owner=admin policy=read,write,policy,test source=":local fileName \"github-outbound.rsc\"
+add dont-require-permissions=no name=update-github-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"github-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/developer/github/output/list-all.rsc\"
 :local addrList \"DST-GITHUB-TO-OUTBOUND\"

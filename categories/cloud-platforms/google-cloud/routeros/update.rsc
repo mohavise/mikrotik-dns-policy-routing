@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-google-cloud-outbound"]] > 0) do={ remove [find name="update-google-cloud-outbound"] }
-add dont-require-permissions=no name=update-google-cloud-outbound owner=admin policy=read,write,policy,test source=":local fileName \"google-cloud-outbound.rsc\"
+add dont-require-permissions=no name=update-google-cloud-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"google-cloud-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/cloud-platforms/google-cloud/output/list-all.rsc\"
 :local addrList \"DST-GOOGLE-CLOUD-TO-OUTBOUND\"

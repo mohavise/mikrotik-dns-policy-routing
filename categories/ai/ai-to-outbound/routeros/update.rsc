@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-ai-outbound"]] > 0) do={ remove [find name="update-ai-outbound"] }
-add dont-require-permissions=no name=update-ai-outbound owner=admin policy=read,write,policy,test source=":local fileName \"ai-outbound.rsc\"
+add dont-require-permissions=no name=update-ai-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"ai-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/ai/ai-to-outbound/output/list-all.rsc\"
 :local addrList \"DST-AI-TO-OUTBOUND\"

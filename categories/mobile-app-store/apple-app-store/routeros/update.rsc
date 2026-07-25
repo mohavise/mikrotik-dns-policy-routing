@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-apple-app-store-outbound"]] > 0) do={ remove [find name="update-apple-app-store-outbound"] }
-add dont-require-permissions=no name=update-apple-app-store-outbound owner=admin policy=read,write,policy,test source=":local fileName \"apple-app-store-outbound.rsc\"
+add dont-require-permissions=no name=update-apple-app-store-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"apple-app-store-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/mobile-app-store/apple-app-store/output/list-all.rsc\"
 :local addrList \"DST-APPLE-APP-STORE-TO-OUTBOUND\"

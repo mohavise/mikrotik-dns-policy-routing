@@ -6,7 +6,7 @@
 
 /system script
 :if ([:len [find name="update-linkedin-outbound"]] > 0) do={ remove [find name="update-linkedin-outbound"] }
-add dont-require-permissions=no name=update-linkedin-outbound owner=admin policy=read,write,policy,test source=":local fileName \"linkedin-outbound.rsc\"
+add dont-require-permissions=no name=update-linkedin-outbound owner=admin policy=ftp,read,write,policy,test source=":local fileName \"linkedin-outbound.rsc\"
 :local legacyLastGoodFile (\"last-good-\" . \$fileName)
 :local url \"https://raw.githubusercontent.com/mohavise/mikrotik-dns-policy-routing/main/categories/social-media/linkedin/output/list-all.rsc\"
 :local addrList \"DST-LINKEDIN-TO-OUTBOUND\"
