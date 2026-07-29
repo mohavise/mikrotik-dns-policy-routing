@@ -3,7 +3,7 @@
 # profile=cloud-platforms-to-outbound
 # List: cloud platforms combined domains + CIDR
 # RouterOS address-list: DST-CLOUD-PLATFORMS-TO-OUTBOUND
-# Last update: 2026-07-28 00:55:33 UTC
+# Last update: 2026-07-29 00:57:12 UTC
 # do-not-edit-manually
 
 /ip dns static
