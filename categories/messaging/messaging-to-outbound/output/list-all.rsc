@@ -3,7 +3,7 @@
 # profile=messaging-to-outbound
 # List: messaging combined domains + CIDR
 # RouterOS address-list: DST-MESSAGING-TO-OUTBOUND
-# Last update: 2026-07-30 00:55:02 UTC
+# Last update: 2026-07-31 01:05:34 UTC
 # do-not-edit-manually
 
 /ip dns static
