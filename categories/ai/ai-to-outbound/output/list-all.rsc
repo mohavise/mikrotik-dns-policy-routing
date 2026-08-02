@@ -3,7 +3,7 @@
 # profile=ai-to-outbound
 # List: ai combined domains + CIDR
 # RouterOS address-list: DST-AI-TO-OUTBOUND
-# Last update: 2026-08-01 01:03:27 UTC
+# Last update: 2026-08-02 01:07:02 UTC
 # do-not-edit-manually
 
 /ip dns static
