@@ -3,7 +3,7 @@
 # profile=microsoft-services-to-outbound
 # List: microsoft services combined domains + CIDR
 # RouterOS address-list: DST-MICROSOFT-SERVICES-TO-OUTBOUND
-# Last update: 2026-08-02 01:07:02 UTC
+# Last update: 2026-08-03 01:06:51 UTC
 # do-not-edit-manually
 
 /ip dns static
