@@ -3,7 +3,7 @@
 # profile=music-to-outbound
 # List: music combined domains + CIDR
 # RouterOS address-list: DST-MUSIC-TO-OUTBOUND
-# Last update: 2026-08-13 00:07:34 UTC
+# Last update: 2026-08-14 00:08:04 UTC
 # do-not-edit-manually
 
 /ip dns static
