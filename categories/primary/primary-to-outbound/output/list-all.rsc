@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-08-16 23:45:27 UTC
+# Last update: 2026-08-17 23:47:49 UTC
 # do-not-edit-manually
 
 /ip dns static
