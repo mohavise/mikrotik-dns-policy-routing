@@ -3,7 +3,7 @@
 # profile=developer-to-outbound
 # List: developer combined domains + CIDR
 # RouterOS address-list: DST-DEVELOPER-TO-OUTBOUND
-# Last update: 2026-08-28 07:01:09 UTC
+# Last update: 2026-08-29 04:16:20 UTC
 # do-not-edit-manually
 
 /ip dns static
