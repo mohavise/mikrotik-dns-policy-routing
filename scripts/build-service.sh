@@ -180,6 +180,24 @@ check_sudden_drop() {
     fi
 }
 
+check_domain_source_drop() {
+    old_file="$1"
+    new_count="$2"
+    [ -f "$old_file" ] || return 0
+
+    old_count="$(sed -n 's/^# Normalized source domain count: //p' "$old_file" | head -n 1)"
+    case "$old_count" in
+        ''|*[!0-9]*) return 0 ;;
+    esac
+    [ "$old_count" -gt 0 ] || return 0
+
+    minimum_allowed=$((old_count * (100 - MAX_DROP_PERCENT) / 100))
+    if [ "$new_count" -lt "$minimum_allowed" ]; then
+        echo "$SERVICE_NAME normalized source domain count dropped from $old_count to $new_count; refusing to publish" >&2
+        exit 1
+    fi
+}
+
 normalized_domain_count="$(wc -l < "$domains_normalized" | tr -d ' ')"
 domain_count="$(wc -l < "$domains_all" | tr -d ' ')"
 cidr_count="$(wc -l < "$cidr_all" | tr -d ' ')"
@@ -197,10 +215,10 @@ if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
     exit 1
 fi
 
-# Source-health check uses the normalized pre-collapse count so intentionally
-# removing child domains covered by match-subdomain=yes does not look like
-# an upstream-source failure.
-check_sudden_drop "$output_dir/list-domains.rsc" "$normalized_domain_count" 'type=FWD' "$SERVICE_NAME domain source"
+# Compare source health only against the previous pre-collapse count. The
+# generated parent-rule count may be much smaller because match-subdomain=yes
+# intentionally removes redundant child domains.
+check_domain_source_drop "$output_dir/list-domains.rsc" "$normalized_domain_count"
 check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVICE_NAME CIDR"
 
 {
@@ -211,6 +229,7 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     echo "# RouterOS address-list: $LIST_NAME"
     echo "# Source: $DOMAIN_SOURCE_NAME ($DOMAIN_SOURCE_TYPE)"
     [ -z "${DOMAIN_SOURCE_URL:-}" ] || echo "# Source URL: $DOMAIN_SOURCE_URL"
+    echo "# Normalized source domain count: $normalized_domain_count"
     echo "# Child domains are omitted when a listed parent already covers them via match-subdomain=yes"
     echo "# do-not-edit-manually"
     echo
