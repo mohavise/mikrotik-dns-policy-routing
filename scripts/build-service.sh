@@ -95,28 +95,26 @@ normalize_domains() {
     }'
 }
 
-collapse_child_domains() {
+# Reduce every service dependency to its registrable-style base parent so one
+# match-subdomain rule covers all of that provider domain. Common ccTLD forms
+# such as example.co.uk and example.com.au keep one extra label.
+reduce_to_base_domains() {
     awk '
-    {
-        domains[NR] = $0
-        present[$0] = 1
-    }
-    END {
-        for (i = 1; i <= NR; i++) {
-            domain = domains[i]
-            parent = domain
-            redundant = 0
+    function base_domain(domain, labels, count, second, last) {
+        count = split(domain, labels, ".")
+        if (count <= 2) return domain
 
-            while (index(parent, ".") > 0) {
-                sub(/^[^.]+\./, "", parent)
-                if (present[parent]) {
-                    redundant = 1
-                    break
-                }
-            }
+        last = labels[count]
+        second = labels[count - 1]
 
-            if (!redundant) print domain
+        if (length(last) == 2 && second ~ /^(ac|co|com|edu|gov|mil|net|org)$/ && count >= 3) {
+            return labels[count - 2] "." second "." last
         }
+
+        return second "." last
+    }
+    {
+        print base_domain($0)
     }'
 }
 
@@ -156,7 +154,7 @@ else
     read_local_domains
 fi | normalize_domains | sort -u > "$domains_normalized"
 
-collapse_child_domains < "$domains_normalized" | sort -u > "$domains_all"
+reduce_to_base_domains < "$domains_normalized" | sort -u > "$domains_all"
 
 {
     if [ "${CIDR_SOURCE_URL:-}" ] && [ "$cidr_source_available" -eq 1 ]; then
@@ -201,23 +199,22 @@ check_domain_source_drop() {
 normalized_domain_count="$(wc -l < "$domains_normalized" | tr -d ' ')"
 domain_count="$(wc -l < "$domains_all" | tr -d ' ')"
 cidr_count="$(wc -l < "$cidr_all" | tr -d ' ')"
+
 if [ "$normalized_domain_count" -lt "${MIN_DOMAIN_RULES:-1}" ]; then
     echo "Too few $SERVICE_NAME source domain entries" >&2
     exit 1
 fi
 
 if [ "$domain_count" -lt 1 ]; then
-    echo "No usable $SERVICE_NAME parent domain entries after child collapse" >&2
+    echo "No usable $SERVICE_NAME base domain entries" >&2
     exit 1
 fi
+
 if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
     echo "Too few $SERVICE_NAME CIDR entries" >&2
     exit 1
 fi
 
-# Compare source health only against the previous pre-collapse count. The
-# generated parent-rule count may be much smaller because match-subdomain=yes
-# intentionally removes redundant child domains.
 check_domain_source_drop "$output_dir/list-domains.rsc" "$normalized_domain_count"
 check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVICE_NAME CIDR"
 
@@ -230,7 +227,7 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     echo "# Source: $DOMAIN_SOURCE_NAME ($DOMAIN_SOURCE_TYPE)"
     [ -z "${DOMAIN_SOURCE_URL:-}" ] || echo "# Source URL: $DOMAIN_SOURCE_URL"
     echo "# Normalized source domain count: $normalized_domain_count"
-    echo "# Child domains are omitted when a listed parent already covers them via match-subdomain=yes"
+    echo "# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes"
     echo "# do-not-edit-manually"
     echo
     echo "/ip dns static"
@@ -270,5 +267,5 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     sed '1,/^$/d' "$output_dir/list-cidr.rsc"
 } > "$output_dir/list-all.rsc"
 
-printf 'Generated %s output: %s parent domains (%s normalized before child collapse), %s CIDRs\n' \
+printf 'Generated %s output: %s base domains (%s normalized source domains), %s CIDRs\n' \
     "$SERVICE_NAME" "$domain_count" "$normalized_domain_count" "$cidr_count"
