@@ -8,15 +8,15 @@
 
 /ip dns static
 remove [find address-list=DST-SPOTIFY-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)accounts\\.spotify\\.com\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:accounts.spotify.com" } on-error={}
-:do { add regexp="(^|.*\\.)api\\.spotify\\.com\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:api.spotify.com" } on-error={}
-:do { add regexp="(^|.*\\.)audio-ak-spotify-com\\.akamaized\\.net\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
-:do { add regexp="(^|.*\\.)audio4-ak-spotify-com\\.akamaized\\.net\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
-:do { add regexp="(^|.*\\.)gew-spclient\\.spotify\\.com\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:gew-spclient.spotify.com" } on-error={}
-:do { add regexp="(^|.*\\.)open\\.spotify\\.com\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:open.spotify.com" } on-error={}
-:do { add regexp="(^|.*\\.)pscdn\\.co\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
-:do { add regexp="(^|.*\\.)scdn\\.co\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
-:do { add regexp="(^|.*\\.)spclient\\.wg\\.spotify\\.com\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spclient.wg.spotify.com" } on-error={}
-:do { add regexp="(^|.*\\.)spotify\\.com\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}
-:do { add regexp="(^|.*\\.)spotifycdn\\.com\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotifycdn.com" } on-error={}
-:do { add regexp="(^|.*\\.)spotifycdn\\.net\$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}
+:do { add name="accounts.spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:accounts.spotify.com" } on-error={}
+:do { add name="api.spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:api.spotify.com" } on-error={}
+:do { add name="audio-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
+:do { add name="audio4-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
+:do { add name="gew-spclient.spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:gew-spclient.spotify.com" } on-error={}
+:do { add name="open.spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:open.spotify.com" } on-error={}
+:do { add name="pscdn.co" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
+:do { add name="scdn.co" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
+:do { add name="spclient.wg.spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spclient.wg.spotify.com" } on-error={}
+:do { add name="spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}
+:do { add name="spotifycdn.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotifycdn.com" } on-error={}
+:do { add name="spotifycdn.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}

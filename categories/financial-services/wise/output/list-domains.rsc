@@ -8,5 +8,5 @@
 
 /ip dns static
 remove [find address-list=DST-WISE-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)transferwise\\.com\$" type=FWD address-list=DST-WISE-TO-OUTBOUND comment="wise:transferwise.com" } on-error={}
-:do { add regexp="(^|.*\\.)wise\\.com\$" type=FWD address-list=DST-WISE-TO-OUTBOUND comment="wise:wise.com" } on-error={}
+:do { add name="transferwise.com" type=FWD match-subdomain=yes address-list=DST-WISE-TO-OUTBOUND comment="wise:transferwise.com" } on-error={}
+:do { add name="wise.com" type=FWD match-subdomain=yes address-list=DST-WISE-TO-OUTBOUND comment="wise:wise.com" } on-error={}

@@ -8,16 +8,16 @@
 
 /ip dns static
 remove [find address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)azure\\.com\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:azure.com" } on-error={}
-:do { add regexp="(^|.*\\.)azure\\.microsoft\\.com\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:azure.microsoft.com" } on-error={}
-:do { add regexp="(^|.*\\.)graph\\.microsoft\\.com\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:graph.microsoft.com" } on-error={}
-:do { add regexp="(^|.*\\.)graph\\.windows\\.net\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:graph.windows.net" } on-error={}
-:do { add regexp="(^|.*\\.)login\\.live\\.com\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:login.live.com" } on-error={}
-:do { add regexp="(^|.*\\.)login\\.microsoft\\.com\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:login.microsoft.com" } on-error={}
-:do { add regexp="(^|.*\\.)login\\.microsoftonline\\.com\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:login.microsoftonline.com" } on-error={}
-:do { add regexp="(^|.*\\.)microsoftonline-p\\.com\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:microsoftonline-p.com" } on-error={}
-:do { add regexp="(^|.*\\.)msauth\\.net\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msauth.net" } on-error={}
-:do { add regexp="(^|.*\\.)msauthimages\\.net\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msauthimages.net" } on-error={}
-:do { add regexp="(^|.*\\.)msftauth\\.net\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msftauth.net" } on-error={}
-:do { add regexp="(^|.*\\.)msftauthimages\\.net\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msftauthimages.net" } on-error={}
-:do { add regexp="(^|.*\\.)portal\\.azure\\.net\$" type=FWD address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:portal.azure.net" } on-error={}
+:do { add name="azure.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:azure.com" } on-error={}
+:do { add name="azure.microsoft.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:azure.microsoft.com" } on-error={}
+:do { add name="graph.microsoft.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:graph.microsoft.com" } on-error={}
+:do { add name="graph.windows.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:graph.windows.net" } on-error={}
+:do { add name="login.live.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:login.live.com" } on-error={}
+:do { add name="login.microsoft.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:login.microsoft.com" } on-error={}
+:do { add name="login.microsoftonline.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:login.microsoftonline.com" } on-error={}
+:do { add name="microsoftonline-p.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:microsoftonline-p.com" } on-error={}
+:do { add name="msauth.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msauth.net" } on-error={}
+:do { add name="msauthimages.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msauthimages.net" } on-error={}
+:do { add name="msftauth.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msftauth.net" } on-error={}
+:do { add name="msftauthimages.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:msftauthimages.net" } on-error={}
+:do { add name="portal.azure.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-AZURE-TO-OUTBOUND comment="microsoft-azure:portal.azure.net" } on-error={}

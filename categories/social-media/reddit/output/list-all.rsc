@@ -7,10 +7,10 @@
 
 /ip dns static
 remove [find address-list=DST-REDDIT-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)redd\\.it\$" type=FWD address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:redd.it" } on-error={}
-:do { add regexp="(^|.*\\.)reddit\\.com\$" type=FWD address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:reddit.com" } on-error={}
-:do { add regexp="(^|.*\\.)redditmedia\\.com\$" type=FWD address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:redditmedia.com" } on-error={}
-:do { add regexp="(^|.*\\.)redditstatic\\.com\$" type=FWD address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:redditstatic.com" } on-error={}
+:do { add name="redd.it" type=FWD match-subdomain=yes address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:redd.it" } on-error={}
+:do { add name="reddit.com" type=FWD match-subdomain=yes address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:reddit.com" } on-error={}
+:do { add name="redditmedia.com" type=FWD match-subdomain=yes address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:redditmedia.com" } on-error={}
+:do { add name="redditstatic.com" type=FWD match-subdomain=yes address-list=DST-REDDIT-TO-OUTBOUND comment="reddit:redditstatic.com" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-REDDIT-TO-OUTBOUND]

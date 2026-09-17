@@ -8,7 +8,7 @@
 
 /ip dns static
 remove [find address-list=DST-DISCORD-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)discord\\.com\$" type=FWD address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discord.com" } on-error={}
-:do { add regexp="(^|.*\\.)discord\\.gg\$" type=FWD address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discord.gg" } on-error={}
-:do { add regexp="(^|.*\\.)discordapp\\.com\$" type=FWD address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discordapp.com" } on-error={}
-:do { add regexp="(^|.*\\.)discordapp\\.net\$" type=FWD address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discordapp.net" } on-error={}
+:do { add name="discord.com" type=FWD match-subdomain=yes address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discord.com" } on-error={}
+:do { add name="discord.gg" type=FWD match-subdomain=yes address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discord.gg" } on-error={}
+:do { add name="discordapp.com" type=FWD match-subdomain=yes address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discordapp.com" } on-error={}
+:do { add name="discordapp.net" type=FWD match-subdomain=yes address-list=DST-DISCORD-TO-OUTBOUND comment="discord:discordapp.net" } on-error={}

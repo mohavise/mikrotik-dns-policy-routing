@@ -8,7 +8,7 @@
 
 /ip dns static
 remove [find address-list=DST-X-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)t\\.co\$" type=FWD address-list=DST-X-TO-OUTBOUND comment="x:t.co" } on-error={}
-:do { add regexp="(^|.*\\.)twimg\\.com\$" type=FWD address-list=DST-X-TO-OUTBOUND comment="x:twimg.com" } on-error={}
-:do { add regexp="(^|.*\\.)twitter\\.com\$" type=FWD address-list=DST-X-TO-OUTBOUND comment="x:twitter.com" } on-error={}
-:do { add regexp="(^|.*\\.)x\\.com\$" type=FWD address-list=DST-X-TO-OUTBOUND comment="x:x.com" } on-error={}
+:do { add name="t.co" type=FWD match-subdomain=yes address-list=DST-X-TO-OUTBOUND comment="x:t.co" } on-error={}
+:do { add name="twimg.com" type=FWD match-subdomain=yes address-list=DST-X-TO-OUTBOUND comment="x:twimg.com" } on-error={}
+:do { add name="twitter.com" type=FWD match-subdomain=yes address-list=DST-X-TO-OUTBOUND comment="x:twitter.com" } on-error={}
+:do { add name="x.com" type=FWD match-subdomain=yes address-list=DST-X-TO-OUTBOUND comment="x:x.com" } on-error={}

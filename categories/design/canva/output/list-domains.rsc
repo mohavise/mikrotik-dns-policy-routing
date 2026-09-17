@@ -8,5 +8,5 @@
 
 /ip dns static
 remove [find address-list=DST-CANVA-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)canva-apps\\.com\$" type=FWD address-list=DST-CANVA-TO-OUTBOUND comment="canva:canva-apps.com" } on-error={}
-:do { add regexp="(^|.*\\.)canva\\.com\$" type=FWD address-list=DST-CANVA-TO-OUTBOUND comment="canva:canva.com" } on-error={}
+:do { add name="canva-apps.com" type=FWD match-subdomain=yes address-list=DST-CANVA-TO-OUTBOUND comment="canva:canva-apps.com" } on-error={}
+:do { add name="canva.com" type=FWD match-subdomain=yes address-list=DST-CANVA-TO-OUTBOUND comment="canva:canva.com" } on-error={}

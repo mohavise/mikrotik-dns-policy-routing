@@ -7,8 +7,8 @@
 
 /ip dns static
 remove [find address-list=DST-SIGNAL-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)signal\\.me\$" type=FWD address-list=DST-SIGNAL-TO-OUTBOUND comment="signal:signal.me" } on-error={}
-:do { add regexp="(^|.*\\.)signal\\.org\$" type=FWD address-list=DST-SIGNAL-TO-OUTBOUND comment="signal:signal.org" } on-error={}
+:do { add name="signal.me" type=FWD match-subdomain=yes address-list=DST-SIGNAL-TO-OUTBOUND comment="signal:signal.me" } on-error={}
+:do { add name="signal.org" type=FWD match-subdomain=yes address-list=DST-SIGNAL-TO-OUTBOUND comment="signal:signal.org" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-SIGNAL-TO-OUTBOUND]

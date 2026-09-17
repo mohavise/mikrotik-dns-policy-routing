@@ -8,11 +8,11 @@
 
 /ip dns static
 remove [find address-list=DST-GITHUB-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)github\\.com\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.com" } on-error={}
-:do { add regexp="(^|.*\\.)github\\.dev\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.dev" } on-error={}
-:do { add regexp="(^|.*\\.)github\\.io\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.io" } on-error={}
-:do { add regexp="(^|.*\\.)githubapp\\.com\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubapp.com" } on-error={}
-:do { add regexp="(^|.*\\.)githubassets\\.com\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubassets.com" } on-error={}
-:do { add regexp="(^|.*\\.)githubcopilot\\.com\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubcopilot.com" } on-error={}
-:do { add regexp="(^|.*\\.)githubstatus\\.com\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubstatus.com" } on-error={}
-:do { add regexp="(^|.*\\.)githubusercontent\\.com\$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubusercontent.com" } on-error={}
+:do { add name="github.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.com" } on-error={}
+:do { add name="github.dev" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.dev" } on-error={}
+:do { add name="github.io" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.io" } on-error={}
+:do { add name="githubapp.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubapp.com" } on-error={}
+:do { add name="githubassets.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubassets.com" } on-error={}
+:do { add name="githubcopilot.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubcopilot.com" } on-error={}
+:do { add name="githubstatus.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubstatus.com" } on-error={}
+:do { add name="githubusercontent.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubusercontent.com" } on-error={}

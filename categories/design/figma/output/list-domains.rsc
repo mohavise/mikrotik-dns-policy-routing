@@ -8,7 +8,7 @@
 
 /ip dns static
 remove [find address-list=DST-FIGMA-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)figma\\.com\$" type=FWD address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.com" } on-error={}
-:do { add regexp="(^|.*\\.)figma\\.net\$" type=FWD address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.net" } on-error={}
-:do { add regexp="(^|.*\\.)figma\\.site\$" type=FWD address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.site" } on-error={}
-:do { add regexp="(^|.*\\.)figmausercontent\\.com\$" type=FWD address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figmausercontent.com" } on-error={}
+:do { add name="figma.com" type=FWD match-subdomain=yes address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.com" } on-error={}
+:do { add name="figma.net" type=FWD match-subdomain=yes address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.net" } on-error={}
+:do { add name="figma.site" type=FWD match-subdomain=yes address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figma.site" } on-error={}
+:do { add name="figmausercontent.com" type=FWD match-subdomain=yes address-list=DST-FIGMA-TO-OUTBOUND comment="figma:figmausercontent.com" } on-error={}

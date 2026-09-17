@@ -8,9 +8,9 @@
 
 /ip dns static
 remove [find address-list=DST-FACEBOOK-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)facebook\\.com\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:facebook.com" } on-error={}
-:do { add regexp="(^|.*\\.)fb\\.com\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fb.com" } on-error={}
-:do { add regexp="(^|.*\\.)fbcdn\\.net\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fbcdn.net" } on-error={}
-:do { add regexp="(^|.*\\.)fbsbx\\.com\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fbsbx.com" } on-error={}
-:do { add regexp="(^|.*\\.)m\\.me\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:m.me" } on-error={}
-:do { add regexp="(^|.*\\.)messenger\\.com\$" type=FWD address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:messenger.com" } on-error={}
+:do { add name="facebook.com" type=FWD match-subdomain=yes address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:facebook.com" } on-error={}
+:do { add name="fb.com" type=FWD match-subdomain=yes address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fb.com" } on-error={}
+:do { add name="fbcdn.net" type=FWD match-subdomain=yes address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fbcdn.net" } on-error={}
+:do { add name="fbsbx.com" type=FWD match-subdomain=yes address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:fbsbx.com" } on-error={}
+:do { add name="m.me" type=FWD match-subdomain=yes address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:m.me" } on-error={}
+:do { add name="messenger.com" type=FWD match-subdomain=yes address-list=DST-FACEBOOK-TO-OUTBOUND comment="facebook:messenger.com" } on-error={}

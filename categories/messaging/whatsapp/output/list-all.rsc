@@ -7,9 +7,9 @@
 
 /ip dns static
 remove [find address-list=DST-WHATSAPP-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)wa\\.me\$" type=FWD address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:wa.me" } on-error={}
-:do { add regexp="(^|.*\\.)whatsapp\\.com\$" type=FWD address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:whatsapp.com" } on-error={}
-:do { add regexp="(^|.*\\.)whatsapp\\.net\$" type=FWD address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:whatsapp.net" } on-error={}
+:do { add name="wa.me" type=FWD match-subdomain=yes address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:wa.me" } on-error={}
+:do { add name="whatsapp.com" type=FWD match-subdomain=yes address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:whatsapp.com" } on-error={}
+:do { add name="whatsapp.net" type=FWD match-subdomain=yes address-list=DST-WHATSAPP-TO-OUTBOUND comment="whatsapp:whatsapp.net" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-WHATSAPP-TO-OUTBOUND]
