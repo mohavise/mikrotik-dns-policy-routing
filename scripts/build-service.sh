@@ -15,6 +15,7 @@ workdir="$(mktemp -d)"
 trap 'rm -rf "$workdir"' EXIT
 mkdir -p "$output_dir"
 
+domains_normalized="$workdir/domains.normalized"
 domains_all="$workdir/domains.all"
 cidr_all="$workdir/cidr.all"
 domains_raw="$workdir/domains.raw"
@@ -94,6 +95,31 @@ normalize_domains() {
     }'
 }
 
+collapse_child_domains() {
+    awk '
+    {
+        domains[NR] = $0
+        present[$0] = 1
+    }
+    END {
+        for (i = 1; i <= NR; i++) {
+            domain = domains[i]
+            parent = domain
+            redundant = 0
+
+            while (index(parent, ".") > 0) {
+                sub(/^[^.]+\./, "", parent)
+                if (present[parent]) {
+                    redundant = 1
+                    break
+                }
+            }
+
+            if (!redundant) print domain
+        }
+    }'
+}
+
 normalize_cidrs() {
     awk '
     function valid_ipv4(ip, octets, count, i) {
@@ -128,7 +154,9 @@ if [ "${DOMAIN_SOURCE_URL:-}" ] && [ "$domain_source_available" -eq 1 ]; then
     read_external_domains
 else
     read_local_domains
-fi | normalize_domains | sort -u > "$domains_all"
+fi | normalize_domains | sort -u > "$domains_normalized"
+
+collapse_child_domains < "$domains_normalized" | sort -u > "$domains_all"
 
 {
     if [ "${CIDR_SOURCE_URL:-}" ] && [ "$cidr_source_available" -eq 1 ]; then
@@ -152,6 +180,7 @@ check_sudden_drop() {
     fi
 }
 
+normalized_domain_count="$(wc -l < "$domains_normalized" | tr -d ' ')"
 domain_count="$(wc -l < "$domains_all" | tr -d ' ')"
 cidr_count="$(wc -l < "$cidr_all" | tr -d ' ')"
 if [ "$domain_count" -lt "${MIN_DOMAIN_RULES:-1}" ]; then
@@ -162,7 +191,11 @@ if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
     echo "Too few $SERVICE_NAME CIDR entries" >&2
     exit 1
 fi
-check_sudden_drop "$output_dir/list-domains.rsc" "$domain_count" 'type=FWD' "$SERVICE_NAME domain"
+
+# Source-health check uses the normalized pre-collapse count so intentionally
+# removing child domains covered by match-subdomain=yes does not look like
+# an upstream-source failure.
+check_sudden_drop "$output_dir/list-domains.rsc" "$normalized_domain_count" 'type=FWD' "$SERVICE_NAME domain source"
 check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVICE_NAME CIDR"
 
 {
@@ -173,6 +206,7 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     echo "# RouterOS address-list: $LIST_NAME"
     echo "# Source: $DOMAIN_SOURCE_NAME ($DOMAIN_SOURCE_TYPE)"
     [ -z "${DOMAIN_SOURCE_URL:-}" ] || echo "# Source URL: $DOMAIN_SOURCE_URL"
+    echo "# Child domains are omitted when a listed parent already covers them via match-subdomain=yes"
     echo "# do-not-edit-manually"
     echo
     echo "/ip dns static"
@@ -212,4 +246,5 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     sed '1,/^$/d' "$output_dir/list-cidr.rsc"
 } > "$output_dir/list-all.rsc"
 
-printf 'Generated %s output: %s domains, %s CIDRs\n' "$SERVICE_NAME" "$domain_count" "$cidr_count"
+printf 'Generated %s output: %s parent domains (%s normalized before child collapse), %s CIDRs\n' \
+    "$SERVICE_NAME" "$domain_count" "$normalized_domain_count" "$cidr_count"
