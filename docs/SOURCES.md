@@ -28,11 +28,15 @@ database/manual-cidr.txt
 
 Manual additions should stay empty unless the value is verified and missing from the selected upstream source.
 
-Database files must contain normal domains only, like `domain.com`. Do not add `*.domain.com` to MikroTik database files. Generated RouterOS DNS rules use the plain `name=` field with `type=FWD`, `match-subdomain=yes`, and the service `address-list`. When a parent domain is present, redundant child domains are omitted from generated output because the parent already covers them.
+Database files may contain the exact service hostnames published by the source, for example `o33249.ingest.sentry.io`, `auth.openai.com`, or `chatgpt.com`. Do not add `*.domain.com` to MikroTik database files.
+
+Generated RouterOS DNS output intentionally reduces each hostname to its broad base parent domain and uses the plain `name=` field with `type=FWD`, `match-subdomain=yes`, and the service `address-list`. For example, OpenAI dependencies such as `o33249.ingest.sentry.io` become `sentry.io`, while `auth.openai.com` becomes `openai.com`. Duplicate base domains are generated only once.
+
+Common multi-label country suffixes such as `co.uk` and `com.au` retain the registrant label, so `broadbandspeedchecker.co.uk` remains `broadbandspeedchecker.co.uk` rather than being reduced to `co.uk`.
 
 Wildcard format like `*.domain.com` is only for future FortiGate output/export.
 
-Do not add broad CDN or cloud-hosting provider lists, public provider IP ranges, or generic customer workload domains. Scoped cloud control-plane modules may include official websites, documentation, sign-in, console, management endpoints, and console dependencies explicitly required by official documentation. Service-owned CDN-looking hostnames may stay only when required by official service documentation.
+Do not add broad CDN or cloud-hosting provider lists, public provider IP ranges, or generic customer workload domains unless that provider domain is an actual dependency of the selected service. When a service source contains a dependency under a shared provider, the generated MikroTik list deliberately uses that provider's base parent domain so all of its subdomains are covered by `match-subdomain=yes`.
 
 ## Automation Order
 
