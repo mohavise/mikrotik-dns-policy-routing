@@ -11,4 +11,4 @@ This service is limited to Samsung Galaxy Store / Samsung Apps app listing, upda
 
 This service does not include Samsung Knox cloud services, Samsung device management, generic Samsung account routing, AWS, Firebase, or other cloud/CDN providers as standalone services.
 
-Wildcard hosts from Samsung documentation are normalized to base domains in `domains.txt`; MikroTik output converts them to RouterOS-compatible regex rules.
+Wildcard hosts from Samsung documentation are normalized to base domains in `domains.txt`; generated MikroTik DNS rules use plain `name=` entries with `match-subdomain=yes`, and redundant child domains are omitted when their parent domain is present.
