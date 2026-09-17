@@ -24,7 +24,7 @@ if grep -q '# Last update:' "$output_dir/list-domains.rsc" "$output_dir/list-cid
     exit 1
 fi
 
-if grep -Ev '^(#|$|/ip dns static|remove \[find address-list=|:do \{ add regexp=)' "$output_dir/list-domains.rsc" | grep -q .; then
+if grep -Ev '^(#|$|/ip dns static|remove \[find address-list=|:do \{ add name=)' "$output_dir/list-domains.rsc" | grep -q .; then
     echo "Unexpected content in $SERVICE_NAME domain output" >&2
     exit 1
 fi
@@ -34,7 +34,22 @@ if grep -Ev '^(#|$|/ip firewall address-list|remove \[find list=|:do \{ add list
     exit 1
 fi
 
-domain_count="$(grep -c 'type=FWD' "$output_dir/list-domains.rsc" || true)"
+if grep -q 'regexp=' "$output_dir/list-domains.rsc"; then
+    echo "Regex DNS rules are not allowed for $SERVICE_NAME" >&2
+    exit 1
+fi
+
+if grep -q 'forward-to=' "$output_dir/list-domains.rsc"; then
+    echo "Per-domain forward-to is not allowed for $SERVICE_NAME" >&2
+    exit 1
+fi
+
+if grep '^:do { add name=' "$output_dir/list-domains.rsc" | grep -vq 'match-subdomain=yes'; then
+    echo "All $SERVICE_NAME domain rules must use match-subdomain=yes" >&2
+    exit 1
+fi
+
+domain_count="$(grep -c '^:do { add name=' "$output_dir/list-domains.rsc" || true)"
 cidr_count="$(grep -c '^:do { add list=' "$output_dir/list-cidr.rsc" || true)"
 
 if [ "$domain_count" -lt "${MIN_DOMAIN_RULES:-1}" ]; then
@@ -54,7 +69,7 @@ if [ "$actual_all" -ne "$expected_all" ]; then
     exit 1
 fi
 
-if [ "$(grep '^:do { add regexp=' "$output_dir/list-domains.rsc" | sort | uniq -d | wc -l | tr -d ' ')" -ne 0 ]; then
+if [ "$(grep '^:do { add name=' "$output_dir/list-domains.rsc" | sort | uniq -d | wc -l | tr -d ' ')" -ne 0 ]; then
     echo "Duplicate domain rules found for $SERVICE_NAME" >&2
     exit 1
 fi
