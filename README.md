@@ -87,9 +87,19 @@ routeros/update.rsc
 routeros/scheduler.rsc
 ```
 
-DNS rules use RouterOS plain `name=` entries with `type=FWD`, `match-subdomain=yes`, and an `address-list`. When a listed parent domain already covers a child domain, the child is omitted from generated output. CIDR rules use `/ip firewall address-list`.
+For every base domain, the generator creates two rules that feed the same RouterOS address-list:
 
-Clients must use the MikroTik router as DNS for DNS-learned destination addresses to populate:
+```routeros
+/ip firewall address-list
+add list=DST-EXAMPLE-TO-OUTBOUND address="example.com" comment="example:seed:example.com"
+
+/ip dns static
+add regexp="(^|.*\\.)example\\.com$" type=FWD address-list=DST-EXAMPLE-TO-OUTBOUND comment="example:dns:example.com"
+```
+
+The firewall FQDN entry seeds the main/base-domain addresses. The DNS regex learns addresses returned for the base domain and its subdomains. Service source hostnames are first reduced to broad base parent domains, then deduplicated before these paired rules are generated. CIDR rules use `/ip firewall address-list`.
+
+Clients must use the MikroTik router as DNS for DNS-regex-learned destination addresses to populate:
 
 ```routeros
 /ip dns set allow-remote-requests=yes
@@ -109,6 +119,9 @@ The build pipeline checks:
 HTTPS-only external sources
 download retries and timeouts
 strict domain syntax
+base-domain reduction
+paired FQDN seed and DNS regex generation
+exact seed-to-regex consistency
 IPv4 CIDR octets and prefix lengths
 minimum service counts
 20% sudden-drop protection
@@ -165,9 +178,9 @@ example.com
 service.example.org
 ```
 
-Do not use `*.example.com`; the generator uses `match-subdomain=yes`. If both `example.com` and `service.example.com` are present, only `example.com` is generated because it already covers the child domain.
+Do not put wildcard or regex syntax in database domain files. The generator reduces service hostnames to base parent domains and creates both the FQDN seed and DNS regex automatically.
 
-Do not add broad public cloud ranges, generic CDN ranges, or unrelated customer workloads. Use only service-owned or tightly scoped dependencies required for the intended service.
+Do not add broad public cloud ranges, generic CDN ranges, or unrelated customer workloads. Use only service-owned or service-related dependencies required for the intended service.
 
 More documentation:
 
