@@ -11,6 +11,12 @@ service_dir="$service_root/database"
 output_dir="$service_root/output"
 . "$service_dir/service.conf"
 
+workdir="$(mktemp -d)"
+trap 'rm -rf "$workdir"' EXIT
+seed_domains="$workdir/seed-domains.txt"
+actual_regex="$workdir/actual-regex.txt"
+expected_regex="$workdir/expected-regex.txt"
+
 for file in list-domains.rsc list-cidr.rsc list-all.rsc; do
     test -s "$output_dir/$file"
 done
@@ -24,7 +30,7 @@ if grep -q '# Last update:' "$output_dir/list-domains.rsc" "$output_dir/list-cid
     exit 1
 fi
 
-if grep -Ev '^(#|$|/ip dns static|remove \[find address-list=|:do \{ add name=)' "$output_dir/list-domains.rsc" | grep -q .; then
+if grep -Ev '^(#|$|/ip firewall address-list|/ip dns static|remove \[find list=|remove \[find address-list=|:do \{ add list=|:do \{ add regexp=)' "$output_dir/list-domains.rsc" | grep -q .; then
     echo "Unexpected content in $SERVICE_NAME domain output" >&2
     exit 1
 fi
@@ -34,24 +40,51 @@ if grep -Ev '^(#|$|/ip firewall address-list|remove \[find list=|:do \{ add list
     exit 1
 fi
 
-if grep -q 'regexp=' "$output_dir/list-domains.rsc"; then
-    echo "Regex DNS rules are not allowed for $SERVICE_NAME" >&2
-    exit 1
-fi
-
 if grep -q 'forward-to=' "$output_dir/list-domains.rsc"; then
     echo "Per-domain forward-to is not allowed for $SERVICE_NAME" >&2
     exit 1
 fi
 
-if grep '^:do { add name=' "$output_dir/list-domains.rsc" | grep -vq 'match-subdomain=yes'; then
-    echo "All $SERVICE_NAME domain rules must use match-subdomain=yes" >&2
+if grep -q 'match-subdomain=' "$output_dir/list-domains.rsc"; then
+    echo "match-subdomain rules are not allowed in hybrid output for $SERVICE_NAME" >&2
     exit 1
 fi
 
-# Output must contain only broad base parent domains. For common ccTLD forms
-# (for example co.uk or com.au), one additional registrant label is retained.
-if ! sed -n 's/^:do { add name="\([^"]*\)".*/\1/p' "$output_dir/list-domains.rsc" | awk '
+if grep -q '^:do { add name=' "$output_dir/list-domains.rsc"; then
+    echo "Plain DNS name rules are not allowed in hybrid output for $SERVICE_NAME" >&2
+    exit 1
+fi
+
+seed_count="$(grep -Fc "comment=\"${DOMAIN_COMMENT_PREFIX}seed:" "$output_dir/list-domains.rsc" || true)"
+regex_count="$(grep -Fc "comment=\"${DOMAIN_COMMENT_PREFIX}dns:" "$output_dir/list-domains.rsc" || true)"
+cidr_count="$(grep -c '^:do { add list=' "$output_dir/list-cidr.rsc" || true)"
+
+if [ "$seed_count" -lt 1 ]; then
+    echo "No generated $SERVICE_NAME FQDN seed entries" >&2
+    exit 1
+fi
+
+if [ "$regex_count" -ne "$seed_count" ]; then
+    echo "$SERVICE_NAME FQDN seed/regex count mismatch: $seed_count seeds, $regex_count regex rules" >&2
+    exit 1
+fi
+
+if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
+    echo "Too few $SERVICE_NAME CIDR entries" >&2
+    exit 1
+fi
+
+sed -n 's/^:do { add list=[^ ]* address="\([^"]*\)" comment="[^"]*seed:[^"]*" } on-error={}$/\1/p' \
+    "$output_dir/list-domains.rsc" | sort -u > "$seed_domains"
+
+if [ "$(wc -l < "$seed_domains" | tr -d ' ')" -ne "$seed_count" ]; then
+    echo "Duplicate or malformed FQDN seed rules found for $SERVICE_NAME" >&2
+    exit 1
+fi
+
+# Output seeds must contain only broad base parent domains. For common ccTLD
+# forms (for example co.uk or com.au), one additional registrant label stays.
+if ! awk '
 function base_domain(domain, labels, count, second, last) {
     count = split(domain, labels, ".")
     if (count <= 2) return domain
@@ -72,33 +105,34 @@ function base_domain(domain, labels, count, second, last) {
     }
 }
 END { exit bad ? 1 : 0 }
-'; then
-    echo "$SERVICE_NAME contains generated child/subdomain rules" >&2
+' "$seed_domains"; then
+    echo "$SERVICE_NAME contains generated child/subdomain seed rules" >&2
     exit 1
 fi
 
-domain_count="$(grep -c '^:do { add name=' "$output_dir/list-domains.rsc" || true)"
-cidr_count="$(grep -c '^:do { add list=' "$output_dir/list-cidr.rsc" || true)"
+sed -n 's/^:do { add regexp="\([^"]*\)" type=FWD address-list=[^ ]* comment="[^"]*dns:[^"]*" } on-error={}$/\1/p' \
+    "$output_dir/list-domains.rsc" | sort -u > "$actual_regex"
 
-if [ "$domain_count" -lt 1 ]; then
-    echo "No generated $SERVICE_NAME base domain entries" >&2
+if [ "$(wc -l < "$actual_regex" | tr -d ' ')" -ne "$regex_count" ]; then
+    echo "Duplicate or malformed DNS regex rules found for $SERVICE_NAME" >&2
     exit 1
 fi
 
-if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
-    echo "Too few $SERVICE_NAME CIDR entries" >&2
+while IFS= read -r domain; do
+    escaped_domain="$(printf '%s\n' "$domain" | sed 's/\./\\\\./g')"
+    printf '(^|.*\\\\.)%s$\n' "$escaped_domain"
+done < "$seed_domains" | sort -u > "$expected_regex"
+
+if ! diff -u "$expected_regex" "$actual_regex" >/dev/null; then
+    echo "$SERVICE_NAME DNS regex rules do not exactly match the FQDN seed domains" >&2
+    diff -u "$expected_regex" "$actual_regex" >&2 || true
     exit 1
 fi
 
-expected_all=$((domain_count + cidr_count))
+expected_all=$((seed_count + regex_count + cidr_count))
 actual_all="$(grep -c '^:do { add ' "$output_dir/list-all.rsc" || true)"
 if [ "$actual_all" -ne "$expected_all" ]; then
     echo "$SERVICE_NAME combined output count mismatch" >&2
-    exit 1
-fi
-
-if [ "$(grep '^:do { add name=' "$output_dir/list-domains.rsc" | sort | uniq -d | wc -l | tr -d ' ')" -ne 0 ]; then
-    echo "Duplicate domain rules found for $SERVICE_NAME" >&2
     exit 1
 fi
 
