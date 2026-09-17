@@ -87,7 +87,7 @@ routeros/update.rsc
 routeros/scheduler.rsc
 ```
 
-DNS rules use RouterOS `type=FWD` with an `address-list`. CIDR rules use `/ip firewall address-list`.
+DNS rules use RouterOS plain `name=` entries with `type=FWD`, `match-subdomain=yes`, and an `address-list`. When a listed parent domain already covers a child domain, the child is omitted from generated output. CIDR rules use `/ip firewall address-list`.
 
 Clients must use the MikroTik router as DNS for DNS-learned destination addresses to populate:
 
@@ -165,7 +165,7 @@ example.com
 service.example.org
 ```
 
-Do not use `*.example.com`; the generator creates regex rules that match the root and its subdomains.
+Do not use `*.example.com`; the generator uses `match-subdomain=yes`. If both `example.com` and `service.example.com` are present, only `example.com` is generated because it already covers the child domain.
 
 Do not add broad public cloud ranges, generic CDN ranges, or unrelated customer workloads. Use only service-owned or tightly scoped dependencies required for the intended service.
 
