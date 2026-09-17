@@ -5,19 +5,33 @@
 # RouterOS address-list: DST-STEAM-TO-OUTBOUND
 # Source: Steam and Valve public/service domains (official-owned-domains)
 # Normalized source domain count: 15
-# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
+# Each base domain has a firewall FQDN seed plus a DNS regex learner in the same address-list
 # do-not-edit-manually
+
+/ip firewall address-list
+remove [find list=DST-STEAM-TO-OUTBOUND]
+:do { add list=DST-STEAM-TO-OUTBOUND address="akamaihd.net" comment="steam:seed:akamaihd.net" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steam-chat.com" comment="steam:seed:steam-chat.com" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steam.tv" comment="steam:seed:steam.tv" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steamcommunity.com" comment="steam:seed:steamcommunity.com" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steamcontent.com" comment="steam:seed:steamcontent.com" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steamgames.com" comment="steam:seed:steamgames.com" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steampowered.com" comment="steam:seed:steampowered.com" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steamserver.net" comment="steam:seed:steamserver.net" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steamstatic.com" comment="steam:seed:steamstatic.com" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="steamusercontent.com" comment="steam:seed:steamusercontent.com" } on-error={}
+:do { add list=DST-STEAM-TO-OUTBOUND address="valvesoftware.com" comment="steam:seed:valvesoftware.com" } on-error={}
 
 /ip dns static
 remove [find address-list=DST-STEAM-TO-OUTBOUND]
-:do { add name="akamaihd.net" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:akamaihd.net" } on-error={}
-:do { add name="steam-chat.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
-:do { add name="steam.tv" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steam.tv" } on-error={}
-:do { add name="steamcommunity.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamcommunity.com" } on-error={}
-:do { add name="steamcontent.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamcontent.com" } on-error={}
-:do { add name="steamgames.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamgames.com" } on-error={}
-:do { add name="steampowered.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steampowered.com" } on-error={}
-:do { add name="steamserver.net" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamserver.net" } on-error={}
-:do { add name="steamstatic.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamstatic.com" } on-error={}
-:do { add name="steamusercontent.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamusercontent.com" } on-error={}
-:do { add name="valvesoftware.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:valvesoftware.com" } on-error={}
+:do { add regexp="(^|.*\\.)akamaihd\\.net$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:akamaihd.net" } on-error={}
+:do { add regexp="(^|.*\\.)steam-chat\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steam-chat.com" } on-error={}
+:do { add regexp="(^|.*\\.)steam\\.tv$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steam.tv" } on-error={}
+:do { add regexp="(^|.*\\.)steamcommunity\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steamcommunity.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamcontent\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steamcontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamgames\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steamgames.com" } on-error={}
+:do { add regexp="(^|.*\\.)steampowered\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steampowered.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamserver\\.net$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steamserver.net" } on-error={}
+:do { add regexp="(^|.*\\.)steamstatic\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steamstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamusercontent\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:steamusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)valvesoftware\\.com$" type=FWD address-list=DST-STEAM-TO-OUTBOUND comment="steam:dns:valvesoftware.com" } on-error={}

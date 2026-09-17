@@ -5,17 +5,28 @@
 # RouterOS address-list: DST-YOUTUBE-TO-OUTBOUND
 # do-not-edit-manually
 
-/ip dns static
-remove [find address-list=DST-YOUTUBE-TO-OUTBOUND]
-:do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:ggpht.com" } on-error={}
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:googleapis.com" } on-error={}
-:do { add name="googlevideo.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:googlevideo.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:gstatic.com" } on-error={}
-:do { add name="youtu.be" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:youtu.be" } on-error={}
-:do { add name="youtube-nocookie.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
-:do { add name="youtube.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:youtube.com" } on-error={}
-:do { add name="ytimg.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:ytimg.com" } on-error={}
-
 /ip firewall address-list
 remove [find list=DST-YOUTUBE-TO-OUTBOUND]
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="ggpht.com" comment="youtube:seed:ggpht.com" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="google.com" comment="youtube:seed:google.com" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="googleapis.com" comment="youtube:seed:googleapis.com" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="googlevideo.com" comment="youtube:seed:googlevideo.com" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="gstatic.com" comment="youtube:seed:gstatic.com" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="youtu.be" comment="youtube:seed:youtu.be" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="youtube-nocookie.com" comment="youtube:seed:youtube-nocookie.com" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="youtube.com" comment="youtube:seed:youtube.com" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address="ytimg.com" comment="youtube:seed:ytimg.com" } on-error={}
+
+/ip dns static
+remove [find address-list=DST-YOUTUBE-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:ggpht.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googlevideo\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:googlevideo.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtu\\.be$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:youtu.be" } on-error={}
+:do { add regexp="(^|.*\\.)youtube-nocookie\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:youtube-nocookie.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:youtube.com" } on-error={}
+:do { add regexp="(^|.*\\.)ytimg\\.com$" type=FWD address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:dns:ytimg.com" } on-error={}
+
+/ip firewall address-list

@@ -5,16 +5,26 @@
 # RouterOS address-list: DST-GITHUB-TO-OUTBOUND
 # do-not-edit-manually
 
-/ip dns static
-remove [find address-list=DST-GITHUB-TO-OUTBOUND]
-:do { add name="github.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.com" } on-error={}
-:do { add name="github.dev" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.dev" } on-error={}
-:do { add name="github.io" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:github.io" } on-error={}
-:do { add name="githubapp.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubapp.com" } on-error={}
-:do { add name="githubassets.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubassets.com" } on-error={}
-:do { add name="githubcopilot.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubcopilot.com" } on-error={}
-:do { add name="githubstatus.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubstatus.com" } on-error={}
-:do { add name="githubusercontent.com" type=FWD match-subdomain=yes address-list=DST-GITHUB-TO-OUTBOUND comment="github:githubusercontent.com" } on-error={}
-
 /ip firewall address-list
 remove [find list=DST-GITHUB-TO-OUTBOUND]
+:do { add list=DST-GITHUB-TO-OUTBOUND address="github.com" comment="github:seed:github.com" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address="github.dev" comment="github:seed:github.dev" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address="github.io" comment="github:seed:github.io" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address="githubapp.com" comment="github:seed:githubapp.com" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address="githubassets.com" comment="github:seed:githubassets.com" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address="githubcopilot.com" comment="github:seed:githubcopilot.com" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address="githubstatus.com" comment="github:seed:githubstatus.com" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address="githubusercontent.com" comment="github:seed:githubusercontent.com" } on-error={}
+
+/ip dns static
+remove [find address-list=DST-GITHUB-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)github\\.com$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:github.com" } on-error={}
+:do { add regexp="(^|.*\\.)github\\.dev$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:github.dev" } on-error={}
+:do { add regexp="(^|.*\\.)github\\.io$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:github.io" } on-error={}
+:do { add regexp="(^|.*\\.)githubapp\\.com$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:githubapp.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubassets\\.com$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:githubassets.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubcopilot\\.com$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:githubcopilot.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubstatus\\.com$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:githubstatus.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubusercontent\\.com$" type=FWD address-list=DST-GITHUB-TO-OUTBOUND comment="github:dns:githubusercontent.com" } on-error={}
+
+/ip firewall address-list

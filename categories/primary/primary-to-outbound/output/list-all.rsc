@@ -3,161 +3,283 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-09-17 07:51:12 UTC
+# Last update: 2026-09-17 18:37:12 UTC
 # do-not-edit-manually
-
-/ip dns static
-remove [find address-list=DST-TO-OUTBOUND]
-:do { add name="apple.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:apple.com" } on-error={}
-:do { add name="browser-intake-datadoghq.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:browser-intake-datadoghq.com" } on-error={}
-:do { add name="chatgpt.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:chatgpt.com" } on-error={}
-:do { add name="cloudflare.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:cloudflare.com" } on-error={}
-:do { add name="imgix.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:imgix.net" } on-error={}
-:do { add name="intercom.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:intercom.io" } on-error={}
-:do { add name="intercomcdn.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:intercomcdn.com" } on-error={}
-:do { add name="oaistatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:oaistatic.com" } on-error={}
-:do { add name="oaistatsig.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:oaistatsig.com" } on-error={}
-:do { add name="oaiusercontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:oaiusercontent.com" } on-error={}
-:do { add name="openai.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:openai.com" } on-error={}
-:do { add name="openaimerge.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:openaimerge.com" } on-error={}
-:do { add name="sendgrid.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:sendgrid.net" } on-error={}
-:do { add name="sentry.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:sentry.io" } on-error={}
-:do { add name="stripe.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:stripe.com" } on-error={}
-:do { add name="workos.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:workos.com" } on-error={}
-:do { add name="workoscdn.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:workoscdn.com" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-TO-OUTBOUND]
-
-
-/ip dns static
-:do { add name="a2z.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="aws:a2z.com" } on-error={}
-:do { add name="amazon.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="aws:amazon.com" } on-error={}
-:do { add name="amazonaws.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="aws:amazonaws.com" } on-error={}
-:do { add name="awsstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="aws:awsstatic.com" } on-error={}
-:do { add name="signin.aws" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="aws:signin.aws" } on-error={}
-
-/ip firewall address-list
-
-/ip dns static
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:googleapis.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:gstatic.com" } on-error={}
-:do { add name="withgoogle.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:withgoogle.com" } on-error={}
-
-/ip firewall address-list
-
-/ip dns static
-:do { add name="azure.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:azure.com" } on-error={}
-:do { add name="azure.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:azure.net" } on-error={}
-:do { add name="live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:live.com" } on-error={}
-:do { add name="microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:microsoft.com" } on-error={}
-:do { add name="microsoftonline-p.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:microsoftonline-p.com" } on-error={}
-:do { add name="microsoftonline.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:microsoftonline.com" } on-error={}
-:do { add name="msauth.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:msauth.net" } on-error={}
-:do { add name="msauthimages.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:msauthimages.net" } on-error={}
-:do { add name="msftauth.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:msftauth.net" } on-error={}
-:do { add name="msftauthimages.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:msftauthimages.net" } on-error={}
-:do { add name="windows.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-azure:windows.net" } on-error={}
-
-/ip firewall address-list
-
+:do { add list=DST-TO-OUTBOUND address="apple.com" comment="openai:seed:apple.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="browser-intake-datadoghq.com" comment="openai:seed:browser-intake-datadoghq.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="chatgpt.com" comment="openai:seed:chatgpt.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="cloudflare.com" comment="openai:seed:cloudflare.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="imgix.net" comment="openai:seed:imgix.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="intercom.io" comment="openai:seed:intercom.io" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="intercomcdn.com" comment="openai:seed:intercomcdn.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="oaistatic.com" comment="openai:seed:oaistatic.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="oaistatsig.com" comment="openai:seed:oaistatsig.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="oaiusercontent.com" comment="openai:seed:oaiusercontent.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="openai.com" comment="openai:seed:openai.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="openaimerge.com" comment="openai:seed:openaimerge.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="sendgrid.net" comment="openai:seed:sendgrid.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="sentry.io" comment="openai:seed:sentry.io" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="stripe.com" comment="openai:seed:stripe.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="workos.com" comment="openai:seed:workos.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="workoscdn.com" comment="openai:seed:workoscdn.com" } on-error={}
 
 /ip dns static
-:do { add name="github.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:github.com" } on-error={}
-:do { add name="github.dev" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:github.dev" } on-error={}
-:do { add name="github.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:github.io" } on-error={}
-:do { add name="githubapp.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:githubapp.com" } on-error={}
-:do { add name="githubassets.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:githubassets.com" } on-error={}
-:do { add name="githubcopilot.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:githubcopilot.com" } on-error={}
-:do { add name="githubstatus.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:githubstatus.com" } on-error={}
-:do { add name="githubusercontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="github:githubusercontent.com" } on-error={}
+remove [find address-list=DST-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)apple\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)browser-intake-datadoghq\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:browser-intake-datadoghq.com" } on-error={}
+:do { add regexp="(^|.*\\.)chatgpt\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:chatgpt.com" } on-error={}
+:do { add regexp="(^|.*\\.)cloudflare\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:cloudflare.com" } on-error={}
+:do { add regexp="(^|.*\\.)imgix\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:imgix.net" } on-error={}
+:do { add regexp="(^|.*\\.)intercom\\.io$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:intercom.io" } on-error={}
+:do { add regexp="(^|.*\\.)intercomcdn\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:intercomcdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)oaistatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:oaistatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)oaistatsig\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:oaistatsig.com" } on-error={}
+:do { add regexp="(^|.*\\.)oaiusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:oaiusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)openai\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:openai.com" } on-error={}
+:do { add regexp="(^|.*\\.)openaimerge\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:openaimerge.com" } on-error={}
+:do { add regexp="(^|.*\\.)sendgrid\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:sendgrid.net" } on-error={}
+:do { add regexp="(^|.*\\.)sentry\\.io$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:sentry.io" } on-error={}
+:do { add regexp="(^|.*\\.)stripe\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:stripe.com" } on-error={}
+:do { add regexp="(^|.*\\.)workos\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:workos.com" } on-error={}
+:do { add regexp="(^|.*\\.)workoscdn\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="openai:dns:workoscdn.com" } on-error={}
 
 /ip firewall address-list
 
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="a2z.com" comment="aws:seed:a2z.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="amazon.com" comment="aws:seed:amazon.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="amazonaws.com" comment="aws:seed:amazonaws.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="awsstatic.com" comment="aws:seed:awsstatic.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="signin.aws" comment="aws:seed:signin.aws" } on-error={}
+
 /ip dns static
-:do { add name="figma.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="figma:figma.com" } on-error={}
-:do { add name="figma.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="figma:figma.net" } on-error={}
-:do { add name="figma.site" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="figma:figma.site" } on-error={}
-:do { add name="figmausercontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="figma:figmausercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)a2z\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="aws:dns:a2z.com" } on-error={}
+:do { add regexp="(^|.*\\.)amazon\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="aws:dns:amazon.com" } on-error={}
+:do { add regexp="(^|.*\\.)amazonaws\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="aws:dns:amazonaws.com" } on-error={}
+:do { add regexp="(^|.*\\.)awsstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="aws:dns:awsstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)signin\\.aws$" type=FWD address-list=DST-TO-OUTBOUND comment="aws:dns:signin.aws" } on-error={}
 
 /ip firewall address-list
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="google.com" comment="google-cloud:seed:google.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="googleapis.com" comment="google-cloud:seed:googleapis.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="gstatic.com" comment="google-cloud:seed:gstatic.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="withgoogle.com" comment="google-cloud:seed:withgoogle.com" } on-error={}
+
 /ip dns static
-:do { add name="canva-apps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="canva:canva-apps.com" } on-error={}
-:do { add name="canva.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="canva:canva.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-cloud:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-cloud:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-cloud:dns:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)withgoogle\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-cloud:dns:withgoogle.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="azure.com" comment="microsoft-azure:seed:azure.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="azure.net" comment="microsoft-azure:seed:azure.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="live.com" comment="microsoft-azure:seed:live.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="microsoft.com" comment="microsoft-azure:seed:microsoft.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="microsoftonline-p.com" comment="microsoft-azure:seed:microsoftonline-p.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="microsoftonline.com" comment="microsoft-azure:seed:microsoftonline.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="msauth.net" comment="microsoft-azure:seed:msauth.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="msauthimages.net" comment="microsoft-azure:seed:msauthimages.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="msftauth.net" comment="microsoft-azure:seed:msftauth.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="msftauthimages.net" comment="microsoft-azure:seed:msftauthimages.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="windows.net" comment="microsoft-azure:seed:windows.net" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)azure\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:azure.com" } on-error={}
+:do { add regexp="(^|.*\\.)azure\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:azure.net" } on-error={}
+:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:live.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoft\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:microsoft.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoftonline-p\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:microsoftonline-p.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoftonline\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:microsoftonline.com" } on-error={}
+:do { add regexp="(^|.*\\.)msauth\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:msauth.net" } on-error={}
+:do { add regexp="(^|.*\\.)msauthimages\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:msauthimages.net" } on-error={}
+:do { add regexp="(^|.*\\.)msftauth\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:msftauth.net" } on-error={}
+:do { add regexp="(^|.*\\.)msftauthimages\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:msftauthimages.net" } on-error={}
+:do { add regexp="(^|.*\\.)windows\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-azure:dns:windows.net" } on-error={}
 
 /ip firewall address-list
 
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="github.com" comment="github:seed:github.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="github.dev" comment="github:seed:github.dev" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="github.io" comment="github:seed:github.io" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="githubapp.com" comment="github:seed:githubapp.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="githubassets.com" comment="github:seed:githubassets.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="githubcopilot.com" comment="github:seed:githubcopilot.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="githubstatus.com" comment="github:seed:githubstatus.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="githubusercontent.com" comment="github:seed:githubusercontent.com" } on-error={}
+
 /ip dns static
-:do { add name="transferwise.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="wise:transferwise.com" } on-error={}
-:do { add name="wise.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="wise:wise.com" } on-error={}
+:do { add regexp="(^|.*\\.)github\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:github.com" } on-error={}
+:do { add regexp="(^|.*\\.)github\\.dev$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:github.dev" } on-error={}
+:do { add regexp="(^|.*\\.)github\\.io$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:github.io" } on-error={}
+:do { add regexp="(^|.*\\.)githubapp\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:githubapp.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubassets\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:githubassets.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubcopilot\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:githubcopilot.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubstatus\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:githubstatus.com" } on-error={}
+:do { add regexp="(^|.*\\.)githubusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:githubusercontent.com" } on-error={}
 
 /ip firewall address-list
 
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="figma.com" comment="figma:seed:figma.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="figma.net" comment="figma:seed:figma.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="figma.site" comment="figma:seed:figma.site" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="figmausercontent.com" comment="figma:seed:figmausercontent.com" } on-error={}
+
 /ip dns static
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-drive:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-drive:googleapis.com" } on-error={}
-:do { add name="googleusercontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-drive:googleusercontent.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-drive:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)figma\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:dns:figma.com" } on-error={}
+:do { add regexp="(^|.*\\.)figma\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:dns:figma.net" } on-error={}
+:do { add regexp="(^|.*\\.)figma\\.site$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:dns:figma.site" } on-error={}
+:do { add regexp="(^|.*\\.)figmausercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="figma:dns:figmausercontent.com" } on-error={}
 
 /ip firewall address-list
 
-/ip dns static
-:do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:ggpht.com" } on-error={}
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:googleapis.com" } on-error={}
-:do { add name="googlevideo.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:googlevideo.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:gstatic.com" } on-error={}
-:do { add name="youtu.be" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:youtu.be" } on-error={}
-:do { add name="youtube-nocookie.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
-:do { add name="youtube.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:youtube.com" } on-error={}
-:do { add name="ytimg.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:ytimg.com" } on-error={}
-
 /ip firewall address-list
-
+:do { add list=DST-TO-OUTBOUND address="canva-apps.com" comment="canva:seed:canva-apps.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="canva.com" comment="canva:seed:canva.com" } on-error={}
 
 /ip dns static
-:do { add name="akamaihd.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:akamaihd.net" } on-error={}
-:do { add name="steam-chat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
-:do { add name="steam.tv" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steam.tv" } on-error={}
-:do { add name="steamcommunity.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamcommunity.com" } on-error={}
-:do { add name="steamcontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamcontent.com" } on-error={}
-:do { add name="steamgames.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamgames.com" } on-error={}
-:do { add name="steampowered.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steampowered.com" } on-error={}
-:do { add name="steamserver.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamserver.net" } on-error={}
-:do { add name="steamstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamstatic.com" } on-error={}
-:do { add name="steamusercontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamusercontent.com" } on-error={}
-:do { add name="valvesoftware.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:valvesoftware.com" } on-error={}
+:do { add regexp="(^|.*\\.)canva-apps\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="canva:dns:canva-apps.com" } on-error={}
+:do { add regexp="(^|.*\\.)canva\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="canva:dns:canva.com" } on-error={}
 
 /ip firewall address-list
 
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="transferwise.com" comment="wise:seed:transferwise.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="wise.com" comment="wise:seed:wise.com" } on-error={}
+
 /ip dns static
-:do { add name="cdn-telegram.org" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:cdn-telegram.org" } on-error={}
-:do { add name="comments.app" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:comments.app" } on-error={}
-:do { add name="contest.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:contest.com" } on-error={}
-:do { add name="fragment.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:fragment.com" } on-error={}
-:do { add name="graph.org" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:graph.org" } on-error={}
-:do { add name="quiz.directory" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:quiz.directory" } on-error={}
-:do { add name="t.me" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:t.me" } on-error={}
-:do { add name="tdesktop.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:tdesktop.com" } on-error={}
-:do { add name="telega.one" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telega.one" } on-error={}
-:do { add name="telegra.ph" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telegra.ph" } on-error={}
-:do { add name="telegram-cdn.org" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telegram-cdn.org" } on-error={}
-:do { add name="telegram.dog" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telegram.dog" } on-error={}
-:do { add name="telegram.me" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telegram.me" } on-error={}
-:do { add name="telegram.org" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telegram.org" } on-error={}
-:do { add name="telegram.space" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telegram.space" } on-error={}
-:do { add name="telesco.pe" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:telesco.pe" } on-error={}
-:do { add name="tg.dev" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:tg.dev" } on-error={}
-:do { add name="ton.org" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:ton.org" } on-error={}
-:do { add name="toncenter.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:toncenter.com" } on-error={}
-:do { add name="tx.me" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:tx.me" } on-error={}
-:do { add name="usercontent.dev" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="telegram:usercontent.dev" } on-error={}
+:do { add regexp="(^|.*\\.)transferwise\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="wise:dns:transferwise.com" } on-error={}
+:do { add regexp="(^|.*\\.)wise\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="wise:dns:wise.com" } on-error={}
+
+/ip firewall address-list
+
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="google.com" comment="google-drive:seed:google.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="googleapis.com" comment="google-drive:seed:googleapis.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="googleusercontent.com" comment="google-drive:seed:googleusercontent.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="gstatic.com" comment="google-drive:seed:gstatic.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:googleusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:gstatic.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="ggpht.com" comment="youtube:seed:ggpht.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="google.com" comment="youtube:seed:google.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="googleapis.com" comment="youtube:seed:googleapis.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="googlevideo.com" comment="youtube:seed:googlevideo.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="gstatic.com" comment="youtube:seed:gstatic.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="youtu.be" comment="youtube:seed:youtu.be" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="youtube-nocookie.com" comment="youtube:seed:youtube-nocookie.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="youtube.com" comment="youtube:seed:youtube.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="ytimg.com" comment="youtube:seed:ytimg.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:ggpht.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googlevideo\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:googlevideo.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtu\\.be$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:youtu.be" } on-error={}
+:do { add regexp="(^|.*\\.)youtube-nocookie\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:youtube-nocookie.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:youtube.com" } on-error={}
+:do { add regexp="(^|.*\\.)ytimg\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:ytimg.com" } on-error={}
+
+/ip firewall address-list
+
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="akamaihd.net" comment="steam:seed:akamaihd.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steam-chat.com" comment="steam:seed:steam-chat.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steam.tv" comment="steam:seed:steam.tv" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steamcommunity.com" comment="steam:seed:steamcommunity.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steamcontent.com" comment="steam:seed:steamcontent.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steamgames.com" comment="steam:seed:steamgames.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steampowered.com" comment="steam:seed:steampowered.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steamserver.net" comment="steam:seed:steamserver.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steamstatic.com" comment="steam:seed:steamstatic.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="steamusercontent.com" comment="steam:seed:steamusercontent.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="valvesoftware.com" comment="steam:seed:valvesoftware.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)akamaihd\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:akamaihd.net" } on-error={}
+:do { add regexp="(^|.*\\.)steam-chat\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steam-chat.com" } on-error={}
+:do { add regexp="(^|.*\\.)steam\\.tv$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steam.tv" } on-error={}
+:do { add regexp="(^|.*\\.)steamcommunity\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steamcommunity.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamcontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steamcontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamgames\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steamgames.com" } on-error={}
+:do { add regexp="(^|.*\\.)steampowered\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steampowered.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamserver\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steamserver.net" } on-error={}
+:do { add regexp="(^|.*\\.)steamstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steamstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)steamusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:steamusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)valvesoftware\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="steam:dns:valvesoftware.com" } on-error={}
+
+/ip firewall address-list
+
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="cdn-telegram.org" comment="telegram:seed:cdn-telegram.org" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="comments.app" comment="telegram:seed:comments.app" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="contest.com" comment="telegram:seed:contest.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="fragment.com" comment="telegram:seed:fragment.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="graph.org" comment="telegram:seed:graph.org" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="quiz.directory" comment="telegram:seed:quiz.directory" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="t.me" comment="telegram:seed:t.me" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="tdesktop.com" comment="telegram:seed:tdesktop.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telega.one" comment="telegram:seed:telega.one" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telegra.ph" comment="telegram:seed:telegra.ph" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telegram-cdn.org" comment="telegram:seed:telegram-cdn.org" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telegram.dog" comment="telegram:seed:telegram.dog" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telegram.me" comment="telegram:seed:telegram.me" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telegram.org" comment="telegram:seed:telegram.org" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telegram.space" comment="telegram:seed:telegram.space" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="telesco.pe" comment="telegram:seed:telesco.pe" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="tg.dev" comment="telegram:seed:tg.dev" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="ton.org" comment="telegram:seed:ton.org" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="toncenter.com" comment="telegram:seed:toncenter.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="tx.me" comment="telegram:seed:tx.me" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="usercontent.dev" comment="telegram:seed:usercontent.dev" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)cdn-telegram\\.org$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:cdn-telegram.org" } on-error={}
+:do { add regexp="(^|.*\\.)comments\\.app$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:comments.app" } on-error={}
+:do { add regexp="(^|.*\\.)contest\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:contest.com" } on-error={}
+:do { add regexp="(^|.*\\.)fragment\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:fragment.com" } on-error={}
+:do { add regexp="(^|.*\\.)graph\\.org$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:graph.org" } on-error={}
+:do { add regexp="(^|.*\\.)quiz\\.directory$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:quiz.directory" } on-error={}
+:do { add regexp="(^|.*\\.)t\\.me$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:t.me" } on-error={}
+:do { add regexp="(^|.*\\.)tdesktop\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:tdesktop.com" } on-error={}
+:do { add regexp="(^|.*\\.)telega\\.one$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telega.one" } on-error={}
+:do { add regexp="(^|.*\\.)telegra\\.ph$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telegra.ph" } on-error={}
+:do { add regexp="(^|.*\\.)telegram-cdn\\.org$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telegram-cdn.org" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.dog$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telegram.dog" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.me$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telegram.me" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.org$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telegram.org" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.space$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telegram.space" } on-error={}
+:do { add regexp="(^|.*\\.)telesco\\.pe$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:telesco.pe" } on-error={}
+:do { add regexp="(^|.*\\.)tg\\.dev$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:tg.dev" } on-error={}
+:do { add regexp="(^|.*\\.)ton\\.org$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:ton.org" } on-error={}
+:do { add regexp="(^|.*\\.)toncenter\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:toncenter.com" } on-error={}
+:do { add regexp="(^|.*\\.)tx\\.me$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:tx.me" } on-error={}
+:do { add regexp="(^|.*\\.)usercontent\\.dev$" type=FWD address-list=DST-TO-OUTBOUND comment="telegram:dns:usercontent.dev" } on-error={}
 
 /ip firewall address-list
 :do { add list=DST-TO-OUTBOUND address=149.154.160.0/20 comment="telegram-cidr" } on-error={}
@@ -170,180 +292,310 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=91.108.56.0/22 comment="telegram-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=91.108.8.0/22 comment="telegram-cidr" } on-error={}
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="wa.me" comment="whatsapp:seed:wa.me" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="whatsapp.com" comment="whatsapp:seed:whatsapp.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="whatsapp.net" comment="whatsapp:seed:whatsapp.net" } on-error={}
+
 /ip dns static
-:do { add name="wa.me" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="whatsapp:wa.me" } on-error={}
-:do { add name="whatsapp.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="whatsapp:whatsapp.com" } on-error={}
-:do { add name="whatsapp.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="whatsapp:whatsapp.net" } on-error={}
+:do { add regexp="(^|.*\\.)wa\\.me$" type=FWD address-list=DST-TO-OUTBOUND comment="whatsapp:dns:wa.me" } on-error={}
+:do { add regexp="(^|.*\\.)whatsapp\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="whatsapp:dns:whatsapp.com" } on-error={}
+:do { add regexp="(^|.*\\.)whatsapp\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="whatsapp:dns:whatsapp.net" } on-error={}
 
 /ip firewall address-list
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="signal.me" comment="signal:seed:signal.me" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="signal.org" comment="signal:seed:signal.org" } on-error={}
+
 /ip dns static
-:do { add name="signal.me" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="signal:signal.me" } on-error={}
-:do { add name="signal.org" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="signal:signal.org" } on-error={}
+:do { add regexp="(^|.*\\.)signal\\.me$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:dns:signal.me" } on-error={}
+:do { add regexp="(^|.*\\.)signal\\.org$" type=FWD address-list=DST-TO-OUTBOUND comment="signal:dns:signal.org" } on-error={}
 
 /ip firewall address-list
 
-/ip dns static
-:do { add name="discord.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="discord:discord.com" } on-error={}
-:do { add name="discord.gg" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="discord:discord.gg" } on-error={}
-:do { add name="discordapp.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="discord:discordapp.com" } on-error={}
-:do { add name="discordapp.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="discord:discordapp.net" } on-error={}
-
 /ip firewall address-list
-
-
-/ip dns static
-:do { add name="live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:live.com" } on-error={}
-:do { add name="microsoft365.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:microsoft365.com" } on-error={}
-:do { add name="microsoftonline.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:microsoftonline.com" } on-error={}
-:do { add name="msauth.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:msauth.net" } on-error={}
-:do { add name="msftauth.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:msftauth.net" } on-error={}
-:do { add name="msocdn.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:msocdn.com" } on-error={}
-:do { add name="office.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:office.com" } on-error={}
-:do { add name="office.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:office.net" } on-error={}
-:do { add name="office365.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:office365.com" } on-error={}
-:do { add name="outlook.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:outlook.com" } on-error={}
-:do { add name="sharepoint.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:sharepoint.com" } on-error={}
-
-/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="discord.com" comment="discord:seed:discord.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="discord.gg" comment="discord:seed:discord.gg" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="discordapp.com" comment="discord:seed:discordapp.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="discordapp.net" comment="discord:seed:discordapp.net" } on-error={}
 
 /ip dns static
-:do { add name="1drv.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:1drv.com" } on-error={}
-:do { add name="1drv.ms" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:1drv.ms" } on-error={}
-:do { add name="live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:live.com" } on-error={}
-:do { add name="onedrive.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:onedrive.com" } on-error={}
-:do { add name="sharepoint.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:sharepoint.com" } on-error={}
-
-/ip firewall address-list
-
-/ip dns static
-:do { add name="live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:live.com" } on-error={}
-:do { add name="lync.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:lync.com" } on-error={}
-:do { add name="microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:microsoft.com" } on-error={}
-:do { add name="office.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:office.net" } on-error={}
-:do { add name="sfbassets.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:sfbassets.com" } on-error={}
-:do { add name="skype.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:skype.com" } on-error={}
-
-/ip firewall address-list
-
-/ip dns static
-:do { add name="microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:microsoft.com" } on-error={}
-:do { add name="windowsupdate.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:windowsupdate.com" } on-error={}
+:do { add regexp="(^|.*\\.)discord\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:dns:discord.com" } on-error={}
+:do { add regexp="(^|.*\\.)discord\\.gg$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:dns:discord.gg" } on-error={}
+:do { add regexp="(^|.*\\.)discordapp\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:dns:discordapp.com" } on-error={}
+:do { add regexp="(^|.*\\.)discordapp\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="discord:dns:discordapp.net" } on-error={}
 
 /ip firewall address-list
 
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="live.com" comment="microsoft-365:seed:live.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="microsoft365.com" comment="microsoft-365:seed:microsoft365.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="microsoftonline.com" comment="microsoft-365:seed:microsoftonline.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="msauth.net" comment="microsoft-365:seed:msauth.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="msftauth.net" comment="microsoft-365:seed:msftauth.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="msocdn.com" comment="microsoft-365:seed:msocdn.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="office.com" comment="microsoft-365:seed:office.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="office.net" comment="microsoft-365:seed:office.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="office365.com" comment="microsoft-365:seed:office365.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="outlook.com" comment="microsoft-365:seed:outlook.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="sharepoint.com" comment="microsoft-365:seed:sharepoint.com" } on-error={}
+
 /ip dns static
-:do { add name="apple-cloudkit.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="apple-app-store:apple-cloudkit.com" } on-error={}
-:do { add name="apple.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="apple-app-store:apple.com" } on-error={}
-:do { add name="mzstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="apple-app-store:mzstatic.com" } on-error={}
-:do { add name="safebrowsing.apple" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="apple-app-store:safebrowsing.apple" } on-error={}
+:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:live.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoft365\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:microsoft365.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoftonline\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:microsoftonline.com" } on-error={}
+:do { add regexp="(^|.*\\.)msauth\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:msauth.net" } on-error={}
+:do { add regexp="(^|.*\\.)msftauth\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:msftauth.net" } on-error={}
+:do { add regexp="(^|.*\\.)msocdn\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:msocdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)office\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:office.com" } on-error={}
+:do { add regexp="(^|.*\\.)office\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:office.net" } on-error={}
+:do { add regexp="(^|.*\\.)office365\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:office365.com" } on-error={}
+:do { add regexp="(^|.*\\.)outlook\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:outlook.com" } on-error={}
+:do { add regexp="(^|.*\\.)sharepoint\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:sharepoint.com" } on-error={}
 
 /ip firewall address-list
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="1drv.com" comment="onedrive:seed:1drv.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="1drv.ms" comment="onedrive:seed:1drv.ms" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="live.com" comment="onedrive:seed:live.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="onedrive.com" comment="onedrive:seed:onedrive.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="sharepoint.com" comment="onedrive:seed:sharepoint.com" } on-error={}
+
 /ip dns static
-:do { add name="android.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:android.com" } on-error={}
-:do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:ggpht.com" } on-error={}
-:do { add name="google-analytics.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:google-analytics.com" } on-error={}
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:googleapis.com" } on-error={}
-:do { add name="googleusercontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:googleusercontent.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gstatic.com" } on-error={}
-:do { add name="gvt1.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gvt1.com" } on-error={}
-:do { add name="gvt2.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gvt2.com" } on-error={}
-:do { add name="gvt3.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gvt3.com" } on-error={}
-:do { add name="pki.goog" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:pki.goog" } on-error={}
-:do { add name="youtube.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:youtube.com" } on-error={}
+:do { add regexp="(^|.*\\.)1drv\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:1drv.com" } on-error={}
+:do { add regexp="(^|.*\\.)1drv\\.ms$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:1drv.ms" } on-error={}
+:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:live.com" } on-error={}
+:do { add regexp="(^|.*\\.)onedrive\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:onedrive.com" } on-error={}
+:do { add regexp="(^|.*\\.)sharepoint\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:sharepoint.com" } on-error={}
 
 /ip firewall address-list
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="live.com" comment="teams:seed:live.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="lync.com" comment="teams:seed:lync.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="microsoft.com" comment="teams:seed:microsoft.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="office.net" comment="teams:seed:office.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="sfbassets.com" comment="teams:seed:sfbassets.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="skype.com" comment="teams:seed:skype.com" } on-error={}
+
 /ip dns static
-:do { add name="llnwd.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:llnwd.net" } on-error={}
-:do { add name="ospserver.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:ospserver.net" } on-error={}
-:do { add name="samsung.cn" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:samsung.cn" } on-error={}
-:do { add name="samsung.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:samsung.com" } on-error={}
-:do { add name="samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:samsungapps.com" } on-error={}
+:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:live.com" } on-error={}
+:do { add regexp="(^|.*\\.)lync\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:lync.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoft\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:microsoft.com" } on-error={}
+:do { add regexp="(^|.*\\.)office\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:office.net" } on-error={}
+:do { add regexp="(^|.*\\.)sfbassets\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:sfbassets.com" } on-error={}
+:do { add regexp="(^|.*\\.)skype\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:skype.com" } on-error={}
 
 /ip firewall address-list
 
-
-/ip dns static
-:do { add name="akamaized.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:akamaized.net" } on-error={}
-:do { add name="pscdn.co" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
-:do { add name="scdn.co" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
-:do { add name="spotify.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}
-:do { add name="spotifycdn.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:spotifycdn.com" } on-error={}
-:do { add name="spotifycdn.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}
-
 /ip firewall address-list
-
-
-/ip dns static
-:do { add name="launchpadcontent.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="ubuntu:launchpadcontent.net" } on-error={}
-:do { add name="ubuntu.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="ubuntu:ubuntu.com" } on-error={}
-
-/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="microsoft.com" comment="windows-update:seed:microsoft.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="windowsupdate.com" comment="windows-update:seed:windowsupdate.com" } on-error={}
 
 /ip dns static
-:do { add name="debian.org" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="debian:debian.org" } on-error={}
-
-/ip firewall address-list
-
-/ip dns static
-:do { add name="redhat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:redhat.com" } on-error={}
-:do { add name="redhat.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:redhat.io" } on-error={}
-
-/ip firewall address-list
-
-/ip dns static
-:do { add name="proxmox.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="proxmox:proxmox.com" } on-error={}
-
-/ip firewall address-list
-
-/ip dns static
-:do { add name="docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:docker.com" } on-error={}
-:do { add name="docker.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:docker.io" } on-error={}
+:do { add regexp="(^|.*\\.)microsoft\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="windows-update:dns:microsoft.com" } on-error={}
+:do { add regexp="(^|.*\\.)windowsupdate\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="windows-update:dns:windowsupdate.com" } on-error={}
 
 /ip firewall address-list
 
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="apple-cloudkit.com" comment="apple-app-store:seed:apple-cloudkit.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="apple.com" comment="apple-app-store:seed:apple.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="mzstatic.com" comment="apple-app-store:seed:mzstatic.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="safebrowsing.apple" comment="apple-app-store:seed:safebrowsing.apple" } on-error={}
+
 /ip dns static
-:do { add name="cdninstagram.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="instagram:cdninstagram.com" } on-error={}
-:do { add name="ig.me" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="instagram:ig.me" } on-error={}
-:do { add name="instagram.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="instagram:instagram.com" } on-error={}
+:do { add regexp="(^|.*\\.)apple-cloudkit\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:apple-cloudkit.com" } on-error={}
+:do { add regexp="(^|.*\\.)apple\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)mzstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:mzstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)safebrowsing\\.apple$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:safebrowsing.apple" } on-error={}
 
 /ip firewall address-list
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="android.com" comment="google-play:seed:android.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="ggpht.com" comment="google-play:seed:ggpht.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="google-analytics.com" comment="google-play:seed:google-analytics.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="google.com" comment="google-play:seed:google.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="googleapis.com" comment="google-play:seed:googleapis.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="googleusercontent.com" comment="google-play:seed:googleusercontent.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="gstatic.com" comment="google-play:seed:gstatic.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="gvt1.com" comment="google-play:seed:gvt1.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="gvt2.com" comment="google-play:seed:gvt2.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="gvt3.com" comment="google-play:seed:gvt3.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="pki.goog" comment="google-play:seed:pki.goog" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="youtube.com" comment="google-play:seed:youtube.com" } on-error={}
+
 /ip dns static
-:do { add name="facebook.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="facebook:facebook.com" } on-error={}
-:do { add name="fb.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="facebook:fb.com" } on-error={}
-:do { add name="fbcdn.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="facebook:fbcdn.net" } on-error={}
-:do { add name="fbsbx.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="facebook:fbsbx.com" } on-error={}
-:do { add name="m.me" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="facebook:m.me" } on-error={}
-:do { add name="messenger.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="facebook:messenger.com" } on-error={}
+:do { add regexp="(^|.*\\.)android\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:android.com" } on-error={}
+:do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:ggpht.com" } on-error={}
+:do { add regexp="(^|.*\\.)google-analytics\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:google-analytics.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:googleusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt1\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gvt1.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt2\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gvt2.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt3\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gvt3.com" } on-error={}
+:do { add regexp="(^|.*\\.)pki\\.goog$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:pki.goog" } on-error={}
+:do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:youtube.com" } on-error={}
 
 /ip firewall address-list
 
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="llnwd.net" comment="samsung-galaxy-store:seed:llnwd.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="ospserver.net" comment="samsung-galaxy-store:seed:ospserver.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="samsung.cn" comment="samsung-galaxy-store:seed:samsung.cn" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="samsung.com" comment="samsung-galaxy-store:seed:samsung.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="samsungapps.com" comment="samsung-galaxy-store:seed:samsungapps.com" } on-error={}
+
 /ip dns static
-:do { add name="t.co" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="x:t.co" } on-error={}
-:do { add name="twimg.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="x:twimg.com" } on-error={}
-:do { add name="twitter.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="x:twitter.com" } on-error={}
-:do { add name="x.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="x:x.com" } on-error={}
+:do { add regexp="(^|.*\\.)llnwd\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:dns:llnwd.net" } on-error={}
+:do { add regexp="(^|.*\\.)ospserver\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:dns:ospserver.net" } on-error={}
+:do { add regexp="(^|.*\\.)samsung\\.cn$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsung.cn" } on-error={}
+:do { add regexp="(^|.*\\.)samsung\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsung.com" } on-error={}
+:do { add regexp="(^|.*\\.)samsungapps\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsungapps.com" } on-error={}
 
 /ip firewall address-list
 
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="akamaized.net" comment="spotify:seed:akamaized.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="pscdn.co" comment="spotify:seed:pscdn.co" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="scdn.co" comment="spotify:seed:scdn.co" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="spotify.com" comment="spotify:seed:spotify.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="spotifycdn.com" comment="spotify:seed:spotifycdn.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="spotifycdn.net" comment="spotify:seed:spotifycdn.net" } on-error={}
+
 /ip dns static
-:do { add name="licdn.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="linkedin:licdn.com" } on-error={}
-:do { add name="linkedin.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="linkedin:linkedin.com" } on-error={}
-:do { add name="lnkd.in" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="linkedin:lnkd.in" } on-error={}
+:do { add regexp="(^|.*\\.)akamaized\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:dns:akamaized.net" } on-error={}
+:do { add regexp="(^|.*\\.)pscdn\\.co$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:dns:pscdn.co" } on-error={}
+:do { add regexp="(^|.*\\.)scdn\\.co$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:dns:scdn.co" } on-error={}
+:do { add regexp="(^|.*\\.)spotify\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:dns:spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)spotifycdn\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:dns:spotifycdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)spotifycdn\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="spotify:dns:spotifycdn.net" } on-error={}
 
 /ip firewall address-list
 
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="launchpadcontent.net" comment="ubuntu:seed:launchpadcontent.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="ubuntu.com" comment="ubuntu:seed:ubuntu.com" } on-error={}
+
 /ip dns static
-:do { add name="redd.it" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="reddit:redd.it" } on-error={}
-:do { add name="reddit.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="reddit:reddit.com" } on-error={}
-:do { add name="redditmedia.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="reddit:redditmedia.com" } on-error={}
-:do { add name="redditstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="reddit:redditstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)launchpadcontent\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:dns:launchpadcontent.net" } on-error={}
+:do { add regexp="(^|.*\\.)ubuntu\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="ubuntu:dns:ubuntu.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="debian.org" comment="debian:seed:debian.org" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)debian\\.org$" type=FWD address-list=DST-TO-OUTBOUND comment="debian:dns:debian.org" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="redhat.com" comment="redhat:seed:redhat.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="redhat.io" comment="redhat:seed:redhat.io" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)redhat\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:dns:redhat.com" } on-error={}
+:do { add regexp="(^|.*\\.)redhat\\.io$" type=FWD address-list=DST-TO-OUTBOUND comment="redhat:dns:redhat.io" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="proxmox.com" comment="proxmox:seed:proxmox.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)proxmox\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="proxmox:dns:proxmox.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="docker.com" comment="docker:seed:docker.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="docker.io" comment="docker:seed:docker.io" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)docker\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:dns:docker.com" } on-error={}
+:do { add regexp="(^|.*\\.)docker\\.io$" type=FWD address-list=DST-TO-OUTBOUND comment="docker:dns:docker.io" } on-error={}
+
+/ip firewall address-list
+
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="cdninstagram.com" comment="instagram:seed:cdninstagram.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="ig.me" comment="instagram:seed:ig.me" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="instagram.com" comment="instagram:seed:instagram.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)cdninstagram\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="instagram:dns:cdninstagram.com" } on-error={}
+:do { add regexp="(^|.*\\.)ig\\.me$" type=FWD address-list=DST-TO-OUTBOUND comment="instagram:dns:ig.me" } on-error={}
+:do { add regexp="(^|.*\\.)instagram\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="instagram:dns:instagram.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="facebook.com" comment="facebook:seed:facebook.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="fb.com" comment="facebook:seed:fb.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="fbcdn.net" comment="facebook:seed:fbcdn.net" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="fbsbx.com" comment="facebook:seed:fbsbx.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="m.me" comment="facebook:seed:m.me" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="messenger.com" comment="facebook:seed:messenger.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)facebook\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:dns:facebook.com" } on-error={}
+:do { add regexp="(^|.*\\.)fb\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:dns:fb.com" } on-error={}
+:do { add regexp="(^|.*\\.)fbcdn\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:dns:fbcdn.net" } on-error={}
+:do { add regexp="(^|.*\\.)fbsbx\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:dns:fbsbx.com" } on-error={}
+:do { add regexp="(^|.*\\.)m\\.me$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:dns:m.me" } on-error={}
+:do { add regexp="(^|.*\\.)messenger\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="facebook:dns:messenger.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="t.co" comment="x:seed:t.co" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="twimg.com" comment="x:seed:twimg.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="twitter.com" comment="x:seed:twitter.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="x.com" comment="x:seed:x.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)t\\.co$" type=FWD address-list=DST-TO-OUTBOUND comment="x:dns:t.co" } on-error={}
+:do { add regexp="(^|.*\\.)twimg\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="x:dns:twimg.com" } on-error={}
+:do { add regexp="(^|.*\\.)twitter\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="x:dns:twitter.com" } on-error={}
+:do { add regexp="(^|.*\\.)x\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="x:dns:x.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="licdn.com" comment="linkedin:seed:licdn.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="linkedin.com" comment="linkedin:seed:linkedin.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="lnkd.in" comment="linkedin:seed:lnkd.in" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)licdn\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="linkedin:dns:licdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)linkedin\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="linkedin:dns:linkedin.com" } on-error={}
+:do { add regexp="(^|.*\\.)lnkd\\.in$" type=FWD address-list=DST-TO-OUTBOUND comment="linkedin:dns:lnkd.in" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address="redd.it" comment="reddit:seed:redd.it" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="reddit.com" comment="reddit:seed:reddit.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="redditmedia.com" comment="reddit:seed:redditmedia.com" } on-error={}
+:do { add list=DST-TO-OUTBOUND address="redditstatic.com" comment="reddit:seed:redditstatic.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)redd\\.it$" type=FWD address-list=DST-TO-OUTBOUND comment="reddit:dns:redd.it" } on-error={}
+:do { add regexp="(^|.*\\.)reddit\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="reddit:dns:reddit.com" } on-error={}
+:do { add regexp="(^|.*\\.)redditmedia\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="reddit:dns:redditmedia.com" } on-error={}
+:do { add regexp="(^|.*\\.)redditstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="reddit:dns:redditstatic.com" } on-error={}
 
 /ip firewall address-list
 

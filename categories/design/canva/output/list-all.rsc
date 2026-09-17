@@ -5,10 +5,14 @@
 # RouterOS address-list: DST-CANVA-TO-OUTBOUND
 # do-not-edit-manually
 
-/ip dns static
-remove [find address-list=DST-CANVA-TO-OUTBOUND]
-:do { add name="canva-apps.com" type=FWD match-subdomain=yes address-list=DST-CANVA-TO-OUTBOUND comment="canva:canva-apps.com" } on-error={}
-:do { add name="canva.com" type=FWD match-subdomain=yes address-list=DST-CANVA-TO-OUTBOUND comment="canva:canva.com" } on-error={}
-
 /ip firewall address-list
 remove [find list=DST-CANVA-TO-OUTBOUND]
+:do { add list=DST-CANVA-TO-OUTBOUND address="canva-apps.com" comment="canva:seed:canva-apps.com" } on-error={}
+:do { add list=DST-CANVA-TO-OUTBOUND address="canva.com" comment="canva:seed:canva.com" } on-error={}
+
+/ip dns static
+remove [find address-list=DST-CANVA-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)canva-apps\\.com$" type=FWD address-list=DST-CANVA-TO-OUTBOUND comment="canva:dns:canva-apps.com" } on-error={}
+:do { add regexp="(^|.*\\.)canva\\.com$" type=FWD address-list=DST-CANVA-TO-OUTBOUND comment="canva:dns:canva.com" } on-error={}
+
+/ip firewall address-list

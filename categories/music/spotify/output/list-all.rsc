@@ -5,14 +5,22 @@
 # RouterOS address-list: DST-SPOTIFY-TO-OUTBOUND
 # do-not-edit-manually
 
-/ip dns static
-remove [find address-list=DST-SPOTIFY-TO-OUTBOUND]
-:do { add name="akamaized.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:akamaized.net" } on-error={}
-:do { add name="pscdn.co" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
-:do { add name="scdn.co" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
-:do { add name="spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}
-:do { add name="spotifycdn.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotifycdn.com" } on-error={}
-:do { add name="spotifycdn.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}
-
 /ip firewall address-list
 remove [find list=DST-SPOTIFY-TO-OUTBOUND]
+:do { add list=DST-SPOTIFY-TO-OUTBOUND address="akamaized.net" comment="spotify:seed:akamaized.net" } on-error={}
+:do { add list=DST-SPOTIFY-TO-OUTBOUND address="pscdn.co" comment="spotify:seed:pscdn.co" } on-error={}
+:do { add list=DST-SPOTIFY-TO-OUTBOUND address="scdn.co" comment="spotify:seed:scdn.co" } on-error={}
+:do { add list=DST-SPOTIFY-TO-OUTBOUND address="spotify.com" comment="spotify:seed:spotify.com" } on-error={}
+:do { add list=DST-SPOTIFY-TO-OUTBOUND address="spotifycdn.com" comment="spotify:seed:spotifycdn.com" } on-error={}
+:do { add list=DST-SPOTIFY-TO-OUTBOUND address="spotifycdn.net" comment="spotify:seed:spotifycdn.net" } on-error={}
+
+/ip dns static
+remove [find address-list=DST-SPOTIFY-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)akamaized\\.net$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:dns:akamaized.net" } on-error={}
+:do { add regexp="(^|.*\\.)pscdn\\.co$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:dns:pscdn.co" } on-error={}
+:do { add regexp="(^|.*\\.)scdn\\.co$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:dns:scdn.co" } on-error={}
+:do { add regexp="(^|.*\\.)spotify\\.com$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:dns:spotify.com" } on-error={}
+:do { add regexp="(^|.*\\.)spotifycdn\\.com$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:dns:spotifycdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)spotifycdn\\.net$" type=FWD address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:dns:spotifycdn.net" } on-error={}
+
+/ip firewall address-list

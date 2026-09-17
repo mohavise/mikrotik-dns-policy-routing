@@ -5,20 +5,34 @@
 # RouterOS address-list: DST-GOOGLE-PLAY-TO-OUTBOUND
 # do-not-edit-manually
 
-/ip dns static
-remove [find address-list=DST-GOOGLE-PLAY-TO-OUTBOUND]
-:do { add name="android.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:android.com" } on-error={}
-:do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:ggpht.com" } on-error={}
-:do { add name="google-analytics.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:google-analytics.com" } on-error={}
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:googleapis.com" } on-error={}
-:do { add name="googleusercontent.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:googleusercontent.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:gstatic.com" } on-error={}
-:do { add name="gvt1.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:gvt1.com" } on-error={}
-:do { add name="gvt2.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:gvt2.com" } on-error={}
-:do { add name="gvt3.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:gvt3.com" } on-error={}
-:do { add name="pki.goog" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:pki.goog" } on-error={}
-:do { add name="youtube.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:youtube.com" } on-error={}
-
 /ip firewall address-list
 remove [find list=DST-GOOGLE-PLAY-TO-OUTBOUND]
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="android.com" comment="google-play:seed:android.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="ggpht.com" comment="google-play:seed:ggpht.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="google-analytics.com" comment="google-play:seed:google-analytics.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="google.com" comment="google-play:seed:google.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="googleapis.com" comment="google-play:seed:googleapis.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="googleusercontent.com" comment="google-play:seed:googleusercontent.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="gstatic.com" comment="google-play:seed:gstatic.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="gvt1.com" comment="google-play:seed:gvt1.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="gvt2.com" comment="google-play:seed:gvt2.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="gvt3.com" comment="google-play:seed:gvt3.com" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="pki.goog" comment="google-play:seed:pki.goog" } on-error={}
+:do { add list=DST-GOOGLE-PLAY-TO-OUTBOUND address="youtube.com" comment="google-play:seed:youtube.com" } on-error={}
+
+/ip dns static
+remove [find address-list=DST-GOOGLE-PLAY-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)android\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:android.com" } on-error={}
+:do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:ggpht.com" } on-error={}
+:do { add regexp="(^|.*\\.)google-analytics\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:google-analytics.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleusercontent\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:googleusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt1\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:gvt1.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt2\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:gvt2.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt3\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:gvt3.com" } on-error={}
+:do { add regexp="(^|.*\\.)pki\\.goog$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:pki.goog" } on-error={}
+:do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-GOOGLE-PLAY-TO-OUTBOUND comment="google-play:dns:youtube.com" } on-error={}
+
+/ip firewall address-list

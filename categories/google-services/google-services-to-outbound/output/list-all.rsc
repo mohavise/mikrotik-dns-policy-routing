@@ -3,29 +3,46 @@
 # profile=google-services-to-outbound
 # List: google services combined domains + CIDR
 # RouterOS address-list: DST-GOOGLE-SERVICES-TO-OUTBOUND
-# Last update: 2026-09-17 07:51:11 UTC
+# Last update: 2026-09-17 18:37:11 UTC
 # do-not-edit-manually
-
-/ip dns static
-remove [find address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND]
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:googleapis.com" } on-error={}
-:do { add name="googleusercontent.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:googleusercontent.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:gstatic.com" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-GOOGLE-SERVICES-TO-OUTBOUND]
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="google.com" comment="google-drive:seed:google.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="googleapis.com" comment="google-drive:seed:googleapis.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="googleusercontent.com" comment="google-drive:seed:googleusercontent.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="gstatic.com" comment="google-drive:seed:gstatic.com" } on-error={}
 
 /ip dns static
-:do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:ggpht.com" } on-error={}
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:googleapis.com" } on-error={}
-:do { add name="googlevideo.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:googlevideo.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:gstatic.com" } on-error={}
-:do { add name="youtu.be" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtu.be" } on-error={}
-:do { add name="youtube-nocookie.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
-:do { add name="youtube.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:youtube.com" } on-error={}
-:do { add name="ytimg.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:ytimg.com" } on-error={}
+remove [find address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleusercontent\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:dns:googleusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="google-drive:dns:gstatic.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="ggpht.com" comment="youtube:seed:ggpht.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="google.com" comment="youtube:seed:google.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="googleapis.com" comment="youtube:seed:googleapis.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="googlevideo.com" comment="youtube:seed:googlevideo.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="gstatic.com" comment="youtube:seed:gstatic.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="youtu.be" comment="youtube:seed:youtu.be" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="youtube-nocookie.com" comment="youtube:seed:youtube-nocookie.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="youtube.com" comment="youtube:seed:youtube.com" } on-error={}
+:do { add list=DST-GOOGLE-SERVICES-TO-OUTBOUND address="ytimg.com" comment="youtube:seed:ytimg.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:ggpht.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googlevideo\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:googlevideo.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtu\\.be$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:youtu.be" } on-error={}
+:do { add regexp="(^|.*\\.)youtube-nocookie\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:youtube-nocookie.com" } on-error={}
+:do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:youtube.com" } on-error={}
+:do { add regexp="(^|.*\\.)ytimg\\.com$" type=FWD address-list=DST-GOOGLE-SERVICES-TO-OUTBOUND comment="youtube:dns:ytimg.com" } on-error={}
 
 /ip firewall address-list
 

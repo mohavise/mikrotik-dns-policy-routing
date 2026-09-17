@@ -5,13 +5,21 @@
 # RouterOS address-list: DST-AWS-TO-OUTBOUND
 # Source: AWS official website and console allowlist (official-control-plane-domains)
 # Normalized source domain count: 5
-# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
+# Each base domain has a firewall FQDN seed plus a DNS regex learner in the same address-list
 # do-not-edit-manually
+
+/ip firewall address-list
+remove [find list=DST-AWS-TO-OUTBOUND]
+:do { add list=DST-AWS-TO-OUTBOUND address="a2z.com" comment="aws:seed:a2z.com" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address="amazon.com" comment="aws:seed:amazon.com" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address="amazonaws.com" comment="aws:seed:amazonaws.com" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address="awsstatic.com" comment="aws:seed:awsstatic.com" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address="signin.aws" comment="aws:seed:signin.aws" } on-error={}
 
 /ip dns static
 remove [find address-list=DST-AWS-TO-OUTBOUND]
-:do { add name="a2z.com" type=FWD match-subdomain=yes address-list=DST-AWS-TO-OUTBOUND comment="aws:a2z.com" } on-error={}
-:do { add name="amazon.com" type=FWD match-subdomain=yes address-list=DST-AWS-TO-OUTBOUND comment="aws:amazon.com" } on-error={}
-:do { add name="amazonaws.com" type=FWD match-subdomain=yes address-list=DST-AWS-TO-OUTBOUND comment="aws:amazonaws.com" } on-error={}
-:do { add name="awsstatic.com" type=FWD match-subdomain=yes address-list=DST-AWS-TO-OUTBOUND comment="aws:awsstatic.com" } on-error={}
-:do { add name="signin.aws" type=FWD match-subdomain=yes address-list=DST-AWS-TO-OUTBOUND comment="aws:signin.aws" } on-error={}
+:do { add regexp="(^|.*\\.)a2z\\.com$" type=FWD address-list=DST-AWS-TO-OUTBOUND comment="aws:dns:a2z.com" } on-error={}
+:do { add regexp="(^|.*\\.)amazon\\.com$" type=FWD address-list=DST-AWS-TO-OUTBOUND comment="aws:dns:amazon.com" } on-error={}
+:do { add regexp="(^|.*\\.)amazonaws\\.com$" type=FWD address-list=DST-AWS-TO-OUTBOUND comment="aws:dns:amazonaws.com" } on-error={}
+:do { add regexp="(^|.*\\.)awsstatic\\.com$" type=FWD address-list=DST-AWS-TO-OUTBOUND comment="aws:dns:awsstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)signin\\.aws$" type=FWD address-list=DST-AWS-TO-OUTBOUND comment="aws:dns:signin.aws" } on-error={}

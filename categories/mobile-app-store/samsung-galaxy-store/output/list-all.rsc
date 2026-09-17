@@ -5,13 +5,20 @@
 # RouterOS address-list: DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND
 # do-not-edit-manually
 
-/ip dns static
-remove [find address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND]
-:do { add name="llnwd.net" type=FWD match-subdomain=yes address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:llnwd.net" } on-error={}
-:do { add name="ospserver.net" type=FWD match-subdomain=yes address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:ospserver.net" } on-error={}
-:do { add name="samsung.cn" type=FWD match-subdomain=yes address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:samsung.cn" } on-error={}
-:do { add name="samsung.com" type=FWD match-subdomain=yes address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:samsung.com" } on-error={}
-:do { add name="samsungapps.com" type=FWD match-subdomain=yes address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:samsungapps.com" } on-error={}
-
 /ip firewall address-list
 remove [find list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND]
+:do { add list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND address="llnwd.net" comment="samsung-galaxy-store:seed:llnwd.net" } on-error={}
+:do { add list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND address="ospserver.net" comment="samsung-galaxy-store:seed:ospserver.net" } on-error={}
+:do { add list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND address="samsung.cn" comment="samsung-galaxy-store:seed:samsung.cn" } on-error={}
+:do { add list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND address="samsung.com" comment="samsung-galaxy-store:seed:samsung.com" } on-error={}
+:do { add list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND address="samsungapps.com" comment="samsung-galaxy-store:seed:samsungapps.com" } on-error={}
+
+/ip dns static
+remove [find address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)llnwd\\.net$" type=FWD address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:llnwd.net" } on-error={}
+:do { add regexp="(^|.*\\.)ospserver\\.net$" type=FWD address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:ospserver.net" } on-error={}
+:do { add regexp="(^|.*\\.)samsung\\.cn$" type=FWD address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsung.cn" } on-error={}
+:do { add regexp="(^|.*\\.)samsung\\.com$" type=FWD address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsung.com" } on-error={}
+:do { add regexp="(^|.*\\.)samsungapps\\.com$" type=FWD address-list=DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsungapps.com" } on-error={}
+
+/ip firewall address-list

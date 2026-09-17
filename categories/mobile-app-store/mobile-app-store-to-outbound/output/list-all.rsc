@@ -3,41 +3,68 @@
 # profile=mobile-app-store-to-outbound
 # List: mobile app store combined domains + CIDR
 # RouterOS address-list: DST-MOBILE-APP-STORE-TO-OUTBOUND
-# Last update: 2026-09-17 07:51:11 UTC
+# Last update: 2026-09-17 18:37:11 UTC
 # do-not-edit-manually
-
-/ip dns static
-remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND]
-:do { add name="apple-cloudkit.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apple-cloudkit.com" } on-error={}
-:do { add name="apple.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:apple.com" } on-error={}
-:do { add name="mzstatic.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:mzstatic.com" } on-error={}
-:do { add name="safebrowsing.apple" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:safebrowsing.apple" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-MOBILE-APP-STORE-TO-OUTBOUND]
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="apple-cloudkit.com" comment="apple-app-store:seed:apple-cloudkit.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="apple.com" comment="apple-app-store:seed:apple.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="mzstatic.com" comment="apple-app-store:seed:mzstatic.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="safebrowsing.apple" comment="apple-app-store:seed:safebrowsing.apple" } on-error={}
 
 /ip dns static
-:do { add name="android.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:android.com" } on-error={}
-:do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:ggpht.com" } on-error={}
-:do { add name="google-analytics.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:google-analytics.com" } on-error={}
-:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:google.com" } on-error={}
-:do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:googleapis.com" } on-error={}
-:do { add name="googleusercontent.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:googleusercontent.com" } on-error={}
-:do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:gstatic.com" } on-error={}
-:do { add name="gvt1.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:gvt1.com" } on-error={}
-:do { add name="gvt2.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:gvt2.com" } on-error={}
-:do { add name="gvt3.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:gvt3.com" } on-error={}
-:do { add name="pki.goog" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:pki.goog" } on-error={}
-:do { add name="youtube.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:youtube.com" } on-error={}
+remove [find address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)apple-cloudkit\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:dns:apple-cloudkit.com" } on-error={}
+:do { add regexp="(^|.*\\.)apple\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:dns:apple.com" } on-error={}
+:do { add regexp="(^|.*\\.)mzstatic\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:dns:mzstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)safebrowsing\\.apple$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="apple-app-store:dns:safebrowsing.apple" } on-error={}
 
 /ip firewall address-list
 
+/ip firewall address-list
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="android.com" comment="google-play:seed:android.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="ggpht.com" comment="google-play:seed:ggpht.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="google-analytics.com" comment="google-play:seed:google-analytics.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="google.com" comment="google-play:seed:google.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="googleapis.com" comment="google-play:seed:googleapis.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="googleusercontent.com" comment="google-play:seed:googleusercontent.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="gstatic.com" comment="google-play:seed:gstatic.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="gvt1.com" comment="google-play:seed:gvt1.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="gvt2.com" comment="google-play:seed:gvt2.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="gvt3.com" comment="google-play:seed:gvt3.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="pki.goog" comment="google-play:seed:pki.goog" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="youtube.com" comment="google-play:seed:youtube.com" } on-error={}
+
 /ip dns static
-:do { add name="llnwd.net" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:llnwd.net" } on-error={}
-:do { add name="ospserver.net" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:ospserver.net" } on-error={}
-:do { add name="samsung.cn" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:samsung.cn" } on-error={}
-:do { add name="samsung.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:samsung.com" } on-error={}
-:do { add name="samsungapps.com" type=FWD match-subdomain=yes address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:samsungapps.com" } on-error={}
+:do { add regexp="(^|.*\\.)android\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:android.com" } on-error={}
+:do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:ggpht.com" } on-error={}
+:do { add regexp="(^|.*\\.)google-analytics\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:google-analytics.com" } on-error={}
+:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:google.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:googleapis.com" } on-error={}
+:do { add regexp="(^|.*\\.)googleusercontent\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:googleusercontent.com" } on-error={}
+:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:gstatic.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt1\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:gvt1.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt2\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:gvt2.com" } on-error={}
+:do { add regexp="(^|.*\\.)gvt3\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:gvt3.com" } on-error={}
+:do { add regexp="(^|.*\\.)pki\\.goog$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:pki.goog" } on-error={}
+:do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="google-play:dns:youtube.com" } on-error={}
+
+/ip firewall address-list
+
+/ip firewall address-list
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="llnwd.net" comment="samsung-galaxy-store:seed:llnwd.net" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="ospserver.net" comment="samsung-galaxy-store:seed:ospserver.net" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="samsung.cn" comment="samsung-galaxy-store:seed:samsung.cn" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="samsung.com" comment="samsung-galaxy-store:seed:samsung.com" } on-error={}
+:do { add list=DST-MOBILE-APP-STORE-TO-OUTBOUND address="samsungapps.com" comment="samsung-galaxy-store:seed:samsungapps.com" } on-error={}
+
+/ip dns static
+:do { add regexp="(^|.*\\.)llnwd\\.net$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:llnwd.net" } on-error={}
+:do { add regexp="(^|.*\\.)ospserver\\.net$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:ospserver.net" } on-error={}
+:do { add regexp="(^|.*\\.)samsung\\.cn$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsung.cn" } on-error={}
+:do { add regexp="(^|.*\\.)samsung\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsung.com" } on-error={}
+:do { add regexp="(^|.*\\.)samsungapps\\.com$" type=FWD address-list=DST-MOBILE-APP-STORE-TO-OUTBOUND comment="samsung-galaxy-store:dns:samsungapps.com" } on-error={}
 
 /ip firewall address-list
 

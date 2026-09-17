@@ -6,29 +6,53 @@
 # Source: v2fly/domain-list-community telegram (community-maintained)
 # Source URL: https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
 # Normalized source domain count: 21
-# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
+# Each base domain has a firewall FQDN seed plus a DNS regex learner in the same address-list
 # do-not-edit-manually
+
+/ip firewall address-list
+remove [find list=DST-TELEGRAM-TO-OUTBOUND]
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="cdn-telegram.org" comment="telegram:seed:cdn-telegram.org" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="comments.app" comment="telegram:seed:comments.app" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="contest.com" comment="telegram:seed:contest.com" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="fragment.com" comment="telegram:seed:fragment.com" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="graph.org" comment="telegram:seed:graph.org" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="quiz.directory" comment="telegram:seed:quiz.directory" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="t.me" comment="telegram:seed:t.me" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="tdesktop.com" comment="telegram:seed:tdesktop.com" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telega.one" comment="telegram:seed:telega.one" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telegra.ph" comment="telegram:seed:telegra.ph" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telegram-cdn.org" comment="telegram:seed:telegram-cdn.org" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telegram.dog" comment="telegram:seed:telegram.dog" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telegram.me" comment="telegram:seed:telegram.me" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telegram.org" comment="telegram:seed:telegram.org" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telegram.space" comment="telegram:seed:telegram.space" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="telesco.pe" comment="telegram:seed:telesco.pe" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="tg.dev" comment="telegram:seed:tg.dev" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="ton.org" comment="telegram:seed:ton.org" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="toncenter.com" comment="telegram:seed:toncenter.com" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="tx.me" comment="telegram:seed:tx.me" } on-error={}
+:do { add list=DST-TELEGRAM-TO-OUTBOUND address="usercontent.dev" comment="telegram:seed:usercontent.dev" } on-error={}
 
 /ip dns static
 remove [find address-list=DST-TELEGRAM-TO-OUTBOUND]
-:do { add name="cdn-telegram.org" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:cdn-telegram.org" } on-error={}
-:do { add name="comments.app" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:comments.app" } on-error={}
-:do { add name="contest.com" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:contest.com" } on-error={}
-:do { add name="fragment.com" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:fragment.com" } on-error={}
-:do { add name="graph.org" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:graph.org" } on-error={}
-:do { add name="quiz.directory" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:quiz.directory" } on-error={}
-:do { add name="t.me" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:t.me" } on-error={}
-:do { add name="tdesktop.com" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:tdesktop.com" } on-error={}
-:do { add name="telega.one" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telega.one" } on-error={}
-:do { add name="telegra.ph" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telegra.ph" } on-error={}
-:do { add name="telegram-cdn.org" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telegram-cdn.org" } on-error={}
-:do { add name="telegram.dog" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telegram.dog" } on-error={}
-:do { add name="telegram.me" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telegram.me" } on-error={}
-:do { add name="telegram.org" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telegram.org" } on-error={}
-:do { add name="telegram.space" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telegram.space" } on-error={}
-:do { add name="telesco.pe" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:telesco.pe" } on-error={}
-:do { add name="tg.dev" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:tg.dev" } on-error={}
-:do { add name="ton.org" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:ton.org" } on-error={}
-:do { add name="toncenter.com" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:toncenter.com" } on-error={}
-:do { add name="tx.me" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:tx.me" } on-error={}
-:do { add name="usercontent.dev" type=FWD match-subdomain=yes address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:usercontent.dev" } on-error={}
+:do { add regexp="(^|.*\\.)cdn-telegram\\.org$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:cdn-telegram.org" } on-error={}
+:do { add regexp="(^|.*\\.)comments\\.app$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:comments.app" } on-error={}
+:do { add regexp="(^|.*\\.)contest\\.com$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:contest.com" } on-error={}
+:do { add regexp="(^|.*\\.)fragment\\.com$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:fragment.com" } on-error={}
+:do { add regexp="(^|.*\\.)graph\\.org$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:graph.org" } on-error={}
+:do { add regexp="(^|.*\\.)quiz\\.directory$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:quiz.directory" } on-error={}
+:do { add regexp="(^|.*\\.)t\\.me$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:t.me" } on-error={}
+:do { add regexp="(^|.*\\.)tdesktop\\.com$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:tdesktop.com" } on-error={}
+:do { add regexp="(^|.*\\.)telega\\.one$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telega.one" } on-error={}
+:do { add regexp="(^|.*\\.)telegra\\.ph$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telegra.ph" } on-error={}
+:do { add regexp="(^|.*\\.)telegram-cdn\\.org$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telegram-cdn.org" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.dog$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telegram.dog" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.me$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telegram.me" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.org$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telegram.org" } on-error={}
+:do { add regexp="(^|.*\\.)telegram\\.space$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telegram.space" } on-error={}
+:do { add regexp="(^|.*\\.)telesco\\.pe$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:telesco.pe" } on-error={}
+:do { add regexp="(^|.*\\.)tg\\.dev$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:tg.dev" } on-error={}
+:do { add regexp="(^|.*\\.)ton\\.org$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:ton.org" } on-error={}
+:do { add regexp="(^|.*\\.)toncenter\\.com$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:toncenter.com" } on-error={}
+:do { add regexp="(^|.*\\.)tx\\.me$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:tx.me" } on-error={}
+:do { add regexp="(^|.*\\.)usercontent\\.dev$" type=FWD address-list=DST-TELEGRAM-TO-OUTBOUND comment="telegram:dns:usercontent.dev" } on-error={}

@@ -5,19 +5,32 @@
 # RouterOS address-list: DST-MICROSOFT-365-TO-OUTBOUND
 # do-not-edit-manually
 
-/ip dns static
-remove [find address-list=DST-MICROSOFT-365-TO-OUTBOUND]
-:do { add name="live.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:live.com" } on-error={}
-:do { add name="microsoft365.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:microsoft365.com" } on-error={}
-:do { add name="microsoftonline.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:microsoftonline.com" } on-error={}
-:do { add name="msauth.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:msauth.net" } on-error={}
-:do { add name="msftauth.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:msftauth.net" } on-error={}
-:do { add name="msocdn.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:msocdn.com" } on-error={}
-:do { add name="office.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:office.com" } on-error={}
-:do { add name="office.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:office.net" } on-error={}
-:do { add name="office365.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:office365.com" } on-error={}
-:do { add name="outlook.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:outlook.com" } on-error={}
-:do { add name="sharepoint.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:sharepoint.com" } on-error={}
-
 /ip firewall address-list
 remove [find list=DST-MICROSOFT-365-TO-OUTBOUND]
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="live.com" comment="microsoft-365:seed:live.com" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="microsoft365.com" comment="microsoft-365:seed:microsoft365.com" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="microsoftonline.com" comment="microsoft-365:seed:microsoftonline.com" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="msauth.net" comment="microsoft-365:seed:msauth.net" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="msftauth.net" comment="microsoft-365:seed:msftauth.net" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="msocdn.com" comment="microsoft-365:seed:msocdn.com" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="office.com" comment="microsoft-365:seed:office.com" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="office.net" comment="microsoft-365:seed:office.net" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="office365.com" comment="microsoft-365:seed:office365.com" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="outlook.com" comment="microsoft-365:seed:outlook.com" } on-error={}
+:do { add list=DST-MICROSOFT-365-TO-OUTBOUND address="sharepoint.com" comment="microsoft-365:seed:sharepoint.com" } on-error={}
+
+/ip dns static
+remove [find address-list=DST-MICROSOFT-365-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:live.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoft365\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:microsoft365.com" } on-error={}
+:do { add regexp="(^|.*\\.)microsoftonline\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:microsoftonline.com" } on-error={}
+:do { add regexp="(^|.*\\.)msauth\\.net$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:msauth.net" } on-error={}
+:do { add regexp="(^|.*\\.)msftauth\\.net$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:msftauth.net" } on-error={}
+:do { add regexp="(^|.*\\.)msocdn\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:msocdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)office\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:office.com" } on-error={}
+:do { add regexp="(^|.*\\.)office\\.net$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:office.net" } on-error={}
+:do { add regexp="(^|.*\\.)office365\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:office365.com" } on-error={}
+:do { add regexp="(^|.*\\.)outlook\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:outlook.com" } on-error={}
+:do { add regexp="(^|.*\\.)sharepoint\\.com$" type=FWD address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:dns:sharepoint.com" } on-error={}
+
+/ip firewall address-list

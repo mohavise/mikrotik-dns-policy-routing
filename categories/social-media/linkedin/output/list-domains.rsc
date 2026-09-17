@@ -5,11 +5,17 @@
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Source: LinkedIn-owned public domains (official-owned-domains)
 # Normalized source domain count: 3
-# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
+# Each base domain has a firewall FQDN seed plus a DNS regex learner in the same address-list
 # do-not-edit-manually
+
+/ip firewall address-list
+remove [find list=DST-LINKEDIN-TO-OUTBOUND]
+:do { add list=DST-LINKEDIN-TO-OUTBOUND address="licdn.com" comment="linkedin:seed:licdn.com" } on-error={}
+:do { add list=DST-LINKEDIN-TO-OUTBOUND address="linkedin.com" comment="linkedin:seed:linkedin.com" } on-error={}
+:do { add list=DST-LINKEDIN-TO-OUTBOUND address="lnkd.in" comment="linkedin:seed:lnkd.in" } on-error={}
 
 /ip dns static
 remove [find address-list=DST-LINKEDIN-TO-OUTBOUND]
-:do { add name="licdn.com" type=FWD match-subdomain=yes address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:licdn.com" } on-error={}
-:do { add name="linkedin.com" type=FWD match-subdomain=yes address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:linkedin.com" } on-error={}
-:do { add name="lnkd.in" type=FWD match-subdomain=yes address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:lnkd.in" } on-error={}
+:do { add regexp="(^|.*\\.)licdn\\.com$" type=FWD address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:dns:licdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)linkedin\\.com$" type=FWD address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:dns:linkedin.com" } on-error={}
+:do { add regexp="(^|.*\\.)lnkd\\.in$" type=FWD address-list=DST-LINKEDIN-TO-OUTBOUND comment="linkedin:dns:lnkd.in" } on-error={}
