@@ -9,6 +9,6 @@
 
 This service uses official Google endpoints for Google Play, app downloads and updates, Play Store APIs, Managed Google Play console access, authentication, certificate validation, and Firebase/Google Cloud Messaging endpoints used by Android Enterprise and managed Google Play.
 
-Wildcard hosts from Google documentation are normalized to base domains in `domains.txt`; MikroTik output converts them to RouterOS-compatible regex rules.
+Wildcard hosts from Google documentation are normalized to base domains in `domains.txt`; generated MikroTik DNS rules use plain `name=` entries with `match-subdomain=yes`, and redundant child domains are omitted when their parent domain is present.
 
 Google does not provide stable service-specific IP ranges for these endpoints, so `manual-cidr.txt` is intentionally empty.
