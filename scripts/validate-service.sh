@@ -49,13 +49,39 @@ if grep '^:do { add name=' "$output_dir/list-domains.rsc" | grep -vq 'match-subd
     exit 1
 fi
 
+# Output must contain only broad base parent domains. For common ccTLD forms
+# (for example co.uk or com.au), one additional registrant label is retained.
+if ! sed -n 's/^:do { add name="\([^"]*\)".*/\1/p' "$output_dir/list-domains.rsc" | awk '
+function base_domain(domain, labels, count, second, last) {
+    count = split(domain, labels, ".")
+    if (count <= 2) return domain
+
+    last = labels[count]
+    second = labels[count - 1]
+
+    if (length(last) == 2 && second ~ /^(ac|co|com|edu|gov|mil|net|org)$/ && count >= 3) {
+        return labels[count - 2] "." second "." last
+    }
+
+    return second "." last
+}
+{
+    if ($0 != base_domain($0)) {
+        print "Non-base domain in generated output: " $0 > "/dev/stderr"
+        bad = 1
+    }
+}
+END { exit bad ? 1 : 0 }
+'; then
+    echo "$SERVICE_NAME contains generated child/subdomain rules" >&2
+    exit 1
+fi
+
 domain_count="$(grep -c '^:do { add name=' "$output_dir/list-domains.rsc" || true)"
 cidr_count="$(grep -c '^:do { add list=' "$output_dir/list-cidr.rsc" || true)"
 
-# Generated domain count may be lower than MIN_DOMAIN_RULES because redundant
-# child domains are intentionally collapsed under parent match-subdomain rules.
 if [ "$domain_count" -lt 1 ]; then
-    echo "No generated $SERVICE_NAME parent domain entries" >&2
+    echo "No generated $SERVICE_NAME base domain entries" >&2
     exit 1
 fi
 
