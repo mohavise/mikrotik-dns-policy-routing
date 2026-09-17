@@ -28,15 +28,23 @@ database/manual-cidr.txt
 
 Manual additions should stay empty unless the value is verified and missing from the selected upstream source.
 
-Database files may contain the exact service hostnames published by the source, for example `o33249.ingest.sentry.io`, `auth.openai.com`, or `chatgpt.com`. Do not add `*.domain.com` to MikroTik database files.
+Database files may contain the exact service hostnames published by the source, for example `o33249.ingest.sentry.io`, `auth.openai.com`, or `chatgpt.com`. Do not add wildcard or regular-expression syntax such as `*.domain.com` to database files.
 
-Generated RouterOS DNS output intentionally reduces each hostname to its broad base parent domain and uses the plain `name=` field with `type=FWD`, `match-subdomain=yes`, and the service `address-list`. For example, OpenAI dependencies such as `o33249.ingest.sentry.io` become `sentry.io`, while `auth.openai.com` becomes `openai.com`. Duplicate base domains are generated only once.
+Generated RouterOS output reduces each hostname to its broad base parent domain. For each base domain it then creates a paired hybrid rule set in the same service address-list:
+
+```routeros
+/ip firewall address-list
+add list=DST-SERVICE-TO-OUTBOUND address="domain.com" comment="service:seed:domain.com"
+
+/ip dns static
+add regexp="(^|.*\\.)domain\\.com$" type=FWD address-list=DST-SERVICE-TO-OUTBOUND comment="service:dns:domain.com"
+```
+
+The firewall FQDN rule seeds addresses for the main/base domain. The DNS regex learns addresses for the base domain and any subdomain that clients resolve through the MikroTik DNS resolver. For example, OpenAI dependencies such as `o33249.ingest.sentry.io` become the base domain `sentry.io`, while `auth.openai.com` becomes `openai.com`. Duplicate base domains are generated only once.
 
 Common multi-label country suffixes such as `co.uk` and `com.au` retain the registrant label, so `broadbandspeedchecker.co.uk` remains `broadbandspeedchecker.co.uk` rather than being reduced to `co.uk`.
 
-Wildcard format like `*.domain.com` is only for future FortiGate output/export.
-
-Do not add broad CDN or cloud-hosting provider lists, public provider IP ranges, or generic customer workload domains unless that provider domain is an actual dependency of the selected service. When a service source contains a dependency under a shared provider, the generated MikroTik list deliberately uses that provider's base parent domain so all of its subdomains are covered by `match-subdomain=yes`.
+Do not add broad CDN or cloud-hosting provider lists, public provider IP ranges, or generic customer workload domains unless that provider domain is an actual dependency of the selected service. When a service source contains a dependency under a shared provider, the generated MikroTik list deliberately uses that provider's base parent domain so the seed and DNS regex cover the provider domain family used by that service.
 
 ## Automation Order
 
