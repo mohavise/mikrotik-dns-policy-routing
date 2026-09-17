@@ -7,12 +7,7 @@
 
 /ip dns static
 remove [find address-list=DST-DEBIAN-TO-OUTBOUND]
-:do { add name="deb.debian.org" type=FWD match-subdomain=yes address-list=DST-DEBIAN-TO-OUTBOUND comment="debian:deb.debian.org" } on-error={}
-:do { add name="ftp-master.debian.org" type=FWD match-subdomain=yes address-list=DST-DEBIAN-TO-OUTBOUND comment="debian:ftp-master.debian.org" } on-error={}
-:do { add name="ftp.debian.org" type=FWD match-subdomain=yes address-list=DST-DEBIAN-TO-OUTBOUND comment="debian:ftp.debian.org" } on-error={}
-:do { add name="packages.debian.org" type=FWD match-subdomain=yes address-list=DST-DEBIAN-TO-OUTBOUND comment="debian:packages.debian.org" } on-error={}
-:do { add name="security.debian.org" type=FWD match-subdomain=yes address-list=DST-DEBIAN-TO-OUTBOUND comment="debian:security.debian.org" } on-error={}
-:do { add name="snapshot.debian.org" type=FWD match-subdomain=yes address-list=DST-DEBIAN-TO-OUTBOUND comment="debian:snapshot.debian.org" } on-error={}
+:do { add name="debian.org" type=FWD match-subdomain=yes address-list=DST-DEBIAN-TO-OUTBOUND comment="debian:debian.org" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-DEBIAN-TO-OUTBOUND]

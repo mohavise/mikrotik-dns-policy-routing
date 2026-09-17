@@ -5,13 +5,13 @@
 # RouterOS address-list: DST-YOUTUBE-TO-OUTBOUND
 # Source: YouTube public/service domains (official-google-service-domains)
 # Normalized source domain count: 12
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-YOUTUBE-TO-OUTBOUND]
-:do { add name="accounts.google.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:accounts.google.com" } on-error={}
 :do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:ggpht.com" } on-error={}
+:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:google.com" } on-error={}
 :do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:googleapis.com" } on-error={}
 :do { add name="googlevideo.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:googlevideo.com" } on-error={}
 :do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-YOUTUBE-TO-OUTBOUND comment="youtube:gstatic.com" } on-error={}

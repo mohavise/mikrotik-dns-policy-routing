@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-CANVA-TO-OUTBOUND
 # Source: Canva-owned public/service domains (official-owned-domains)
 # Normalized source domain count: 2
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

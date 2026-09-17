@@ -5,18 +5,12 @@
 # RouterOS address-list: DST-GOOGLE-DRIVE-TO-OUTBOUND
 # Source: Google Drive public/service domains (official-google-service-domains)
 # Normalized source domain count: 10
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND]
-:do { add name="accounts.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:accounts.google.com" } on-error={}
-:do { add name="docs.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:docs.google.com" } on-error={}
-:do { add name="drive.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:drive.google.com" } on-error={}
-:do { add name="drive.usercontent.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:drive.usercontent.google.com" } on-error={}
-:do { add name="forms.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:forms.google.com" } on-error={}
+:do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:google.com" } on-error={}
 :do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:googleapis.com" } on-error={}
 :do { add name="googleusercontent.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:googleusercontent.com" } on-error={}
 :do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:gstatic.com" } on-error={}
-:do { add name="sheets.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:sheets.google.com" } on-error={}
-:do { add name="slides.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-DRIVE-TO-OUTBOUND comment="google-drive:slides.google.com" } on-error={}

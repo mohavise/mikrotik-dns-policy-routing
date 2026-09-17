@@ -3,13 +3,12 @@
 # profile=music-to-outbound
 # List: music combined domains + CIDR
 # RouterOS address-list: DST-MUSIC-TO-OUTBOUND
-# Last update: 2026-09-17 07:26:38 UTC
+# Last update: 2026-09-17 07:40:47 UTC
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-MUSIC-TO-OUTBOUND]
-:do { add name="audio-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
-:do { add name="audio4-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
+:do { add name="akamaized.net" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:akamaized.net" } on-error={}
 :do { add name="pscdn.co" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
 :do { add name="scdn.co" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
 :do { add name="spotify.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}

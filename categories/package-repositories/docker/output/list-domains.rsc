@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-DOCKER-TO-OUTBOUND
 # Source: Docker official allowlist (official-allowlist)
 # Normalized source domain count: 12
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

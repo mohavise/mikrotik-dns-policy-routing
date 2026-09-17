@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-DISCORD-TO-OUTBOUND
 # Source: Discord official application and media domains (official-owned-domains)
 # Normalized source domain count: 4
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

@@ -6,7 +6,7 @@
 # Source: v2fly/domain-list-community telegram (community-maintained)
 # Source URL: https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
 # Normalized source domain count: 21
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

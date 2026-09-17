@@ -7,13 +7,12 @@
 
 /ip dns static
 remove [find address-list=DST-TEAMS-TO-OUTBOUND]
+:do { add name="live.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:live.com" } on-error={}
 :do { add name="lync.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:lync.com" } on-error={}
+:do { add name="microsoft.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:microsoft.com" } on-error={}
+:do { add name="office.net" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:office.net" } on-error={}
 :do { add name="sfbassets.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:sfbassets.com" } on-error={}
 :do { add name="skype.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:skype.com" } on-error={}
-:do { add name="teams.cdn.office.net" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:teams.cdn.office.net" } on-error={}
-:do { add name="teams.live.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:teams.live.com" } on-error={}
-:do { add name="teams.microsoft.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:teams.microsoft.com" } on-error={}
-:do { add name="users.storage.live.com" type=FWD match-subdomain=yes address-list=DST-TEAMS-TO-OUTBOUND comment="teams:users.storage.live.com" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-TEAMS-TO-OUTBOUND]

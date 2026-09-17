@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Source: LinkedIn-owned public domains (official-owned-domains)
 # Normalized source domain count: 3
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

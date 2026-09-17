@@ -5,13 +5,12 @@
 # RouterOS address-list: DST-SPOTIFY-TO-OUTBOUND
 # Source: Spotify public/service domains (official-owned-domains)
 # Normalized source domain count: 12
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-SPOTIFY-TO-OUTBOUND]
-:do { add name="audio-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
-:do { add name="audio4-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
+:do { add name="akamaized.net" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:akamaized.net" } on-error={}
 :do { add name="pscdn.co" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
 :do { add name="scdn.co" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
 :do { add name="spotify.com" type=FWD match-subdomain=yes address-list=DST-SPOTIFY-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}

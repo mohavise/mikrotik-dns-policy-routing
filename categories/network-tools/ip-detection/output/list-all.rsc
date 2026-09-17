@@ -7,8 +7,8 @@
 
 /ip dns static
 remove [find address-list=IP-DETECTION]
+:do { add name="amazonaws.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:amazonaws.com" } on-error={}
 :do { add name="browserleaks.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:browserleaks.com" } on-error={}
-:do { add name="checkip.amazonaws.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:checkip.amazonaws.com" } on-error={}
 :do { add name="dnsleaktest.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:dnsleaktest.com" } on-error={}
 :do { add name="icanhazip.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:icanhazip.com" } on-error={}
 :do { add name="ident.me" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:ident.me" } on-error={}

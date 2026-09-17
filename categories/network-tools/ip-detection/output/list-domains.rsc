@@ -5,13 +5,13 @@
 # RouterOS address-list: IP-DETECTION
 # Source: Local MikroTik DNS policy list (manual-curated)
 # Normalized source domain count: 39
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=IP-DETECTION]
+:do { add name="amazonaws.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:amazonaws.com" } on-error={}
 :do { add name="browserleaks.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:browserleaks.com" } on-error={}
-:do { add name="checkip.amazonaws.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:checkip.amazonaws.com" } on-error={}
 :do { add name="dnsleaktest.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:dnsleaktest.com" } on-error={}
 :do { add name="icanhazip.com" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:icanhazip.com" } on-error={}
 :do { add name="ident.me" type=FWD match-subdomain=yes address-list=IP-DETECTION comment="ip-detection:ident.me" } on-error={}

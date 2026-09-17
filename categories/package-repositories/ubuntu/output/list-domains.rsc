@@ -5,16 +5,10 @@
 # RouterOS address-list: DST-UBUNTU-TO-OUTBOUND
 # Source: Ubuntu repository documentation (official-repository-domains)
 # Normalized source domain count: 8
-# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
+# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-UBUNTU-TO-OUTBOUND]
-:do { add name="archive.ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:archive.ubuntu.com" } on-error={}
-:do { add name="changelogs.ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:changelogs.ubuntu.com" } on-error={}
-:do { add name="esm.ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:esm.ubuntu.com" } on-error={}
-:do { add name="keyserver.ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:keyserver.ubuntu.com" } on-error={}
-:do { add name="packages.ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:packages.ubuntu.com" } on-error={}
-:do { add name="ports.ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:ports.ubuntu.com" } on-error={}
-:do { add name="ppa.launchpadcontent.net" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:ppa.launchpadcontent.net" } on-error={}
-:do { add name="security.ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:security.ubuntu.com" } on-error={}
+:do { add name="launchpadcontent.net" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:launchpadcontent.net" } on-error={}
+:do { add name="ubuntu.com" type=FWD match-subdomain=yes address-list=DST-UBUNTU-TO-OUTBOUND comment="ubuntu:ubuntu.com" } on-error={}

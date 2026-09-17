@@ -7,12 +7,11 @@
 
 /ip dns static
 remove [find address-list=DST-ONEDRIVE-TO-OUTBOUND]
+:do { add name="1drv.com" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:1drv.com" } on-error={}
 :do { add name="1drv.ms" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:1drv.ms" } on-error={}
-:do { add name="files.1drv.com" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:files.1drv.com" } on-error={}
+:do { add name="live.com" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:live.com" } on-error={}
 :do { add name="onedrive.com" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:onedrive.com" } on-error={}
-:do { add name="onedrive.live.com" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:onedrive.live.com" } on-error={}
 :do { add name="sharepoint.com" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:sharepoint.com" } on-error={}
-:do { add name="storage.live.com" type=FWD match-subdomain=yes address-list=DST-ONEDRIVE-TO-OUTBOUND comment="onedrive:storage.live.com" } on-error={}
 
 /ip firewall address-list
 remove [find list=DST-ONEDRIVE-TO-OUTBOUND]
