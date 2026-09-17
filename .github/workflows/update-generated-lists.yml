@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - "scripts/harden-routeros-fetch.sh"
+      - "scripts/build-service.sh"
+      - "scripts/validate-service.sh"
+      - "scripts/build-all.sh"
+      - "scripts/validate-all.sh"
   schedule:
     - cron: "30 23 * * *"
   workflow_dispatch:
