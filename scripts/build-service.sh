@@ -95,9 +95,8 @@ normalize_domains() {
     }'
 }
 
-# Reduce every service dependency to its registrable-style base parent so one
-# match-subdomain rule covers all of that provider domain. Common ccTLD forms
-# such as example.co.uk and example.com.au keep one extra label.
+# Reduce every service dependency to its registrable-style base parent. Common
+# ccTLD forms such as example.co.uk and example.com.au keep one extra label.
 reduce_to_base_domains() {
     awk '
     function base_domain(domain, labels, count, second, last) {
@@ -227,13 +226,22 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     echo "# Source: $DOMAIN_SOURCE_NAME ($DOMAIN_SOURCE_TYPE)"
     [ -z "${DOMAIN_SOURCE_URL:-}" ] || echo "# Source URL: $DOMAIN_SOURCE_URL"
     echo "# Normalized source domain count: $normalized_domain_count"
-    echo "# Service dependencies are reduced to base parent domains and matched with match-subdomain=yes"
+    echo "# Each base domain has a firewall FQDN seed plus a DNS regex learner in the same address-list"
     echo "# do-not-edit-manually"
+    echo
+    echo "/ip firewall address-list"
+    echo "remove [find list=$LIST_NAME comment~\"${DOMAIN_COMMENT_PREFIX}seed:\"]"
+    while IFS= read -r domain; do
+        printf ':do { add list=%s address="%s" comment="%sseed:%s" } on-error={}\n' \
+            "$LIST_NAME" "$domain" "$DOMAIN_COMMENT_PREFIX" "$domain"
+    done < "$domains_all"
     echo
     echo "/ip dns static"
     echo "remove [find address-list=$LIST_NAME comment~\"$DOMAIN_COMMENT_PREFIX\"]"
     while IFS= read -r domain; do
-        printf ':do { add name="%s" type=FWD match-subdomain=yes address-list=%s comment="%s%s" } on-error={}\n' "$domain" "$LIST_NAME" "$DOMAIN_COMMENT_PREFIX" "$domain"
+        escaped_domain="$(printf '%s\n' "$domain" | sed 's/\./\\\\./g')"
+        printf ':do { add regexp="(^|.*\\\\.)%s$" type=FWD address-list=%s comment="%sdns:%s" } on-error={}\n' \
+            "$escaped_domain" "$LIST_NAME" "$DOMAIN_COMMENT_PREFIX" "$domain"
     done < "$domains_all"
 } > "$output_dir/list-domains.rsc"
 
@@ -267,5 +275,5 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     sed '1,/^$/d' "$output_dir/list-cidr.rsc"
 } > "$output_dir/list-all.rsc"
 
-printf 'Generated %s output: %s base domains (%s normalized source domains), %s CIDRs\n' \
-    "$SERVICE_NAME" "$domain_count" "$normalized_domain_count" "$cidr_count"
+printf 'Generated %s output: %s base domains (%s normalized source domains), %s FQDN seeds, %s DNS regex rules, %s CIDRs\n' \
+    "$SERVICE_NAME" "$domain_count" "$normalized_domain_count" "$domain_count" "$domain_count" "$cidr_count"
