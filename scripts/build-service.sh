@@ -57,10 +57,6 @@ if [ "${CIDR_SOURCE_URL:-}" ]; then
     fi
 fi
 
-escape_domain() {
-    printf '%s' "$1" | sed 's/\./\\\\./g'
-}
-
 normalize_domains() {
     awk '
     function valid(domain, labels, count, i, label, tld) {
@@ -182,8 +178,7 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     echo "/ip dns static"
     echo "remove [find address-list=$LIST_NAME comment~\"$DOMAIN_COMMENT_PREFIX\"]"
     while IFS= read -r domain; do
-        escaped="$(escape_domain "$domain")"
-        printf ':do { add regexp="(^|.*\\\\.)%s\\$" type=FWD address-list=%s comment="%s%s" } on-error={}\n' "$escaped" "$LIST_NAME" "$DOMAIN_COMMENT_PREFIX" "$domain"
+        printf ':do { add name="%s" type=FWD match-subdomain=yes address-list=%s comment="%s%s" } on-error={}\n' "$domain" "$LIST_NAME" "$DOMAIN_COMMENT_PREFIX" "$domain"
     done < "$domains_all"
 } > "$output_dir/list-domains.rsc"
 
