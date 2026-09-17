@@ -183,8 +183,13 @@ check_sudden_drop() {
 normalized_domain_count="$(wc -l < "$domains_normalized" | tr -d ' ')"
 domain_count="$(wc -l < "$domains_all" | tr -d ' ')"
 cidr_count="$(wc -l < "$cidr_all" | tr -d ' ')"
-if [ "$domain_count" -lt "${MIN_DOMAIN_RULES:-1}" ]; then
-    echo "Too few $SERVICE_NAME domain entries" >&2
+if [ "$normalized_domain_count" -lt "${MIN_DOMAIN_RULES:-1}" ]; then
+    echo "Too few $SERVICE_NAME source domain entries" >&2
+    exit 1
+fi
+
+if [ "$domain_count" -lt 1 ]; then
+    echo "No usable $SERVICE_NAME parent domain entries after child collapse" >&2
     exit 1
 fi
 if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
