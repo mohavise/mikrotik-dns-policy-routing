@@ -4,6 +4,7 @@
 # List: Microsoft Azure domains
 # RouterOS address-list: DST-MICROSOFT-AZURE-TO-OUTBOUND
 # Source: Microsoft official Azure portal allowlist (official-control-plane-domains)
+# Normalized source domain count: 13
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

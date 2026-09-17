@@ -4,6 +4,7 @@
 # List: Wise domains
 # RouterOS address-list: DST-WISE-TO-OUTBOUND
 # Source: Wise official production domains (official-owned-domains)
+# Normalized source domain count: 2
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

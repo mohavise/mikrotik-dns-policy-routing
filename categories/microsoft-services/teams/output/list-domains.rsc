@@ -4,6 +4,7 @@
 # List: Microsoft Teams domains
 # RouterOS address-list: DST-TEAMS-TO-OUTBOUND
 # Source: Microsoft 365 URLs and IP address ranges (official-endpoint-docs)
+# Normalized source domain count: 8
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

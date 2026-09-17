@@ -4,6 +4,7 @@
 # List: Samsung Galaxy Store domains
 # RouterOS address-list: DST-SAMSUNG-GALAXY-STORE-TO-OUTBOUND
 # Source: Samsung Apps authenticated proxy allowlist (official-vendor-docs)
+# Normalized source domain count: 12
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

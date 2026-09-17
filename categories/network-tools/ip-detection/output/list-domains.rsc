@@ -4,6 +4,7 @@
 # List: IP Detection domains
 # RouterOS address-list: IP-DETECTION
 # Source: Local MikroTik DNS policy list (manual-curated)
+# Normalized source domain count: 39
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

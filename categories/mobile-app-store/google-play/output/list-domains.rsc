@@ -4,6 +4,7 @@
 # List: Google Play domains
 # RouterOS address-list: DST-GOOGLE-PLAY-TO-OUTBOUND
 # Source: Android Enterprise Network Requirements (official-vendor-docs)
+# Normalized source domain count: 43
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

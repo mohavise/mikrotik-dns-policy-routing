@@ -4,6 +4,7 @@
 # List: OpenAI domains
 # RouterOS address-list: DST-OPENAI-TO-OUTBOUND
 # Source: OpenAI ChatGPT network recommendations (official-allowlist)
+# Normalized source domain count: 19
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

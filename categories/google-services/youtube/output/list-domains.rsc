@@ -4,6 +4,7 @@
 # List: YouTube domains
 # RouterOS address-list: DST-YOUTUBE-TO-OUTBOUND
 # Source: YouTube public/service domains (official-google-service-domains)
+# Normalized source domain count: 12
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

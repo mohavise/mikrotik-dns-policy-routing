@@ -4,6 +4,7 @@
 # List: Ubuntu domains
 # RouterOS address-list: DST-UBUNTU-TO-OUTBOUND
 # Source: Ubuntu repository documentation (official-repository-domains)
+# Normalized source domain count: 8
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

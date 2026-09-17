@@ -4,6 +4,7 @@
 # List: Windows Update domains
 # RouterOS address-list: DST-WINDOWS-UPDATE-TO-OUTBOUND
 # Source: Windows Update endpoint documentation (official-endpoint-docs)
+# Normalized source domain count: 8
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

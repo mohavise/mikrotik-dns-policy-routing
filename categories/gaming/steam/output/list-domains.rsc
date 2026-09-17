@@ -4,6 +4,7 @@
 # List: Steam domains
 # RouterOS address-list: DST-STEAM-TO-OUTBOUND
 # Source: Steam and Valve public/service domains (official-owned-domains)
+# Normalized source domain count: 15
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

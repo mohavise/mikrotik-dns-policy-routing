@@ -4,6 +4,7 @@
 # List: Amazon Web Services domains
 # RouterOS address-list: DST-AWS-TO-OUTBOUND
 # Source: AWS official website and console allowlist (official-control-plane-domains)
+# Normalized source domain count: 5
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

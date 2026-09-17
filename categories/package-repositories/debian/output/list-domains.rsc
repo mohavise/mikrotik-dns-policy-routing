@@ -4,6 +4,7 @@
 # List: Debian domains
 # RouterOS address-list: DST-DEBIAN-TO-OUTBOUND
 # Source: Debian mirror documentation (official-repository-domains)
+# Normalized source domain count: 6
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

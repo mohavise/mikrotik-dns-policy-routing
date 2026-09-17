@@ -4,6 +4,7 @@
 # List: Google Cloud domains
 # RouterOS address-list: DST-GOOGLE-CLOUD-TO-OUTBOUND
 # Source: Google official Cloud console required domains (official-control-plane-domains)
+# Normalized source domain count: 8
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

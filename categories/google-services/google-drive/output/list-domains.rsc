@@ -4,6 +4,7 @@
 # List: Google Drive domains
 # RouterOS address-list: DST-GOOGLE-DRIVE-TO-OUTBOUND
 # Source: Google Drive public/service domains (official-google-service-domains)
+# Normalized source domain count: 10
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

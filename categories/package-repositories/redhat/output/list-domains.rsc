@@ -4,6 +4,7 @@
 # List: Red Hat domains
 # RouterOS address-list: DST-REDHAT-TO-OUTBOUND
 # Source: Red Hat RHSM firewall guidance (official-allowlist)
+# Normalized source domain count: 9
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 

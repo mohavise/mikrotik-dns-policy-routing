@@ -4,6 +4,7 @@
 # List: Proxmox domains
 # RouterOS address-list: DST-PROXMOX-TO-OUTBOUND
 # Source: Proxmox package repository documentation (official-repository-domains)
+# Normalized source domain count: 5
 # Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
