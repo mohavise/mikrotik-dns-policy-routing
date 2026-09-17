@@ -28,7 +28,7 @@ database/manual-cidr.txt
 
 Manual additions should stay empty unless the value is verified and missing from the selected upstream source.
 
-MikroTik uses generated RouterOS regex. Database files must contain normal domains only, like `domain.com`. Do not add `*.domain.com` to MikroTik database files.
+Database files must contain normal domains only, like `domain.com`. Do not add `*.domain.com` to MikroTik database files. Generated RouterOS DNS rules use the plain `name=` field with `type=FWD`, `match-subdomain=yes`, and the service `address-list`. When a parent domain is present, redundant child domains are omitted from generated output because the parent already covers them.
 
 Wildcard format like `*.domain.com` is only for future FortiGate output/export.
 
