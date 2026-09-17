@@ -4,6 +4,7 @@
 # List: Google Cloud domains
 # RouterOS address-list: DST-GOOGLE-CLOUD-TO-OUTBOUND
 # Source: Google official Cloud console required domains (official-control-plane-domains)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static
@@ -15,4 +16,3 @@ remove [find address-list=DST-GOOGLE-CLOUD-TO-OUTBOUND]
 :do { add name="csp.withgoogle.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-CLOUD-TO-OUTBOUND comment="google-cloud:csp.withgoogle.com" } on-error={}
 :do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-CLOUD-TO-OUTBOUND comment="google-cloud:googleapis.com" } on-error={}
 :do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-CLOUD-TO-OUTBOUND comment="google-cloud:gstatic.com" } on-error={}
-:do { add name="reauth.cloud.google.com" type=FWD match-subdomain=yes address-list=DST-GOOGLE-CLOUD-TO-OUTBOUND comment="google-cloud:reauth.cloud.google.com" } on-error={}

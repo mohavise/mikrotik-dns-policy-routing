@@ -4,6 +4,7 @@
 # List: Speedtest domains
 # RouterOS address-list: SPEEDTEST
 # Source: Local MikroTik DNS policy list (manual-curated)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

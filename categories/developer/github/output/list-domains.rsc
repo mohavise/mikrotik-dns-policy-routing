@@ -4,6 +4,7 @@
 # List: GitHub domains
 # RouterOS address-list: DST-GITHUB-TO-OUTBOUND
 # Source: GitHub-owned public/service domains (official-meta-and-owned-domains)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

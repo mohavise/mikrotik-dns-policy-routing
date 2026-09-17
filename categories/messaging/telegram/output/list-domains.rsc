@@ -5,6 +5,7 @@
 # RouterOS address-list: DST-TELEGRAM-TO-OUTBOUND
 # Source: v2fly/domain-list-community telegram (community-maintained)
 # Source URL: https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

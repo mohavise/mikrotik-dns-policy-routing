@@ -3,12 +3,11 @@
 # profile=ai-to-outbound
 # List: ai combined domains + CIDR
 # RouterOS address-list: DST-AI-TO-OUTBOUND
-# Last update: 2026-09-17 07:10:49 UTC
+# Last update: 2026-09-17 07:15:07 UTC
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-AI-TO-OUTBOUND]
-:do { add name="auth.openai.com" type=FWD match-subdomain=yes address-list=DST-AI-TO-OUTBOUND comment="openai:auth.openai.com" } on-error={}
 :do { add name="challenges.cloudflare.com" type=FWD match-subdomain=yes address-list=DST-AI-TO-OUTBOUND comment="openai:challenges.cloudflare.com" } on-error={}
 :do { add name="chatgpt.com" type=FWD match-subdomain=yes address-list=DST-AI-TO-OUTBOUND comment="openai:chatgpt.com" } on-error={}
 :do { add name="ct.sendgrid.net" type=FWD match-subdomain=yes address-list=DST-AI-TO-OUTBOUND comment="openai:ct.sendgrid.net" } on-error={}

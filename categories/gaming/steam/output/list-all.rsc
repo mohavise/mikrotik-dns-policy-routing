@@ -7,7 +7,6 @@
 
 /ip dns static
 remove [find address-list=DST-STEAM-TO-OUTBOUND]
-:do { add name="help.steampowered.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:help.steampowered.com" } on-error={}
 :do { add name="steam-chat.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
 :do { add name="steam.tv" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steam.tv" } on-error={}
 :do { add name="steamcdn-a.akamaihd.net" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamcdn-a.akamaihd.net" } on-error={}
@@ -20,7 +19,6 @@ remove [find address-list=DST-STEAM-TO-OUTBOUND]
 :do { add name="steamstore-a.akamaihd.net" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamstore-a.akamaihd.net" } on-error={}
 :do { add name="steamusercontent.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamusercontent.com" } on-error={}
 :do { add name="steamuserimages-a.akamaihd.net" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:steamuserimages-a.akamaihd.net" } on-error={}
-:do { add name="store.steampowered.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:store.steampowered.com" } on-error={}
 :do { add name="valvesoftware.com" type=FWD match-subdomain=yes address-list=DST-STEAM-TO-OUTBOUND comment="steam:valvesoftware.com" } on-error={}
 
 /ip firewall address-list

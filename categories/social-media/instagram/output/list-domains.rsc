@@ -4,6 +4,7 @@
 # List: Instagram domains
 # RouterOS address-list: DST-INSTAGRAM-TO-OUTBOUND
 # Source: Meta-owned Instagram public domains (official-owned-domains)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

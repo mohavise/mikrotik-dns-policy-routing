@@ -3,7 +3,7 @@
 # profile=package-repositories-to-outbound
 # List: package repositories combined domains + CIDR
 # RouterOS address-list: DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
-# Last update: 2026-09-17 07:10:49 UTC
+# Last update: 2026-09-17 07:15:07 UTC
 # do-not-edit-manually
 
 /ip dns static
@@ -35,7 +35,6 @@ remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND]
 :do { add name="cdn.redhat.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:cdn.redhat.com" } on-error={}
 :do { add name="cloud.redhat.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:cloud.redhat.com" } on-error={}
 :do { add name="console.redhat.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:console.redhat.com" } on-error={}
-:do { add name="registry.access.redhat.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:registry.access.redhat.com" } on-error={}
 :do { add name="registry.redhat.io" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:registry.redhat.io" } on-error={}
 :do { add name="sso.redhat.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:sso.redhat.com" } on-error={}
 :do { add name="subscription.rhn.redhat.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="redhat:subscription.rhn.redhat.com" } on-error={}
@@ -53,18 +52,8 @@ remove [find list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND]
 /ip firewall address-list
 
 /ip dns static
-:do { add name="api.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:api.docker.com" } on-error={}
-:do { add name="auth.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:auth.docker.com" } on-error={}
-:do { add name="auth.docker.io" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:auth.docker.io" } on-error={}
-:do { add name="desktop.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:desktop.docker.com" } on-error={}
 :do { add name="docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:docker.com" } on-error={}
 :do { add name="docker.io" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:docker.io" } on-error={}
-:do { add name="docs.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:docs.docker.com" } on-error={}
-:do { add name="download.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:download.docker.com" } on-error={}
-:do { add name="hub.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:hub.docker.com" } on-error={}
-:do { add name="login.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:login.docker.com" } on-error={}
-:do { add name="production.cloudfront.docker.com" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:production.cloudfront.docker.com" } on-error={}
-:do { add name="registry-1.docker.io" type=FWD match-subdomain=yes address-list=DST-PACKAGE-REPOSITORIES-TO-OUTBOUND comment="docker:registry-1.docker.io" } on-error={}
 
 /ip firewall address-list
 

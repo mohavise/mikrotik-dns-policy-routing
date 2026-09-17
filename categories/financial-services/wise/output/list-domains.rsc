@@ -4,6 +4,7 @@
 # List: Wise domains
 # RouterOS address-list: DST-WISE-TO-OUTBOUND
 # Source: Wise official production domains (official-owned-domains)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

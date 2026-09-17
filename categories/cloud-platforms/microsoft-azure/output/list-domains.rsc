@@ -4,6 +4,7 @@
 # List: Microsoft Azure domains
 # RouterOS address-list: DST-MICROSOFT-AZURE-TO-OUTBOUND
 # Source: Microsoft official Azure portal allowlist (official-control-plane-domains)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

@@ -3,20 +3,15 @@
 # profile=music-to-outbound
 # List: music combined domains + CIDR
 # RouterOS address-list: DST-MUSIC-TO-OUTBOUND
-# Last update: 2026-09-17 07:10:49 UTC
+# Last update: 2026-09-17 07:15:07 UTC
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-MUSIC-TO-OUTBOUND]
-:do { add name="accounts.spotify.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:accounts.spotify.com" } on-error={}
-:do { add name="api.spotify.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:api.spotify.com" } on-error={}
 :do { add name="audio-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
 :do { add name="audio4-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
-:do { add name="gew-spclient.spotify.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:gew-spclient.spotify.com" } on-error={}
-:do { add name="open.spotify.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:open.spotify.com" } on-error={}
 :do { add name="pscdn.co" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
 :do { add name="scdn.co" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
-:do { add name="spclient.wg.spotify.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:spclient.wg.spotify.com" } on-error={}
 :do { add name="spotify.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}
 :do { add name="spotifycdn.com" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:spotifycdn.com" } on-error={}
 :do { add name="spotifycdn.net" type=FWD match-subdomain=yes address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}

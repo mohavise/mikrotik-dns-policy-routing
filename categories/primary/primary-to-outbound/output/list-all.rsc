@@ -3,12 +3,11 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-09-17 07:10:49 UTC
+# Last update: 2026-09-17 07:15:07 UTC
 # do-not-edit-manually
 
 /ip dns static
 remove [find address-list=DST-TO-OUTBOUND]
-:do { add name="auth.openai.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:auth.openai.com" } on-error={}
 :do { add name="challenges.cloudflare.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:challenges.cloudflare.com" } on-error={}
 :do { add name="chatgpt.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:chatgpt.com" } on-error={}
 :do { add name="ct.sendgrid.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="openai:ct.sendgrid.net" } on-error={}
@@ -49,7 +48,6 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="csp.withgoogle.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:csp.withgoogle.com" } on-error={}
 :do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:googleapis.com" } on-error={}
 :do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:gstatic.com" } on-error={}
-:do { add name="reauth.cloud.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-cloud:reauth.cloud.google.com" } on-error={}
 
 /ip firewall address-list
 
@@ -126,19 +124,15 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:googleapis.com" } on-error={}
 :do { add name="googlevideo.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:googlevideo.com" } on-error={}
 :do { add name="gstatic.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:gstatic.com" } on-error={}
-:do { add name="m.youtube.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:m.youtube.com" } on-error={}
-:do { add name="www.youtube.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:www.youtube.com" } on-error={}
 :do { add name="youtu.be" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:youtu.be" } on-error={}
 :do { add name="youtube-nocookie.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:youtube-nocookie.com" } on-error={}
 :do { add name="youtube.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:youtube.com" } on-error={}
-:do { add name="youtubei.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:youtubei.googleapis.com" } on-error={}
 :do { add name="ytimg.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="youtube:ytimg.com" } on-error={}
 
 /ip firewall address-list
 
 
 /ip dns static
-:do { add name="help.steampowered.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:help.steampowered.com" } on-error={}
 :do { add name="steam-chat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steam-chat.com" } on-error={}
 :do { add name="steam.tv" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steam.tv" } on-error={}
 :do { add name="steamcdn-a.akamaihd.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamcdn-a.akamaihd.net" } on-error={}
@@ -151,7 +145,6 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="steamstore-a.akamaihd.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamstore-a.akamaihd.net" } on-error={}
 :do { add name="steamusercontent.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamusercontent.com" } on-error={}
 :do { add name="steamuserimages-a.akamaihd.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:steamuserimages-a.akamaihd.net" } on-error={}
-:do { add name="store.steampowered.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:store.steampowered.com" } on-error={}
 :do { add name="valvesoftware.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="steam:valvesoftware.com" } on-error={}
 
 /ip firewall address-list
@@ -223,7 +216,6 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="office.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:office.net" } on-error={}
 :do { add name="office365.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:office365.com" } on-error={}
 :do { add name="officeapps.live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:officeapps.live.com" } on-error={}
-:do { add name="outlook.office.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:outlook.office.com" } on-error={}
 :do { add name="protection.outlook.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:protection.outlook.com" } on-error={}
 :do { add name="sharepoint.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="microsoft-365:sharepoint.com" } on-error={}
 
@@ -234,7 +226,6 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="files.1drv.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:files.1drv.com" } on-error={}
 :do { add name="onedrive.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:onedrive.com" } on-error={}
 :do { add name="onedrive.live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:onedrive.live.com" } on-error={}
-:do { add name="public.dm.files.1drv.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:public.dm.files.1drv.com" } on-error={}
 :do { add name="sharepoint.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:sharepoint.com" } on-error={}
 :do { add name="storage.live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="onedrive:storage.live.com" } on-error={}
 
@@ -244,7 +235,6 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="lync.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:lync.com" } on-error={}
 :do { add name="sfbassets.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:sfbassets.com" } on-error={}
 :do { add name="skype.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:skype.com" } on-error={}
-:do { add name="statics.teams.cdn.office.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:statics.teams.cdn.office.net" } on-error={}
 :do { add name="teams.cdn.office.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:teams.cdn.office.net" } on-error={}
 :do { add name="teams.live.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:teams.live.com" } on-error={}
 :do { add name="teams.microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="teams:teams.microsoft.com" } on-error={}
@@ -254,8 +244,6 @@ remove [find list=DST-TO-OUTBOUND]
 
 /ip dns static
 :do { add name="delivery.mp.microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:delivery.mp.microsoft.com" } on-error={}
-:do { add name="dl.delivery.mp.microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:dl.delivery.mp.microsoft.com" } on-error={}
-:do { add name="download.windowsupdate.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:download.windowsupdate.com" } on-error={}
 :do { add name="emdl.ws.microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:emdl.ws.microsoft.com" } on-error={}
 :do { add name="prod.do.dsp.mp.microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:prod.do.dsp.mp.microsoft.com" } on-error={}
 :do { add name="tsfe.trafficshaping.dsp.mp.microsoft.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="windows-update:tsfe.trafficshaping.dsp.mp.microsoft.com" } on-error={}
@@ -284,31 +272,9 @@ remove [find list=DST-TO-OUTBOUND]
 /ip firewall address-list
 
 /ip dns static
-:do { add name="accounts.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:accounts.google.com" } on-error={}
 :do { add name="accounts.youtube.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:accounts.youtube.com" } on-error={}
-:do { add name="ajax.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:ajax.googleapis.com" } on-error={}
-:do { add name="android.apis.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:android.apis.google.com" } on-error={}
 :do { add name="android.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:android.com" } on-error={}
-:do { add name="android.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:android.googleapis.com" } on-error={}
-:do { add name="androidmanagement.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:androidmanagement.googleapis.com" } on-error={}
-:do { add name="apis.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:apis.google.com" } on-error={}
-:do { add name="clients1.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:clients1.google.com" } on-error={}
-:do { add name="clients2.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:clients2.google.com" } on-error={}
-:do { add name="clients3.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:clients3.google.com" } on-error={}
-:do { add name="clients4.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:clients4.google.com" } on-error={}
-:do { add name="clients5.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:clients5.google.com" } on-error={}
-:do { add name="clients6.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:clients6.google.com" } on-error={}
 :do { add name="crl.pki.goog" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:crl.pki.goog" } on-error={}
-:do { add name="dl-ssl.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:dl-ssl.google.com" } on-error={}
-:do { add name="dl.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:dl.google.com" } on-error={}
-:do { add name="enterprise.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:enterprise.google.com" } on-error={}
-:do { add name="fcm-xmpp.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:fcm-xmpp.googleapis.com" } on-error={}
-:do { add name="fcm.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:fcm.googleapis.com" } on-error={}
-:do { add name="firebaseinstallations.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:firebaseinstallations.googleapis.com" } on-error={}
-:do { add name="firebaselogging.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:firebaselogging.googleapis.com" } on-error={}
-:do { add name="fonts.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:fonts.googleapis.com" } on-error={}
-:do { add name="gcm-http.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gcm-http.googleapis.com" } on-error={}
-:do { add name="gcm-xmpp.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gcm-xmpp.googleapis.com" } on-error={}
 :do { add name="ggpht.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:ggpht.com" } on-error={}
 :do { add name="google-analytics.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:google-analytics.com" } on-error={}
 :do { add name="google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:google.com" } on-error={}
@@ -318,15 +284,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="gvt1.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gvt1.com" } on-error={}
 :do { add name="gvt2.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gvt2.com" } on-error={}
 :do { add name="gvt3.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:gvt3.com" } on-error={}
-:do { add name="m.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:m.google.com" } on-error={}
-:do { add name="notifications.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:notifications.google.com" } on-error={}
 :do { add name="ocsp.pki.goog" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:ocsp.pki.goog" } on-error={}
-:do { add name="ogs.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:ogs.google.com" } on-error={}
-:do { add name="payments.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:payments.google.com" } on-error={}
-:do { add name="pki.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:pki.google.com" } on-error={}
-:do { add name="play.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:play.google.com" } on-error={}
-:do { add name="www.google.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:www.google.com" } on-error={}
-:do { add name="www.googleapis.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="google-play:www.googleapis.com" } on-error={}
 
 /ip firewall address-list
 
@@ -334,29 +292,17 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="apps-dn2.ospserver.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:apps-dn2.ospserver.net" } on-error={}
 :do { add name="apps.samsung.cn" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:apps.samsung.cn" } on-error={}
 :do { add name="apps.samsung.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:apps.samsung.com" } on-error={}
-:do { add name="cdnet-dn.gw.samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:cdnet-dn.gw.samsungapps.com" } on-error={}
-:do { add name="cf-dn.gw.samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:cf-dn.gw.samsungapps.com" } on-error={}
-:do { add name="cn-ms.samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:cn-ms.samsungapps.com" } on-error={}
-:do { add name="hub-odc.samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:hub-odc.samsungapps.com" } on-error={}
-:do { add name="img.samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:img.samsungapps.com" } on-error={}
-:do { add name="odc.samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:odc.samsungapps.com" } on-error={}
 :do { add name="samsappsbn.vo.llnwd.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:samsappsbn.vo.llnwd.net" } on-error={}
 :do { add name="samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:samsungapps.com" } on-error={}
-:do { add name="vas.samsungapps.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="samsung-galaxy-store:vas.samsungapps.com" } on-error={}
 
 /ip firewall address-list
 
 
 /ip dns static
-:do { add name="accounts.spotify.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:accounts.spotify.com" } on-error={}
-:do { add name="api.spotify.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:api.spotify.com" } on-error={}
 :do { add name="audio-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:audio-ak-spotify-com.akamaized.net" } on-error={}
 :do { add name="audio4-ak-spotify-com.akamaized.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:audio4-ak-spotify-com.akamaized.net" } on-error={}
-:do { add name="gew-spclient.spotify.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:gew-spclient.spotify.com" } on-error={}
-:do { add name="open.spotify.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:open.spotify.com" } on-error={}
 :do { add name="pscdn.co" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:pscdn.co" } on-error={}
 :do { add name="scdn.co" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:scdn.co" } on-error={}
-:do { add name="spclient.wg.spotify.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:spclient.wg.spotify.com" } on-error={}
 :do { add name="spotify.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:spotify.com" } on-error={}
 :do { add name="spotifycdn.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:spotifycdn.com" } on-error={}
 :do { add name="spotifycdn.net" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="spotify:spotifycdn.net" } on-error={}
@@ -391,7 +337,6 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add name="cdn.redhat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:cdn.redhat.com" } on-error={}
 :do { add name="cloud.redhat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:cloud.redhat.com" } on-error={}
 :do { add name="console.redhat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:console.redhat.com" } on-error={}
-:do { add name="registry.access.redhat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:registry.access.redhat.com" } on-error={}
 :do { add name="registry.redhat.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:registry.redhat.io" } on-error={}
 :do { add name="sso.redhat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:sso.redhat.com" } on-error={}
 :do { add name="subscription.rhn.redhat.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="redhat:subscription.rhn.redhat.com" } on-error={}
@@ -409,18 +354,8 @@ remove [find list=DST-TO-OUTBOUND]
 /ip firewall address-list
 
 /ip dns static
-:do { add name="api.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:api.docker.com" } on-error={}
-:do { add name="auth.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:auth.docker.com" } on-error={}
-:do { add name="auth.docker.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:auth.docker.io" } on-error={}
-:do { add name="desktop.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:desktop.docker.com" } on-error={}
 :do { add name="docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:docker.com" } on-error={}
 :do { add name="docker.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:docker.io" } on-error={}
-:do { add name="docs.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:docs.docker.com" } on-error={}
-:do { add name="download.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:download.docker.com" } on-error={}
-:do { add name="hub.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:hub.docker.com" } on-error={}
-:do { add name="login.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:login.docker.com" } on-error={}
-:do { add name="production.cloudfront.docker.com" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:production.cloudfront.docker.com" } on-error={}
-:do { add name="registry-1.docker.io" type=FWD match-subdomain=yes address-list=DST-TO-OUTBOUND comment="docker:registry-1.docker.io" } on-error={}
 
 /ip firewall address-list
 

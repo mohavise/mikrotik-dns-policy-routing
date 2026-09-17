@@ -16,7 +16,6 @@ remove [find address-list=DST-MICROSOFT-365-TO-OUTBOUND]
 :do { add name="office.net" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:office.net" } on-error={}
 :do { add name="office365.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:office365.com" } on-error={}
 :do { add name="officeapps.live.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:officeapps.live.com" } on-error={}
-:do { add name="outlook.office.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:outlook.office.com" } on-error={}
 :do { add name="protection.outlook.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:protection.outlook.com" } on-error={}
 :do { add name="sharepoint.com" type=FWD match-subdomain=yes address-list=DST-MICROSOFT-365-TO-OUTBOUND comment="microsoft-365:sharepoint.com" } on-error={}
 

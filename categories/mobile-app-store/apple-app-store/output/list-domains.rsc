@@ -4,6 +4,7 @@
 # List: Apple App Store domains
 # RouterOS address-list: DST-APPLE-APP-STORE-TO-OUTBOUND
 # Source: Apple products on enterprise networks (official-vendor-docs)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static

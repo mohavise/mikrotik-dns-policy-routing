@@ -4,6 +4,7 @@
 # List: LinkedIn domains
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Source: LinkedIn-owned public domains (official-owned-domains)
+# Child domains are omitted when a listed parent already covers them via match-subdomain=yes
 # do-not-edit-manually
 
 /ip dns static
