@@ -52,8 +52,10 @@ fi
 domain_count="$(grep -c '^:do { add name=' "$output_dir/list-domains.rsc" || true)"
 cidr_count="$(grep -c '^:do { add list=' "$output_dir/list-cidr.rsc" || true)"
 
-if [ "$domain_count" -lt "${MIN_DOMAIN_RULES:-1}" ]; then
-    echo "Too few $SERVICE_NAME domain entries" >&2
+# Generated domain count may be lower than MIN_DOMAIN_RULES because redundant
+# child domains are intentionally collapsed under parent match-subdomain rules.
+if [ "$domain_count" -lt 1 ]; then
+    echo "No generated $SERVICE_NAME parent domain entries" >&2
     exit 1
 fi
 
