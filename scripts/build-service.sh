@@ -299,6 +299,15 @@ if [ "${CIDR_SOURCE_URL:-}" ] && [ "$cidr_source_available" -eq 1 ]; then
     extract_external_cidrs > "$cidr_extracted"
 fi
 
+# Automatically enrich services that explicitly depend on Cloudflare with
+# Cloudflare's provider-wide IPv4 ranges. This is intentionally broad.
+if grep -qx 'cloudflare.com' "$domains_all"; then
+    cloudflare_raw="$workdir/cloudflare.ips-v4"
+    if download_source "https://www.cloudflare.com/ips-v4" "$cloudflare_raw"; then
+        cat "$cloudflare_raw" >> "$cidr_extracted"
+    fi
+fi
+
 {
     cat "$cidr_extracted"
     cat "$service_dir/manual-cidr.txt" 2>/dev/null || true
