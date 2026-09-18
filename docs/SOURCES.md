@@ -69,6 +69,8 @@ Broad automatic feeds are enabled for AWS, Google Cloud/Google services, AzureCl
 
 Category and primary aggregate builds deduplicate identical effective RouterOS rules across services, so overlapping official CIDRs are emitted once in aggregate outputs.
 
+Before RouterOS CIDR output is generated, all IPv4 ranges for each service are normalized and safely collapsed. Covered subnets are removed and exact adjacent sibling networks are merged recursively with Python `ipaddress.collapse_addresses()`. This never adds addresses outside the union of the imported source ranges. Source-count safety checks use the pre-collapse normalized CIDR count, while RouterOS receives only the collapsed result.
+
 ## Automation Order
 
 The GitHub workflow starts at:
