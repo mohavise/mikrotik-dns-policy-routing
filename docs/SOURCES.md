@@ -52,6 +52,7 @@ When a service owner publishes a machine-readable, service-specific IPv4 feed, t
 
 Currently enabled official feeds:
 
+- OpenAI ChatGPT Voice: `https://openai.com/chatgpt-voice.json` (voice server CIDRs only, not a complete ChatGPT web/API destination list)
 - Telegram: `https://core.telegram.org/resources/cidr.txt`
 - Microsoft 365: Microsoft 365 endpoint web service, IPv4 Optimize/Allow ranges
 - Microsoft Teams: Microsoft 365 endpoint web service with `ServiceAreas=Skype`
