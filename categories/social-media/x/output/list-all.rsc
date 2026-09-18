@@ -20,30 +20,14 @@ remove [find address-list=DST-X-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)x\\.com$" type=FWD address-list=DST-X-TO-OUTBOUND comment="x:dns:x.com" } on-error={}
 
 /ip firewall address-list
-:do { add list=DST-X-TO-OUTBOUND address=103.252.112.0/23 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=103.252.114.0/23 comment="x-cidr" } on-error={}
+:do { add list=DST-X-TO-OUTBOUND address=64.63.0.0/18 comment="x-cidr" } on-error={}
+:do { add list=DST-X-TO-OUTBOUND address=103.252.112.0/22 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=104.244.41.0/24 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=104.244.42.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=104.244.44.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=104.244.45.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=104.244.46.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=104.244.47.0/24 comment="x-cidr" } on-error={}
+:do { add list=DST-X-TO-OUTBOUND address=104.244.44.0/22 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=188.64.224.0/21 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=192.133.76.0/22 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=199.16.156.0/22 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=199.16.156.0/23 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=199.59.148.0/22 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=199.96.56.0/23 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=202.160.128.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=202.160.129.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=202.160.130.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=202.160.131.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.0.0/18 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.30.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.31.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.33.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.46.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.47.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.49.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.62.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=64.63.63.0/24 comment="x-cidr" } on-error={}
+:do { add list=DST-X-TO-OUTBOUND address=202.160.128.0/22 comment="x-cidr" } on-error={}

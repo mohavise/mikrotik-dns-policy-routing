@@ -4,6 +4,9 @@
 # List: Speedtest CIDR
 # RouterOS address-list: SPEEDTEST
 # Source: manual verified additions
+# Normalized source CIDR count: 15
+# Exact collapsed CIDR count: 15
+# CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
 /ip firewall address-list

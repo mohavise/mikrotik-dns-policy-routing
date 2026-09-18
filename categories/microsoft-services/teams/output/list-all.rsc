@@ -24,13 +24,13 @@ remove [find address-list=DST-TEAMS-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)skype\\.com$" type=FWD address-list=DST-TEAMS-TO-OUTBOUND comment="teams:dns:skype.com" } on-error={}
 
 /ip firewall address-list
-:do { add list=DST-TEAMS-TO-OUTBOUND address=13.107.140.6/32 comment="teams-cidr" } on-error={}
-:do { add list=DST-TEAMS-TO-OUTBOUND address=13.107.18.15/32 comment="teams-cidr" } on-error={}
 :do { add list=DST-TEAMS-TO-OUTBOUND address=13.107.6.171/32 comment="teams-cidr" } on-error={}
 :do { add list=DST-TEAMS-TO-OUTBOUND address=13.107.6.192/32 comment="teams-cidr" } on-error={}
 :do { add list=DST-TEAMS-TO-OUTBOUND address=13.107.9.192/32 comment="teams-cidr" } on-error={}
-:do { add list=DST-TEAMS-TO-OUTBOUND address=20.190.128.0/18 comment="teams-cidr" } on-error={}
+:do { add list=DST-TEAMS-TO-OUTBOUND address=13.107.18.15/32 comment="teams-cidr" } on-error={}
+:do { add list=DST-TEAMS-TO-OUTBOUND address=13.107.140.6/32 comment="teams-cidr" } on-error={}
 :do { add list=DST-TEAMS-TO-OUTBOUND address=20.20.32.0/19 comment="teams-cidr" } on-error={}
+:do { add list=DST-TEAMS-TO-OUTBOUND address=20.190.128.0/18 comment="teams-cidr" } on-error={}
 :do { add list=DST-TEAMS-TO-OUTBOUND address=20.231.128.0/19 comment="teams-cidr" } on-error={}
 :do { add list=DST-TEAMS-TO-OUTBOUND address=40.126.0.0/18 comment="teams-cidr" } on-error={}
 :do { add list=DST-TEAMS-TO-OUTBOUND address=52.108.0.0/14 comment="teams-cidr" } on-error={}
