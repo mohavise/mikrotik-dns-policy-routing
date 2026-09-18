@@ -3,7 +3,7 @@
 # profile=mobile-app-store-to-outbound
 # List: mobile app store combined domains + CIDR
 # RouterOS address-list: DST-MOBILE-APP-STORE-TO-OUTBOUND
-# Last update: 2026-09-18 08:21:50 UTC
+# Last update: 2026-09-18 08:53:04 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
