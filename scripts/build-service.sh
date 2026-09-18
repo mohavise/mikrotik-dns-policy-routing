@@ -17,6 +17,7 @@ mkdir -p "$output_dir"
 
 domains_normalized="$workdir/domains.normalized"
 domains_all="$workdir/domains.all"
+cidr_normalized="$workdir/cidr.normalized"
 cidr_all="$workdir/cidr.all"
 domains_raw="$workdir/domains.raw"
 cidr_raw="$workdir/cidr.raw"
@@ -332,19 +333,48 @@ fi
 {
     cat "$cidr_extracted"
     cat "$service_dir/manual-cidr.txt" 2>/dev/null || true
-} | normalize_cidrs | sort -u > "$cidr_all"
+} | normalize_cidrs | sort -u > "$cidr_normalized"
 
-check_sudden_drop() {
+# Collapse IPv4 networks without broadening the represented address set.
+# This removes covered subnets and repeatedly merges exact adjacent siblings.
+python3 - "$cidr_normalized" "$cidr_all" <<'PY'
+import ipaddress
+import sys
+
+source_path, output_path = sys.argv[1:3]
+networks = []
+
+with open(source_path, "r", encoding="utf-8") as handle:
+    for line in handle:
+        value = line.strip()
+        if not value:
+            continue
+        network = ipaddress.ip_network(value, strict=False)
+        if network.version == 4:
+            networks.append(network)
+
+collapsed = list(ipaddress.collapse_addresses(networks))
+collapsed.sort(key=lambda net: (int(net.network_address), net.prefixlen))
+
+with open(output_path, "w", encoding="utf-8") as handle:
+    for network in collapsed:
+        handle.write(f"{network}\n")
+PY
+
+check_cidr_source_drop() {
     old_file="$1"
     new_count="$2"
-    pattern="$3"
-    label="$4"
     [ -f "$old_file" ] || return 0
-    old_count="$(grep -c "$pattern" "$old_file" || true)"
+
+    old_count="$(sed -n 's/^# Normalized source CIDR count: //p' "$old_file" | head -n 1)"
+    case "$old_count" in
+        ''|*[!0-9]*) return 0 ;;
+    esac
     [ "$old_count" -gt 0 ] || return 0
+
     minimum_allowed=$((old_count * (100 - MAX_DROP_PERCENT) / 100))
     if [ "$new_count" -lt "$minimum_allowed" ]; then
-        echo "$label count dropped from $old_count to $new_count; refusing to publish" >&2
+        echo "$SERVICE_NAME normalized source CIDR count dropped from $old_count to $new_count; refusing to publish" >&2
         exit 1
     fi
 }
@@ -369,6 +399,7 @@ check_domain_source_drop() {
 
 normalized_domain_count="$(wc -l < "$domains_normalized" | tr -d ' ')"
 domain_count="$(wc -l < "$domains_all" | tr -d ' ')"
+normalized_cidr_count="$(wc -l < "$cidr_normalized" | tr -d ' ')"
 cidr_count="$(wc -l < "$cidr_all" | tr -d ' ')"
 
 if [ "$normalized_domain_count" -lt "${MIN_DOMAIN_RULES:-1}" ]; then
@@ -381,13 +412,13 @@ if [ "$domain_count" -lt 1 ]; then
     exit 1
 fi
 
-if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
-    echo "Too few $SERVICE_NAME CIDR entries" >&2
+if [ "$normalized_cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
+    echo "Too few $SERVICE_NAME normalized source CIDR entries" >&2
     exit 1
 fi
 
 check_domain_source_drop "$output_dir/list-domains.rsc" "$normalized_domain_count"
-check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVICE_NAME CIDR"
+check_cidr_source_drop "$output_dir/list-cidr.rsc" "$normalized_cidr_count"
 
 {
     echo "# managed-by=mohavise-mikrotik-dns-policy-routing"
@@ -425,6 +456,9 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     echo "# RouterOS address-list: $LIST_NAME"
     echo "# Source: ${CIDR_SOURCE_NAME:-manual verified additions}${CIDR_SOURCE_TYPE:+ ($CIDR_SOURCE_TYPE)}"
     [ -z "${CIDR_SOURCE_URL:-}" ] || echo "# Source URL: $CIDR_SOURCE_URL"
+    echo "# Normalized source CIDR count: $normalized_cidr_count"
+    echo "# Exact collapsed CIDR count: $cidr_count"
+    echo "# CIDRs are safely collapsed without adding addresses outside the source union"
     echo "# do-not-edit-manually"
     echo
     echo "/ip firewall address-list"
@@ -447,5 +481,5 @@ check_sudden_drop "$output_dir/list-cidr.rsc" "$cidr_count" ' add list=' "$SERVI
     sed '1,/^$/d' "$output_dir/list-cidr.rsc"
 } > "$output_dir/list-all.rsc"
 
-printf 'Generated %s output: %s base domains (%s normalized source domains), %s FQDN seeds, %s DNS regex rules, %s CIDRs\n' \
-    "$SERVICE_NAME" "$domain_count" "$normalized_domain_count" "$domain_count" "$domain_count" "$cidr_count"
+printf 'Generated %s output: %s base domains (%s normalized source domains), %s FQDN seeds, %s DNS regex rules, %s collapsed CIDRs (%s normalized source CIDRs)\n' \
+    "$SERVICE_NAME" "$domain_count" "$normalized_domain_count" "$domain_count" "$domain_count" "$cidr_count" "$normalized_cidr_count"
