@@ -3,136 +3,109 @@
 # profile=social-media-to-outbound
 # List: social media combined domains + CIDR
 # RouterOS address-list: DST-SOCIAL-MEDIA-TO-OUTBOUND
-# Last update: 2026-09-18 09:29:04 UTC
+# Last update: 2026-09-18 09:38:42 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
 remove [find list=DST-SOCIAL-MEDIA-TO-OUTBOUND]
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="cdninstagram.com" comment="instagram:seed:cdninstagram.com" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="ig.me" comment="instagram:seed:ig.me" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="instagram.com" comment="instagram:seed:instagram.com" } on-error={}
-
-/ip dns static
-remove [find address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND]
-:do { add regexp="(^|.*\\.)cdninstagram\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="instagram:dns:cdninstagram.com" } on-error={}
-:do { add regexp="(^|.*\\.)ig\\.me$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="instagram:dns:ig.me" } on-error={}
-:do { add regexp="(^|.*\\.)instagram\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="instagram:dns:instagram.com" } on-error={}
-
-/ip firewall address-list
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=31.13.24.0/21 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=31.13.64.0/18 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=45.64.40.0/22 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.0.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.2.0/23 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.4.0/23 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.6.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.8.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.10.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.12.0/23 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.14.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.16.0/22 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.20.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.22.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.24.0/24 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.144.0.0/14 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=66.220.144.0/20 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=69.63.176.0/20 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=69.171.224.0/19 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=74.119.76.0/22 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=102.132.96.0/20 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=103.4.96.0/22 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=129.134.0.0/17 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=157.240.0.0/17 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=157.240.192.0/18 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.70.128.0/17 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.77.132.0/23 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.77.136.0/23 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.77.160.0/20 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=173.252.64.0/18 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=179.60.192.0/22 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=185.60.216.0/22 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=185.89.216.0/22 comment="instagram-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=204.15.20.0/22 comment="instagram-cidr" } on-error={}
-
-/ip firewall address-list
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="facebook.com" comment="facebook:seed:facebook.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="fb.com" comment="facebook:seed:fb.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="fbcdn.net" comment="facebook:seed:fbcdn.net" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="fbsbx.com" comment="facebook:seed:fbsbx.com" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="m.me" comment="facebook:seed:m.me" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="messenger.com" comment="facebook:seed:messenger.com" } on-error={}
-
-/ip dns static
-:do { add regexp="(^|.*\\.)facebook\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:facebook.com" } on-error={}
-:do { add regexp="(^|.*\\.)fb\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:fb.com" } on-error={}
-:do { add regexp="(^|.*\\.)fbcdn\\.net$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:fbcdn.net" } on-error={}
-:do { add regexp="(^|.*\\.)fbsbx\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:fbsbx.com" } on-error={}
-:do { add regexp="(^|.*\\.)m\\.me$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:m.me" } on-error={}
-:do { add regexp="(^|.*\\.)messenger\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:messenger.com" } on-error={}
-
-/ip firewall address-list
-
-/ip firewall address-list
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="t.co" comment="x:seed:t.co" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="twimg.com" comment="x:seed:twimg.com" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="twitter.com" comment="x:seed:twitter.com" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="x.com" comment="x:seed:x.com" } on-error={}
-
-/ip dns static
-:do { add regexp="(^|.*\\.)t\\.co$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:t.co" } on-error={}
-:do { add regexp="(^|.*\\.)twimg\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:twimg.com" } on-error={}
-:do { add regexp="(^|.*\\.)twitter\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:twitter.com" } on-error={}
-:do { add regexp="(^|.*\\.)x\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:x.com" } on-error={}
-
-/ip firewall address-list
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=64.63.0.0/18 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=103.252.112.0/22 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=104.244.41.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=104.244.42.0/24 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=104.244.44.0/22 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=188.64.224.0/21 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=192.133.76.0/22 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=199.16.156.0/22 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=199.59.148.0/22 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=199.96.56.0/23 comment="x-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=202.160.128.0/22 comment="x-cidr" } on-error={}
-
-/ip firewall address-list
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="ig.me" comment="instagram:seed:ig.me" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="instagram.com" comment="instagram:seed:instagram.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="licdn.com" comment="linkedin:seed:licdn.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="linkedin.com" comment="linkedin:seed:linkedin.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="lnkd.in" comment="linkedin:seed:lnkd.in" } on-error={}
-
-/ip dns static
-:do { add regexp="(^|.*\\.)licdn\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:dns:licdn.com" } on-error={}
-:do { add regexp="(^|.*\\.)linkedin\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:dns:linkedin.com" } on-error={}
-:do { add regexp="(^|.*\\.)lnkd\\.in$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:dns:lnkd.in" } on-error={}
-
-/ip firewall address-list
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=103.20.92.0/22 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.0.0/23 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.8.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.10.0/23 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.13.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.9.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.12.0/22 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.16.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.23.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.177.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.178.0/23 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.180.0/22 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.185.0/24 comment="linkedin-cidr" } on-error={}
-
-/ip firewall address-list
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="m.me" comment="facebook:seed:m.me" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="messenger.com" comment="facebook:seed:messenger.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="redd.it" comment="reddit:seed:redd.it" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="reddit.com" comment="reddit:seed:reddit.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="redditmedia.com" comment="reddit:seed:redditmedia.com" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="redditstatic.com" comment="reddit:seed:redditstatic.com" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="t.co" comment="x:seed:t.co" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="twimg.com" comment="x:seed:twimg.com" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="twitter.com" comment="x:seed:twitter.com" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address="x.com" comment="x:seed:x.com" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=31.13.24.0/21 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=31.13.64.0/18 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=45.64.40.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.0.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.2.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.4.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.6.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.8.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.10.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.12.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.14.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.16.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.20.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.22.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.141.24.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=57.144.0.0/14 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=64.63.0.0/18 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=66.220.144.0/20 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=69.63.176.0/20 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=69.171.224.0/19 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=74.119.76.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=102.132.96.0/20 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=103.4.96.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=103.20.92.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=103.252.112.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=104.244.41.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=104.244.42.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=104.244.44.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.0.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.8.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.10.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=108.174.13.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=129.134.0.0/17 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.9.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.12.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.16.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.23.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.177.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.178.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.180.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.185.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=157.240.0.0/17 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=157.240.192.0/18 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.70.128.0/17 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.77.132.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.77.136.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.77.160.0/20 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=173.252.64.0/18 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=179.60.192.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=185.60.216.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=185.89.216.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=188.64.224.0/21 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=192.133.76.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=199.16.156.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=199.59.148.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=199.96.56.0/23 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=202.160.128.0/22 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=204.15.20.0/22 comment="social-media-to-outbound-cidr" } on-error={}
 
 /ip dns static
+remove [find address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND]
+:do { add regexp="(^|.*\\.)cdninstagram\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="instagram:dns:cdninstagram.com" } on-error={}
+:do { add regexp="(^|.*\\.)facebook\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:facebook.com" } on-error={}
+:do { add regexp="(^|.*\\.)fb\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:fb.com" } on-error={}
+:do { add regexp="(^|.*\\.)fbcdn\\.net$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:fbcdn.net" } on-error={}
+:do { add regexp="(^|.*\\.)fbsbx\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:fbsbx.com" } on-error={}
+:do { add regexp="(^|.*\\.)ig\\.me$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="instagram:dns:ig.me" } on-error={}
+:do { add regexp="(^|.*\\.)instagram\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="instagram:dns:instagram.com" } on-error={}
+:do { add regexp="(^|.*\\.)licdn\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:dns:licdn.com" } on-error={}
+:do { add regexp="(^|.*\\.)linkedin\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:dns:linkedin.com" } on-error={}
+:do { add regexp="(^|.*\\.)lnkd\\.in$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="linkedin:dns:lnkd.in" } on-error={}
+:do { add regexp="(^|.*\\.)m\\.me$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:m.me" } on-error={}
+:do { add regexp="(^|.*\\.)messenger\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="facebook:dns:messenger.com" } on-error={}
 :do { add regexp="(^|.*\\.)redd\\.it$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:dns:redd.it" } on-error={}
 :do { add regexp="(^|.*\\.)reddit\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:dns:reddit.com" } on-error={}
 :do { add regexp="(^|.*\\.)redditmedia\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:dns:redditmedia.com" } on-error={}
 :do { add regexp="(^|.*\\.)redditstatic\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="reddit:dns:redditstatic.com" } on-error={}
-
-/ip firewall address-list
-
+:do { add regexp="(^|.*\\.)t\\.co$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:t.co" } on-error={}
+:do { add regexp="(^|.*\\.)twimg\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:twimg.com" } on-error={}
+:do { add regexp="(^|.*\\.)twitter\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:twitter.com" } on-error={}
+:do { add regexp="(^|.*\\.)x\\.com$" type=FWD address-list=DST-SOCIAL-MEDIA-TO-OUTBOUND comment="x:dns:x.com" } on-error={}

@@ -3,7 +3,7 @@
 # profile=music-to-outbound
 # List: music combined domains + CIDR
 # RouterOS address-list: DST-MUSIC-TO-OUTBOUND
-# Last update: 2026-09-18 09:29:04 UTC
+# Last update: 2026-09-18 09:38:42 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -23,6 +23,3 @@ remove [find address-list=DST-MUSIC-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)spotify\\.com$" type=FWD address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:dns:spotify.com" } on-error={}
 :do { add regexp="(^|.*\\.)spotifycdn\\.com$" type=FWD address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:dns:spotifycdn.com" } on-error={}
 :do { add regexp="(^|.*\\.)spotifycdn\\.net$" type=FWD address-list=DST-MUSIC-TO-OUTBOUND comment="spotify:dns:spotifycdn.net" } on-error={}
-
-/ip firewall address-list
-
