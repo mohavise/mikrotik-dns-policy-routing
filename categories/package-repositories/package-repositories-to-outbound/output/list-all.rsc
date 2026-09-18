@@ -3,7 +3,7 @@
 # profile=package-repositories-to-outbound
 # List: package repositories combined domains + CIDR
 # RouterOS address-list: DST-PACKAGE-REPOSITORIES-TO-OUTBOUND
-# Last update: 2026-09-18 08:59:31 UTC
+# Last update: 2026-09-18 09:00:18 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
