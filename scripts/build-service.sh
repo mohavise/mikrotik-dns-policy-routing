@@ -248,6 +248,44 @@ for key in keys:
             print(network)
 PY
             ;;
+        azure-service-tags-page)
+            azure_json="$workdir/azure-service-tags.json"
+            azure_url="$(python3 - "$cidr_raw" <<'PY'
+import html
+import re
+import sys
+
+text = html.unescape(open(sys.argv[1], "r", encoding="utf-8", errors="ignore").read())
+matches = re.findall(r'https://download\.microsoft\.com/[^"<> ]*ServiceTags_Public_[0-9]+\.json', text, re.I)
+if matches:
+    print(matches[0])
+PY
+)"
+            if [ -z "$azure_url" ]; then
+                echo "Could not discover current Azure Service Tags JSON URL" >&2
+                exit 1
+            fi
+            download_source "$azure_url" "$azure_json"
+            python3 - "$azure_json" <<'PY'
+import ipaddress
+import json
+import sys
+
+with open(sys.argv[1], "r", encoding="utf-8") as handle:
+    payload = json.load(handle)
+
+for item in payload.get("values", []):
+    if item.get("name") != "AzureCloud":
+        continue
+    for value in item.get("properties", {}).get("addressPrefixes", []):
+        try:
+            network = ipaddress.ip_network(value, strict=False)
+        except ValueError:
+            continue
+        if network.version == 4:
+            print(network)
+PY
+            ;;
         *)
             echo "Unsupported CIDR_SOURCE_FORMAT for $SERVICE_NAME: ${CIDR_SOURCE_FORMAT}" >&2
             exit 1
