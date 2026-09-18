@@ -3,7 +3,7 @@
 # profile=cloud-platforms-to-outbound
 # List: cloud platforms combined domains + CIDR
 # RouterOS address-list: DST-CLOUD-PLATFORMS-TO-OUTBOUND
-# Last update: 2026-09-18 09:01:17 UTC
+# Last update: 2026-09-18 09:03:11 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
