@@ -26,17 +26,12 @@ while read -r updater; do
         fail "persistent updater payload found in $updater"
     fi
     grep -q 'verbose=yes dry-run' "$updater" || fail "missing import syntax preflight in $updater"
-    grep -q 'downloaded file failed validation' "$updater" || fail "missing payload validation in $updater"
+    grep -q 'payloadSize' "$updater" || fail "missing file-size payload validation in $updater"
+    if grep -q '/file get .* contents' "$updater"; then
+        fail "contents-based payload validation blocks large files in $updater"
+    fi
     grep -Fq '/file remove [find name=\$legacyLastGoodFile]' "$updater" || fail "legacy rollback file is not removed in $updater"
     grep -Fq '/file remove [find name=\$fileName]' "$updater" || fail "downloaded payload is not removed in $updater"
-done
-
-find "$ROOT_DIR/categories" -path '*/output/list-all.rsc' -type f | sort |
-while read -r output; do
-    size="$(wc -c < "$output" | tr -d ' ')"
-    if [ "$size" -gt 60000 ]; then
-        fail "$output is $size bytes; RouterOS payload validation supports at most 60000 bytes"
-    fi
 done
 
 printf 'RouterOS updater control flow is valid\n'
