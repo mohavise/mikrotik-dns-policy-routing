@@ -30,6 +30,7 @@ printf '\n==> validate primary profile: categories/primary/primary-to-outbound\n
 test -s "$ROOT_DIR/categories/primary/primary-to-outbound/output/list-all.rsc"
 grep -q '^# managed-by=mohavise-mikrotik-dns-policy-routing' "$ROOT_DIR/categories/primary/primary-to-outbound/output/list-all.rsc"
 grep -q 'DST-TO-OUTBOUND' "$ROOT_DIR/categories/primary/primary-to-outbound/output/list-all.rsc"
+python3 "$ROOT_DIR/scripts/validate-aggregate-cidrs.py" "$ROOT_DIR/categories/primary/primary-to-outbound/output/list-all.rsc"
 
 printf '\n==> validate generated output safety\n'
 sh "$ROOT_DIR/scripts/validate-authoritative-cleanup.sh"
