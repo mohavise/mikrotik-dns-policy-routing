@@ -155,10 +155,93 @@ fi | normalize_domains | sort -u > "$domains_normalized"
 
 reduce_to_base_domains < "$domains_normalized" | sort -u > "$domains_all"
 
+extract_external_cidrs() {
+    case "${CIDR_SOURCE_FORMAT:-plain}" in
+        plain)
+            cat "$cidr_raw"
+            ;;
+        microsoft365-json)
+            python3 - "$cidr_raw" <<'PY'
+import ipaddress
+import json
+import sys
+
+with open(sys.argv[1], "r", encoding="utf-8") as handle:
+    endpoint_sets = json.load(handle)
+
+for endpoint_set in endpoint_sets:
+    if endpoint_set.get("category") not in ("Optimize", "Allow"):
+        continue
+    for value in endpoint_set.get("ips", []):
+        try:
+            network = ipaddress.ip_network(value, strict=False)
+        except ValueError:
+            continue
+        if network.version == 4:
+            print(network)
+PY
+            ;;
+        aws-json)
+            CIDR_SOURCE_SERVICES="${CIDR_SOURCE_SERVICES:-}" python3 - "$cidr_raw" <<'PY'
+import ipaddress
+import json
+import os
+import sys
+
+services = {item.strip() for item in os.environ.get("CIDR_SOURCE_SERVICES", "").split(",") if item.strip()}
+with open(sys.argv[1], "r", encoding="utf-8") as handle:
+    payload = json.load(handle)
+
+for entry in payload.get("prefixes", []):
+    if services and entry.get("service") not in services:
+        continue
+    value = entry.get("ip_prefix")
+    if not value:
+        continue
+    try:
+        network = ipaddress.ip_network(value, strict=False)
+    except ValueError:
+        continue
+    if network.version == 4:
+        print(network)
+PY
+            ;;
+        google-json)
+            python3 - "$cidr_raw" <<'PY'
+import ipaddress
+import json
+import sys
+
+with open(sys.argv[1], "r", encoding="utf-8") as handle:
+    payload = json.load(handle)
+
+for entry in payload.get("prefixes", []):
+    value = entry.get("ipv4Prefix")
+    if not value:
+        continue
+    try:
+        network = ipaddress.ip_network(value, strict=False)
+    except ValueError:
+        continue
+    if network.version == 4:
+        print(network)
+PY
+            ;;
+        *)
+            echo "Unsupported CIDR_SOURCE_FORMAT for $SERVICE_NAME: ${CIDR_SOURCE_FORMAT}" >&2
+            exit 1
+            ;;
+    esac
+}
+
+cidr_extracted="$workdir/cidr.extracted"
+: > "$cidr_extracted"
+if [ "${CIDR_SOURCE_URL:-}" ] && [ "$cidr_source_available" -eq 1 ]; then
+    extract_external_cidrs > "$cidr_extracted"
+fi
+
 {
-    if [ "${CIDR_SOURCE_URL:-}" ] && [ "$cidr_source_available" -eq 1 ]; then
-        cat "$cidr_raw"
-    fi
+    cat "$cidr_extracted"
     cat "$service_dir/manual-cidr.txt" 2>/dev/null || true
 } | normalize_cidrs | sort -u > "$cidr_all"
 
