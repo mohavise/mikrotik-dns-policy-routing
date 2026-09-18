@@ -1,77 +1,42 @@
-# Official CIDR Feed Audit
+# CIDR Feed Audit
 
-This document tracks whether each service has a trustworthy, machine-readable, service-specific IPv4 source that is suitable for MikroTik destination policy routing.
+This document tracks automatic IPv4 sources used for MikroTik destination policy routing.
 
-The acceptance rule is intentionally strict:
+Current policy intentionally allows broad provider, cloud, CDN, and ASN-announced ranges. A feed does not need to be service-exclusive. Domain/FQDN/regex rules remain alongside CIDRs.
 
-- prefer a source published by the service owner;
-- require destination/server ranges, not merely source/egress ranges;
-- avoid provider-wide customer address space when the service cannot be isolated;
-- keep domain rules when the official IP feed covers only part of a service;
-- do not convert ASN ownership into a CIDR feed unless the service owner publishes or directly maintains the prefix data.
+## Enabled automatic feeds
 
-## Enabled official feeds
-
-| Service | Official source | Scope | Status |
-| --- | --- | --- | --- |
-| OpenAI | https://openai.com/chatgpt-voice.json | ChatGPT Voice server IPv4 ranges; UDP 3478 scope documented by OpenAI | Enabled as supplemental CIDRs |
-| GitHub | https://api.github.com/meta | GitHub `web`, `api`, `git`, `packages`, and `pages` IPv4 groups | Enabled |
-| Telegram | https://core.telegram.org/resources/cidr.txt | Telegram-owned/current service CIDRs | Enabled |
-| Microsoft 365 | https://endpoints.office.com/endpoints/Worldwide | Microsoft 365 IPv4 Optimize/Allow endpoint sets | Enabled |
-| Microsoft Teams | https://endpoints.office.com/endpoints/Worldwide?ServiceAreas=Skype | Teams/Skype IPv4 Optimize/Allow endpoint sets | Enabled |
-| OneDrive | https://endpoints.office.com/endpoints/Worldwide?ServiceAreas=SharePoint | SharePoint/OneDrive IPv4 Optimize/Allow endpoint sets | Enabled |
-
-OpenAI's current published CIDRs are specifically for ChatGPT Voice. They supplement the OpenAI domain rules and must not be described as a complete destination IP list for all ChatGPT web/API traffic.
-
-## Reviewed but intentionally not enabled
-
-| Service | Official information found | Decision |
+| Service | Source | Scope |
 | --- | --- | --- |
-| Amazon Web Services | AWS publishes https://ip-ranges.amazonaws.com/ip-ranges.json with per-service keys | Not enabled for the generic AWS service. `AMAZON`/EC2 space is very broad, some services use EC2 space, and AWS states that not every service has published ranges. |
-| Google Cloud | Google publishes `cloud.json` for customer-usable Google Cloud external ranges | Not enabled for the generic Google Cloud service because these ranges include unrelated customer workloads and are not a narrow console/control-plane destination feed. |
-| Microsoft Azure | Microsoft publishes Azure Service Tags and weekly JSON downloads | Not enabled for the generic Azure service. Broad AzureCloud/customer service-tag space would capture unrelated workloads. Add only if a future profile can select narrow service tags. |
-| Windows Update | Microsoft guidance relies on changing FQDNs/endpoints and does not provide a stable Windows Update destination-IP feed | Keep domain-based rules. |
-| Discord | Discord publishes https://cdn.discordapp.com/ipranges/discord.json | Not enabled. The official list is documented for verifying Discordbot/Discord egress requests to external sites, not as the destination IP set for Discord clients. |
-| Signal | Signal publishes required domains and ports in its firewall guidance | No destination CIDR feed identified; keep domain rules. |
-| Figma | Figma publishes an official network domain allowlist | No destination CIDR feed identified; keep domain rules. |
-| Steam | Valve says non-web traffic is from AS32590, but its support guidance points to a third-party BGP prefix listing | Not imported under the official-source-only rule. |
-| Apple App Store | Apple publishes network/domain requirements and Apple owns broad address space | Do not use broad Apple-owned ranges as App Store destination ranges. |
-| Google Play | Google infrastructure ranges are broad/shared | Do not use Google-wide or Google Cloud customer ranges as a Play-specific destination list. |
-| Samsung Galaxy Store | No narrow owner-published machine-readable destination CIDR feed identified | Keep domain rules. |
+| OpenAI | https://openai.com/chatgpt-voice.json | Official ChatGPT Voice server ranges |
+| GitHub | https://api.github.com/meta | Official GitHub web/api/git/packages/pages ranges |
+| Telegram | https://core.telegram.org/resources/cidr.txt | Official Telegram CIDRs |
+| Microsoft 365 | Microsoft endpoint web service | Optimize/Allow IPv4 |
+| Teams | Microsoft endpoint web service | Skype/Teams IPv4 |
+| OneDrive | Microsoft endpoint web service | SharePoint/OneDrive IPv4 |
+| AWS | https://ip-ranges.amazonaws.com/ip-ranges.json | All published AWS IPv4 prefixes |
+| Google Cloud | https://www.gstatic.com/ipranges/cloud.json | Broad Google Cloud IPv4 ranges |
+| Google Drive | https://www.gstatic.com/ipranges/goog.json | Broad Google IPv4 ranges |
+| YouTube | https://www.gstatic.com/ipranges/goog.json | Broad Google IPv4 ranges |
+| Google Play | https://www.gstatic.com/ipranges/goog.json | Broad Google IPv4 ranges |
+| Microsoft Azure | Official Azure Service Tags download page | Current AzureCloud IPv4 ranges |
+| OpenAI / Speedtest and any service containing cloudflare.com | https://www.cloudflare.com/ips-v4 | Cloudflare-wide IPv4 ranges |
+| Steam | RIPEstat AS32590 | Valve announced IPv4 prefixes |
+| Facebook | RIPEstat AS32934 | Meta announced IPv4 prefixes |
+| Instagram | RIPEstat AS32934 | Meta announced IPv4 prefixes |
+| WhatsApp | RIPEstat AS32934 | Meta announced IPv4 prefixes |
+| X | RIPEstat AS13414 | X/Twitter announced IPv4 prefixes |
+| LinkedIn | RIPEstat AS14413 | LinkedIn announced IPv4 prefixes |
 
-## No narrow official CIDR feed identified yet
+## Operational behavior
 
-The following services remain domain-driven unless a suitable owner-published service-specific feed is found:
+The scheduled build downloads the current feeds, normalizes IPv4 CIDRs, deduplicates overlaps at the generated rule level, validates sudden drops, regenerates category/primary aggregates, and pushes changed generated files.
 
-- Canva
-- Wise
-- WhatsApp
-- Spotify
-- Debian
-- Docker
-- Proxmox
-- Red Hat
-- Ubuntu
-- Facebook
-- Instagram
-- LinkedIn
-- Reddit
-- X
-- YouTube
-- Google Drive
-- IP Detection
-- Speedtest
+Large aggregate lists are supported by RouterOS updaters using downloaded file-size validation plus `/import ... dry-run`, instead of reading the complete file into the RouterOS `contents` string property.
 
-For these services, a provider ASN, a CDN ASN, DNS observations, third-party BGP data, or a cloud-provider-wide IP list is not sufficient by itself to qualify as an official destination CIDR feed.
+Broad feeds are intentional. They can capture unrelated customer workloads or other services sharing AWS, Google, Azure, Cloudflare, or the same ASN.
 
-## Re-audit policy
+## Still domain-driven
 
-Re-check this document when:
+Services without a configured broad provider/ASN/CDN source remain domain-driven until a useful source or provider mapping is added.
 
-- a service publishes a new official firewall/network requirements page;
-- an official JSON/TXT endpoint feed becomes available;
-- a source starts exposing service labels that allow safe filtering;
-- an existing feed changes semantics or ownership;
-- generated aggregate payload size approaches the RouterOS safety limit.
-
-The build must continue to validate minimum counts, sudden drops, deterministic output, aggregate deduplication, and RouterOS payload size after enabling any new CIDR source.
