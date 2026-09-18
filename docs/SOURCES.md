@@ -71,6 +71,8 @@ Category and primary aggregate builds deduplicate identical effective RouterOS r
 
 Before RouterOS CIDR output is generated, all IPv4 ranges for each service are normalized and safely collapsed. Covered subnets are removed and exact adjacent sibling networks are merged recursively with Python `ipaddress.collapse_addresses()`. This never adds addresses outside the union of the imported source ranges. Source-count safety checks use the pre-collapse normalized CIDR count, while RouterOS receives only the collapsed result.
 
+CIDRs are collapsed again after services are combined into each category profile, and a third time after category profiles are combined into the primary `DST-TO-OUTBOUND` list. This removes cross-service duplicates, covered networks, and mergeable sibling networks while preserving the exact union of all contributing address space.
+
 ## Automation Order
 
 The GitHub workflow starts at:
