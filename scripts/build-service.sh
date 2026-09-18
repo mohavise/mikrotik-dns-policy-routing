@@ -286,6 +286,27 @@ for item in payload.get("values", []):
             print(network)
 PY
             ;;
+        ripestat-announced-prefixes-json)
+            python3 - "$cidr_raw" <<'PY'
+import ipaddress
+import json
+import sys
+
+with open(sys.argv[1], "r", encoding="utf-8") as handle:
+    payload = json.load(handle)
+
+for item in payload.get("data", {}).get("prefixes", []):
+    value = item.get("prefix")
+    if not value:
+        continue
+    try:
+        network = ipaddress.ip_network(value, strict=False)
+    except ValueError:
+        continue
+    if network.version == 4:
+        print(network)
+PY
+            ;;
         *)
             echo "Unsupported CIDR_SOURCE_FORMAT for $SERVICE_NAME: ${CIDR_SOURCE_FORMAT}" >&2
             exit 1
