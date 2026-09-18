@@ -46,6 +46,22 @@ Common multi-label country suffixes such as `co.uk` and `com.au` retain the regi
 
 Do not add broad CDN or cloud-hosting provider lists, public provider IP ranges, or generic customer workload domains unless that provider domain is an actual dependency of the selected service. When a service source contains a dependency under a shared provider, the generated MikroTik list deliberately uses that provider's base parent domain so the seed and DNS regex cover the provider domain family used by that service.
 
+## Official CIDR Feeds
+
+When a service owner publishes a machine-readable, service-specific IPv4 feed, the generator imports those CIDRs into the same service address-list. Official CIDRs complement the FQDN seed and DNS regex rules; they do not replace them.
+
+Currently enabled official feeds:
+
+- Telegram: `https://core.telegram.org/resources/cidr.txt`
+- Microsoft 365: Microsoft 365 endpoint web service, IPv4 Optimize/Allow ranges
+- Microsoft Teams: Microsoft 365 endpoint web service with `ServiceAreas=Skype`
+- OneDrive: Microsoft 365 endpoint web service with `ServiceAreas=SharePoint`
+- GitHub: `https://api.github.com/meta`, using the `web`, `api`, `git`, `packages`, and `pages` IPv4 groups
+
+Broad provider feeds are not imported automatically just because they are available. AWS provider-wide/EC2 ranges and Google-wide cloud/API ranges can cover unrelated workloads and can make the primary RouterOS payload unnecessarily large. Add them only when the service scope can be filtered narrowly enough to remain useful for policy routing.
+
+Category and primary aggregate builds deduplicate identical effective RouterOS rules across services, so overlapping official CIDRs are emitted once in aggregate outputs.
+
 ## Automation Order
 
 The GitHub workflow starts at:
