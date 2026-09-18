@@ -37,5 +37,15 @@ while read -r source_profile; do
     echo >> "$tmp"
 done < "$groups_file"
 
-mv "$tmp" "$output_dir/list-all.rsc"
+# Aggregate profiles can contain the same domain or CIDR through multiple
+# services. Comments identify the source service, so deduplicate using the
+# effective RouterOS command without the comment text.
+awk '
+/^:do \{ add / {
+    key = $0
+    sub(/ comment="[^"]*"/, "", key)
+    if (seen[key]++) next
+}
+{ print }
+' "$tmp" > "$output_dir/list-all.rsc"
 printf 'Generated primary outbound profile output\n'
