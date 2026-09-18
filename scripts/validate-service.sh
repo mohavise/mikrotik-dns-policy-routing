@@ -58,6 +58,7 @@ fi
 seed_count="$(grep -Fc "comment=\"${DOMAIN_COMMENT_PREFIX}seed:" "$output_dir/list-domains.rsc" || true)"
 regex_count="$(grep -Fc "comment=\"${DOMAIN_COMMENT_PREFIX}dns:" "$output_dir/list-domains.rsc" || true)"
 cidr_count="$(grep -c '^:do { add list=' "$output_dir/list-cidr.rsc" || true)"
+source_cidr_count="$(sed -n 's/^# Normalized source CIDR count: //p' "$output_dir/list-cidr.rsc" | head -n 1)"
 
 if [ "$seed_count" -lt 1 ]; then
     echo "No generated $SERVICE_NAME FQDN seed entries" >&2
@@ -69,8 +70,15 @@ if [ "$regex_count" -ne "$seed_count" ]; then
     exit 1
 fi
 
-if [ "$cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
-    echo "Too few $SERVICE_NAME CIDR entries" >&2
+case "$source_cidr_count" in
+    ''|*[!0-9]*)
+        echo "Missing or invalid normalized source CIDR count for $SERVICE_NAME" >&2
+        exit 1
+        ;;
+esac
+
+if [ "$source_cidr_count" -lt "${MIN_CIDR_RULES:-0}" ]; then
+    echo "Too few $SERVICE_NAME normalized source CIDR entries" >&2
     exit 1
 fi
 
@@ -140,3 +148,33 @@ if [ "$(grep '^:do { add list=' "$output_dir/list-cidr.rsc" | sort | uniq -d | w
     echo "Duplicate CIDR rules found for $SERVICE_NAME" >&2
     exit 1
 fi
+
+
+# Generated CIDRs must already be the exact minimal collapse of their own
+# represented address set. If collapse_addresses() changes the list, the
+# generator left covered or mergeable sibling networks behind.
+python3 - "$output_dir/list-cidr.rsc" <<'PY'
+import ipaddress
+import re
+import sys
+
+path = sys.argv[1]
+networks = []
+
+with open(path, "r", encoding="utf-8") as handle:
+    for line in handle:
+        match = re.match(r'^:do \{ add list=[^ ]+ address=([^ ]+) comment="[^"]+" \} on-error=\{\}$', line.rstrip())
+        if not match:
+            continue
+        network = ipaddress.ip_network(match.group(1), strict=False)
+        if network.version == 4:
+            networks.append(network)
+
+actual = sorted(networks, key=lambda net: (int(net.network_address), net.prefixlen))
+collapsed = list(ipaddress.collapse_addresses(actual))
+collapsed.sort(key=lambda net: (int(net.network_address), net.prefixlen))
+
+if actual != collapsed:
+    print("CIDR output is not fully collapsed into exact supernets", file=sys.stderr)
+    sys.exit(1)
+PY
