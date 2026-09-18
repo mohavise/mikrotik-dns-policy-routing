@@ -10,6 +10,8 @@ on:
       - "scripts/validate-service.sh"
       - "scripts/build-all.sh"
       - "scripts/validate-all.sh"
+      - "categories/**/database/**"
+      - ".github/workflows/update-generated-lists.yml"
   schedule:
     - cron: "30 23 * * *"
   workflow_dispatch:
@@ -53,5 +55,16 @@ jobs:
           fi
 
           git commit -m "Update generated RouterOS lists and install guides"
-          git pull --rebase origin main
-          git push origin HEAD:main
+
+          attempt=1
+          while [ "$attempt" -le 3 ]; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            attempt=$((attempt + 1))
+            sleep 2
+          done
+
+          echo "Failed to push generated updates after 3 attempts" >&2
+          exit 1
