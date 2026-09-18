@@ -227,6 +227,27 @@ for entry in payload.get("prefixes", []):
         print(network)
 PY
             ;;
+        github-meta-json)
+            CIDR_SOURCE_KEYS="${CIDR_SOURCE_KEYS:-web,api,git,packages,pages}" python3 - "$cidr_raw" <<'PY'
+import ipaddress
+import json
+import os
+import sys
+
+keys = [item.strip() for item in os.environ.get("CIDR_SOURCE_KEYS", "").split(",") if item.strip()]
+with open(sys.argv[1], "r", encoding="utf-8") as handle:
+    payload = json.load(handle)
+
+for key in keys:
+    for value in payload.get(key, []):
+        try:
+            network = ipaddress.ip_network(value, strict=False)
+        except ValueError:
+            continue
+        if network.version == 4:
+            print(network)
+PY
+            ;;
         *)
             echo "Unsupported CIDR_SOURCE_FORMAT for $SERVICE_NAME: ${CIDR_SOURCE_FORMAT}" >&2
             exit 1
