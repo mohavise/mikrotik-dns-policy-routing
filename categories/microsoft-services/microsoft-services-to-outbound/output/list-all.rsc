@@ -3,7 +3,7 @@
 # profile=microsoft-services-to-outbound
 # List: microsoft services combined domains + CIDR
 # RouterOS address-list: DST-MICROSOFT-SERVICES-TO-OUTBOUND
-# Last update: 2026-09-18 01:23:42 UTC
+# Last update: 2026-09-18 08:19:09 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -35,6 +35,40 @@ remove [find address-list=DST-MICROSOFT-SERVICES-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)sharepoint\\.com$" type=FWD address-list=DST-MICROSOFT-SERVICES-TO-OUTBOUND comment="microsoft-365:dns:sharepoint.com" } on-error={}
 
 /ip firewall address-list
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=104.146.128.0/17 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=104.47.0.0/17 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.128.0/22 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.136.0/22 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.140.6/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.18.10/31 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.18.15/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.6.152/31 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.6.171/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.6.192/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.9.192/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=131.253.33.215/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=132.245.0.0/16 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=150.171.32.0/22 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=150.171.40.0/22 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.190.128.0/18 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.20.32.0/19 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.231.128.0/19 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=204.79.197.215/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=23.103.160.0/20 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.104.0.0/15 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.107.0.0/16 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.108.128.0/17 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.126.0.0/18 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.92.0.0/15 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.96.0.0/13 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.100.0.0/14 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.104.0.0/14 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.108.0.0/14 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.112.0.0/14 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.122.0.0/15 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.238.78.88/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.244.37.168/32 comment="microsoft-365-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.96.0.0/14 comment="microsoft-365-cidr" } on-error={}
 
 /ip firewall address-list
 :do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address="1drv.com" comment="onedrive:seed:1drv.com" } on-error={}
@@ -51,6 +85,22 @@ remove [find address-list=DST-MICROSOFT-SERVICES-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)sharepoint\\.com$" type=FWD address-list=DST-MICROSOFT-SERVICES-TO-OUTBOUND comment="onedrive:dns:sharepoint.com" } on-error={}
 
 /ip firewall address-list
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=104.146.128.0/17 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.136.0/22 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.140.6/32 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.18.15/32 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.6.171/32 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.6.192/32 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.9.192/32 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=150.171.40.0/22 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.190.128.0/18 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.20.32.0/19 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.231.128.0/19 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.108.128.0/17 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.126.0.0/18 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.104.0.0/14 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.108.0.0/14 comment="onedrive-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.244.37.168/32 comment="onedrive-cidr" } on-error={}
 
 /ip firewall address-list
 :do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address="live.com" comment="teams:seed:live.com" } on-error={}
@@ -69,6 +119,19 @@ remove [find address-list=DST-MICROSOFT-SERVICES-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)skype\\.com$" type=FWD address-list=DST-MICROSOFT-SERVICES-TO-OUTBOUND comment="teams:dns:skype.com" } on-error={}
 
 /ip firewall address-list
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.140.6/32 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.18.15/32 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.6.171/32 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.6.192/32 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=13.107.9.192/32 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.190.128.0/18 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.20.32.0/19 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=20.231.128.0/19 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=40.126.0.0/18 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.108.0.0/14 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.112.0.0/14 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.122.0.0/15 comment="teams-cidr" } on-error={}
+:do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address=52.244.37.168/32 comment="teams-cidr" } on-error={}
 
 /ip firewall address-list
 :do { add list=DST-MICROSOFT-SERVICES-TO-OUTBOUND address="microsoft.com" comment="windows-update:seed:microsoft.com" } on-error={}
