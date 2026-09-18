@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-09-18 08:20:08 UTC
+# Last update: 2026-09-18 08:21:50 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -129,6 +129,118 @@ remove [find address-list=DST-TO-OUTBOUND]
 :do { add regexp="(^|.*\\.)githubusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="github:dns:githubusercontent.com" } on-error={}
 
 /ip firewall address-list
+:do { add list=DST-TO-OUTBOUND address=140.82.112.0/20 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.112.33/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.112.34/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.113.33/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.113.34/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.114.33/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.114.34/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.121.33/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=140.82.121.34/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=143.55.64.0/20 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=172.182.252.130/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=172.182.252.133/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=172.182.252.135/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=172.182.252.136/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=172.182.252.137/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=185.199.108.0/22 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=185.199.108.153/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=185.199.109.153/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=185.199.110.153/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=185.199.111.153/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=192.30.252.0/22 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=192.30.252.153/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=192.30.252.154/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=192.30.255.164/31 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.175.192.146/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.175.192.147/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.175.192.149/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.175.192.150/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.199.39.227/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.199.39.228/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.199.39.231/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.199.39.232/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.200.245.241/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.200.245.244/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.200.245.245/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.200.245.247/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.200.245.248/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.201.28.144/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.201.28.148/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.201.28.151/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.201.28.152/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.205.243.160/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.205.243.161/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.205.243.164/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.205.243.166/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.205.243.168/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.207.73.81/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.207.73.82/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.207.73.83/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.207.73.85/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.207.73.86/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.217.135.0/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.217.135.1/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.217.135.4/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.217.135.5/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.233.83.145/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.233.83.146/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.233.83.147/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.233.83.148/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.233.83.149/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.26.156.210/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.26.156.211/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.26.156.213/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.26.156.214/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.26.156.215/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.27.177.113/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.27.177.116/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.27.177.117/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.27.177.118/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.27.177.119/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.29.134.17/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.29.134.18/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.29.134.19/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.29.134.22/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.29.134.23/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.87.245.0/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.87.245.1/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.87.245.2/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.87.245.4/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=20.87.245.6/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.208.26.193/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.208.26.196/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.208.26.197/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.208.26.198/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.208.26.200/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.225.11.194/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.225.11.196/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.225.11.199/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.225.11.200/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.225.11.201/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.228.31.144/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.228.31.145/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.228.31.149/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.228.31.150/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.228.31.152/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.237.22.32/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.237.22.34/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.237.22.36/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.237.22.38/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.237.22.40/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.249.131.163/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.249.131.164/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.249.131.166/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=4.249.131.167/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.202.248.34/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.202.248.38/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.202.248.39/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.202.248.40/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.204.201.2/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.204.201.5/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.204.201.6/32 comment="github-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=48.204.201.9/32 comment="github-cidr" } on-error={}
 
 
 /ip firewall address-list
@@ -168,25 +280,16 @@ remove [find address-list=DST-TO-OUTBOUND]
 
 
 /ip firewall address-list
-:do { add list=DST-TO-OUTBOUND address="google.com" comment="google-drive:seed:google.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="googleapis.com" comment="google-drive:seed:googleapis.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="googleusercontent.com" comment="google-drive:seed:googleusercontent.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="gstatic.com" comment="google-drive:seed:gstatic.com" } on-error={}
 
 /ip dns static
-:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:google.com" } on-error={}
-:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)googleusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:googleusercontent.com" } on-error={}
-:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-drive:dns:gstatic.com" } on-error={}
 
 /ip firewall address-list
 
 /ip firewall address-list
 :do { add list=DST-TO-OUTBOUND address="ggpht.com" comment="youtube:seed:ggpht.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="google.com" comment="youtube:seed:google.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="googleapis.com" comment="youtube:seed:googleapis.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="googlevideo.com" comment="youtube:seed:googlevideo.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="gstatic.com" comment="youtube:seed:gstatic.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="youtu.be" comment="youtube:seed:youtu.be" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="youtube-nocookie.com" comment="youtube:seed:youtube-nocookie.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="youtube.com" comment="youtube:seed:youtube.com" } on-error={}
@@ -194,10 +297,7 @@ remove [find address-list=DST-TO-OUTBOUND]
 
 /ip dns static
 :do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:ggpht.com" } on-error={}
-:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:google.com" } on-error={}
-:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:googleapis.com" } on-error={}
 :do { add regexp="(^|.*\\.)googlevideo\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:googlevideo.com" } on-error={}
-:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:gstatic.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtu\\.be$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:youtu.be" } on-error={}
 :do { add regexp="(^|.*\\.)youtube-nocookie\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:youtube-nocookie.com" } on-error={}
 :do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="youtube:dns:youtube.com" } on-error={}
@@ -330,11 +430,7 @@ remove [find address-list=DST-TO-OUTBOUND]
 
 
 /ip firewall address-list
-:do { add list=DST-TO-OUTBOUND address="live.com" comment="microsoft-365:seed:live.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="microsoft365.com" comment="microsoft-365:seed:microsoft365.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="microsoftonline.com" comment="microsoft-365:seed:microsoftonline.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="msauth.net" comment="microsoft-365:seed:msauth.net" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="msftauth.net" comment="microsoft-365:seed:msftauth.net" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="msocdn.com" comment="microsoft-365:seed:msocdn.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="office.com" comment="microsoft-365:seed:office.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="office.net" comment="microsoft-365:seed:office.net" } on-error={}
@@ -343,11 +439,7 @@ remove [find address-list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address="sharepoint.com" comment="microsoft-365:seed:sharepoint.com" } on-error={}
 
 /ip dns static
-:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:live.com" } on-error={}
 :do { add regexp="(^|.*\\.)microsoft365\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:microsoft365.com" } on-error={}
-:do { add regexp="(^|.*\\.)microsoftonline\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:microsoftonline.com" } on-error={}
-:do { add regexp="(^|.*\\.)msauth\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:msauth.net" } on-error={}
-:do { add regexp="(^|.*\\.)msftauth\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:msftauth.net" } on-error={}
 :do { add regexp="(^|.*\\.)msocdn\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:msocdn.com" } on-error={}
 :do { add regexp="(^|.*\\.)office\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:office.com" } on-error={}
 :do { add regexp="(^|.*\\.)office\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="microsoft-365:dns:office.net" } on-error={}
@@ -394,72 +486,31 @@ remove [find address-list=DST-TO-OUTBOUND]
 /ip firewall address-list
 :do { add list=DST-TO-OUTBOUND address="1drv.com" comment="onedrive:seed:1drv.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="1drv.ms" comment="onedrive:seed:1drv.ms" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="live.com" comment="onedrive:seed:live.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="onedrive.com" comment="onedrive:seed:onedrive.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="sharepoint.com" comment="onedrive:seed:sharepoint.com" } on-error={}
 
 /ip dns static
 :do { add regexp="(^|.*\\.)1drv\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:1drv.com" } on-error={}
 :do { add regexp="(^|.*\\.)1drv\\.ms$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:1drv.ms" } on-error={}
-:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:live.com" } on-error={}
 :do { add regexp="(^|.*\\.)onedrive\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:onedrive.com" } on-error={}
-:do { add regexp="(^|.*\\.)sharepoint\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="onedrive:dns:sharepoint.com" } on-error={}
 
 /ip firewall address-list
-:do { add list=DST-TO-OUTBOUND address=104.146.128.0/17 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.136.0/22 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.140.6/32 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.18.15/32 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.6.171/32 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.6.192/32 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.9.192/32 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=150.171.40.0/22 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=20.190.128.0/18 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=20.20.32.0/19 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=20.231.128.0/19 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=40.108.128.0/17 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=40.126.0.0/18 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=52.104.0.0/14 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=52.108.0.0/14 comment="onedrive-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=52.244.37.168/32 comment="onedrive-cidr" } on-error={}
 
 /ip firewall address-list
-:do { add list=DST-TO-OUTBOUND address="live.com" comment="teams:seed:live.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="lync.com" comment="teams:seed:lync.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="microsoft.com" comment="teams:seed:microsoft.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="office.net" comment="teams:seed:office.net" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="sfbassets.com" comment="teams:seed:sfbassets.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="skype.com" comment="teams:seed:skype.com" } on-error={}
 
 /ip dns static
-:do { add regexp="(^|.*\\.)live\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:live.com" } on-error={}
 :do { add regexp="(^|.*\\.)lync\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:lync.com" } on-error={}
-:do { add regexp="(^|.*\\.)microsoft\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:microsoft.com" } on-error={}
-:do { add regexp="(^|.*\\.)office\\.net$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:office.net" } on-error={}
 :do { add regexp="(^|.*\\.)sfbassets\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:sfbassets.com" } on-error={}
 :do { add regexp="(^|.*\\.)skype\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="teams:dns:skype.com" } on-error={}
 
 /ip firewall address-list
-:do { add list=DST-TO-OUTBOUND address=13.107.140.6/32 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.18.15/32 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.6.171/32 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.6.192/32 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=13.107.9.192/32 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=20.190.128.0/18 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=20.20.32.0/19 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=20.231.128.0/19 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=40.126.0.0/18 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=52.108.0.0/14 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=52.112.0.0/14 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=52.122.0.0/15 comment="teams-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=52.244.37.168/32 comment="teams-cidr" } on-error={}
 
 /ip firewall address-list
-:do { add list=DST-TO-OUTBOUND address="microsoft.com" comment="windows-update:seed:microsoft.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="windowsupdate.com" comment="windows-update:seed:windowsupdate.com" } on-error={}
 
 /ip dns static
-:do { add regexp="(^|.*\\.)microsoft\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="windows-update:dns:microsoft.com" } on-error={}
 :do { add regexp="(^|.*\\.)windowsupdate\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="windows-update:dns:windowsupdate.com" } on-error={}
 
 /ip firewall address-list
@@ -467,13 +518,11 @@ remove [find address-list=DST-TO-OUTBOUND]
 
 /ip firewall address-list
 :do { add list=DST-TO-OUTBOUND address="apple-cloudkit.com" comment="apple-app-store:seed:apple-cloudkit.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="apple.com" comment="apple-app-store:seed:apple.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="mzstatic.com" comment="apple-app-store:seed:mzstatic.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="safebrowsing.apple" comment="apple-app-store:seed:safebrowsing.apple" } on-error={}
 
 /ip dns static
 :do { add regexp="(^|.*\\.)apple-cloudkit\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:apple-cloudkit.com" } on-error={}
-:do { add regexp="(^|.*\\.)apple\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:apple.com" } on-error={}
 :do { add regexp="(^|.*\\.)mzstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:mzstatic.com" } on-error={}
 :do { add regexp="(^|.*\\.)safebrowsing\\.apple$" type=FWD address-list=DST-TO-OUTBOUND comment="apple-app-store:dns:safebrowsing.apple" } on-error={}
 
@@ -481,31 +530,19 @@ remove [find address-list=DST-TO-OUTBOUND]
 
 /ip firewall address-list
 :do { add list=DST-TO-OUTBOUND address="android.com" comment="google-play:seed:android.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="ggpht.com" comment="google-play:seed:ggpht.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="google-analytics.com" comment="google-play:seed:google-analytics.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="google.com" comment="google-play:seed:google.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="googleapis.com" comment="google-play:seed:googleapis.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="googleusercontent.com" comment="google-play:seed:googleusercontent.com" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="gstatic.com" comment="google-play:seed:gstatic.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="gvt1.com" comment="google-play:seed:gvt1.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="gvt2.com" comment="google-play:seed:gvt2.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="gvt3.com" comment="google-play:seed:gvt3.com" } on-error={}
 :do { add list=DST-TO-OUTBOUND address="pki.goog" comment="google-play:seed:pki.goog" } on-error={}
-:do { add list=DST-TO-OUTBOUND address="youtube.com" comment="google-play:seed:youtube.com" } on-error={}
 
 /ip dns static
 :do { add regexp="(^|.*\\.)android\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:android.com" } on-error={}
-:do { add regexp="(^|.*\\.)ggpht\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:ggpht.com" } on-error={}
 :do { add regexp="(^|.*\\.)google-analytics\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:google-analytics.com" } on-error={}
-:do { add regexp="(^|.*\\.)google\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:google.com" } on-error={}
-:do { add regexp="(^|.*\\.)googleapis\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:googleapis.com" } on-error={}
-:do { add regexp="(^|.*\\.)googleusercontent\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:googleusercontent.com" } on-error={}
-:do { add regexp="(^|.*\\.)gstatic\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gstatic.com" } on-error={}
 :do { add regexp="(^|.*\\.)gvt1\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gvt1.com" } on-error={}
 :do { add regexp="(^|.*\\.)gvt2\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gvt2.com" } on-error={}
 :do { add regexp="(^|.*\\.)gvt3\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:gvt3.com" } on-error={}
 :do { add regexp="(^|.*\\.)pki\\.goog$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:pki.goog" } on-error={}
-:do { add regexp="(^|.*\\.)youtube\\.com$" type=FWD address-list=DST-TO-OUTBOUND comment="google-play:dns:youtube.com" } on-error={}
 
 /ip firewall address-list
 

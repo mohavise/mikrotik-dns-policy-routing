@@ -3,7 +3,7 @@
 # profile=messaging-to-outbound
 # List: messaging combined domains + CIDR
 # RouterOS address-list: DST-MESSAGING-TO-OUTBOUND
-# Last update: 2026-09-18 08:20:07 UTC
+# Last update: 2026-09-18 08:21:50 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
