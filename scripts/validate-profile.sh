@@ -37,3 +37,5 @@ if [ "$(grep -c 'type=FWD' "$output_file")" -lt "$min_count" ]; then
     echo "Too few $category_id profile domain entries"
     exit 1
 fi
+
+python3 "$repo_root/scripts/validate-aggregate-cidrs.py" "$output_file"
