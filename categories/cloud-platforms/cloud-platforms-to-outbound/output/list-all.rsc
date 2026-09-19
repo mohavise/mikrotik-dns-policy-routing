@@ -3,7 +3,7 @@
 # profile=cloud-platforms-to-outbound
 # List: cloud platforms combined domains + CIDR
 # RouterOS address-list: DST-CLOUD-PLATFORMS-TO-OUTBOUND
-# Last update: 2026-09-18 09:38:42 UTC
+# Last update: 2026-09-19 01:26:46 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -34,6 +34,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.16.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.64.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.72.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.86.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.88.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.100.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.172.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
