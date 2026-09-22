@@ -3,7 +3,7 @@
 # profile=google-services-to-outbound
 # List: google services combined domains + CIDR
 # RouterOS address-list: DST-GOOGLE-SERVICES-TO-OUTBOUND
-# Last update: 2026-09-21 01:24:10 UTC
+# Last update: 2026-09-22 01:44:14 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

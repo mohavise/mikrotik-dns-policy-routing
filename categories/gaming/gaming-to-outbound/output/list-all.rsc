@@ -3,7 +3,7 @@
 # profile=gaming-to-outbound
 # List: gaming combined domains + CIDR
 # RouterOS address-list: DST-GAMING-TO-OUTBOUND
-# Last update: 2026-09-21 01:24:10 UTC
+# Last update: 2026-09-22 01:44:14 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
