@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-11-03 09:04:09 UTC
+# Last update: 2026-11-03 09:20:26 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
