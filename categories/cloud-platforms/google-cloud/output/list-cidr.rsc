@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-GOOGLE-CLOUD-TO-OUTBOUND
 # Source: Google Cloud official public IPv4 ranges (official-provider-feed)
 # Source URL: https://www.gstatic.com/ipranges/cloud.json
-# Normalized source CIDR count: 1008
-# Exact collapsed CIDR count: 448
+# Normalized source CIDR count: 1056
+# Exact collapsed CIDR count: 467
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -33,6 +33,8 @@ remove [find list=DST-GOOGLE-CLOUD-TO-OUTBOUND]
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=8.236.144.0/20 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=8.236.192.0/18 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=8.237.0.0/17 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=8.237.160.0/19 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=8.237.192.0/18 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=23.236.48.0/20 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=23.251.128.0/19 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.0.0.0/17 comment="google-cloud-cidr" } on-error={}
@@ -55,6 +57,7 @@ remove [find list=DST-GOOGLE-CLOUD-TO-OUTBOUND]
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.4.32.0/19 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.4.64.0/19 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.4.96.0/22 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.4.100.0/24 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.4.102.0/23 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.4.104.0/21 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.4.128.0/18 comment="google-cloud-cidr" } on-error={}
@@ -68,10 +71,7 @@ remove [find list=DST-GOOGLE-CLOUD-TO-OUTBOUND]
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.13.72.0/21 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.13.112.0/20 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.13.128.0/17 comment="google-cloud-cidr" } on-error={}
-:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.14.0.0/17 comment="google-cloud-cidr" } on-error={}
-:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.14.128.0/18 comment="google-cloud-cidr" } on-error={}
-:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.14.192.0/19 comment="google-cloud-cidr" } on-error={}
-:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.15.0.0/16 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.14.0.0/15 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.16.0.0/12 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.32.0.0/15 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.34.0.0/17 comment="google-cloud-cidr" } on-error={}
@@ -291,7 +291,13 @@ remove [find list=DST-GOOGLE-CLOUD-TO-OUTBOUND]
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.112.0/21 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.120.0/22 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.124.0/23 comment="google-cloud-cidr" } on-error={}
-:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.128.0/23 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.128.0/22 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.132.0/23 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.136.0/21 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.144.0/20 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.160.0/21 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.168.0/22 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.183.172.0/23 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.0.0/21 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.8.0/23 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.12.0/22 comment="google-cloud-cidr" } on-error={}
@@ -308,7 +314,14 @@ remove [find list=DST-GOOGLE-CLOUD-TO-OUTBOUND]
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.112.0/21 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.120.0/22 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.126.0/23 comment="google-cloud-cidr" } on-error={}
-:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.128.0/24 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.128.0/21 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.136.0/22 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.142.0/23 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.144.0/20 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.160.0/21 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.168.0/23 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.170.0/24 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.184.172.0/23 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.185.64.0/18 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.185.128.0/17 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=34.186.0.0/15 comment="google-cloud-cidr" } on-error={}
@@ -452,9 +465,15 @@ remove [find list=DST-GOOGLE-CLOUD-TO-OUTBOUND]
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=146.148.16.0/20 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=146.148.32.0/19 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=146.148.64.0/18 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=152.239.128.0/17 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=162.216.148.0/22 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=162.222.176.0/21 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=173.255.112.0/20 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=179.67.0.0/17 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=179.69.128.0/17 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=179.193.128.0/17 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=179.199.0.0/17 comment="google-cloud-cidr" } on-error={}
+:do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=186.242.0.0/18 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=192.158.28.0/22 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=199.192.115.0/24 comment="google-cloud-cidr" } on-error={}
 :do { add list=DST-GOOGLE-CLOUD-TO-OUTBOUND address=199.223.232.0/22 comment="google-cloud-cidr" } on-error={}

@@ -3,7 +3,7 @@
 # profile=cloud-platforms-to-outbound
 # List: cloud platforms combined domains + CIDR
 # RouterOS address-list: DST-CLOUD-PLATFORMS-TO-OUTBOUND
-# Last update: 2026-09-22 01:44:14 UTC
+# Last update: 2026-11-03 09:04:09 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -34,7 +34,6 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.16.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.64.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.72.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.86.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.88.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.100.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=1.178.172.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -84,7 +83,8 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.12.56/29 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.12.64/28 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.12.80/30 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.12.84/32 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.12.84/31 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.12.86/32 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.13.0/26 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.13.64/27 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.4.14.0/27 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -116,6 +116,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.8.0.0/13 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.16.0.0/12 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.32.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.33.0.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.33.44.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.33.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=3.34.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -629,6 +630,8 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=8.236.144.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=8.236.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=8.237.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=8.237.160.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=8.237.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=9.129.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=9.141.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=9.160.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1015,6 +1018,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=15.248.128.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=15.248.160.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=15.248.162.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=15.248.163.1/32 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=15.248.164.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=15.248.167.0/28 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=15.248.167.16/29 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1054,10 +1058,11 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.12.96.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.12.112.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.12.120.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.16.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.24.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.32.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.0.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.64.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.96.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.112.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.120.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.156.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.160.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1362,6 +1367,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.4.32.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.4.64.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.4.96.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.4.100.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.4.102.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.4.104.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.4.128.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1375,10 +1381,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.13.72.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.13.112.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.13.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.14.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.14.128.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.14.192.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.15.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.14.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.16.0.0/12 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.32.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.34.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1598,7 +1601,13 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.112.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.120.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.124.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.128.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.128.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.132.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.136.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.144.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.160.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.168.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.183.172.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.0.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.8.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.12.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1615,7 +1624,14 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.112.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.120.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.126.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.128.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.128.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.136.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.142.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.144.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.160.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.168.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.170.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.184.172.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.185.64.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.185.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=34.186.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1625,6 +1641,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.28.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.34.96.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.34.104.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.34.106.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.42.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.44.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.48.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1650,11 +1667,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.50.242.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.52.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.16.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.32.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.48.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.56.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.60.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.62.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.32.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.54.64.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.55.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=35.56.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -1950,7 +1963,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.127.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.138.216.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.143.64.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.163.0.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.163.0.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.164.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.168.224.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=40.168.255.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -2135,6 +2148,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.0.31.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.0.64.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.0.128.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.0.249.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.0.250.0/30 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.0.251.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.0.252.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -2179,6 +2193,9 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.72.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.74.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.74.16.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.74.20.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.74.22.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.74.64.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.74.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.84.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=51.92.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -2829,6 +2846,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=54.25.20.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=54.25.32.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=54.25.82.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=54.25.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=54.26.166.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=54.32.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=54.46.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -3131,10 +3149,12 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.66.134.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.66.136.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.66.144.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.66.160.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.66.162.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.66.160.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.66.164.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.73.192.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.91.192.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.113.192.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.113.223.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.187.128.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.232.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=64.236.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -3225,8 +3245,8 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.107.9.192/26 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.107.10.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.107.12.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.107.13.0/26 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.107.13.64/28 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.107.13.0/25 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.107.13.128/28 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.230.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.231.128.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=69.234.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -3286,6 +3306,9 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.147.32.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.147.64.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.147.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.16.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.20.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.152.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.153.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.153.16.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -3416,8 +3439,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=77.112.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=78.12.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=79.125.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=80.126.0.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=80.126.2.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=80.126.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=83.118.240.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=83.119.128.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=83.160.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -3981,6 +4003,7 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=151.206.128.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=151.206.192.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=151.206.194.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=152.239.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=155.146.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=156.4.0.0/15 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=157.55.2.128/26 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -4230,7 +4253,8 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=173.83.192.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=173.83.224.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=173.83.232.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=173.83.236.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=173.83.236.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=173.83.238.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=173.255.112.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=174.129.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=175.41.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -4244,6 +4268,10 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=177.71.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=177.72.240.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=178.236.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=179.67.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=179.69.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=179.193.128.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=179.199.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=180.163.57.0/25 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=180.163.57.128/26 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=182.24.0.0/14 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -4257,6 +4285,8 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=185.42.204.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=185.48.120.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=185.143.16.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=186.242.0.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=191.166.0.0/16 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=191.232.16.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=191.232.32.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=191.232.64.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}

@@ -88,6 +88,9 @@ remove [find address-list=DST-GITHUB-TO-OUTBOUND]
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.233.83.145/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.233.83.146/31 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.233.83.148/31 comment="github-cidr" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address=20.250.119.67/32 comment="github-cidr" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address=20.250.119.68/32 comment="github-cidr" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address=20.250.119.72/31 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=48.202.248.34/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=48.202.248.38/31 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=48.202.248.40/32 comment="github-cidr" } on-error={}

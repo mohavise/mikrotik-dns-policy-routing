@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-FACEBOOK-TO-OUTBOUND
 # Source: Meta AS32934 announced IPv4 prefixes (asn-announced-prefixes)
 # Source URL: https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS32934
-# Normalized source CIDR count: 240
+# Normalized source CIDR count: 235
 # Exact collapsed CIDR count: 34
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually

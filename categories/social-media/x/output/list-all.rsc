@@ -22,7 +22,6 @@ remove [find address-list=DST-X-TO-OUTBOUND]
 /ip firewall address-list
 :do { add list=DST-X-TO-OUTBOUND address=64.63.0.0/18 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=103.252.112.0/22 comment="x-cidr" } on-error={}
-:do { add list=DST-X-TO-OUTBOUND address=104.244.41.0/24 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=104.244.42.0/24 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=104.244.44.0/22 comment="x-cidr" } on-error={}
 :do { add list=DST-X-TO-OUTBOUND address=188.64.224.0/21 comment="x-cidr" } on-error={}

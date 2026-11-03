@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-YOUTUBE-TO-OUTBOUND
 # Source: Google official public IPv4 ranges (official-provider-feed)
 # Source URL: https://www.gstatic.com/ipranges/goog.json
-# Normalized source CIDR count: 130
-# Exact collapsed CIDR count: 130
+# Normalized source CIDR count: 132
+# Exact collapsed CIDR count: 132
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -66,14 +66,13 @@ remove [find list=DST-YOUTUBE-TO-OUTBOUND]
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=130.211.0.0/16 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.2.0/23 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.4.0/23 comment="youtube-cidr" } on-error={}
-:do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.8.0/22 comment="youtube-cidr" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.8.0/21 comment="youtube-cidr" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.16.0/20 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.160.0/20 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.176.0/21 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.184.0/23 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.22.186.0/24 comment="youtube-cidr" } on-error={}
-:do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.23.39.0/24 comment="youtube-cidr" } on-error={}
-:do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.23.48.0/20 comment="youtube-cidr" } on-error={}
-:do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.23.64.0/18 comment="youtube-cidr" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.23.0.0/17 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.64.0.0/11 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.107.0.0/16 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=136.108.0.0/14 comment="youtube-cidr" } on-error={}
@@ -88,6 +87,7 @@ remove [find list=DST-YOUTUBE-TO-OUTBOUND]
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=162.120.128.0/17 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=162.216.148.0/22 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=162.222.176.0/21 comment="youtube-cidr" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address=172.102.8.0/21 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=172.110.32.0/21 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=172.217.0.0/16 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=172.253.0.0/16 comment="youtube-cidr" } on-error={}
@@ -100,6 +100,7 @@ remove [find list=DST-YOUTUBE-TO-OUTBOUND]
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=179.69.128.0/17 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=179.193.128.0/17 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=179.199.0.0/17 comment="youtube-cidr" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address=185.150.148.0/22 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=186.242.0.0/17 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=186.245.0.0/16 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=187.78.0.0/17 comment="youtube-cidr" } on-error={}
@@ -138,6 +139,7 @@ remove [find list=DST-YOUTUBE-TO-OUTBOUND]
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=208.81.188.0/22 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=208.117.224.0/19 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=209.85.128.0/17 comment="youtube-cidr" } on-error={}
+:do { add list=DST-YOUTUBE-TO-OUTBOUND address=209.107.176.0/20 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=216.58.192.0/19 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=216.73.80.0/20 comment="youtube-cidr" } on-error={}
 :do { add list=DST-YOUTUBE-TO-OUTBOUND address=216.239.32.0/19 comment="youtube-cidr" } on-error={}

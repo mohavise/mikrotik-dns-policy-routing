@@ -3,7 +3,7 @@
 # profile=music-to-outbound
 # List: music combined domains + CIDR
 # RouterOS address-list: DST-MUSIC-TO-OUTBOUND
-# Last update: 2026-09-22 01:44:14 UTC
+# Last update: 2026-11-03 09:04:09 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
