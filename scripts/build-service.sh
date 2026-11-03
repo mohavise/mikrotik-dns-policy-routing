@@ -375,7 +375,8 @@ check_cidr_source_drop() {
     minimum_allowed=$((old_count * (100 - MAX_DROP_PERCENT) / 100))
     if [ "$new_count" -lt "$minimum_allowed" ]; then
         echo "$SERVICE_NAME normalized source CIDR count dropped from $old_count to $new_count; refusing to publish" >&2
-        exit 1
+        echo "SOURCE_DROP: service=$SERVICE_ID previous=$old_count current=$new_count max_drop_percent=$MAX_DROP_PERCENT" >&2
+        exit 42
     fi
 }
 
