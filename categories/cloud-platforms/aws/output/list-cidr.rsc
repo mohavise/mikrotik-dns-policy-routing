@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-AWS-TO-OUTBOUND
 # Source: AWS official public IPv4 ranges (official-provider-feed)
 # Source URL: https://ip-ranges.amazonaws.com/ip-ranges.json
-# Normalized source CIDR count: 7937
+# Normalized source CIDR count: 7941
 # Exact collapsed CIDR count: 1750
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually

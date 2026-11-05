@@ -3,7 +3,7 @@
 # profile=microsoft-services-to-outbound
 # List: microsoft services combined domains + CIDR
 # RouterOS address-list: DST-MICROSOFT-SERVICES-TO-OUTBOUND
-# Last update: 2026-11-04 03:06:52 UTC
+# Last update: 2026-11-05 03:38:17 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
