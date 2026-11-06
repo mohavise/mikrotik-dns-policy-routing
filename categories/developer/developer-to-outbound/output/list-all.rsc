@@ -3,7 +3,7 @@
 # profile=developer-to-outbound
 # List: developer combined domains + CIDR
 # RouterOS address-list: DST-DEVELOPER-TO-OUTBOUND
-# Last update: 2026-11-05 03:38:17 UTC
+# Last update: 2026-11-06 03:34:36 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
