@@ -3,7 +3,7 @@
 # profile=developer-to-outbound
 # List: developer combined domains + CIDR
 # RouterOS address-list: DST-DEVELOPER-TO-OUTBOUND
-# Last update: 2026-11-09 02:54:09 UTC
+# Last update: 2026-11-10 04:44:22 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -17,6 +17,8 @@ remove [find list=DST-DEVELOPER-TO-OUTBOUND]
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address="githubstatus.com" comment="github:seed:githubstatus.com" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address="githubusercontent.com" comment="github:seed:githubusercontent.com" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.149.173.80/28 comment="developer-to-outbound-cidr" } on-error={}
+:do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.159.108.160/28 comment="developer-to-outbound-cidr" } on-error={}
+:do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.159.197.192/28 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.186.157.192/28 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.187.247.160/28 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.195.217.80/28 comment="developer-to-outbound-cidr" } on-error={}
@@ -35,6 +37,7 @@ remove [find list=DST-DEVELOPER-TO-OUTBOUND]
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.228.31.149/32 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.228.31.150/32 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.228.31.152/32 comment="developer-to-outbound-cidr" } on-error={}
+:do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.234.31.32/28 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.236.95.112/28 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.237.22.32/32 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.237.22.34/32 comment="developer-to-outbound-cidr" } on-error={}
@@ -44,6 +47,8 @@ remove [find list=DST-DEVELOPER-TO-OUTBOUND]
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.249.131.163/32 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.249.131.164/32 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=4.249.131.166/31 comment="developer-to-outbound-cidr" } on-error={}
+:do { add list=DST-DEVELOPER-TO-OUTBOUND address=20.26.58.32/28 comment="developer-to-outbound-cidr" } on-error={}
+:do { add list=DST-DEVELOPER-TO-OUTBOUND address=20.26.68.64/28 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=20.26.156.210/31 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=20.26.156.213/32 comment="developer-to-outbound-cidr" } on-error={}
 :do { add list=DST-DEVELOPER-TO-OUTBOUND address=20.26.156.214/31 comment="developer-to-outbound-cidr" } on-error={}
