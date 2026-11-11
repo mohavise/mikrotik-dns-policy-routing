@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-11-10 04:44:22 UTC
+# Last update: 2026-11-11 02:55:52 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -225,9 +225,8 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=3.4.12.52/30 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.4.12.56/29 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.4.12.64/28 comment="primary-to-outbound-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=3.4.12.80/30 comment="primary-to-outbound-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=3.4.12.84/31 comment="primary-to-outbound-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=3.4.12.86/32 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=3.4.12.80/29 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=3.4.12.88/32 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.4.13.0/26 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.4.13.64/27 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.4.14.0/27 comment="primary-to-outbound-cidr" } on-error={}
@@ -268,6 +267,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=3.40.0.0/14 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.44.0.0/16 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.45.0.0/17 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=3.45.128.0/20 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.64.0.0/11 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.96.0.0/14 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=3.101.0.0/16 comment="primary-to-outbound-cidr" } on-error={}
@@ -1207,6 +1207,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=15.248.176.0/20 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.248.193.0/31 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.248.194.0/23 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=15.248.198.0/24 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.249.0.0/16 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.251.0.0/28 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.251.0.20/30 comment="primary-to-outbound-cidr" } on-error={}
@@ -1471,7 +1472,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=23.251.128.0/19 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=23.254.0.0/19 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=23.254.32.0/21 comment="primary-to-outbound-cidr" } on-error={}
-:do { add list=DST-TO-OUTBOUND address=23.254.40.0/23 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=23.254.40.0/22 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=23.254.120.0/21 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=24.110.0.0/21 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=24.110.8.0/23 comment="primary-to-outbound-cidr" } on-error={}
@@ -2796,6 +2797,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=64.15.112.0/20 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=64.23.0.0/18 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=64.37.64.0/18 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=64.41.0.0/18 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=64.63.0.0/18 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=64.66.128.0/22 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=64.66.133.0/24 comment="primary-to-outbound-cidr" } on-error={}

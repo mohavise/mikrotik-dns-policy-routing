@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-GITHUB-TO-OUTBOUND
 # Source: GitHub official Meta API (official-api)
 # Source URL: https://api.github.com/meta
-# Normalized source CIDR count: 146
-# Exact collapsed CIDR count: 104
+# Normalized source CIDR count: 142
+# Exact collapsed CIDR count: 100
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -71,10 +71,6 @@ remove [find list=DST-GITHUB-TO-OUTBOUND]
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.200.245.244/31 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.200.245.247/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.200.245.248/32 comment="github-cidr" } on-error={}
-:do { add list=DST-GITHUB-TO-OUTBOUND address=20.201.28.144/32 comment="github-cidr" } on-error={}
-:do { add list=DST-GITHUB-TO-OUTBOUND address=20.201.28.148/32 comment="github-cidr" } on-error={}
-:do { add list=DST-GITHUB-TO-OUTBOUND address=20.201.28.151/32 comment="github-cidr" } on-error={}
-:do { add list=DST-GITHUB-TO-OUTBOUND address=20.201.28.152/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.205.243.160/31 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.205.243.164/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.205.243.166/32 comment="github-cidr" } on-error={}
