@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-11-11 02:55:52 UTC
+# Last update: 2026-11-12 04:01:53 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -3440,6 +3440,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=99.83.96.0/21 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=99.83.104.0/22 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=99.83.108.0/23 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=99.83.110.0/24 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=99.83.112.0/21 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=99.83.120.0/22 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=99.83.128.0/17 comment="primary-to-outbound-cidr" } on-error={}

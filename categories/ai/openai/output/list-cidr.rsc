@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-OPENAI-TO-OUTBOUND
 # Source: OpenAI ChatGPT Voice server IP ranges (official-service-feed)
 # Source URL: https://openai.com/chatgpt-voice.json
-# Normalized source CIDR count: 438
-# Exact collapsed CIDR count: 436
+# Normalized source CIDR count: 447
+# Exact collapsed CIDR count: 445
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -89,6 +89,7 @@ remove [find list=DST-OPENAI-TO-OUTBOUND]
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.42.209.232/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.42.216.2/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.45.59.121/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=20.46.180.229/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.55.129.73/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.58.186.41/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.59.38.199/32 comment="openai-cidr" } on-error={}
@@ -149,11 +150,14 @@ remove [find list=DST-OPENAI-TO-OUTBOUND]
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.190.104.59/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.193.73.108/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.194.51.26/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=20.194.216.119/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=20.194.216.186/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.195.180.205/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.195.185.53/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.195.188.32/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.195.188.94/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.196.195.248/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=20.197.26.229/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.197.177.17/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.197.179.218/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.197.180.156/32 comment="openai-cidr" } on-error={}
@@ -165,6 +169,7 @@ remove [find list=DST-OPENAI-TO-OUTBOUND]
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.203.145.145/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.203.145.225/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.203.241.30/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=20.205.234.64/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.206.69.234/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.206.90.17/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.207.196.19/32 comment="openai-cidr" } on-error={}
@@ -178,6 +183,7 @@ remove [find list=DST-OPENAI-TO-OUTBOUND]
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.211.204.106/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.211.207.196/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.211.232.159/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=20.212.25.108/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.212.83.76/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.213.73.163/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.213.76.4/32 comment="openai-cidr" } on-error={}
@@ -193,6 +199,7 @@ remove [find list=DST-OPENAI-TO-OUTBOUND]
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.215.254.178/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.218.37.123/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.218.43.103/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=20.219.1.167/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.219.11.5/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.219.56.35/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=20.219.100.169/32 comment="openai-cidr" } on-error={}
@@ -265,6 +272,7 @@ remove [find list=DST-OPENAI-TO-OUTBOUND]
 :do { add list=DST-OPENAI-TO-OUTBOUND address=51.116.89.99/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=51.116.89.102/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=51.116.220.101/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=52.140.124.30/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.141.0.43/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.141.4.85/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.143.181.161/32 comment="openai-cidr" } on-error={}
@@ -279,6 +287,7 @@ remove [find list=DST-OPENAI-TO-OUTBOUND]
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.233.253.172/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.234.45.139/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.236.51.132/32 comment="openai-cidr" } on-error={}
+:do { add list=DST-OPENAI-TO-OUTBOUND address=52.237.113.253/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.241.6.99/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.243.62.231/32 comment="openai-cidr" } on-error={}
 :do { add list=DST-OPENAI-TO-OUTBOUND address=52.247.69.68/32 comment="openai-cidr" } on-error={}
