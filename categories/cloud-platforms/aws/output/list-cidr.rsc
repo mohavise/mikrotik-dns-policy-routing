@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-AWS-TO-OUTBOUND
 # Source: AWS official public IPv4 ranges (official-provider-feed)
 # Source URL: https://ip-ranges.amazonaws.com/ip-ranges.json
-# Normalized source CIDR count: 7956
-# Exact collapsed CIDR count: 1754
+# Normalized source CIDR count: 7958
+# Exact collapsed CIDR count: 1755
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -647,6 +647,7 @@ remove [find list=DST-AWS-TO-OUTBOUND]
 :do { add list=DST-AWS-TO-OUTBOUND address=43.195.0.0/20 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.195.16.0/22 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.195.20.0/23 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=43.195.128.0/17 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.196.0.0/16 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.198.0.0/15 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.200.0.0/13 comment="aws-cidr" } on-error={}

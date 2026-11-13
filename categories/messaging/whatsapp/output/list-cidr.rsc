@@ -5,7 +5,7 @@
 # RouterOS address-list: DST-WHATSAPP-TO-OUTBOUND
 # Source: Meta AS32934 announced IPv4 prefixes (asn-announced-prefixes)
 # Source URL: https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS32934
-# Normalized source CIDR count: 235
+# Normalized source CIDR count: 236
 # Exact collapsed CIDR count: 34
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually

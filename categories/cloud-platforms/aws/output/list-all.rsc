@@ -657,6 +657,7 @@ remove [find address-list=DST-AWS-TO-OUTBOUND]
 :do { add list=DST-AWS-TO-OUTBOUND address=43.195.0.0/20 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.195.16.0/22 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.195.20.0/23 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=43.195.128.0/17 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.196.0.0/16 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.198.0.0/15 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=43.200.0.0/13 comment="aws-cidr" } on-error={}
