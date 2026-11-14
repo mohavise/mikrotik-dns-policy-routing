@@ -3,7 +3,7 @@
 # profile=cloud-platforms-to-outbound
 # List: cloud platforms combined domains + CIDR
 # RouterOS address-list: DST-CLOUD-PLATFORMS-TO-OUTBOUND
-# Last update: 2026-11-13 03:31:32 UTC
+# Last update: 2026-11-14 03:28:13 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -1104,11 +1104,8 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.12.96.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.12.112.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.12.120.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.0.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.64.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.96.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.112.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.120.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.0.0/17 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.128.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.156.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.160.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=16.15.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
@@ -3402,9 +3399,8 @@ remove [find list=DST-CLOUD-PLATFORMS-TO-OUTBOUND]
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.147.152.0/21 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.147.160.0/19 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.147.192.0/18 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.16.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
-:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.20.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.20.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}
+:do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.150.22.0/24 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.152.0.0/20 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.152.16.0/22 comment="cloud-platforms-to-outbound-cidr" } on-error={}
 :do { add list=DST-CLOUD-PLATFORMS-TO-OUTBOUND address=72.152.20.0/23 comment="cloud-platforms-to-outbound-cidr" } on-error={}

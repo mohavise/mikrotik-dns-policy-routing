@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-AWS-TO-OUTBOUND
 # Source: AWS official public IPv4 ranges (official-provider-feed)
 # Source URL: https://ip-ranges.amazonaws.com/ip-ranges.json
-# Normalized source CIDR count: 7958
-# Exact collapsed CIDR count: 1755
+# Normalized source CIDR count: 7954
+# Exact collapsed CIDR count: 1751
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -449,11 +449,8 @@ remove [find list=DST-AWS-TO-OUTBOUND]
 :do { add list=DST-AWS-TO-OUTBOUND address=16.12.96.0/20 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=16.12.112.0/21 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=16.12.120.0/22 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=16.15.0.0/18 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=16.15.64.0/19 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=16.15.96.0/20 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=16.15.112.0/21 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=16.15.120.0/22 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=16.15.0.0/17 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=16.15.128.0/21 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=16.15.156.0/22 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=16.15.160.0/19 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=16.15.192.0/18 comment="aws-cidr" } on-error={}
@@ -1338,9 +1335,8 @@ remove [find list=DST-AWS-TO-OUTBOUND]
 :do { add list=DST-AWS-TO-OUTBOUND address=72.21.192.0/19 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=72.41.0.0/20 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=72.44.32.0/19 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=72.150.0.0/20 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=72.150.16.0/22 comment="aws-cidr" } on-error={}
-:do { add list=DST-AWS-TO-OUTBOUND address=72.150.20.0/24 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=72.150.20.0/23 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=72.150.22.0/24 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=72.242.0.0/15 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=75.2.0.0/17 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=75.2.128.0/18 comment="aws-cidr" } on-error={}
