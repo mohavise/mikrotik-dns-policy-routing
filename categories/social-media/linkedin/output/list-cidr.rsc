@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-LINKEDIN-TO-OUTBOUND
 # Source: LinkedIn AS14413 announced IPv4 prefixes (asn-announced-prefixes)
 # Source URL: https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS14413
-# Normalized source CIDR count: 25
-# Exact collapsed CIDR count: 13
+# Normalized source CIDR count: 23
+# Exact collapsed CIDR count: 12
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -21,7 +21,6 @@ remove [find list=DST-LINKEDIN-TO-OUTBOUND]
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.12.0/22 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.16.0/24 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.23.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.177.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.178.0/23 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.180.0/22 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.185.0/24 comment="linkedin-cidr" } on-error={}
+:do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.194.0/24 comment="linkedin-cidr" } on-error={}

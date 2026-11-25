@@ -5,8 +5,8 @@
 # RouterOS address-list: DST-GITHUB-TO-OUTBOUND
 # Source: GitHub official Meta API (official-api)
 # Source URL: https://api.github.com/meta
-# Normalized source CIDR count: 159
-# Exact collapsed CIDR count: 117
+# Normalized source CIDR count: 163
+# Exact collapsed CIDR count: 121
 # CIDRs are safely collapsed without adding addresses outside the source union
 # do-not-edit-manually
 
@@ -62,6 +62,7 @@ remove [find list=DST-GITHUB-TO-OUTBOUND]
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.29.134.17/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.29.134.18/31 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.29.134.22/31 comment="github-cidr" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address=20.64.190.224/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.87.245.0/31 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.87.245.2/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.87.245.4/32 comment="github-cidr" } on-error={}
@@ -97,6 +98,7 @@ remove [find list=DST-GITHUB-TO-OUTBOUND]
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.250.119.67/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.250.119.68/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=20.250.119.72/31 comment="github-cidr" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address=20.254.76.112/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=40.121.125.32/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=40.121.125.128/26 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=40.121.125.192/27 comment="github-cidr" } on-error={}
@@ -112,12 +114,14 @@ remove [find list=DST-GITHUB-TO-OUTBOUND]
 :do { add list=DST-GITHUB-TO-OUTBOUND address=48.204.201.9/32 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=57.155.223.240/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=57.166.80.144/28 comment="github-cidr" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address=74.158.248.0/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=74.161.79.192/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=135.235.149.144/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=140.82.112.0/20 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=143.55.64.0/20 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=172.130.18.192/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=172.130.45.112/28 comment="github-cidr" } on-error={}
+:do { add list=DST-GITHUB-TO-OUTBOUND address=172.130.99.48/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=172.130.153.16/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=172.130.201.80/28 comment="github-cidr" } on-error={}
 :do { add list=DST-GITHUB-TO-OUTBOUND address=172.139.64.112/28 comment="github-cidr" } on-error={}

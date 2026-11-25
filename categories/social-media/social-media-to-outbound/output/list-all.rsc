@@ -3,7 +3,7 @@
 # profile=social-media-to-outbound
 # List: social media combined domains + CIDR
 # RouterOS address-list: DST-SOCIAL-MEDIA-TO-OUTBOUND
-# Last update: 2026-11-15 02:57:37 UTC
+# Last update: 2026-11-25 05:36:24 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -64,10 +64,9 @@ remove [find list=DST-SOCIAL-MEDIA-TO-OUTBOUND]
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.12.0/22 comment="social-media-to-outbound-cidr" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.16.0/24 comment="social-media-to-outbound-cidr" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.23.0/24 comment="social-media-to-outbound-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.177.0/24 comment="social-media-to-outbound-cidr" } on-error={}
-:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.178.0/23 comment="social-media-to-outbound-cidr" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.180.0/22 comment="social-media-to-outbound-cidr" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.185.0/24 comment="social-media-to-outbound-cidr" } on-error={}
+:do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=144.2.194.0/24 comment="social-media-to-outbound-cidr" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=157.240.0.0/17 comment="social-media-to-outbound-cidr" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=157.240.192.0/18 comment="social-media-to-outbound-cidr" } on-error={}
 :do { add list=DST-SOCIAL-MEDIA-TO-OUTBOUND address=163.70.128.0/17 comment="social-media-to-outbound-cidr" } on-error={}

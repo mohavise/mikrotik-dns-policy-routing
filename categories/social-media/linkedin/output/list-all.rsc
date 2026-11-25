@@ -27,7 +27,6 @@ remove [find address-list=DST-LINKEDIN-TO-OUTBOUND]
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.12.0/22 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.16.0/24 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.23.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.177.0/24 comment="linkedin-cidr" } on-error={}
-:do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.178.0/23 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.180.0/22 comment="linkedin-cidr" } on-error={}
 :do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.185.0/24 comment="linkedin-cidr" } on-error={}
+:do { add list=DST-LINKEDIN-TO-OUTBOUND address=144.2.194.0/24 comment="linkedin-cidr" } on-error={}
