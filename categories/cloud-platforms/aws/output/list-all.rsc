@@ -28,6 +28,7 @@ remove [find address-list=DST-AWS-TO-OUTBOUND]
 :do { add list=DST-AWS-TO-OUTBOUND address=1.178.16.0/20 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=1.178.64.0/23 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=1.178.72.0/21 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=1.178.86.0/24 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=1.178.88.0/21 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=1.178.100.0/22 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=1.178.172.0/23 comment="aws-cidr" } on-error={}
@@ -429,6 +430,7 @@ remove [find address-list=DST-AWS-TO-OUTBOUND]
 :do { add list=DST-AWS-TO-OUTBOUND address=15.248.198.0/24 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=15.248.200.0/26 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=15.248.208.0/25 comment="aws-cidr" } on-error={}
+:do { add list=DST-AWS-TO-OUTBOUND address=15.248.208.128/26 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=15.249.0.0/16 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=15.251.0.0/28 comment="aws-cidr" } on-error={}
 :do { add list=DST-AWS-TO-OUTBOUND address=15.251.0.20/30 comment="aws-cidr" } on-error={}

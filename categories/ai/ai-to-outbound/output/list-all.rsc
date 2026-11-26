@@ -3,7 +3,7 @@
 # profile=ai-to-outbound
 # List: ai combined domains + CIDR
 # RouterOS address-list: DST-AI-TO-OUTBOUND
-# Last update: 2026-11-25 05:36:24 UTC
+# Last update: 2026-11-26 05:18:58 UTC
 # do-not-edit-manually
 
 /ip firewall address-list

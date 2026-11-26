@@ -3,7 +3,7 @@
 # profile=primary-to-outbound
 # List: Primary combined domains + CIDR
 # RouterOS address-list: DST-TO-OUTBOUND
-# Last update: 2026-11-25 05:36:24 UTC
+# Last update: 2026-11-26 05:18:58 UTC
 # do-not-edit-manually
 
 /ip firewall address-list
@@ -177,6 +177,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=1.178.16.0/20 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=1.178.64.0/23 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=1.178.72.0/21 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=1.178.86.0/24 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=1.178.88.0/21 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=1.178.100.0/22 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=1.178.172.0/23 comment="primary-to-outbound-cidr" } on-error={}
@@ -1251,6 +1252,7 @@ remove [find list=DST-TO-OUTBOUND]
 :do { add list=DST-TO-OUTBOUND address=15.248.198.0/24 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.248.200.0/26 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.248.208.0/25 comment="primary-to-outbound-cidr" } on-error={}
+:do { add list=DST-TO-OUTBOUND address=15.248.208.128/26 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.249.0.0/16 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.251.0.0/28 comment="primary-to-outbound-cidr" } on-error={}
 :do { add list=DST-TO-OUTBOUND address=15.251.0.20/30 comment="primary-to-outbound-cidr" } on-error={}
